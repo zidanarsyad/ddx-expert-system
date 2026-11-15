@@ -1,0 +1,137 @@
+{
+ "patients": 4836,
+ "rows": [
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 0.05,
+   "exact": 0.7839123242349049,
+   "under": 0.003101736972704715,
+   "over": 0.21298593879239042,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.9181141439205955,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 0.1,
+   "exact": 0.7837055417700579,
+   "under": 0.0033085194375516956,
+   "over": 0.21298593879239042,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.9181141439205955,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 0.2,
+   "exact": 0.7816377171215881,
+   "under": 0.005583126550868486,
+   "over": 0.21277915632754343,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.9181141439205955,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 0.3,
+   "exact": 0.7814309346567411,
+   "under": 0.005789909015715467,
+   "over": 0.21277915632754343,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.9181141439205955,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 0.5,
+   "exact": 0.7808105872622002,
+   "under": 0.00641025641025641,
+   "over": 0.21277915632754343,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.9181141439205955,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": true,
+   "severity_threshold": 1.01,
+   "exact": 0.6453680727874276,
+   "under": 0.09222497932175351,
+   "over": 0.26240694789081886,
+   "urgent_recall": 0.7376470588235294,
+   "urgent_specificity": 0.8737244897959183,
+   "binary_accuracy": 0.825889164598842,
+   "emergency_recall": 0.8
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 0.05,
+   "exact": 0.9966914805624483,
+   "under": 0.003101736972704715,
+   "over": 0.00020678246484698098,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 1.0,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 0.1,
+   "exact": 0.9964846980976013,
+   "under": 0.0033085194375516956,
+   "over": 0.00020678246484698098,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 1.0,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 0.2,
+   "exact": 0.9944168734491315,
+   "under": 0.005583126550868486,
+   "over": 0.0,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 1.0,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 0.3,
+   "exact": 0.9942100909842845,
+   "under": 0.005789909015715467,
+   "over": 0.0,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 1.0,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 0.5,
+   "exact": 0.9935897435897436,
+   "under": 0.00641025641025641,
+   "over": 0.0,
+   "urgent_recall": 1.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 1.0,
+   "emergency_recall": 1.0
+  },
+  {
+   "red_flag_rules": false,
+   "severity_threshold": 1.01,
+   "exact": 0.586435070306038,
+   "under": 0.35153019023986765,
+   "over": 0.062034739454094295,
+   "urgent_recall": 0.0,
+   "urgent_specificity": 1.0,
+   "binary_accuracy": 0.6484698097601324,
+   "emergency_recall": 0.0
+  }
+ ]
+}

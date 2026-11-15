@@ -1,0 +1,8 @@
+code,name,concludes,cf
+D-BRX-2,Bronchiectasis: haemoptysis with purulent sputum,Bronchiectasis,0.2
+D-LCA-1,Lung cancer: age >= 40 with unexplained haemoptysis (NICE NG12 1.1.1),Pulmonary neoplasm,0.5
+D-PE-1,"Pulmonary embolism likely: Wells score > 4 with dyspnoea, pleuritic pain or haemoptysis",Pulmonary embolism,0.7
+D-TB-1,Tuberculosis: cough with haemoptysis or weight loss and fever or sweats (WHO symptom screen),Tuberculosis,0.5
+D-TB-2,"Tuberculosis: cough with fever, weight loss or haemoptysis in a risk group",Tuberculosis,0.3
+R-LCA-1,Haemoptysis at >= 40: suspected lung cancer pathway,Suspected-cancer pathway referral for lung cancer (age >= 40 with unexplained haemoptysis),1.0
+S-WELLS-HAEMO,Wells: haemoptysis (+1),Wells score for pulmonary embolism (items available in DDXPlus),1.0

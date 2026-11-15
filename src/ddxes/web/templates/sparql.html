@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}SPARQL | DDX-ES{% endblock %}
+{% block content %}
+<header class="page-head">
+  <h1 class="page-title">Query the knowledge graph</h1>
+  <p class="lede">The ontology, the knowledge base, the rules with their sources and the OWL 2 RL entailments are one
+    RDF graph. Ask it anything in SPARQL, or start from one of the examples.</p>
+</header>
+
+<div class="sparql">
+  <form class="sparql__editor" method="post" action="/sparql">
+    <input type="hidden" name="example" value="{{ example or '' }}" data-example-key>
+    <label class="sr" for="query">SPARQL query</label>
+    <textarea id="query" name="query" class="code code--editor" spellcheck="false" rows="16">{{ query }}</textarea>
+    <div class="sparql__opts">
+      <label class="check"><input type="checkbox" name="with_cases"{% if with_cases %} checked{% endif %}> Include the 980 demo patients</label>
+      <label class="sparql__patient">Add the consultation of patient
+        <input type="text" name="patient" value="{{ patient }}" placeholder="T002456" pattern="[A-Za-z0-9_]*" size="9"></label>
+      <button class="btn btn--primary" type="submit">Run query <kbd>Ctrl</kbd><kbd>Enter</kbd></button>
+    </div>
+  </form>
+
+  <nav class="examples" aria-label="Example queries">
+    <h2 class="live__title">Examples</h2>
+    <ol class="examples__list">
+      {% for e in examples %}
+      <li><a href="/sparql?example={{ e.key }}"{% if e.key == example %} aria-current="true"{% endif %} title="{{ e.title }}"
+             data-example="{{ e.key }}" data-query="{{ e.text }}">{{ e.title }}</a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+
+{% if result %}
+<section class="block results" aria-labelledby="res-title">
+  {% if result.error %}
+  <h2 class="section-title" id="res-title">The query did not run</h2>
+  <pre class="callout callout--warn code">{{ result.error }}</pre>
+  {% else %}
+  <h2 class="section-title" id="res-title">
+    {% if result.kind == "ask" %}Answer: {{ "yes" if result.answer else "no" }}
+    {% else %}{{ result.count|thousands }} {{ "triple" if result.kind == "graph" else "row" }}{{ "s" if result.count != 1 }}{% endif %}</h2>
+  <p class="note">Over {{ result.triples|thousands }} triples{% if result.notes %}, including {{ result.notes|join(" and ") }}{% endif %},
+    in {{ "%.0f"|format(result.ms) }} ms.</p>
+  {% if result.kind == "select" %}
+  <div class="table-wrap">
+  <table class="table table--compact">
+    <thead><tr>{% for c in result.columns %}<th scope="col">{{ c }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for row in result.rows[:500] %}<tr>{% for x in row %}<td>{{ x }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+  </table>
+  </div>
+  {% if result.count > 500 %}<p class="note">Showing the first 500 rows.</p>{% endif %}
+  {% elif result.kind == "graph" %}
+  <pre class="code code--block">{{ result.turtle }}</pre>
+  {% endif %}
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

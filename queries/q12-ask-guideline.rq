@@ -1,0 +1,4 @@
+# ASK: is the Wells score rule for pulmonary embolism backed by a clinical decision rule in the graph?
+PREFIX : <http://example.org/ddx#>
+PREFIX dct: <http://purl.org/dc/terms/>
+ASK { <http://example.org/ddx#Rule_D-PE-1> dct:source ?s . ?s a :ClinicalDecisionRule }

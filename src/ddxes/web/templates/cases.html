@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "_macros.html" import triage_tag, icon %}
+{% block title %}{{ pid }}, case analysis | DDX-ES{% endblock %}
+{% block content %}
+<header class="page-head">
+  <h1 class="page-title">Case analysis</h1>
+  <p class="lede">Run DDX-ES on a patient from the DDXPlus test set, compare its answer with the ground truth, and
+    inspect each step of the reasoning.</p>
+</header>
+
+<form class="picker" method="get" action="/cases">
+  <div class="field">
+    <label for="pathology">Pathology</label>
+    <select id="pathology" name="pathology" data-autosubmit>
+      {% for k, label in pathologies %}<option value="{{ k }}"{% if k == pathology %} selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="patient">Patient</label>
+    <select id="patient" name="patient" data-autosubmit>
+      {% for p in patients %}<option value="{{ p.id }}"{% if p.id == pid %} selected{% endif %}>{{ p.id }}, {{ "female" if p.sex == "F" else "male" }}, {{ p.age }}</option>{% endfor %}
+    </select>
+  </div>
+  <noscript><button class="btn btn--quiet" type="submit">Show</button></noscript>
+  <a class="btn btn--quiet picker__random" href="/cases/random">Random patient</a>
+</form>
+
+<div class="case">
+  <section class="case__head">
+    <p class="case__id">Patient {{ pid }}</p>
+    <p class="vignette">{{ vignette }}</p>
+    <p class="case__truth">The recorded diagnosis is <b>{{ truth }}</b>.
+      {% if truth_rank == 1 %}<span class="status status--yes">DDX-ES ranks it first</span>
+      {% elif truth_rank %}<span class="status status--no">DDX-ES ranks it {{ truth_rank|ordinal }}</span>
+      {% else %}<span class="status status--no">DDX-ES does not rank it</span>{% endif %}</p>
+  </section>
+
+  <div class="case__grid">
+    <section class="case__answers" aria-labelledby="ans-title">
+      <h2 class="section-title" id="ans-title">What the patient reported</h2>
+      <ul class="answers">{% for a in answers %}<li>{{ a }}</li>{% endfor %}</ul>
+      <details class="reference">
+        <summary>Reference differential from DDXPlus</summary>
+        <p class="muted">Produced by the commercial rule-based system that generated the dataset.</p>
+        <div class="table-wrap reference__table">
+        <table class="table table--compact">
+          <thead><tr><th scope="col">Pathology</th><th scope="col" class="num">P</th></tr></thead>
+          <tbody>{% for name, p in reference %}<tr><td>{{ name }}</td><td class="num">{{ p|num(3) }}</td></tr>{% endfor %}</tbody>
+        </table>
+        </div>
+      </details>
+    </section>
+    <aside class="case__side" aria-label="Triage">
+      {{ triage_tag(result.triage) }}
+      {% if result.red_flags %}
+      <section class="live__block flags">
+        <h2 class="live__title">Red flags</h2>
+        <ul class="flags__list">{% for f in result.red_flags %}<li>{{ icon("flag", "flags__icon") }}{{ f }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+    </aside>
+  </div>
+
+  {% include "_result.html" %}
+</div>
+{% endblock %}

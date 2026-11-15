@@ -1,0 +1,790 @@
+# =====================================================================================================
+#  DDX-ES rule base: expert IF-THEN rules for the 49 DDXPlus pathologies
+#
+#  Every rule cites the published criterion, case definition, decision rule or guideline it encodes
+#  (section `sources`). The criteria were written for clinicians; here each item is mapped to the
+#  closest DDXPlus question. `fidelity` records how faithful that mapping is:
+#    faithful  every item of the criterion has a DDXPlus question
+#    partial   some items cannot be asked in DDXPlus (vital signs, laboratory tests, duration, examination)
+#    proxy     an item is approximated by a related question
+#  Certainty factors (cf, MYCIN scale -1..1) express how strongly the source supports the conclusion:
+#    0.8-0.9 case definition / criteria met, 0.5-0.7 strongly suggestive pattern, 0.2-0.4 supportive
+#    feature or risk factor, negative = evidence against. They are validated against the DDXPlus
+#    validation split by scripts/validate_rules.py (precision and lift of every rule).
+#
+#  This file is the authoring format. scripts/build_kg.py turns it into RDF (kg/rules.ttl); the inference
+#  engine reads the rules back from the knowledge graph, not from this file.
+#
+#  Educational prototype: not a medical device and not for clinical use.
+# =====================================================================================================
+meta:
+  title: DDX-ES clinical rule base
+  version: "1.0"
+  date: "2026-11-15"
+  language: en
+
+# -----------------------------------------------------------------------------------------------------
+#  Bibliographic sources (DOIs checked against Crossref on 2026-11-15)
+# -----------------------------------------------------------------------------------------------------
+sources:
+  ddxplus2022:
+    type: ExpertKnowledgeBase
+    citation: "Fansi Tchango A, Goel R, Wen Z, Martel J, Ghosn J (2022). DDXPlus: A new dataset for automatic medical diagnosis. Advances in Neural Information Processing Systems 35, Datasets and Benchmarks Track."
+    doi: 10.48550/arXiv.2205.09148
+  ddxplus2022data:
+    type: ExpertKnowledgeBase
+    citation: "Fansi Tchango A, Goel R, Wen Z, Martel J, Ghosn J (2022). DDXPlus Dataset. figshare. CC BY 4.0."
+    doi: 10.6084/m9.figshare.20043374
+  shortliffe1975:
+    type: MethodSource
+    citation: "Shortliffe EH, Buchanan BG (1975). A model of inexact reasoning in medicine. Mathematical Biosciences 23(3-4):351-379."
+    doi: 10.1016/0025-5564(75)90047-4
+  heckerman1986:
+    type: MethodSource
+    citation: "Heckerman D (1986). Probabilistic interpretations for MYCIN's certainty factors. In: Kanal LN, Lemmer JF (eds) Uncertainty in Artificial Intelligence. Machine Intelligence and Pattern Recognition 4. North-Holland, pp 167-196."
+    doi: 10.1016/B978-0-444-70058-2.50017-6
+  reggia1983:
+    type: MethodSource
+    citation: "Reggia JA, Nau DS, Wang PY (1983). Diagnostic expert systems based on a set covering model. International Journal of Man-Machine Studies 19(5):437-460."
+    doi: 10.1016/S0020-7373(83)80065-0
+  miller1982:
+    type: MethodSource
+    citation: "Miller RA, Pople HE, Myers JD (1982). Internist-I, an experimental computer-based diagnostic consultant for general internal medicine. New England Journal of Medicine 307(8):468-476."
+    doi: 10.1056/NEJM198208193070803
+  clancey1983:
+    type: MethodSource
+    citation: "Clancey WJ (1983). The epistemology of a rule-based expert system: a framework for explanation. Artificial Intelligence 20(3):215-251."
+    doi: 10.1016/0004-3702(83)90008-5
+  wells2000:
+    type: ClinicalDecisionRule
+    citation: "Wells PS, Anderson DR, Rodger M, et al. (2000). Derivation of a simple clinical model to categorize patients probability of pulmonary embolism: increasing the models utility with the SimpliRED D-dimer. Thrombosis and Haemostasis 83(3):416-420."
+    doi: 10.1055/s-0037-1613830
+  konstantinides2020:
+    type: ClinicalGuideline
+    citation: "Konstantinides SV, Meyer G, Becattini C, et al. (2020). 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism developed in collaboration with the European Respiratory Society. European Heart Journal 41(4):543-603."
+    doi: 10.1093/eurheartj/ehz405
+  sampson2006:
+    type: DiagnosticCriteria
+    citation: "Sampson HA, Munoz-Furlong A, Campbell RL, et al. (2006). Second symposium on the definition and management of anaphylaxis: summary report. Journal of Allergy and Clinical Immunology 117(2):391-397."
+    doi: 10.1016/j.jaci.2005.12.1303
+  cardona2020:
+    type: ClinicalGuideline
+    citation: "Cardona V, Ansotegui IJ, Ebisawa M, et al. (2020). World Allergy Organization anaphylaxis guidance 2020. World Allergy Organization Journal 13(10):100472."
+    doi: 10.1016/j.waojou.2020.100472
+  feng2016:
+    type: ReviewArticle
+    citation: "Feng C, Teuber S, Gershwin ME (2016). Histamine (scombroid) fish poisoning: a comprehensive review. Clinical Reviews in Allergy & Immunology 50(1):64-69."
+    doi: 10.1007/s12016-015-8467-x
+  gulati2021:
+    type: ClinicalGuideline
+    citation: "Gulati M, Levy PD, Mukherjee D, et al. (2021). 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR guideline for the evaluation and diagnosis of chest pain. Circulation 144(22):e368-e454."
+    doi: 10.1161/CIR.0000000000001029
+  knuuti2020:
+    type: ClinicalGuideline
+    citation: "Knuuti J, Wijns W, Saraste A, et al. (2020). 2019 ESC Guidelines for the diagnosis and management of chronic coronary syndromes. European Heart Journal 41(3):407-477."
+    doi: 10.1093/eurheartj/ehz425
+  braunwald1989:
+    type: DiagnosticCriteria
+    citation: "Braunwald E (1989). Unstable angina. A classification. Circulation 80(2):410-414."
+    doi: 10.1161/01.CIR.80.2.410
+  byrne2023:
+    type: ClinicalGuideline
+    citation: "Byrne RA, Rossello X, Coughlan JJ, et al. (2023). 2023 ESC Guidelines for the management of acute coronary syndromes. European Heart Journal 44(38):3720-3826."
+    doi: 10.1093/eurheartj/ehad191
+  adler2015:
+    type: ClinicalGuideline
+    citation: "Adler Y, Charron P, Imazio M, et al. (2015). 2015 ESC Guidelines for the diagnosis and management of pericardial diseases. European Heart Journal 36(42):2921-2964."
+    doi: 10.1093/eurheartj/ehv318
+  caforio2013:
+    type: ClinicalGuideline
+    citation: "Caforio ALP, Pankuweit S, Arbustini E, et al. (2013). Current state of knowledge on aetiology, diagnosis, management, and therapy of myocarditis: a position statement of the ESC Working Group on Myocardial and Pericardial Diseases. European Heart Journal 34(33):2636-2648."
+    doi: 10.1093/eurheartj/eht210
+  macduff2010:
+    type: ClinicalGuideline
+    citation: "MacDuff A, Arnold A, Harvey J (2010). Management of spontaneous pneumothorax: British Thoracic Society pleural disease guideline 2010. Thorax 65(Suppl 2):ii18-ii31."
+    doi: 10.1136/thx.2010.136986
+  soreide2011:
+    type: ReviewArticle
+    citation: "Soreide JA, Viste A (2011). Esophageal perforation: diagnostic work-up and clinical decision-making in the first 24 hours. Scandinavian Journal of Trauma, Resuscitation and Emergency Medicine 19:66."
+    doi: 10.1186/1757-7241-19-66
+  hanak2005:
+    type: ClinicalStudy
+    citation: "Hanak V, Hartman TE, Ryu JH (2005). Cough-induced rib fractures. Mayo Clinic Proceedings 80(7):879-882."
+    doi: 10.4065/80.7.879
+  vakil2006:
+    type: DiagnosticCriteria
+    citation: "Vakil N, van Zanten SV, Kahrilas P, Dent J, Jones R (2006). The Montreal definition and classification of gastroesophageal reflux disease: a global evidence-based consensus. American Journal of Gastroenterology 101(8):1900-1920."
+    doi: 10.1111/j.1572-0241.2006.00630.x
+  katz2022:
+    type: ClinicalGuideline
+    citation: "Katz PO, Dunbar KB, Schnoll-Sussman FH, et al. (2022). ACG clinical guideline for the diagnosis and management of gastroesophageal reflux disease. American Journal of Gastroenterology 117(1):27-56."
+    doi: 10.14309/ajg.0000000000001538
+  who2013ili:
+    type: CaseDefinition
+    citation: "World Health Organization (2013). Global epidemiological surveillance standards for influenza. Geneva: WHO. ISBN 978-92-4-150660-1. ILI case definition: acute respiratory infection with measured fever >= 38 C and cough, with onset within the last 10 days."
+    url: https://www.who.int/teams/global-influenza-programme/surveillance-and-monitoring/case-definitions-for-ili-and-sari
+  uyeki2019:
+    type: ClinicalGuideline
+    citation: "Uyeki TM, Bernstein HH, Bradley JS, et al. (2019). Clinical practice guidelines by the Infectious Diseases Society of America: 2018 update on diagnosis, treatment, chemoprophylaxis, and institutional outbreak management of seasonal influenza. Clinical Infectious Diseases 68(6):e1-e47."
+    doi: 10.1093/cid/ciy866
+  call2005:
+    type: ReviewArticle
+    citation: "Call SA, Vollenweider MA, Hornung CA, Simel DL, McKinney WP (2005). Does this patient have influenza? JAMA 293(8):987-997."
+    doi: 10.1001/jama.293.8.987
+  heikkinen2003:
+    type: ReviewArticle
+    citation: "Heikkinen T, Jarvinen A (2003). The common cold. The Lancet 361(9351):51-59."
+    doi: 10.1016/S0140-6736(03)12162-9
+  centor1981:
+    type: ClinicalDecisionRule
+    citation: "Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K (1981). The diagnosis of strep throat in adults in the emergency room. Medical Decision Making 1(3):239-246."
+    doi: 10.1177/0272989X8100100304
+  shulman2012:
+    type: ClinicalGuideline
+    citation: "Shulman ST, Bisno AL, Clegg HW, et al. (2012). Clinical practice guideline for the diagnosis and management of group A streptococcal pharyngitis: 2012 update by the Infectious Diseases Society of America. Clinical Infectious Diseases 55(10):e86-e102."
+    doi: 10.1093/cid/cis629
+  wood2014:
+    type: ReviewArticle
+    citation: "Wood JM, Athanasiadis T, Allen J (2014). Laryngitis. BMJ 349:g5827."
+    doi: 10.1136/bmj.g5827
+  bjornson2013:
+    type: ReviewArticle
+    citation: "Bjornson CL, Johnson DW (2013). Croup in children. Canadian Medical Association Journal 185(15):1317-1323."
+    doi: 10.1503/cmaj.121645
+  guldfred2008:
+    type: ClinicalStudy
+    citation: "Guldfred LA, Lyhne D, Becker BC (2008). Acute epiglottitis: epidemiology, clinical presentation, management and outcome. Journal of Laryngology & Otology 122(8):818-823."
+    doi: 10.1017/S0022215107000473
+  loughlin1996:
+    type: ClinicalStudy
+    citation: "Loughlin CJ, Koufman JA (1996). Paroxysmal laryngospasm secondary to gastroesophageal reflux. The Laryngoscope 106(12):1502-1505."
+    doi: 10.1097/00005537-199612000-00011
+  ralston2014:
+    type: ClinicalGuideline
+    citation: "Ralston SL, Lieberthal AS, Meissner HC, et al. (2014). Clinical practice guideline: the diagnosis, management, and prevention of bronchiolitis. Pediatrics 134(5):e1474-e1502."
+    doi: 10.1542/peds.2014-2742
+  cdc2020pertussis:
+    type: CaseDefinition
+    citation: "Centers for Disease Control and Prevention (2020). Pertussis (whooping cough) (Bordetella pertussis) 2020 case definition. National Notifiable Diseases Surveillance System."
+    url: https://ndc.services.cdc.gov/case-definitions/pertussis-2020/
+  wenzel2006:
+    type: ReviewArticle
+    citation: "Wenzel RP, Fowler AA (2006). Acute bronchitis. New England Journal of Medicine 355(20):2125-2130."
+    doi: 10.1056/NEJMcp061493
+  metlay2019:
+    type: ClinicalGuideline
+    citation: "Metlay JP, Waterer GW, Long AC, et al. (2019). Diagnosis and treatment of adults with community-acquired pneumonia. An official clinical practice guideline of the American Thoracic Society and Infectious Diseases Society of America. American Journal of Respiratory and Critical Care Medicine 200(7):e45-e67."
+    doi: 10.1164/rccm.201908-1581ST
+  lim2003:
+    type: ClinicalDecisionRule
+    citation: "Lim WS, van der Eerden MM, Laing R, et al. (2003). Defining community acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax 58(5):377-382."
+    doi: 10.1136/thorax.58.5.377
+  anthonisen1987:
+    type: DiagnosticCriteria
+    citation: "Anthonisen NR, Manfreda J, Warren CP, Hershfield ES, Harding GK, Nelson NA (1987). Antibiotic therapy in exacerbations of chronic obstructive pulmonary disease. Annals of Internal Medicine 106(2):196-204."
+    doi: 10.7326/0003-4819-106-2-196
+  agusti2023:
+    type: ClinicalGuideline
+    citation: "Agusti A, Celli BR, Criner GJ, et al. (2023). Global Initiative for Chronic Obstructive Lung Disease 2023 report: GOLD executive summary. European Respiratory Journal 61(4):2300239."
+    doi: 10.1183/13993003.00239-2023
+  reddel2022:
+    type: ClinicalGuideline
+    citation: "Reddel HK, Bacharier LB, Bateman ED, et al. (2022). Global Initiative for Asthma strategy 2021: executive summary and rationale for key changes. European Respiratory Journal 59(1):2102730."
+    doi: 10.1183/13993003.02730-2021
+  polverino2017:
+    type: ClinicalGuideline
+    citation: "Polverino E, Goeminne PC, McDonnell MJ, et al. (2017). European Respiratory Society guidelines for the management of adult bronchiectasis. European Respiratory Journal 50(3):1700629."
+    doi: 10.1183/13993003.00629-2017
+  who2021tb:
+    type: ClinicalGuideline
+    citation: "World Health Organization (2021). WHO consolidated guidelines on tuberculosis. Module 2: screening - systematic screening for tuberculosis disease. Geneva: WHO. ISBN 978-92-4-002267-6."
+    url: https://www.who.int/publications/i/item/9789240022676
+  nice2015ng12:
+    type: ClinicalGuideline
+    citation: "National Institute for Health and Care Excellence (2015, last updated 15 April 2026). Suspected cancer: recognition and referral (NICE guideline NG12). Recommendations 1.1.1, 1.1.2, 1.2.4 and 1.2.5."
+    url: https://www.nice.org.uk/guidance/ng12
+  mckee1971:
+    type: DiagnosticCriteria
+    citation: "McKee PA, Castelli WP, McNamara PM, Kannel WB (1971). The natural history of congestive heart failure: the Framingham study. New England Journal of Medicine 285(26):1441-1446."
+    doi: 10.1056/NEJM197112232852601
+  mcdonagh2021:
+    type: ClinicalGuideline
+    citation: "McDonagh TA, Metra M, Adamo M, et al. (2021). 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure. European Heart Journal 42(36):3599-3726."
+    doi: 10.1093/eurheartj/ehab368
+  trayes2013:
+    type: ReviewArticle
+    citation: "Trayes KP, Studdiford JS, Pickle S, Tully AS (2013). Edema: diagnosis and management. American Family Physician 88(2):102-110."
+    url: https://www.aafp.org/pubs/afp/issues/2013/0715/p102.html
+  hindricks2021:
+    type: ClinicalGuideline
+    citation: "Hindricks G, Potpara T, Dagres N, et al. (2021). 2020 ESC Guidelines for the diagnosis and management of atrial fibrillation developed in collaboration with the European Association for Cardio-Thoracic Surgery. European Heart Journal 42(5):373-498."
+    doi: 10.1093/eurheartj/ehaa612
+  brugada2020:
+    type: ClinicalGuideline
+    citation: "Brugada J, Katritsis DG, Arbelo E, et al. (2020). 2019 ESC Guidelines for the management of patients with supraventricular tachycardia. European Heart Journal 41(5):655-720."
+    doi: 10.1093/eurheartj/ehz467
+  brignole2018:
+    type: ClinicalGuideline
+    citation: "Brignole M, Moya A, de Lange FJ, et al. (2018). 2018 ESC Guidelines for the diagnosis and management of syncope. European Heart Journal 39(21):1883-1948."
+    doi: 10.1093/eurheartj/ehy037
+  cappellini2020:
+    type: ReviewArticle
+    citation: "Cappellini MD, Musallam KM, Taher AT (2020). Iron deficiency anaemia revisited. Journal of Internal Medicine 287(2):153-170."
+    doi: 10.1111/joim.13004
+  who2011hb:
+    type: ClinicalGuideline
+    citation: "World Health Organization (2011). Haemoglobin concentrations for the diagnosis of anaemia and assessment of severity. WHO/NMH/NHD/MNM/11.1. Geneva: WHO."
+    url: https://www.who.int/publications/i/item/WHO-NMH-NHD-MNM-11.1
+  stanley2019:
+    type: ReviewArticle
+    citation: "Stanley AJ, Laine L (2019). Management of acute upper gastrointestinal bleeding. BMJ 364:l536."
+    doi: 10.1136/bmj.l536
+  hecht2002:
+    type: ClinicalStudy
+    citation: "Hecht FM, Busch MP, Rawal B, et al. (2002). Use of laboratory tests and clinical symptoms for identification of primary HIV infection. AIDS 16(8):1119-1129."
+    doi: 10.1097/00002030-200205240-00005
+  cdc2014hiv:
+    type: ClinicalGuideline
+    citation: "Centers for Disease Control and Prevention, Association of Public Health Laboratories (2014). Laboratory testing for the diagnosis of HIV infection: updated recommendations."
+    doi: 10.15620/cdc.23447
+  who2014ebola:
+    type: CaseDefinition
+    citation: "World Health Organization (2014). Case definition recommendations for Ebola or Marburg virus diseases. WHO/EVD/CaseDef/14.1, 8 August 2014."
+    url: https://www.who.int/publications/i/item/WHO-EVD-CaseDef-14.1
+  rassi2010:
+    type: ReviewArticle
+    citation: "Rassi A Jr, Rassi A, Marin-Neto JA (2010). Chagas disease. The Lancet 375(9723):1388-1402."
+    doi: 10.1016/S0140-6736(10)60061-X
+  ichd3:
+    type: DiagnosticCriteria
+    citation: "Headache Classification Committee of the International Headache Society (2018). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 38(1):1-211."
+    doi: 10.1177/0333102417738202
+  gilhus2016:
+    type: ReviewArticle
+    citation: "Gilhus NE (2016). Myasthenia gravis. New England Journal of Medicine 375(26):2570-2581."
+    doi: 10.1056/NEJMra1602678
+  leonhard2019:
+    type: ClinicalGuideline
+    citation: "Leonhard SE, Mandarakas MR, Gondim FAA, et al. (2019). Diagnosis and management of Guillain-Barre syndrome in ten steps. Nature Reviews Neurology 15(11):671-683."
+    doi: 10.1038/s41582-019-0250-9
+  vanharten1999:
+    type: ReviewArticle
+    citation: "van Harten PN, Hoek HW, Kahn RS (1999). Acute dystonia induced by drug treatment. BMJ 319(7210):623-626."
+    doi: 10.1136/bmj.319.7210.623
+  apa2013dsm5:
+    type: DiagnosticCriteria
+    citation: "American Psychiatric Association (2013). Diagnostic and Statistical Manual of Mental Disorders, 5th edition (DSM-5). Panic attack specifier. Arlington, VA: American Psychiatric Publishing."
+    doi: 10.1176/appi.books.9780890425596
+  bousquet2008:
+    type: ClinicalGuideline
+    citation: "Bousquet J, Khaltaev N, Cruz AA, et al. (2008). Allergic Rhinitis and its Impact on Asthma (ARIA) 2008 update. Allergy 63(Suppl 86):8-160."
+    doi: 10.1111/j.1398-9995.2007.01620.x
+  fokkens2020:
+    type: ClinicalGuideline
+    citation: "Fokkens WJ, Lund VJ, Hopkins C, et al. (2020). European Position Paper on Rhinosinusitis and Nasal Polyps 2020. Rhinology 58(Suppl S29):1-464."
+    doi: 10.4193/Rhin20.600
+  chow2012:
+    type: ClinicalGuideline
+    citation: "Chow AW, Benninger MS, Brook I, et al. (2012). IDSA clinical practice guideline for acute bacterial rhinosinusitis in children and adults. Clinical Infectious Diseases 54(8):e72-e112."
+    doi: 10.1093/cid/cis370
+  lieberthal2013:
+    type: ClinicalGuideline
+    citation: "Lieberthal AS, Carroll AE, Chonmaitree T, et al. (2013). The diagnosis and management of acute otitis media. Pediatrics 131(3):e964-e999."
+    doi: 10.1542/peds.2012-3488
+  grunewald2019:
+    type: ReviewArticle
+    citation: "Grunewald J, Grutters JC, Arkema EV, Saketkoo LA, Moller DR, Muller-Quernheim J (2019). Sarcoidosis. Nature Reviews Disease Primers 5(1):45."
+    doi: 10.1038/s41572-019-0096-x
+  aringer2019:
+    type: DiagnosticCriteria
+    citation: "Aringer M, Costenbader K, Daikh D, et al. (2019). 2019 European League Against Rheumatism/American College of Rheumatology classification criteria for systemic lupus erythematosus. Arthritis & Rheumatology 71(9):1400-1412."
+    doi: 10.1002/art.40930
+  herniasurge2018:
+    type: ClinicalGuideline
+    citation: "HerniaSurge Group (2018). International guidelines for groin hernia management. Hernia 22(1):1-165."
+    doi: 10.1007/s10029-017-1668-x
+
+# -----------------------------------------------------------------------------------------------------
+#  Value sets: groups of DDXPlus answer values (body locations, regions, pain qualities)
+# -----------------------------------------------------------------------------------------------------
+value_sets:
+  CHEST:            {label: "Chest", values: [V_29, V_101, V_159, V_160, V_55, V_56, V_170, V_171]}
+  EPIGASTRIUM:      {label: "Epigastrium", values: [V_197]}
+  ARM_NECK_JAW:     {label: "Arm, shoulder, neck or jaw", values: [V_121, V_163, V_194, V_195, V_30, V_31, V_27, V_28, V_177, V_178, V_33, V_53, V_54, V_26]}
+  ORBITAL_TEMPORAL: {label: "Orbital, supraorbital or temporal region", values: [V_125, V_126, V_89, V_166, V_167]}
+  HEAD:             {label: "Head", values: [V_62, V_25, V_124, V_89, V_166, V_167]}
+  EAR:              {label: "Ear", values: [V_129, V_130]}
+  THROAT:           {label: "Throat", values: [V_148, V_20, V_21, V_137, V_33, V_163]}
+  FACE_SINUS:       {label: "Face over the sinuses", values: [V_89, V_122, V_108, V_109]}
+  ABDOMEN:          {label: "Abdomen", values: [V_187, V_197, V_103, V_104, V_87, V_88, V_84, V_85]}
+  GROIN:            {label: "Groin and inguinal region", values: [V_16, V_17, V_87, V_88, V_168, V_169, V_158]}
+  LEG_DEEP_VEINS:   {label: "Calf, popliteal fossa or thigh", values: [V_119, V_120, V_23, V_24, V_47, V_48, V_51, V_52]}
+  LOWER_LEG:        {label: "Ankle, lower leg or foot", values: [V_34, V_35, V_119, V_120, V_172, V_173, V_72, V_73, V_23, V_24]}
+  FACE_LIPS_TONGUE: {label: "Face, lips, tongue or eyes", values: [V_89, V_108, V_109, V_122, V_32, V_116, V_117, V_61, V_162, V_115, V_188, V_189, V_125, V_126]}
+  MALAR:            {label: "Cheeks and bridge of the nose (malar area)", values: [V_108, V_109, V_122]}
+  MUCOSA:           {label: "Oral or genital mucosa", values: [V_90, V_91, V_110, V_111, V_95, V_96, V_146, V_147, V_155, V_94, V_32, V_61, V_162]}
+  JOINTS:           {label: "Joints", values: [V_34, V_35, V_194, V_195, V_74, V_75, V_80, V_81, V_92, V_93, V_45, V_46, V_63, V_64, V_65, V_66, V_67, V_68, V_69, V_70, V_151, V_152, V_99, V_100]}
+  BACK:             {label: "Back", values: [V_39, V_40, V_113, V_114]}
+  YELLOW:           {label: "Yellow (jaundice)", values: [V_107]}
+  CRAMP:            {label: "Cramp-like pain", values: [V_182]}
+  BURNING:          {label: "Burning pain", values: [V_181]}
+  WEST_AFRICA:      {label: "West Africa", values: [V_1]}
+  LATIN_AMERICA:    {label: "Central or South America", values: [V_3, V_5]}
+
+# -----------------------------------------------------------------------------------------------------
+#  Clinical concepts (intermediate facts) and scores
+# -----------------------------------------------------------------------------------------------------
+concepts:
+  ChestPain:                  {label: "Chest pain"}
+  EpigastricPain:             {label: "Epigastric pain"}
+  PainRadiatingToArmNeckJaw:  {label: "Pain radiating to the arm, shoulder, neck or jaw", red_flag: true}
+  PleuriticChestPain:         {label: "Pleuritic chest pain (worse on deep breathing)"}
+  AbruptOnsetPain:            {label: "Pain of abrupt onset (onset speed >= 7/10)"}
+  SeverePain:                 {label: "Severe pain (intensity >= 7/10)"}
+  OrbitalTemporalPain:        {label: "Orbital, supraorbital or temporal pain"}
+  Headache:                   {label: "Headache"}
+  EarPain:                    {label: "Ear pain (otalgia)"}
+  SoreThroat:                 {label: "Sore throat"}
+  FacialPain:                 {label: "Facial pain over the sinuses"}
+  AbdominalPain:              {label: "Abdominal pain"}
+  GroinPainOrBulge:           {label: "Groin pain, swelling or lesion"}
+  SignsOfDVT:                 {label: "Swelling of the calf, popliteal fossa or thigh (signs of deep-vein thrombosis)"}
+  LowerLegOedema:             {label: "Swelling of the ankle, lower leg or foot"}
+  FacialSwelling:             {label: "Swelling of the face, lips, tongue or eyes (angio-oedema)"}
+  SkinMucosalInvolvement:     {label: "Skin or mucosal involvement (rash, itch, angio-oedema)"}
+  RespiratoryCompromise:      {label: "Respiratory compromise (dyspnoea, wheeze, stridor, choking)", red_flag: true}
+  HypotensionSymptoms:        {label: "Symptoms of reduced blood pressure (near-syncope, syncope)", red_flag: true}
+  GastrointestinalSymptoms:   {label: "Gastrointestinal symptoms (nausea, vomiting, diarrhoea, cramps)"}
+  InfluenzaLikeIllness:       {label: "Influenza-like illness (WHO)"}
+  CardiovascularRiskProfile:  {label: "Two or more cardiovascular risk factors"}
+  EverSmoked:                 {label: "Current or former smoker"}
+  RecentImmobilisationOrSurgery: {label: "Immobilisation >= 3 days or surgery in the last 4 weeks"}
+  TravelToWestAfrica:         {label: "Travel to West Africa in the last 4 weeks"}
+  TravelToLatinAmerica:       {label: "Travel to Central or South America in the last 4 weeks"}
+  HIVExposureRisk:            {label: "Recent HIV exposure risk"}
+  UpperAirwayObstructionSigns: {label: "Signs of upper-airway obstruction (drooling, dysphagia, dysphonia, distress, stridor)", red_flag: true}
+  AcuteDystonicSigns:         {label: "Acute dystonic signs (spasms, torticollis, trismus, tongue protrusion, oculogyric crisis)"}
+  RecentNeurolepticExposure:  {label: "Recent antipsychotic or parenteral sedative/antiemetic"}
+  OcularOrBulbarWeakness:     {label: "Ocular or bulbar weakness (ptosis, diplopia, dysphagia, dysarthria)"}
+  RecentInfection:            {label: "Recent viral infection or cold"}
+  FraminghamLikeHeartFailure: {label: "Heart-failure symptoms (Framingham-style criteria)", red_flag: true}
+  DSM5PanicSymptoms:          {label: "Four or more DSM-5 panic-attack symptoms"}
+  PertussisClinicalSigns:     {label: "Paroxysmal cough, inspiratory whoop or post-tussive vomiting"}
+  KnownCOPD:                  {label: "Known COPD"}
+  KnownAsthma:                {label: "Known asthma"}
+  Atopy:                      {label: "Atopic predisposition"}
+  TBRiskGroup:                {label: "Belongs to a tuberculosis risk group"}
+  NICELungTwoSymptoms:        {label: "Two or more NICE lung-cancer symptoms"}
+  NICELungOneSymptom:         {label: "One or more NICE lung-cancer symptoms"}
+  JaundiceFeatures:           {label: "Features of jaundice (pale stools, dark urine, yellow skin)"}
+  GastrointestinalBleeding:   {label: "Gastrointestinal bleeding (melaena, haematochezia, haematemesis)", red_flag: true}
+  AnaemiaSymptoms:            {label: "Pallor with fatigue, exertional dyspnoea or light-headedness"}
+  AnaemiaRiskFactors:         {label: "Blood loss, poor diet or known anaemia"}
+  MalarRash:                  {label: "Rash over the cheeks and nose (malar rash)"}
+  JointPain:                  {label: "Joint pain"}
+  MucocutaneousUlcers:        {label: "Lesions of the oral or genital mucosa"}
+  StimulantUse:               {label: "Caffeine, energy drinks, stimulants or decongestants"}
+  RegularPalpitations:        {label: "Palpitations that are not irregular"}
+  AFRiskFactors:              {label: "Risk factors for atrial fibrillation"}
+  RhinosinusitisSymptoms:     {label: "Rhinosinusitis symptoms (EPOS: >= 2, one nasal)"}
+  ChronicSinonasalDisease:    {label: "Chronic sinusitis, nasal polyps or septal deviation"}
+  NasalOrOcularItch:          {label: "Itchy nose, throat or eyes"}
+  SuddenSevereChestPain:      {label: "Severe chest pain of abrupt onset", red_flag: true}
+
+scores:
+  WellsPE: {label: "Wells score for pulmonary embolism (items available in DDXPlus)", source: wells2000}
+  CRB65:   {label: "CRB-65 pneumonia severity score (items available in DDXPlus)", source: lim2003}
+
+# -----------------------------------------------------------------------------------------------------
+#  Recommendations (next steps for a clinician)
+# -----------------------------------------------------------------------------------------------------
+recommendations:
+  REC_ADRENALINE:   {label: "Give intramuscular adrenaline 0.01 mg/kg (max 0.5 mg adult) into the mid-anterolateral thigh and call emergency services", source: cardona2020}
+  REC_ECG_TROPONIN: {label: "12-lead ECG within 10 minutes of first medical contact and high-sensitivity troponin", source: byrne2023}
+  REC_CTPA:         {label: "CT pulmonary angiography (PE likely by the Wells score)", source: konstantinides2020}
+  REC_DDIMER:       {label: "D-dimer test; a normal result excludes PE when PE is unlikely by the Wells score", source: konstantinides2020}
+  REC_FLU:          {label: "Antiviral treatment as early as possible for high-risk or hospitalised patients; otherwise symptomatic care", source: uyeki2019}
+  REC_NO_ANTIBIOTIC_THROAT: {label: "Symptomatic care; no group A streptococcus testing or antibiotics when clear viral features are present", source: shulman2012}
+  REC_PERTUSSIS:    {label: "Nasopharyngeal PCR or culture for Bordetella pertussis; report to public health", source: cdc2020pertussis}
+  REC_TB:           {label: "Chest X-ray and sputum test for tuberculosis; airborne precautions", source: who2021tb}
+  REC_LUNG_CANCER_PATHWAY: {label: "Suspected-cancer pathway referral for lung cancer (age >= 40 with unexplained haemoptysis)", source: nice2015ng12}
+  REC_URGENT_CXR:   {label: "Urgent direct-access chest X-ray to assess for lung cancer", source: nice2015ng12}
+  REC_PANCREAS_REFERRAL: {label: "Suspected-cancer pathway referral for pancreatic cancer (age >= 40 with jaundice)", source: nice2015ng12}
+  REC_URGENT_CT_PANCREAS: {label: "Urgent direct-access CT scan to assess for pancreatic cancer", source: nice2015ng12}
+  REC_HIV_TEST:     {label: "HIV-1/2 antigen/antibody immunoassay, with HIV-1 RNA test when acute infection is suspected", source: cdc2014hiv}
+  REC_ISOLATE_EBOLA: {label: "Isolate the patient, use full personal protective equipment and notify public-health authorities", source: who2014ebola}
+  REC_COPD:         {label: "Short-acting bronchodilators; consider antibiotics when sputum purulence has increased", source: agusti2023}
+  REC_ASTHMA:       {label: "Inhaled reliever (SABA or ICS-formoterol) and assessment of exacerbation severity", source: reddel2022}
+  REC_CBC:          {label: "Full blood count; anaemia if haemoglobin < 130 g/L in men or < 120 g/L in non-pregnant women", source: who2011hb}
+  REC_ANA:          {label: "Antinuclear antibody test (entry criterion ANA >= 1:80)", source: aringer2019}
+  REC_PPI:          {label: "Empirical 8-week proton-pump-inhibitor trial if there are no alarm features", source: katz2022}
+  REC_OTOSCOPY:     {label: "Otoscopy to confirm a bulging tympanic membrane; analgesia, then antibiotics or observation", source: lieberthal2013}
+  REC_ANTICHOLINERGIC: {label: "Parenteral anticholinergic (e.g. biperiden or benztropine) and review of the causative drug", source: vanharten1999}
+  REC_HERNIA:       {label: "Surgical referral; urgent if the hernia is painful and irreducible", source: herniasurge2018}
+  REC_CXR_PNEUMONIA: {label: "Chest X-ray to confirm pneumonia and CRB-65 severity assessment", source: metlay2019}
+  REC_CHAGAS:       {label: "Blood smear (acute phase) or serology (chronic phase) for Trypanosoma cruzi", source: rassi2010}
+  REC_SELF_CARE_COLD: {label: "Symptomatic self-care; antibiotics are not indicated for the common cold", source: heikkinen2003}
+  REC_EXCLUDE_CARDIAC: {label: "Exclude a cardiac or respiratory cause (ECG) before attributing symptoms to panic", source: apa2013dsm5}
+
+# -----------------------------------------------------------------------------------------------------
+#  Rules
+#  Condition keys: has, value+in, scale+ge/gt/le/lt, age+ge/gt/le/lt, sex, concept, belief+ge,
+#                  score+ge/gt/le/lt, all, any, atleast+of, not
+#  Consequent keys: concept, diagnosis, triage, recommend, score+add
+# -----------------------------------------------------------------------------------------------------
+rules:
+  # ===== Abstraction rules: answers -> clinical concepts =========================================
+  - {id: A-CHEST,   name: "Chest pain", if: {all: [{has: E_53}, {value: E_55, in: CHEST}]}, then: [{concept: ChestPain}], source: ddxplus2022}
+  - {id: A-EPIG,    name: "Epigastric pain", if: {all: [{has: E_53}, {value: E_55, in: EPIGASTRIUM}]}, then: [{concept: EpigastricPain}], source: ddxplus2022}
+  - {id: A-RADIATE, name: "Pain radiating to arm, neck or jaw", if: {value: E_57, in: ARM_NECK_JAW}, then: [{concept: PainRadiatingToArmNeckJaw}], source: gulati2021,
+     note: "Radiation to the arm, shoulder, neck or jaw raises the probability of acute coronary syndrome."}
+  - {id: A-PLEURITIC, name: "Pleuritic chest pain", if: {all: [{concept: ChestPain}, {has: E_220}]}, then: [{concept: PleuriticChestPain}], source: gulati2021}
+  - {id: A-ABRUPT,  name: "Abrupt onset of pain", if: {all: [{has: E_53}, {scale: E_59, ge: 7}]}, then: [{concept: AbruptOnsetPain}], source: ddxplus2022,
+     note: "DDXPlus asks how fast the pain appeared on a 0-10 scale; >= 7 is read as abrupt."}
+  - {id: A-SEVERE,  name: "Severe pain", if: {all: [{has: E_53}, {scale: E_56, ge: 7}]}, then: [{concept: SeverePain}], source: ddxplus2022}
+  - {id: A-SUDDEN-CHEST, name: "Sudden severe chest pain", if: {all: [{concept: ChestPain}, {concept: AbruptOnsetPain}, {concept: SeverePain}]}, then: [{concept: SuddenSevereChestPain}], source: gulati2021,
+     note: "Abrupt, severe chest pain calls for exclusion of the life-threatening causes (ACS, aortic dissection, PE, pneumothorax, oesophageal rupture)."}
+  - {id: A-ORBITAL, name: "Orbital or temporal pain", if: {all: [{has: E_53}, {value: E_55, in: ORBITAL_TEMPORAL}]}, then: [{concept: OrbitalTemporalPain}], source: ichd3}
+  - {id: A-HEAD,    name: "Headache", if: {all: [{has: E_53}, {value: E_55, in: HEAD}]}, then: [{concept: Headache}], source: ddxplus2022}
+  - {id: A-EAR,     name: "Ear pain", if: {all: [{has: E_53}, {value: E_55, in: EAR}]}, then: [{concept: EarPain}], source: lieberthal2013}
+  - {id: A-THROAT,  name: "Sore throat", if: {any: [{has: E_97}, {all: [{has: E_53}, {value: E_55, in: THROAT}]}]}, then: [{concept: SoreThroat}], source: shulman2012}
+  - {id: A-FACE,    name: "Facial pain over the sinuses", if: {all: [{has: E_53}, {value: E_55, in: FACE_SINUS}]}, then: [{concept: FacialPain}], source: fokkens2020}
+  - {id: A-ABDO,    name: "Abdominal pain", if: {all: [{has: E_53}, {value: E_55, in: ABDOMEN}]}, then: [{concept: AbdominalPain}], source: ddxplus2022}
+  - {id: A-GROIN,   name: "Groin pain or bulge", if: {any: [{value: E_55, in: GROIN}, {value: E_133, in: GROIN}, {value: E_152, in: GROIN}]}, then: [{concept: GroinPainOrBulge}], source: herniasurge2018}
+  - {id: A-DVT,     name: "Signs of deep-vein thrombosis", if: {all: [{has: E_151}, {value: E_152, in: LEG_DEEP_VEINS}]}, then: [{concept: SignsOfDVT}], source: wells2000, fidelity: proxy,
+     note: "Wells: clinical signs and symptoms of DVT (leg swelling and pain on palpation of the deep veins); DDXPlus records only the swelling site."}
+  - {id: A-LEG-OEDEMA, name: "Lower-leg oedema", if: {all: [{has: E_151}, {value: E_152, in: LOWER_LEG}]}, then: [{concept: LowerLegOedema}], source: mckee1971}
+  - {id: A-ANGIO,   name: "Facial swelling", if: {all: [{has: E_151}, {value: E_152, in: FACE_LIPS_TONGUE}]}, then: [{concept: FacialSwelling}], source: sampson2006}
+  - {id: A-SKIN,    name: "Skin or mucosal involvement", if: {any: [{has: E_129}, {concept: FacialSwelling}, {scale: E_136, ge: 4}]}, then: [{concept: SkinMucosalInvolvement}], source: sampson2006,
+     note: "Sampson criterion: generalised hives, pruritus or flushing, swollen lips-tongue-uvula."}
+  - {id: A-RESP,    name: "Respiratory compromise", if: {any: [{has: E_66}, {has: E_214}, {has: E_194}, {has: E_75}]}, then: [{concept: RespiratoryCompromise}], source: sampson2006,
+     note: "Sampson criterion: dyspnoea, wheeze-bronchospasm, stridor, reduced PEF, hypoxaemia; PEF and SpO2 are not available."}
+  - {id: A-HYPOT,   name: "Symptoms of reduced blood pressure", if: {any: [{has: E_82}, {has: E_159}]}, then: [{concept: HypotensionSymptoms}], source: sampson2006, fidelity: proxy,
+     note: "Blood pressure is not measured in DDXPlus; near-syncope and syncope are the associated end-organ symptoms named by Sampson."}
+  - {id: A-GI,      name: "Gastrointestinal symptoms", if: {any: [{has: E_148}, {has: E_51}, {has: E_211}, {all: [{concept: AbdominalPain}, {value: E_54, in: CRAMP}]}]}, then: [{concept: GastrointestinalSymptoms}], source: sampson2006}
+  - {id: A-ILI,     name: "WHO influenza-like illness", if: {all: [{has: E_91}, {has: E_201}]}, then: [{concept: InfluenzaLikeIllness}], source: who2013ili, fidelity: partial,
+     note: "WHO: measured fever >= 38 C and cough with onset within 10 days; DDXPlus records felt or measured fever and no onset date."}
+  - {id: A-CVRISK,  name: "Cardiovascular risk profile", if: {atleast: 2, of: [{has: E_104}, {has: E_69}, {has: E_71}, {has: E_79}, {has: E_225}, {has: E_70}, {has: E_105}]}, then: [{concept: CardiovascularRiskProfile}], source: gulati2021}
+  - {id: A-SMOKER,  name: "Ever smoked", if: {any: [{has: E_79}, {has: E_191}]}, then: [{concept: EverSmoked}], source: nice2015ng12}
+  - {id: A-IMMOB,   name: "Immobilisation or recent surgery", if: {any: [{has: E_110}, {has: E_196}]}, then: [{concept: RecentImmobilisationOrSurgery}], source: wells2000}
+  - {id: A-TRAVEL-WA, name: "Travel to West Africa", if: {value: E_204, in: WEST_AFRICA}, then: [{concept: TravelToWestAfrica}], source: who2014ebola}
+  - {id: A-TRAVEL-LA, name: "Travel to Latin America", if: {value: E_204, in: LATIN_AMERICA}, then: [{concept: TravelToLatinAmerica}], source: rassi2010}
+  - {id: A-HIVRISK, name: "HIV exposure risk", if: {any: [{has: E_115}, {has: E_189}, {has: E_61}, {has: E_27}]}, then: [{concept: HIVExposureRisk}], source: cdc2014hiv}
+  - {id: A-AIRWAY,  name: "Upper-airway obstruction signs", if: {atleast: 2, of: [{has: E_190}, {has: E_65}, {has: E_212}, {has: E_66}, {has: E_194}]}, then: [{concept: UpperAirwayObstructionSigns}], source: guldfred2008,
+     note: "Drooling, dysphagia, dysphonia, distress and stridor: the warning signs of acute epiglottitis."}
+  - {id: A-DYSTONIA, name: "Acute dystonic signs", if: {any: [{has: E_193}, {has: E_192}, {has: E_205}, {has: E_168}, {has: E_180}]}, then: [{concept: AcuteDystonicSigns}], source: vanharten1999}
+  - {id: A-NEUROLEPTIC, name: "Recent neuroleptic exposure", if: {any: [{has: E_15}, {has: E_147}]}, then: [{concept: RecentNeurolepticExposure}], source: vanharten1999}
+  - {id: A-BULBAR,  name: "Ocular or bulbar weakness", if: {any: [{has: E_172}, {has: E_52}, {has: E_83}, {has: E_65}, {has: E_63}]}, then: [{concept: OcularOrBulbarWeakness}], source: gilhus2016}
+  - {id: A-INFECT,  name: "Recent infection", if: {any: [{has: E_0}, {has: E_116}]}, then: [{concept: RecentInfection}], source: leonhard2019}
+  - {id: A-HF,      name: "Framingham-style heart-failure symptoms", if: {all: [{has: E_67}, {any: [{concept: LowerLegOedema}, {has: E_64}, {has: E_217}]}]}, then: [{concept: FraminghamLikeHeartFailure}], source: mckee1971, fidelity: partial,
+     note: "Framingham: 2 major or 1 major + 2 minor criteria. Available: paroxysmal nocturnal dyspnoea (major); ankle oedema and dyspnoea on exertion (minor); orthopnoea (added from ESC 2021). Signs and imaging are not available."}
+  - {id: A-PANIC,   name: "DSM-5 panic symptoms", if: {atleast: 4, of: [{has: E_155}, {has: E_50}, {has: E_66}, {has: E_75}, {concept: ChestPain}, {has: E_148}, {any: [{has: E_76}, {has: E_82}]}, {has: E_94}, {any: [{has: E_157}, {has: E_177}]}, {has: E_171}, {has: E_111}]},
+     then: [{concept: DSM5PanicSymptoms}], source: apa2013dsm5, fidelity: partial,
+     note: "DSM-5 requires >= 4 of 13 symptoms in an abrupt surge; trembling and fear of losing control are not asked, so 11 items are available."}
+  - {id: A-PERTUSSIS, name: "Pertussis clinical signs", if: {any: [{has: E_203}, {has: E_112}, {has: E_166}, {has: E_202}]}, then: [{concept: PertussisClinicalSigns}], source: cdc2020pertussis}
+  - {id: A-COPD,    name: "Known COPD", if: {any: [{has: E_123}, {has: E_31}, {has: E_72}]}, then: [{concept: KnownCOPD}], source: agusti2023}
+  - {id: A-ASTHMA,  name: "Known asthma", if: {any: [{has: E_124}, {has: E_46}, {has: E_101}]}, then: [{concept: KnownAsthma}], source: reddel2022}
+  - {id: A-ATOPY,   name: "Atopic predisposition", if: {any: [{has: E_226}, {has: E_86}, {has: E_87}, {has: E_12}]}, then: [{concept: Atopy}], source: bousquet2008}
+  - {id: A-TBRISK,  name: "Tuberculosis risk group", if: {any: [{has: E_2}, {has: E_227}, {has: E_44}, {has: E_69}, {has: E_78}, {has: E_61}, {has: E_208}]}, then: [{concept: TBRiskGroup}], source: who2021tb}
+  - {id: A-NICE-2,  name: "Two NICE lung-cancer symptoms", if: {atleast: 2, of: [{has: E_201}, {any: [{has: E_88}, {has: E_89}]}, {has: E_66}, {concept: ChestPain}, {has: E_162}, {any: [{has: E_161}, {has: E_174}, {has: E_32}]}]}, then: [{concept: NICELungTwoSymptoms}], source: nice2015ng12}
+  - {id: A-NICE-1,  name: "One NICE lung-cancer symptom", if: {atleast: 1, of: [{has: E_201}, {any: [{has: E_88}, {has: E_89}]}, {has: E_66}, {concept: ChestPain}, {has: E_162}, {any: [{has: E_161}, {has: E_174}, {has: E_32}]}]}, then: [{concept: NICELungOneSymptom}], source: nice2015ng12}
+  - {id: A-JAUNDICE, name: "Features of jaundice", if: {any: [{has: E_188}, {value: E_130, in: YELLOW}]}, then: [{concept: JaundiceFeatures}], source: nice2015ng12, fidelity: proxy,
+     note: "Jaundice is examined, not asked; pale stools with dark urine and a yellow skin colour stand in for it."}
+  - {id: A-GIBLEED, name: "Gastrointestinal bleeding", if: {any: [{has: E_140}, {has: E_179}, {has: E_210}]}, then: [{concept: GastrointestinalBleeding}], source: stanley2019}
+  - {id: A-ANAEMIA, name: "Symptoms of anaemia", if: {all: [{has: E_154}, {any: [{has: E_88}, {has: E_89}, {has: E_64}, {has: E_76}, {has: E_82}]}]}, then: [{concept: AnaemiaSymptoms}], source: cappellini2020}
+  - {id: A-ANAEMIA-RISK, name: "Risk factors for anaemia", if: {any: [{has: E_145}, {concept: GastrointestinalBleeding}, {has: E_7}, {has: E_24}, {has: E_26}]}, then: [{concept: AnaemiaRiskFactors}], source: cappellini2020}
+  - {id: A-MALAR,   name: "Malar rash", if: {all: [{has: E_129}, {value: E_133, in: MALAR}]}, then: [{concept: MalarRash}], source: aringer2019}
+  - {id: A-JOINT,   name: "Joint pain", if: {all: [{has: E_53}, {value: E_55, in: JOINTS}]}, then: [{concept: JointPain}], source: aringer2019}
+  - {id: A-MUCOSA,  name: "Mucocutaneous lesions", if: {all: [{has: E_129}, {value: E_133, in: MUCOSA}]}, then: [{concept: MucocutaneousUlcers}], source: hecht2002}
+  - {id: A-STIMULANT, name: "Stimulant use", if: {any: [{has: E_35}, {has: E_60}, {has: E_62}, {has: E_213}]}, then: [{concept: StimulantUse}], source: brugada2020}
+  - {id: A-REGULAR-PALP, name: "Regular palpitations", if: {all: [{has: E_155}, {not: {has: E_164}}]}, then: [{concept: RegularPalpitations}], source: brugada2020}
+  - {id: A-AFRISK,  name: "Risk factors for atrial fibrillation", if: {any: [{has: E_104}, {has: E_19}, {has: E_22}, {has: E_106}, {has: E_69}, {has: E_105}, {has: E_70}, {has: E_31}, {has: E_139}, {has: E_78}]}, then: [{concept: AFRiskFactors}], source: hindricks2021}
+  - {id: A-RS,      name: "Rhinosinusitis symptoms (EPOS)", if: {all: [{any: [{has: E_181}, {has: E_182}]}, {atleast: 2, of: [{has: E_181}, {has: E_182}, {concept: FacialPain}, {has: E_103}]}]}, then: [{concept: RhinosinusitisSymptoms}], source: fokkens2020,
+     note: "EPOS 2020: two or more symptoms, one of which is nasal blockage or discharge, +/- facial pain, +/- loss of smell."}
+  - {id: A-CRS-RISK, name: "Chronic sinonasal disease", if: {any: [{has: E_119}, {has: E_120}, {has: E_121}]}, then: [{concept: ChronicSinonasalDisease}], source: fokkens2020}
+  - {id: A-ITCH,    name: "Nasal or ocular itch", if: {any: [{has: E_169}, {has: E_170}]}, then: [{concept: NasalOrOcularItch}], source: bousquet2008}
+
+  # ===== Scoring rules ==============================================================================
+  - {id: S-WELLS-DVT,   name: "Wells: clinical signs of DVT (+3)", if: {concept: SignsOfDVT}, then: [{score: WellsPE, add: 3.0}], source: wells2000, fidelity: proxy}
+  - {id: S-WELLS-IMMOB, name: "Wells: immobilisation or surgery in the previous 4 weeks (+1.5)", if: {concept: RecentImmobilisationOrSurgery}, then: [{score: WellsPE, add: 1.5}], source: wells2000}
+  - {id: S-WELLS-VTE,   name: "Wells: previous DVT or PE (+1.5)", if: {has: E_109}, then: [{score: WellsPE, add: 1.5}], source: wells2000}
+  - {id: S-WELLS-HAEMO, name: "Wells: haemoptysis (+1)", if: {has: E_45}, then: [{score: WellsPE, add: 1.0}], source: wells2000}
+  - {id: S-WELLS-CANCER, name: "Wells: malignancy (+1)", if: {any: [{has: E_34}, {has: E_37}]}, then: [{score: WellsPE, add: 1.0}], source: wells2000}
+  - {id: S-CRB-CONFUSION, name: "CRB-65: confusion (+1)", if: {has: E_39}, then: [{score: CRB65, add: 1.0}], source: lim2003}
+  - {id: S-CRB-AGE,     name: "CRB-65: age >= 65 (+1)", if: {age: {ge: 65}}, then: [{score: CRB65, add: 1.0}], source: lim2003,
+     note: "Respiratory rate >= 30/min and low blood pressure are not available in DDXPlus."}
+
+  # ===== Diagnostic rules =============================================================================
+  # --- allergy and intoxication ---
+  - {id: D-ANA-1, name: "Anaphylaxis: allergen exposure with two organ systems (Sampson criterion 2)", fidelity: partial, cf: 0.9, source: sampson2006,
+     if: {all: [{has: E_42}, {atleast: 2, of: [{concept: SkinMucosalInvolvement}, {concept: RespiratoryCompromise}, {concept: HypotensionSymptoms}, {concept: GastrointestinalSymptoms}]}]},
+     then: [{diagnosis: Anaphylaxis}], note: "Sampson: >= 2 of skin-mucosa, respiratory compromise, reduced blood pressure, persistent GI symptoms, rapidly after a likely allergen; onset timing is not asked."}
+  - {id: D-ANA-2, name: "Anaphylaxis: skin involvement with respiratory or circulatory compromise (Sampson criterion 1)", fidelity: partial, cf: 0.5, source: sampson2006,
+     if: {all: [{concept: SkinMucosalInvolvement}, {any: [{concept: RespiratoryCompromise}, {concept: HypotensionSymptoms}]}, {not: {has: E_187}}]}, then: [{diagnosis: Anaphylaxis}]}
+  - {id: D-ANA-3, name: "Anaphylaxis: known severe allergy or atopy with exposure", cf: 0.2, source: cardona2020,
+     if: {all: [{has: E_42}, {any: [{has: E_12}, {has: E_226}]}]}, then: [{diagnosis: Anaphylaxis}]}
+  - {id: D-SCO-1, name: "Scombroid: dark-fleshed fish followed by flushing, rash, diarrhoea or palpitations", cf: 0.8, source: feng2016,
+     if: {all: [{has: E_187}, {any: [{has: E_92}, {has: E_129}, {has: E_51}, {has: E_155}]}]}, then: [{diagnosis: ScombroidFoodPoisoning}]}
+  - {id: D-SCO-2, name: "Scombroid argues against anaphylaxis when no allergen contact is reported", cf: -0.5, source: feng2016,
+     if: {all: [{has: E_187}, {not: {has: E_42}}]}, then: [{diagnosis: Anaphylaxis}],
+     note: "Histamine fish poisoning is a pseudo-allergic reaction that mimics an allergic one."}
+  # --- chest pain: coronary ---
+  - {id: D-STA-1, name: "Typical angina: chest pain on exertion relieved by rest (ESC 2019)", fidelity: partial, cf: 0.6, source: knuuti2020,
+     if: {all: [{concept: ChestPain}, {has: E_218}, {not: {has: E_14}}, {not: {has: E_13}}]}, then: [{diagnosis: StableAngina}],
+     note: "Typical angina has three characteristics: constricting retrosternal discomfort, provoked by exertion, relieved by rest or nitrates within 5 min. The 5-minute relief and nitrates are not asked."}
+  - {id: D-UA-1, name: "Unstable angina: rest or crescendo angina (Braunwald)", cf: 0.7, source: braunwald1989,
+     if: {all: [{concept: ChestPain}, {any: [{has: E_14}, {has: E_13}]}]}, then: [{diagnosis: UnstableAngina}]}
+  - {id: D-ACS-1, name: "Acute coronary syndrome: radiating chest pain with diaphoresis, nausea or dyspnoea, not exertional", fidelity: partial, cf: 0.6, source: gulati2021,
+     if: {all: [{concept: ChestPain}, {concept: PainRadiatingToArmNeckJaw}, {any: [{has: E_50}, {has: E_148}, {has: E_66}]}, {not: {has: E_218}}]}, then: [{diagnosis: PossibleNSTEMISTEMI}],
+     note: "ECG and troponin, which separate NSTEMI/STEMI from unstable angina, are not available."}
+  - {id: D-ACS-RISK, name: "Chest pain with two or more cardiovascular risk factors", cf: 0.3, source: gulati2021,
+     if: {all: [{concept: ChestPain}, {concept: CardiovascularRiskProfile}]}, then: [{diagnosis: PossibleNSTEMISTEMI}, {diagnosis: UnstableAngina}, {diagnosis: StableAngina}]}
+  # --- chest pain: other ---
+  - {id: D-PER-1, name: "Pericarditis: pleuritic chest pain relieved by sitting up (ESC 2015)", fidelity: partial, cf: 0.7, source: adler2015,
+     if: {all: [{concept: PleuriticChestPain}, {any: [{has: E_217}, {has: E_33}]}]}, then: [{diagnosis: Pericarditis}],
+     note: "ESC: typical pain is sharp, pleuritic, improved by sitting up and leaning forward; rub, ECG and effusion criteria need examination."}
+  - {id: D-PER-2, name: "Pericarditis: chest pain after a viral infection or previous pericarditis", cf: 0.3, source: adler2015,
+     if: {all: [{concept: ChestPain}, {any: [{has: E_0}, {has: E_3}]}]}, then: [{diagnosis: Pericarditis}]}
+  - {id: D-MYO-1, name: "Myocarditis: chest pain with palpitations or dyspnoea after a viral infection", cf: 0.6, source: caforio2013,
+     if: {all: [{has: E_0}, {concept: ChestPain}, {any: [{has: E_155}, {has: E_66}, {has: E_64}]}]}, then: [{diagnosis: Myocarditis}]}
+  - {id: D-PE-1, name: "Pulmonary embolism likely: Wells score > 4 with dyspnoea, pleuritic pain or haemoptysis", fidelity: partial, cf: 0.7, source: wells2000,
+     if: {all: [{score: WellsPE, gt: 4}, {any: [{concept: PleuriticChestPain}, {has: E_66}, {has: E_45}]}]}, then: [{diagnosis: PulmonaryEmbolism}],
+     note: "Two-tier Wells: PE likely if > 4 points. Heart rate > 100 (+1.5) and 'PE the most likely diagnosis' (+3) cannot be scored, so the score is a lower bound."}
+  - {id: D-PE-2, name: "Pulmonary embolism possible: Wells score 2-4 with dyspnoea or pleuritic pain", fidelity: partial, cf: 0.4, source: wells2000,
+     if: {all: [{score: WellsPE, ge: 2}, {score: WellsPE, le: 4}, {any: [{concept: PleuriticChestPain}, {has: E_66}]}]}, then: [{diagnosis: PulmonaryEmbolism}]}
+  - {id: D-PE-3, name: "Pulmonary embolism: hormone use as a predisposing factor", cf: 0.2, source: konstantinides2020,
+     if: {all: [{has: E_100}, {any: [{concept: PleuriticChestPain}, {has: E_66}]}]}, then: [{diagnosis: PulmonaryEmbolism}]}
+  - {id: D-PTX-1, name: "Spontaneous pneumothorax: pleuritic pain and dyspnoea with a risk factor (BTS 2010)", cf: 0.5, source: macduff2010,
+     if: {all: [{concept: PleuriticChestPain}, {has: E_66}, {any: [{has: E_21}, {has: E_165}, {concept: EverSmoked}, {has: E_123}]}]}, then: [{diagnosis: SpontaneousPneumothorax}]}
+  - {id: D-PTX-2, name: "Spontaneous pneumothorax: sudden severe chest pain with dyspnoea", cf: 0.3, source: macduff2010,
+     if: {all: [{concept: SuddenSevereChestPain}, {has: E_66}]}, then: [{diagnosis: SpontaneousPneumothorax}]}
+  - {id: D-BOE-1, name: "Boerhaave: repeated vomiting followed by chest or epigastric pain (Mackler)", fidelity: partial, cf: 0.6, source: soreide2011,
+     if: {all: [{has: E_211}, {any: [{concept: ChestPain}, {concept: EpigastricPain}]}]}, then: [{diagnosis: Boerhaave}],
+     note: "Mackler's triad: vomiting, lower thoracic pain and subcutaneous emphysema; emphysema is an examination finding."}
+  - {id: D-BOE-2, name: "Boerhaave: heavy alcohol use or haematemesis with vomiting", cf: 0.2, source: soreide2011,
+     if: {all: [{has: E_211}, {any: [{has: E_78}, {has: E_210}]}]}, then: [{diagnosis: Boerhaave}]}
+  - {id: D-RIB-1, name: "Spontaneous rib fracture: chest pain on movement after coughing fits or with fragile bones", cf: 0.6, source: hanak2005,
+     if: {all: [{concept: ChestPain}, {any: [{has: E_216}, {has: E_220}]}, {any: [{has: E_203}, {has: E_153}, {has: E_37}]}]}, then: [{diagnosis: SpontaneousRibFracture}]}
+  - {id: D-GERD-1, name: "GERD: heartburn and regurgitation (Montreal)", cf: 0.7, source: vakil2006,
+     if: {has: E_173}, then: [{diagnosis: GERD}]}
+  - {id: D-GERD-2, name: "GERD: symptoms worse after meals or lying down", cf: 0.3, source: katz2022,
+     if: {all: [{has: E_173}, {any: [{has: E_215}, {has: E_217}]}]}, then: [{diagnosis: GERD}]}
+  - {id: D-GERD-3, name: "GERD: burning epigastric pain", cf: 0.3, source: vakil2006,
+     if: {all: [{concept: EpigastricPain}, {value: E_54, in: BURNING}]}, then: [{diagnosis: GERD}]}
+  # --- respiratory infections ---
+  - {id: D-FLU-1, name: "Influenza: influenza-like illness (WHO)", fidelity: partial, cf: 0.3, source: who2013ili,
+     if: {concept: InfluenzaLikeIllness}, then: [{diagnosis: Influenza}]}
+  - {id: D-FLU-2, name: "Influenza: ILI with myalgia, chills or prostration", cf: 0.6, source: uyeki2019,
+     if: {all: [{concept: InfluenzaLikeIllness}, {any: [{has: E_144}, {has: E_94}, {has: E_88}]}]}, then: [{diagnosis: Influenza}]}
+  - {id: D-FLU-3, name: "Influenza less likely without fever", cf: -0.4, source: call2005,
+     if: {all: [{has: E_201}, {not: {has: E_91}}]}, then: [{diagnosis: Influenza}],
+     note: "Call et al.: absence of fever lowers the likelihood of influenza (negative likelihood ratio about 0.4)."}
+  - {id: D-URTI-1, name: "Common cold: rhinorrhoea with sore throat or cough", cf: 0.4, source: heikkinen2003,
+     if: {all: [{has: E_181}, {any: [{concept: SoreThroat}, {has: E_201}]}]}, then: [{diagnosis: URTI}]}
+  - {id: D-VPH-1, name: "Viral pharyngitis: sore throat with cough or coryza (Centor / IDSA)", cf: 0.5, source: shulman2012,
+     if: {all: [{concept: SoreThroat}, {any: [{has: E_201}, {has: E_181}]}]}, then: [{diagnosis: ViralPharyngitis}],
+     note: "Cough, rhinorrhoea, hoarseness or oral ulcers strongly suggest a viral cause; absence of cough is a Centor criterion for streptococcal pharyngitis."}
+  - {id: D-LAR-1, name: "Acute laryngitis: hoarseness after a cold or with cough, no stridor", cf: 0.6, source: wood2014,
+     if: {all: [{has: E_212}, {any: [{has: E_116}, {has: E_201}, {concept: SoreThroat}]}, {not: {has: E_194}}]}, then: [{diagnosis: AcuteLaryngitis}]}
+  - {id: D-CROUP-1, name: "Croup: stridor in a young child with barking cough, night worsening, coryza or fever", cf: 0.7, source: bjornson2013,
+     if: {all: [{age: {lt: 6}}, {has: E_194}, {any: [{has: E_202}, {has: E_219}, {has: E_181}, {has: E_91}]}]}, then: [{diagnosis: Croup}]}
+  - {id: D-CROUP-2, name: "Croup: family history of croup", cf: 0.2, source: bjornson2013,
+     if: {all: [{age: {lt: 10}}, {has: E_4}]}, then: [{diagnosis: Croup}]}
+  - {id: D-EPI-1, name: "Epiglottitis: airway-obstruction signs with fever or sore throat", cf: 0.6, source: guldfred2008,
+     if: {all: [{concept: UpperAirwayObstructionSigns}, {any: [{has: E_91}, {concept: SoreThroat}]}]}, then: [{diagnosis: Epiglottitis}]}
+  - {id: D-EPI-2, name: "Epiglottitis: severe sore throat with painful swallowing", cf: 0.3, source: guldfred2008,
+     if: {all: [{concept: SoreThroat}, {concept: SeverePain}, {has: E_65}]}, then: [{diagnosis: Epiglottitis}]}
+  - {id: D-LSP-1, name: "Laryngospasm: episodic stridor in a patient with reflux, no fever", cf: 0.5, source: loughlin1996,
+     if: {all: [{has: E_194}, {has: E_125}, {not: {has: E_91}}]}, then: [{diagnosis: Larygospasm}]}
+  - {id: D-BRL-1, name: "Bronchiolitis: infant with rhinitis and wheeze, increased effort or apnoea (AAP 2014)", cf: 0.8, source: ralston2014,
+     if: {all: [{age: {lt: 2}}, {has: E_181}, {any: [{has: E_214}, {has: E_66}, {has: E_23}]}]}, then: [{diagnosis: Bronchiolitis}]}
+  - {id: D-PERT-1, name: "Pertussis: paroxysms, whoop or post-tussive vomiting (CDC clinical criteria)", fidelity: partial, cf: 0.5, source: cdc2020pertussis,
+     if: {concept: PertussisClinicalSigns}, then: [{diagnosis: WhoopingCough}],
+     note: "The CDC clinical criteria also require a cough of >= 2 weeks; duration is not asked."}
+  - {id: D-PERT-2, name: "Pertussis: clinical signs with contact with a pertussis case (CDC probable case)", cf: 0.8, source: cdc2020pertussis,
+     if: {all: [{concept: PertussisClinicalSigns}, {has: E_40}]}, then: [{diagnosis: WhoopingCough}]}
+  - {id: D-BRO-1, name: "Acute bronchitis: cough with sputum or wheeze, no known COPD", cf: 0.4, source: wenzel2006,
+     if: {all: [{has: E_201}, {any: [{has: E_77}, {has: E_214}]}, {not: {concept: KnownCOPD}}]}, then: [{diagnosis: Bronchitis}]}
+  - {id: D-PNA-1, name: "Pneumonia: cough and fever with dyspnoea or pleuritic pain", cf: 0.5, source: metlay2019,
+     if: {all: [{has: E_201}, {has: E_91}, {any: [{has: E_66}, {concept: PleuriticChestPain}]}]}, then: [{diagnosis: Pneumonia}]}
+  - {id: D-PNA-2, name: "Pneumonia: purulent sputum or chills with fever", cf: 0.2, source: metlay2019,
+     if: {all: [{has: E_91}, {any: [{has: E_77}, {has: E_94}]}, {has: E_201}]}, then: [{diagnosis: Pneumonia}]}
+  # --- chronic airway and lung disease ---
+  - {id: D-COPD-1, name: "COPD exacerbation: Anthonisen type 1 (dyspnoea, more and purulent sputum)", cf: 0.8, source: anthonisen1987,
+     if: {all: [{concept: KnownCOPD}, {has: E_77}, {has: E_66}]}, then: [{diagnosis: AcuteCOPDExacerbationInfection}]}
+  - {id: D-COPD-2, name: "COPD exacerbation: known COPD with worse sputum, dyspnoea or wheeze", cf: 0.4, source: agusti2023,
+     if: {all: [{concept: KnownCOPD}, {any: [{has: E_77}, {has: E_66}, {has: E_214}]}]}, then: [{diagnosis: AcuteCOPDExacerbationInfection}]}
+  - {id: D-AST-1, name: "Asthma exacerbation: known asthma with expiratory wheeze and dyspnoea (GINA)", cf: 0.7, source: reddel2022,
+     if: {all: [{concept: KnownAsthma}, {has: E_214}, {has: E_66}]}, then: [{diagnosis: BronchospasmAcuteAsthmaExacerbation}]}
+  - {id: D-AST-2, name: "Bronchospasm: wheeze and dyspnoea in an atopic patient without COPD", cf: 0.4, source: reddel2022,
+     if: {all: [{has: E_214}, {has: E_66}, {concept: Atopy}, {not: {concept: KnownCOPD}}]}, then: [{diagnosis: BronchospasmAcuteAsthmaExacerbation}]}
+  - {id: D-BRX-1, name: "Bronchiectasis: chronic productive cough with a predisposing condition (ERS 2017)", cf: 0.6, source: polverino2017,
+     if: {all: [{has: E_201}, {has: E_77}, {any: [{has: E_18}, {has: E_118}, {has: E_47}, {has: E_20}, {has: E_227}]}]}, then: [{diagnosis: Bronchiectasis}]}
+  - {id: D-BRX-2, name: "Bronchiectasis: haemoptysis with purulent sputum", cf: 0.2, source: polverino2017,
+     if: {all: [{has: E_77}, {has: E_45}]}, then: [{diagnosis: Bronchiectasis}]}
+  - {id: D-TB-1, name: "Tuberculosis: cough with haemoptysis or weight loss and fever or sweats (WHO symptom screen)", fidelity: partial, cf: 0.5, source: who2021tb,
+     if: {all: [{has: E_201}, {any: [{has: E_45}, {has: E_162}]}, {any: [{has: E_91}, {has: E_50}]}]}, then: [{diagnosis: Tuberculosis}],
+     note: "Cough duration (>= 2 weeks) and night sweats are not asked as such; 'significantly increased sweating' is the closest question."}
+  - {id: D-TB-2, name: "Tuberculosis: cough with fever, weight loss or haemoptysis in a risk group", cf: 0.3, source: who2021tb,
+     if: {all: [{has: E_201}, {concept: TBRiskGroup}, {any: [{has: E_91}, {has: E_162}, {has: E_45}]}]}, then: [{diagnosis: Tuberculosis}]}
+  - {id: D-LCA-1, name: "Lung cancer: age >= 40 with unexplained haemoptysis (NICE NG12 1.1.1)", cf: 0.5, source: nice2015ng12,
+     if: {all: [{age: {ge: 40}}, {has: E_45}]}, then: [{diagnosis: PulmonaryNeoplasm}]}
+  - {id: D-LCA-2, name: "Lung cancer: age >= 40 with NICE symptoms (NICE NG12 1.1.2)", cf: 0.2, source: nice2015ng12,
+     if: {all: [{age: {ge: 40}}, {any: [{concept: NICELungTwoSymptoms}, {all: [{concept: EverSmoked}, {concept: NICELungOneSymptom}]}]}]}, then: [{diagnosis: PulmonaryNeoplasm}]}
+  - {id: D-PCA-1, name: "Pancreatic cancer: age >= 40 with jaundice (NICE NG12 1.2.4)", fidelity: proxy, cf: 0.6, source: nice2015ng12,
+     if: {all: [{age: {ge: 40}}, {concept: JaundiceFeatures}]}, then: [{diagnosis: PancreaticNeoplasm}]}
+  - {id: D-PCA-2, name: "Pancreatic cancer: age >= 60 with weight loss and abdominal or back pain, diarrhoea, nausea or diabetes (NICE NG12 1.2.5)", cf: 0.4, source: nice2015ng12,
+     if: {all: [{age: {ge: 60}}, {has: E_162}, {any: [{has: E_51}, {concept: AbdominalPain}, {value: E_57, in: BACK}, {has: E_148}, {has: E_69}]}]}, then: [{diagnosis: PancreaticNeoplasm}]}
+  # --- heart and circulation ---
+  - {id: D-APE-1, name: "Acute pulmonary oedema: heart-failure symptoms with cardiac history", cf: 0.6, source: mcdonagh2021,
+     if: {all: [{concept: FraminghamLikeHeartFailure}, {any: [{has: E_106}, {has: E_105}, {has: E_104}, {has: E_5}, {has: E_8}]}]}, then: [{diagnosis: AcutePulmonaryEdema}]}
+  - {id: D-APE-2, name: "Acute pulmonary oedema: Framingham-style heart-failure symptoms", fidelity: partial, cf: 0.3, source: mckee1971,
+     if: {concept: FraminghamLikeHeartFailure}, then: [{diagnosis: AcutePulmonaryEdema}]}
+  - {id: D-EDE-1, name: "Localized oedema: swelling with a known cause (drug, kidney, liver, heart, lymphatic)", cf: 0.5, source: trayes2013,
+     if: {all: [{has: E_151}, {any: [{has: E_149}, {has: E_10}, {has: E_197}, {has: E_126}, {has: E_106}, {has: E_137}, {has: E_158}, {has: E_186}, {has: E_109}, {has: E_44}, {has: E_22}]}]}, then: [{diagnosis: LocalizedEdema}]}
+  - {id: D-AF-1, name: "Atrial fibrillation: irregular palpitations (ESC 2020)", cf: 0.7, source: hindricks2021,
+     if: {has: E_164}, then: [{diagnosis: AtrialFibrillation}]}
+  - {id: D-AF-2, name: "Atrial fibrillation: palpitations with risk factors", cf: 0.2, source: hindricks2021,
+     if: {all: [{has: E_155}, {concept: AFRiskFactors}]}, then: [{diagnosis: AtrialFibrillation}]}
+  - {id: D-SVT-1, name: "PSVT: regular palpitations with light-headedness or a stimulant trigger (ESC 2019)", cf: 0.5, source: brugada2020,
+     if: {all: [{concept: RegularPalpitations}, {any: [{has: E_76}, {has: E_82}, {concept: StimulantUse}]}]}, then: [{diagnosis: PSVT}]}
+  - {id: D-ANE-1, name: "Anaemia: pallor with fatigue or exertional symptoms", cf: 0.5, source: cappellini2020,
+     if: {concept: AnaemiaSymptoms}, then: [{diagnosis: Anemia}]}
+  - {id: D-ANE-2, name: "Anaemia: symptoms with blood loss, poor diet or known anaemia", cf: 0.3, source: cappellini2020,
+     if: {all: [{concept: AnaemiaSymptoms}, {concept: AnaemiaRiskFactors}]}, then: [{diagnosis: Anemia}]}
+  # --- infections with an epidemiological criterion ---
+  - {id: D-HIV-1, name: "Acute HIV: exposure risk with fever and rash, adenopathy, sore throat, myalgia or mucosal lesions", cf: 0.7, source: hecht2002,
+     if: {all: [{concept: HIVExposureRisk}, {has: E_91}, {any: [{has: E_129}, {has: E_9}, {concept: SoreThroat}, {has: E_144}, {concept: MucocutaneousUlcers}]}]}, then: [{diagnosis: HIVInitialInfection}]}
+  - {id: D-HIV-2, name: "Acute HIV: fever with mucocutaneous lesions", cf: 0.3, source: hecht2002,
+     if: {all: [{has: E_91}, {concept: MucocutaneousUlcers}]}, then: [{diagnosis: HIVInitialInfection}]}
+  - {id: D-EBO-1, name: "Ebola suspected case: fever and contact with a case (WHO 2014)", cf: 0.9, source: who2014ebola,
+     if: {all: [{has: E_91}, {has: E_73}]}, then: [{diagnosis: Ebola}]}
+  - {id: D-EBO-2, name: "Ebola suspected case: fever and >= 3 listed symptoms after travel to an affected area (WHO 2014)", fidelity: partial, cf: 0.7, source: who2014ebola,
+     if: {all: [{has: E_91}, {concept: TravelToWestAfrica}, {atleast: 3, of: [{has: E_148}, {has: E_51}, {any: [{has: E_32}, {has: E_161}, {has: E_174}]}, {any: [{has: E_88}, {has: E_89}]}, {concept: AbdominalPain}, {has: E_144}, {has: E_65}, {has: E_66}, {concept: Headache}]}]},
+     then: [{diagnosis: Ebola}], note: "WHO lists headache, vomiting, anorexia, diarrhoea, lethargy, stomach pain, aching muscles or joints, difficulty swallowing, breathing difficulty and hiccup; hiccup is not asked."}
+  - {id: D-EBO-3, name: "Ebola suspected case: unexplained bleeding after travel to an affected area (WHO 2014)", cf: 0.7, source: who2014ebola,
+     if: {all: [{has: E_178}, {concept: TravelToWestAfrica}]}, then: [{diagnosis: Ebola}]}
+  - {id: D-CHA-1, name: "Acute Chagas disease: travel to Latin America with fever, adenopathy or swelling", cf: 0.6, source: rassi2010,
+     if: {all: [{concept: TravelToLatinAmerica}, {any: [{has: E_91}, {has: E_9}, {has: E_151}]}]}, then: [{diagnosis: Chagas}]}
+  # --- neurology and psychiatry ---
+  - {id: D-CLU-1, name: "Cluster headache: severe orbital/temporal pain with an autonomic sign (ICHD-3)", fidelity: partial, cf: 0.8, source: ichd3,
+     if: {all: [{concept: OrbitalTemporalPain}, {concept: SeverePain}, {any: [{has: E_127}, {has: E_74}, {has: E_181}, {has: E_172}, {has: E_50}]}]}, then: [{diagnosis: ClusterHeadache}],
+     note: "ICHD-3 3.1 also requires unilateral attacks of 15-180 min, >= 5 attacks; laterality, duration and attack count are not asked."}
+  - {id: D-MG-1, name: "Myasthenia gravis: fatigable ocular or bulbar weakness", cf: 0.8, source: gilhus2016,
+     if: {all: [{concept: OcularOrBulbarWeakness}, {has: E_90}]}, then: [{diagnosis: MyastheniaGravis}]}
+  - {id: D-MG-2, name: "Myasthenia gravis: ptosis with diplopia", cf: 0.4, source: gilhus2016,
+     if: {all: [{has: E_172}, {has: E_52}]}, then: [{diagnosis: MyastheniaGravis}]}
+  - {id: D-GBS-1, name: "Guillain-Barre: bilateral limb weakness with sensory symptoms, not fatigable", cf: 0.6, source: leonhard2019,
+     if: {all: [{has: E_84}, {any: [{has: E_93}, {has: E_177}, {has: E_157}]}, {not: {has: E_90}}]}, then: [{diagnosis: GuillainBarreSyndrome}]}
+  - {id: D-GBS-2, name: "Guillain-Barre: bilateral limb weakness after an infection", cf: 0.3, source: leonhard2019,
+     if: {all: [{has: E_84}, {concept: RecentInfection}]}, then: [{diagnosis: GuillainBarreSyndrome}]}
+  - {id: D-GBS-3, name: "Guillain-Barre: limb weakness with facial weakness", cf: 0.2, source: leonhard2019,
+     if: {all: [{has: E_84}, {any: [{has: E_156}, {has: E_83}]}]}, then: [{diagnosis: GuillainBarreSyndrome}]}
+  - {id: D-ADR-1, name: "Acute dystonic reaction: dystonic signs after a neuroleptic", cf: 0.9, source: vanharten1999,
+     if: {all: [{concept: RecentNeurolepticExposure}, {concept: AcuteDystonicSigns}]}, then: [{diagnosis: AcuteDystonicReactions}]}
+  - {id: D-ADR-2, name: "Acute dystonic reaction: two or more dystonic signs", cf: 0.4, source: vanharten1999,
+     if: {atleast: 2, of: [{has: E_193}, {has: E_192}, {has: E_205}, {has: E_168}, {has: E_180}, {has: E_128}]}, then: [{diagnosis: AcuteDystonicReactions}]}
+  - {id: D-PAN-1, name: "Panic attack: four or more DSM-5 symptoms", fidelity: partial, cf: 0.6, source: apa2013dsm5,
+     if: {concept: DSM5PanicSymptoms}, then: [{diagnosis: PanicAttack}]}
+  - {id: D-PAN-2, name: "Panic attack: DSM-5 symptoms with anxiety, depression or psychiatric family history", cf: 0.2, source: apa2013dsm5,
+     if: {all: [{concept: DSM5PanicSymptoms}, {any: [{has: E_81}, {has: E_80}, {has: E_16}, {has: E_29}]}]}, then: [{diagnosis: PanicAttack}]}
+  - {id: X-PAN-1, name: "Panic attack less likely with cardiac red flags (not attributable to another condition)", cf: -0.4, source: apa2013dsm5,
+     if: {all: [{concept: DSM5PanicSymptoms}, {any: [{concept: PainRadiatingToArmNeckJaw}, {has: E_164}, {has: E_159}]}]}, then: [{diagnosis: PanicAttack}],
+     note: "DSM-5: the attack must not be attributable to another medical condition."}
+  # --- ear, nose and throat ---
+  - {id: D-ALR-1, name: "Allergic rhinitis: rhinorrhoea or congestion with nasal or ocular itch (ARIA)", cf: 0.7, source: bousquet2008,
+     if: {all: [{has: E_181}, {concept: NasalOrOcularItch}]}, then: [{diagnosis: AllergicSinusitis}]}
+  - {id: D-ALR-2, name: "Allergic rhinitis: nasal symptoms with atopy", cf: 0.2, source: bousquet2008,
+     if: {all: [{has: E_181}, {concept: Atopy}]}, then: [{diagnosis: AllergicSinusitis}]}
+  - {id: X-ALR-1, name: "Allergic rhinitis less likely with fever", cf: -0.3, source: bousquet2008,
+     if: {all: [{has: E_181}, {has: E_91}]}, then: [{diagnosis: AllergicSinusitis}]}
+  - {id: D-ARS-1, name: "Acute rhinosinusitis: EPOS symptoms with fever", cf: 0.5, source: fokkens2020,
+     if: {all: [{concept: RhinosinusitisSymptoms}, {has: E_91}]}, then: [{diagnosis: AcuteRhinosinusitis}]}
+  - {id: D-ARS-2, name: "Rhinosinusitis: discoloured discharge with facial pain", cf: 0.4, source: chow2012,
+     if: {all: [{concept: RhinosinusitisSymptoms}, {has: E_182}, {concept: FacialPain}]}, then: [{diagnosis: AcuteRhinosinusitis}, {diagnosis: ChronicRhinosinusitis, cf: 0.3}]}
+  - {id: D-CRS-1, name: "Chronic rhinosinusitis: EPOS symptoms with polyps, septal deviation or chronic sinusitis, no fever", fidelity: partial, cf: 0.6, source: fokkens2020,
+     if: {all: [{concept: RhinosinusitisSymptoms}, {concept: ChronicSinonasalDisease}, {not: {has: E_91}}]}, then: [{diagnosis: ChronicRhinosinusitis}],
+     note: "EPOS requires symptoms for >= 12 weeks; duration is not asked."}
+  - {id: D-AOM-1, name: "Acute otitis media: ear pain with fever, coryza or cough", fidelity: partial, cf: 0.6, source: lieberthal2013,
+     if: {all: [{concept: EarPain}, {any: [{has: E_91}, {has: E_181}, {has: E_201}]}]}, then: [{diagnosis: AcuteOtitisMedia}],
+     note: "AAP 2013 requires otoscopy (bulging tympanic membrane)."}
+  # --- systemic and other ---
+  - {id: D-SAR-1, name: "Sarcoidosis: eye redness, rash or joint pain with adenopathy and dyspnoea", cf: 0.5, source: grunewald2019,
+     if: {all: [{any: [{has: E_74}, {concept: JointPain}, {has: E_129}]}, {has: E_9}, {has: E_66}]}, then: [{diagnosis: Sarcoidosis}]}
+  - {id: D-SLE-1, name: "SLE: malar rash with oral ulcers, joint pain or fever (EULAR/ACR 2019 clinical domains)", fidelity: partial, cf: 0.6, source: aringer2019,
+     if: {all: [{concept: MalarRash}, {any: [{has: E_206}, {concept: JointPain}, {has: E_91}]}]}, then: [{diagnosis: SLE}],
+     note: "The entry criterion (ANA >= 1:80) needs a laboratory test."}
+  - {id: D-SLE-2, name: "SLE: oral ulcers with joint pain", cf: 0.3, source: aringer2019,
+     if: {all: [{has: E_206}, {concept: JointPain}]}, then: [{diagnosis: SLE}]}
+  - {id: D-HER-1, name: "Inguinal hernia: groin pain or bulge increased by coughing or straining", cf: 0.8, source: herniasurge2018,
+     if: {all: [{concept: GroinPainOrBulge}, {has: E_221}]}, then: [{diagnosis: InguinalHernia}]}
+
+  # ===== Triage rules (run after the differential is computed) ======================================
+  - {id: T-ANA, name: "Anaphylaxis is an emergency", cf: 0.95, source: cardona2020,
+     if: {belief: Anaphylaxis, ge: 0.5}, then: [{triage: Emergency}]}
+  - {id: T-ACS, name: "Suspected acute coronary syndrome is an emergency", cf: 0.9, source: gulati2021,
+     if: {any: [{belief: PossibleNSTEMISTEMI, ge: 0.4}, {belief: UnstableAngina, ge: 0.5}]}, then: [{triage: Emergency}]}
+  - {id: T-CHEST-RED, name: "Chest pain with radiation, diaphoresis or rest pain needs emergency assessment", cf: 0.8, source: gulati2021,
+     if: {all: [{concept: ChestPain}, {any: [{concept: PainRadiatingToArmNeckJaw}, {has: E_50}, {has: E_14}]}]}, then: [{triage: Emergency}]}
+  - {id: T-SUDDEN-CHEST, name: "Sudden severe chest pain needs emergency assessment", cf: 0.8, source: gulati2021,
+     if: {concept: SuddenSevereChestPain}, then: [{triage: Emergency}]}
+  - {id: T-AIRWAY, name: "Upper-airway obstruction with stridor is an emergency", cf: 0.9, source: guldfred2008,
+     if: {any: [{all: [{concept: UpperAirwayObstructionSigns}, {has: E_194}]}, {belief: Epiglottitis, ge: 0.5}]}, then: [{triage: Emergency}]}
+  - {id: T-PE, name: "Suspected pulmonary embolism is an emergency", cf: 0.9, source: konstantinides2020,
+     if: {belief: PulmonaryEmbolism, ge: 0.5}, then: [{triage: Emergency}]}
+  - {id: T-PTX, name: "Suspected pneumothorax needs hospital assessment", cf: 0.8, source: macduff2010,
+     if: {belief: SpontaneousPneumothorax, ge: 0.5}, then: [{triage: Urgent}]}
+  - {id: T-BOE, name: "Suspected oesophageal rupture is an emergency", cf: 0.9, source: soreide2011,
+     if: {belief: Boerhaave, ge: 0.5}, then: [{triage: Emergency}]}
+  - {id: T-EBOLA, name: "Suspected Ebola: emergency isolation", cf: 0.95, source: who2014ebola,
+     if: {belief: Ebola, ge: 0.5}, then: [{triage: Emergency}]}
+  - {id: T-APE, name: "Suspected acute pulmonary oedema is an emergency", cf: 0.9, source: mcdonagh2021,
+     if: {belief: AcutePulmonaryEdema, ge: 0.5}, then: [{triage: Emergency}]}
+  - {id: T-GBS, name: "Suspected Guillain-Barre syndrome needs same-day hospital assessment", cf: 0.8, source: leonhard2019,
+     if: {belief: GuillainBarreSyndrome, ge: 0.5}, then: [{triage: Urgent}]}
+  - {id: T-SYNCOPE, name: "Loss of consciousness needs same-day assessment", cf: 0.7, source: brignole2018,
+     if: {has: E_159}, then: [{triage: Urgent}]}
+  - {id: T-GIBLEED, name: "Gastrointestinal bleeding needs same-day assessment", cf: 0.8, source: stanley2019,
+     if: {concept: GastrointestinalBleeding}, then: [{triage: Urgent}]}
+  - {id: T-CRB65, name: "Pneumonia with CRB-65 >= 1 needs same-day assessment", fidelity: partial, cf: 0.7, source: lim2003,
+     if: {all: [{belief: Pneumonia, ge: 0.4}, {score: CRB65, ge: 1}]}, then: [{triage: Urgent}]}
+  - {id: T-ADR, name: "Acute dystonic reaction needs same-day treatment", cf: 0.7, source: vanharten1999,
+     if: {belief: AcuteDystonicReactions, ge: 0.5}, then: [{triage: Urgent}]}
+  - {id: T-MG, name: "Myasthenia with dyspnoea or dysphagia: risk of crisis", cf: 0.8, source: gilhus2016,
+     if: {all: [{belief: MyastheniaGravis, ge: 0.5}, {any: [{has: E_66}, {has: E_65}]}]}, then: [{triage: Urgent}]}
+
+  # ===== Recommendation rules ======================================================================
+  - {id: R-ANA,  name: "Anaphylaxis: adrenaline", source: cardona2020, if: {belief: Anaphylaxis, ge: 0.5}, then: [{recommend: REC_ADRENALINE}]}
+  - {id: R-ACS,  name: "Suspected ACS: ECG and troponin", source: byrne2023,
+     if: {any: [{belief: PossibleNSTEMISTEMI, ge: 0.4}, {belief: UnstableAngina, ge: 0.4}]}, then: [{recommend: REC_ECG_TROPONIN}]}
+  - {id: R-PE-HIGH, name: "PE likely: CT pulmonary angiography", source: konstantinides2020,
+     if: {all: [{belief: PulmonaryEmbolism, ge: 0.4}, {score: WellsPE, gt: 4}]}, then: [{recommend: REC_CTPA}]}
+  - {id: R-PE-LOW, name: "PE unlikely by Wells: D-dimer first", source: konstantinides2020,
+     if: {all: [{belief: PulmonaryEmbolism, ge: 0.3}, {not: {score: WellsPE, gt: 4}}]}, then: [{recommend: REC_DDIMER}]}
+  - {id: R-FLU,  name: "Influenza: antivirals for high-risk patients", source: uyeki2019, if: {belief: Influenza, ge: 0.5}, then: [{recommend: REC_FLU}]}
+  - {id: R-VPH,  name: "Viral pharyngitis: no antibiotics", source: shulman2012, if: {belief: ViralPharyngitis, ge: 0.5}, then: [{recommend: REC_NO_ANTIBIOTIC_THROAT}]}
+  - {id: R-PERT, name: "Pertussis: laboratory confirmation", source: cdc2020pertussis, if: {belief: WhoopingCough, ge: 0.5}, then: [{recommend: REC_PERTUSSIS}]}
+  - {id: R-TB,   name: "Tuberculosis: chest X-ray and sputum test", source: who2021tb, if: {belief: Tuberculosis, ge: 0.4}, then: [{recommend: REC_TB}]}
+  - {id: R-LCA-1, name: "Haemoptysis at >= 40: suspected lung cancer pathway", source: nice2015ng12,
+     if: {all: [{age: {ge: 40}}, {has: E_45}, {belief: PulmonaryNeoplasm, ge: 0.3}]}, then: [{recommend: REC_LUNG_CANCER_PATHWAY}]}
+  - {id: R-LCA-2, name: "NICE lung symptoms at >= 40: urgent chest X-ray", source: nice2015ng12,
+     if: {all: [{belief: PulmonaryNeoplasm, ge: 0.3}, {age: {ge: 40}}, {any: [{concept: NICELungTwoSymptoms}, {all: [{concept: EverSmoked}, {concept: NICELungOneSymptom}]}]}]}, then: [{recommend: REC_URGENT_CXR}]}
+  - {id: R-PCA-1, name: "Jaundice at >= 40: suspected pancreatic cancer pathway", source: nice2015ng12,
+     if: {all: [{age: {ge: 40}}, {concept: JaundiceFeatures}, {belief: PancreaticNeoplasm, ge: 0.3}]}, then: [{recommend: REC_PANCREAS_REFERRAL}]}
+  - {id: R-PCA-2, name: "Weight loss at >= 60 with GI symptoms: urgent CT", source: nice2015ng12,
+     if: {all: [{belief: PancreaticNeoplasm, ge: 0.3}, {age: {ge: 60}}, {has: E_162}]}, then: [{recommend: REC_URGENT_CT_PANCREAS}]}
+  - {id: R-HIV,  name: "Acute HIV: antigen/antibody and RNA test", source: cdc2014hiv, if: {belief: HIVInitialInfection, ge: 0.4}, then: [{recommend: REC_HIV_TEST}]}
+  - {id: R-EBOLA, name: "Ebola: isolate and notify", source: who2014ebola, if: {belief: Ebola, ge: 0.4}, then: [{recommend: REC_ISOLATE_EBOLA}]}
+  - {id: R-COPD, name: "COPD exacerbation: bronchodilators, antibiotics if purulent", source: agusti2023, if: {belief: AcuteCOPDExacerbationInfection, ge: 0.5}, then: [{recommend: REC_COPD}]}
+  - {id: R-ASTHMA, name: "Asthma exacerbation: reliever and severity assessment", source: reddel2022, if: {belief: BronchospasmAcuteAsthmaExacerbation, ge: 0.5}, then: [{recommend: REC_ASTHMA}]}
+  - {id: R-ANEMIA, name: "Anaemia: full blood count", source: who2011hb, if: {belief: Anemia, ge: 0.4}, then: [{recommend: REC_CBC}]}
+  - {id: R-SLE,  name: "SLE: antinuclear antibodies", source: aringer2019, if: {belief: SLE, ge: 0.4}, then: [{recommend: REC_ANA}]}
+  - {id: R-GERD, name: "GERD: PPI trial", source: katz2022,
+     if: {all: [{belief: GERD, ge: 0.5}, {not: {concept: GastrointestinalBleeding}}, {not: {has: E_162}}]}, then: [{recommend: REC_PPI}]}
+  - {id: R-AOM,  name: "Acute otitis media: otoscopy", source: lieberthal2013, if: {belief: AcuteOtitisMedia, ge: 0.5}, then: [{recommend: REC_OTOSCOPY}]}
+  - {id: R-ADR,  name: "Acute dystonia: anticholinergic", source: vanharten1999, if: {belief: AcuteDystonicReactions, ge: 0.5}, then: [{recommend: REC_ANTICHOLINERGIC}]}
+  - {id: R-HERNIA, name: "Inguinal hernia: surgical referral", source: herniasurge2018, if: {belief: InguinalHernia, ge: 0.5}, then: [{recommend: REC_HERNIA}]}
+  - {id: R-PNA,  name: "Pneumonia: chest X-ray and CRB-65", source: metlay2019, if: {belief: Pneumonia, ge: 0.5}, then: [{recommend: REC_CXR_PNEUMONIA}]}
+  - {id: R-CHAGAS, name: "Chagas: parasitological or serological test", source: rassi2010, if: {belief: Chagas, ge: 0.4}, then: [{recommend: REC_CHAGAS}]}
+  - {id: R-URTI, name: "Common cold: self-care, no antibiotics", source: heikkinen2003, if: {belief: URTI, ge: 0.5}, then: [{recommend: REC_SELF_CARE_COLD}]}
+  - {id: R-PANIC, name: "Panic attack: exclude a cardiac cause first", source: apa2013dsm5, if: {belief: PanicAttack, ge: 0.4}, then: [{recommend: REC_EXCLUDE_CARDIAC}]}

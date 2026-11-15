@@ -1,0 +1,23 @@
+kind,item,detail
+antecedent,Active cancer,
+antecedent,Deep vein thrombosis (DVT),
+antecedent,Surgery within the last month,
+antecedent,Take hormones,
+antecedent,Traveled out of the country in the last 4 weeks,
+antecedent,Unable to move or get up for more than 3 consecutive days within the last 4 weeks,
+rule,D-PE-1,"CF 0.7, source wells2000"
+rule,D-PE-2,"CF 0.4, source wells2000"
+rule,D-PE-3,"CF 0.2, source konstantinides2020"
+symptom,Characterize your pain,
+symptom,Coughing up blood,
+symptom,Does the pain radiate to another location,
+symptom,Experiencing shortness of breath or difficulty breathing in a significant way,
+symptom,How fast did the pain appear,
+symptom,How intense is the pain,
+symptom,How precisely is the pain located,
+symptom,Lose consciousness,
+symptom,Pain somewhere,
+symptom,"Pain somewhere, related to your reason for consulting",
+symptom,Pain that is increased when you breathe in deeply,
+symptom,Swelling in one or more areas of your body,
+symptom,Where is the swelling located,

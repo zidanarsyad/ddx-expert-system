@@ -1,0 +1,28 @@
+code,fidelity,note
+A-HF,partial,Framingham: 2 major or 1 major + 2 minor criteria. Available: paroxysmal nocturnal dyspnoea (major); ankle oedema and dyspnoea on exertion (minor); orthopnoea (added from ESC 2021). Signs and imaging are not available.
+A-ILI,partial,WHO: measured fever >= 38 C and cough with onset within 10 days; DDXPlus records felt or measured fever and no onset date.
+A-PANIC,partial,"DSM-5 requires >= 4 of 13 symptoms in an abrupt surge; trembling and fear of losing control are not asked, so 11 items are available."
+D-ACS-1,partial,"ECG and troponin, which separate NSTEMI/STEMI from unstable angina, are not available."
+D-ANA-1,partial,"Sampson: >= 2 of skin-mucosa, respiratory compromise, reduced blood pressure, persistent GI symptoms, rapidly after a likely allergen; onset timing is not asked."
+D-ANA-2,partial,
+D-AOM-1,partial,AAP 2013 requires otoscopy (bulging tympanic membrane).
+D-APE-2,partial,
+D-BOE-1,partial,"Mackler's triad: vomiting, lower thoracic pain and subcutaneous emphysema; emphysema is an examination finding."
+D-CLU-1,partial,"ICHD-3 3.1 also requires unilateral attacks of 15-180 min, >= 5 attacks; laterality, duration and attack count are not asked."
+D-CRS-1,partial,EPOS requires symptoms for >= 12 weeks; duration is not asked.
+D-EBO-2,partial,"WHO lists headache, vomiting, anorexia, diarrhoea, lethargy, stomach pain, aching muscles or joints, difficulty swallowing, breathing difficulty and hiccup; hiccup is not asked."
+D-FLU-1,partial,
+D-PAN-1,partial,
+D-PE-1,partial,"Two-tier Wells: PE likely if > 4 points. Heart rate > 100 (+1.5) and 'PE the most likely diagnosis' (+3) cannot be scored, so the score is a lower bound."
+D-PE-2,partial,
+D-PER-1,partial,"ESC: typical pain is sharp, pleuritic, improved by sitting up and leaning forward; rub, ECG and effusion criteria need examination."
+D-PERT-1,partial,The CDC clinical criteria also require a cough of >= 2 weeks; duration is not asked.
+D-SLE-1,partial,The entry criterion (ANA >= 1:80) needs a laboratory test.
+D-STA-1,partial,"Typical angina has three characteristics: constricting retrosternal discomfort, provoked by exertion, relieved by rest or nitrates within 5 min. The 5-minute relief and nitrates are not asked."
+D-TB-1,partial,Cough duration (>= 2 weeks) and night sweats are not asked as such; 'significantly increased sweating' is the closest question.
+T-CRB65,partial,
+A-DVT,proxy,Wells: clinical signs and symptoms of DVT (leg swelling and pain on palpation of the deep veins); DDXPlus records only the swelling site.
+A-HYPOT,proxy,Blood pressure is not measured in DDXPlus; near-syncope and syncope are the associated end-organ symptoms named by Sampson.
+A-JAUNDICE,proxy,"Jaundice is examined, not asked; pale stools with dark urine and a yellow skin colour stand in for it."
+D-PCA-1,proxy,
+S-WELLS-DVT,proxy,

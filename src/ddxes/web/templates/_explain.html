@@ -1,0 +1,168 @@
+{% from "_macros.html" import cite, cond_tree, proof_legend, icon %}
+<div class="tabs" role="tablist" aria-label="Explanation">
+  {% for key, label in explain.tabs %}
+  <a class="tab" role="tab" href="{{ base }}tab={{ key }}#explanation" data-swap="#explanation"
+     aria-selected="{{ 'true' if key == explain.tab else 'false' }}">{{ label }}</a>
+  {% endfor %}
+</div>
+
+<div class="panel" role="tabpanel">
+{% if explain.tab == "how" %}
+  {% if explain.how %}{% set h = explain.how %}
+  <form class="panel__pick" method="get" action="{{ path }}" data-swap="#explanation" data-hash="explanation">
+    {% for k, v in keep.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+    <input type="hidden" name="tab" value="how">
+    <label for="how-d">How did DDX-ES conclude</label>
+    <select id="how-d" name="d" data-autosubmit>
+      {% for k, label in explain.options %}<option value="{{ k }}"{% if k == explain.d %} selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    <noscript><button class="btn btn--quiet" type="submit">Show</button></noscript>
+  </form>
+
+  <dl class="facts">
+    <div><dt>Rank</dt><dd>{{ h.rank }}</dd></div>
+    <div><dt>Probability</dt><dd>{{ h.probability|num(3) }}</dd></div>
+    <div><dt>Combined CF</dt><dd>{{ h.cf|signed(3) }}</dd></div>
+    <div><dt>Explains</dt><dd>{{ h.covering.explains }} of {{ h.covering.of }} symptoms</dd></div>
+    <div><dt>ICD-10</dt><dd>{{ h.icd10 }}</dd></div>
+    <div><dt>Severity</dt><dd>{{ h.severity }} of 5</dd></div>
+  </dl>
+  <p class="prose">The guideline rules give a combined CF of <b>{{ h.cf_rules|signed(3) }}</b>; {{ h.n_kb }} links of the
+    expert knowledge base give <b>{{ h.cf_kb|signed(3) }}</b>. Together with the prior of {{ h.prior|num(4) }} they
+    yield P = {{ h.probability|num(3) }}.{% if h.families %} OWL classes, including entailed ones:
+    {{ h.families|join(", ") }}.{% endif %}</p>
+  {% if h.covering.unexplained %}
+  <p class="callout callout--warn">It cannot explain: {{ h.covering.unexplained|join("; ") }}.</p>
+  {% endif %}
+
+  {% if h.proof %}
+  <figure class="proof-wrap">
+    <div class="proof-scroll">{{ h.proof }}</div>
+    <figcaption>{{ proof_legend() }}</figcaption>
+  </figure>
+  {% endif %}
+
+  {% if h.rule_rows %}
+  <h3 class="sub-title">Rules that concluded {{ h.label }}</h3>
+  <ul class="rules">
+    {% for r in h.rule_rows %}
+    <li class="rule">
+      <p class="rule__head"><b class="rule__id">{{ r.info.id }}</b> {{ r.info.name }}
+        <span class="rule__cf">CF {{ r.cf|signed }}</span></p>
+      <pre class="code rule__text">{{ r.info.text }}</pre>
+      <p class="rule__facts">Matched: {% for f in r.facts %}<mark>{{ f }}</mark>{% if not loop.last %} {% endif %}{% endfor %}</p>
+      <p class="rule__src">{{ cite(r.info.short, r.info.citation, r.info.link) }}. Fidelity of the mapping to DDXPlus:
+        {{ r.info.fidelity }}.{% if r.info.note %} {{ r.info.note }}{% endif %}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="callout">No guideline rule concluded {{ h.label }}; its belief rests on the knowledge-base links below.</p>
+  {% endif %}
+
+  <div class="evidence-grid">
+    {% for title, items in [("Strongest evidence for", h["for"]), ("Strongest evidence against", h.against)] %}
+    <section>
+      <h3 class="sub-title">{{ title }}</h3>
+      {% if items %}
+      <div class="table-wrap">
+      <table class="table table--compact">
+        <thead><tr><th scope="col">Feature</th><th scope="col" class="num" title="P(feature | pathology)">P(f | d)</th>
+          <th scope="col" class="num" title="P(feature | other pathologies)">P(f | others)</th><th scope="col" class="num">LR</th>
+          <th scope="col" class="num">CF</th></tr></thead>
+        <tbody>{% for x in items %}<tr><td>{{ x.feature }}</td><td class="num">{{ x.p_d|num(3) }}</td>
+          <td class="num">{{ x.p_other|num(4) }}</td><td class="num">{{ x.lr }}</td><td class="num">{{ x.cf|signed(3) }}</td></tr>{% endfor %}</tbody>
+      </table>
+      </div>
+      {% else %}<p class="muted">None.</p>{% endif %}
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="callout">No pathology has a probability above 0.01 yet.</p>
+  {% endif %}
+
+{% elif explain.tab == "whynot" %}
+  {% if explain.whynot %}{% set w = explain.whynot %}
+  <form class="panel__pick" method="get" action="{{ path }}" data-swap="#explanation" data-hash="explanation">
+    {% for k, v in keep.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+    <input type="hidden" name="tab" value="whynot">
+    <label for="wn-d">Why not</label>
+    <select id="wn-d" name="d" data-autosubmit>
+      {% for k, label in explain.options %}<option value="{{ k }}"{% if k == explain.d %} selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    <noscript><button class="btn btn--quiet" type="submit">Show</button></noscript>
+  </form>
+  <p class="callout{% if w.excluded %} callout--warn{% endif %}">{{ w.reason }}</p>
+  {% if w.against %}
+  <h3 class="sub-title">Strongest evidence against {{ w.label }}</h3>
+  <ul class="plain">{% for x in w.against %}<li>{{ x.feature }} <span class="muted">CF {{ x.cf|signed }}</span></li>{% endfor %}</ul>
+  {% endif %}
+  <h3 class="sub-title">Guideline rules that could conclude {{ w.label }}</h3>
+  {% if w.guideline_rules %}
+  <ul class="rules">
+    {% for g in w.guideline_rules %}
+    <li class="rule">
+      <p class="rule__head"><b class="rule__id">{{ g.rule.id }}</b> {{ g.rule.name }}
+        <span class="status status--{{ 'yes' if g.fired else 'no' }}">{{ "fired" if g.fired else "did not fire" }}</span></p>
+      <p class="rule__src">{{ cite(g.rule.short, g.rule.citation, g.rule.link) }}</p>
+      {% if g.tree %}<ul class="ct__list ct__list--root">{{ cond_tree(g.tree) }}</ul>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">No guideline rule concludes {{ w.label }}; only the knowledge-base links speak for it.</p>
+  {% endif %}
+  {% endif %}
+
+{% elif explain.tab == "concepts" %}
+  {% if explain.concepts %}
+  <h3 class="sub-title">Clinical concepts derived by the abstraction rules</h3>
+  <div class="concepts">
+    {% for c in explain.concepts %}
+    <details class="concept">
+      <summary><span class="concept__name">{{ c.label }}</span>{% if c.red_flag %}<span class="flag">{{ icon("flag", "flag__icon") }}red flag</span>{% endif %}
+        <span class="concept__cf">CF {{ c.cf|num(2) }}</span></summary>
+      {% if c.proof %}<div class="proof-scroll">{{ c.proof }}</div>{% endif %}
+    </details>
+    {% endfor %}
+  </div>
+  {% else %}<p class="callout">No clinical concept holds for this patient.</p>{% endif %}
+  {% if explain.scores %}
+  <h3 class="sub-title">Clinical scores</h3>
+  {% for s in explain.scores %}
+  <figure class="proof-wrap">
+    <p class="score">{{ s.label }} = <b>{{ "%g"|format(s.value) }}</b></p>
+    {% if s.proof %}<div class="proof-scroll">{{ s.proof }}</div>{% endif %}
+  </figure>
+  {% endfor %}
+  <div class="legend-wrap">{{ proof_legend() }}</div>
+  {% endif %}
+
+{% elif explain.tab == "trace" %}
+  <p class="prose">Rules fire in strata: abstraction and scoring rules first, then the diagnostic rules, then, after
+    the beliefs are aggregated, the triage and recommendation rules that read them.</p>
+  <div class="table-wrap">
+  <table class="table table--compact trace">
+    <thead><tr><th scope="col" class="num">Step</th><th scope="col">Rule</th><th scope="col">Concludes</th><th scope="col">Source</th></tr></thead>
+    {% for g in explain.trace %}
+    <tbody>
+      <tr class="trace__stratum"><th colspan="4" scope="rowgroup">Stratum {{ g.stratum }}{% if g.after %}, after belief aggregation{% endif %}</th></tr>
+      {% for r in g.rows %}
+      <tr><td class="num">{{ r.step }}</td><td><b>{{ r.id }}</b> {{ r.name }}</td><td>{{ r.outs }}</td><td class="nowrap">{{ r.source }}</td></tr>
+      {% endfor %}
+    </tbody>
+    {% endfor %}
+  </table>
+  </div>
+
+{% else %}
+  {% set pv = explain.provenance %}
+  <p class="prose">The consultation written back to the knowledge graph as PROV-O: the case, every rule firing as a
+    <code>prov:Activity</code> that used facts and followed a <code>prov:Plan</code> (the rule, with its source), and
+    every inference as a <code>prov:Entity</code>. {{ pv.triples|thousands }} triples in all.</p>
+  <p><a class="btn btn--quiet" href="{{ ttl }}" download>{{ icon("download", "btn__icon") }}Download the Turtle file</a></p>
+  <pre class="code code--block">{{ pv.preview }}{% if pv.truncated %}
+# … {{ (pv.chars - pv.preview|length)|thousands }} more characters in the download{% endif %}</pre>
+{% endif %}
+</div>

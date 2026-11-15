@@ -1,0 +1,30 @@
+{
+  "ontology": 682,
+  "kb": 4727,
+  "rules": 7127,
+  "stats": 27047,
+  "cases": 55847,
+  "inferred": 3921,
+  "reasoning_seconds": 51.5,
+  "rule_counts": {
+    "abstraction": 55,
+    "scoring": 7,
+    "diagnostic": 88,
+    "triage": 16,
+    "recommendation": 26
+  },
+  "sources": 69,
+  "inferred_by_predicate": {
+    "indicates": 888,
+    "characterizedBy": 888,
+    "type": 845,
+    "symptomOf": 605,
+    "subClassOf": 179,
+    "member": 143,
+    "subPropertyOf": 85,
+    "equivalentProperty": 84,
+    "equivalentClass": 78,
+    "domain": 75,
+    "range": 51
+  }
+}

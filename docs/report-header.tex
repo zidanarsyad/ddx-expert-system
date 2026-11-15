@@ -1,0 +1,82 @@
+% Layout of the report following the Panduan Penulisan Tugas Akhir FMIPA UGM (2009):
+% Times New Roman 12 pt; 1.5 line spacing (single for contents, abstracts, captions, tables, code and references);
+% margins top/left 4 cm, bottom/right 3 cm; chapter titles centred, bold, upper case, 14 pt; chapters numbered with
+% Roman numerals, sections 1.1, tables and figures numbered per chapter (Table 4.1, title above; Figure 4.1, title
+% below); equations (3.1); front matter in lower-case Roman page numbers; chapter pages numbered bottom centre and
+% the other pages top right.
+\usepackage{xcolor}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\usepackage{titlesec}
+\renewcommand{\thechapter}{\Roman{chapter}}
+\titleformat{\chapter}[display]{\normalfont\bfseries\fontsize{14}{18}\selectfont\centering}%
+  {\MakeUppercase{\chaptertitlename}\ \thechapter}{0.2em}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-1.1cm}{1.0cm}
+\titleformat{\section}{\normalfont\bfseries\fontsize{12}{15}\selectfont}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalfont\bfseries\fontsize{12}{15}\selectfont}{\thesubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{1.2ex plus .4ex}{0.5ex}
+\titlespacing*{\subsection}{0pt}{1.0ex plus .3ex}{0.4ex}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+\usepackage{caption}
+\captionsetup{font={normalsize,bf,singlespacing},labelsep=space,justification=centering,skip=6pt}
+% page styles: 'mainpage' = number at the top right; 'plain' (chapter pages, front matter) = bottom centre
+\setlength{\headheight}{15pt}
+\makeatletter
+\def\ps@mainpage{\def\@oddhead{\hfil\normalfont\thepage}\let\@evenhead\@oddhead\def\@oddfoot{}\let\@evenfoot\@oddfoot}
+\def\ps@plain{\def\@oddhead{}\let\@evenhead\@oddhead\def\@oddfoot{\hfil\normalfont\thepage\hfil}\let\@evenfoot\@oddfoot}
+\makeatother
+\usepackage{etoolbox}
+% tables in \small (the appendix table switches \tablefont to \footnotesize, guide E.1); code in \small
+\newcommand{\tablefont}{\small}
+\AtBeginEnvironment{longtable}{\singlespacing\tablefont}
+\AtBeginEnvironment{Shaded}{\singlespacing\small}
+\AtBeginEnvironment{verbatim}{\singlespacing}
+% reference list (guide F.1 and Lampiran 14): single spacing inside an entry, one and a half lines between
+% entries, hanging indent; replaces the definition in pandoc's template
+\renewenvironment{CSLReferences}[2]
+ {\singlespacing\frenchspacing
+  \begin{list}{}{%
+   \setlength{\leftmargin}{\cslhangindent}%
+   \setlength{\itemindent}{-\cslhangindent}%
+   \setlength{\parsep}{0pt}%
+   \setlength{\itemsep}{0.5\baselineskip}}}
+ {\end{list}}
+% pandoc's template loads xurl (URLs may break anywhere); never letter-space a URL to fill a justified line
+\AtBeginDocument{\Urlmuskip=0mu\relax}
+\setlength{\LTpre}{8pt}
+\setlength{\LTpost}{8pt}
+\captionsetup[table]{position=above}
+% short tables are floats (see scripts/build_report.py): let a large table sit at the top of a text page
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2]{\origfigure[htbp]}{\endorigfigure}
+\usepackage[titles]{tocloft}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappresnum}{CHAPTER }
+\setlength{\cftchapnumwidth}{7.6em}
+\renewcommand{\cftchapaftersnum}{\hspace{0.4em}}
+\renewcommand{\cfttabpresnum}{Table }
+\renewcommand{\cftfigpresnum}{Figure }
+\setlength{\cfttabnumwidth}{5.6em}
+\setlength{\cftfignumwidth}{5.8em}
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\renewcommand{\listtablename}{LIST OF TABLES}
+\renewcommand{\bibname}{REFERENCES}
+\usepackage{microtype}
+\usepackage{enumitem}
+\setlist{itemsep=0.1em,topsep=0.3em}
+\renewcommand{\arraystretch}{1.1}

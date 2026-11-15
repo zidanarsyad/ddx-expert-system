@@ -1,0 +1,4677 @@
+@prefix : <http://example.org/ddx#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+:C_FraminghamLikeHeartFailure a :ClinicalConcept .
+
+:C_GastrointestinalBleeding a :ClinicalConcept .
+
+:C_HypotensionSymptoms a :ClinicalConcept .
+
+:C_PainRadiatingToArmNeckJaw a :ClinicalConcept .
+
+:C_RespiratoryCompromise a :ClinicalConcept .
+
+:C_SuddenSevereChestPain a :ClinicalConcept .
+
+:C_UpperAirwayObstructionSigns a :ClinicalConcept .
+
+:REC_ADRENALINE a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_ANA a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_ASTHMA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_CBC a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_COPD a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_CTPA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_CXR_PNEUMONIA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_DDIMER a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_ECG_TROPONIN a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_EXCLUDE_CARDIAC a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_FLU a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_HERNIA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_HIV_TEST a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_ISOLATE_EBOLA a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_LUNG_CANCER_PATHWAY a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_NO_ANTIBIOTIC_THROAT a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_OTOSCOPY a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_PANCREAS_REFERRAL a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_PERTUSSIS a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_PPI a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_TB a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_URGENT_CT_PANCREAS a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:REC_URGENT_CXR a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ABDO a :Rule,
+        prov:Plan .
+
+:Rule_A-ABRUPT a :Rule,
+        prov:Plan .
+
+:Rule_A-AFRISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-AIRWAY a :Rule,
+        prov:Plan .
+
+:Rule_A-ANAEMIA a :Rule,
+        prov:Plan .
+
+:Rule_A-ANAEMIA-RISK a :Rule,
+        prov:Plan .
+
+:Rule_A-ANGIO a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ASTHMA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ATOPY a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-BULBAR a :Rule,
+        prov:Plan .
+
+:Rule_A-CHEST a :Rule,
+        prov:Plan .
+
+:Rule_A-COPD a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-CRS-RISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-CVRISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-DVT a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-DYSTONIA a :Rule,
+        prov:Plan .
+
+:Rule_A-EAR a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-EPIG a :Rule,
+        prov:Plan .
+
+:Rule_A-FACE a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-GI a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-GIBLEED a :Rule,
+        prov:Plan .
+
+:Rule_A-GROIN a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-HEAD a :Rule,
+        prov:Plan .
+
+:Rule_A-HF a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-HIVRISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-HYPOT a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ILI a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-IMMOB a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-INFECT a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ITCH a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-JAUNDICE a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-JOINT a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-LEG-OEDEMA a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-MALAR a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-MUCOSA a :Rule,
+        prov:Plan .
+
+:Rule_A-NEUROLEPTIC a :Rule,
+        prov:Plan .
+
+:Rule_A-NICE-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-NICE-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-ORBITAL a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-PANIC a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-PERTUSSIS a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-PLEURITIC a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-RADIATE a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-REGULAR-PALP a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-RESP a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-RS a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-SEVERE a :Rule,
+        prov:Plan .
+
+:Rule_A-SKIN a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-SMOKER a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-STIMULANT a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-SUDDEN-CHEST a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-TBRISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-THROAT a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_A-TRAVEL-LA a :Rule,
+        prov:Plan .
+
+:Rule_A-TRAVEL-WA a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ACS-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ACS-RISK a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ADR-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-ADR-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-AF-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-AF-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ALR-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ALR-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ANA-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ANA-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ANA-3 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ANE-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-ANE-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-AOM-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-APE-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-APE-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ARS-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-ARS-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-AST-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-AST-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-BOE-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-BOE-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-BRL-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-BRO-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-BRX-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-BRX-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-CHA-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-CLU-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-COPD-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-COPD-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-CROUP-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-CROUP-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-CRS-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-EBO-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-EBO-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-EBO-3 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-EDE-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-EPI-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-EPI-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-FLU-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-FLU-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-FLU-3 a :Rule,
+        prov:Plan .
+
+:Rule_D-GBS-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-GBS-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-GBS-3 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-GERD-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-GERD-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-GERD-3 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-HER-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-HIV-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-HIV-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-LAR-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-LCA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-LCA-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-LSP-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-MG-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-MG-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-MYO-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PAN-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PAN-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PCA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PCA-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PE-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PE-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PE-3 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PER-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PER-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PERT-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PERT-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PNA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PNA-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PTX-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-PTX-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-RIB-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-SAR-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-SCO-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-SCO-2 a :Rule,
+        prov:Plan .
+
+:Rule_D-SLE-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-SLE-2 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-STA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-SVT-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-TB-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-TB-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-UA-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_D-URTI-1 a :Rule,
+        prov:Plan .
+
+:Rule_D-VPH-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-ACS a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-ADR a :Rule,
+        prov:Plan .
+
+:Rule_R-ANA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-ANEMIA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-AOM a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-ASTHMA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-CHAGAS a :Rule,
+        prov:Plan .
+
+:Rule_R-COPD a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-EBOLA a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-FLU a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-GERD a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-HERNIA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-HIV a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-LCA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-LCA-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PANIC a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PCA-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PCA-2 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PE-HIGH a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PE-LOW a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PERT a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-PNA a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-SLE a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-TB a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_R-URTI a :Rule,
+        prov:Plan .
+
+:Rule_R-VPH a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-CRB-AGE a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-CRB-CONFUSION a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-WELLS-CANCER a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-WELLS-DVT a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-WELLS-HAEMO a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-WELLS-IMMOB a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_S-WELLS-VTE a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-ACS a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-ADR a :Rule,
+        prov:Plan .
+
+:Rule_T-AIRWAY a :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-ANA a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-APE a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-BOE a :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-CHEST-RED a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-CRB65 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-EBOLA a :CriteriaBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-GBS a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-GIBLEED a :Rule,
+        prov:Plan .
+
+:Rule_T-MG a :Rule,
+        prov:Plan .
+
+:Rule_T-PE a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-PTX a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-SUDDEN-CHEST a :GuidelineBasedRule,
+        :RedFlagRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_T-SYNCOPE a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_X-ALR-1 a :GuidelineBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Rule_X-PAN-1 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Score_CRB65 a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Score_WellsPE a :CriteriaBasedRule,
+        :Rule,
+        prov:Plan .
+
+:Src_adler2015 a :Source,
+        dct:BibliographicResource .
+
+:Src_agusti2023 a :Source,
+        dct:BibliographicResource .
+
+:Src_anthonisen1987 a :Source,
+        dct:BibliographicResource .
+
+:Src_apa2013dsm5 a :Source,
+        dct:BibliographicResource .
+
+:Src_aringer2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_bjornson2013 a :Source,
+        dct:BibliographicResource .
+
+:Src_bousquet2008 a :Source,
+        dct:BibliographicResource .
+
+:Src_braunwald1989 a :Source,
+        dct:BibliographicResource .
+
+:Src_brignole2018 a :Source,
+        dct:BibliographicResource .
+
+:Src_brugada2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_byrne2023 a :Source,
+        dct:BibliographicResource .
+
+:Src_caforio2013 a :Source,
+        dct:BibliographicResource .
+
+:Src_call2005 a :Source,
+        dct:BibliographicResource .
+
+:Src_cappellini2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_cardona2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_cdc2014hiv a :Source,
+        dct:BibliographicResource .
+
+:Src_cdc2020pertussis a :Source,
+        dct:BibliographicResource .
+
+:Src_centor1981 a :Source,
+        dct:BibliographicResource .
+
+:Src_chow2012 a :Source,
+        dct:BibliographicResource .
+
+:Src_clancey1983 a :Source,
+        dct:BibliographicResource .
+
+:Src_ddxplus2022 a :Source,
+        dct:BibliographicResource .
+
+:Src_ddxplus2022data a :Source,
+        dct:BibliographicResource .
+
+:Src_feng2016 a :Source,
+        dct:BibliographicResource .
+
+:Src_fokkens2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_gilhus2016 a :Source,
+        dct:BibliographicResource .
+
+:Src_grunewald2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_gulati2021 a :Source,
+        dct:BibliographicResource .
+
+:Src_guldfred2008 a :Source,
+        dct:BibliographicResource .
+
+:Src_hanak2005 a :Source,
+        dct:BibliographicResource .
+
+:Src_hecht2002 a :Source,
+        dct:BibliographicResource .
+
+:Src_heckerman1986 a :Source,
+        dct:BibliographicResource .
+
+:Src_heikkinen2003 a :Source,
+        dct:BibliographicResource .
+
+:Src_herniasurge2018 a :Source,
+        dct:BibliographicResource .
+
+:Src_hindricks2021 a :Source,
+        dct:BibliographicResource .
+
+:Src_ichd3 a :Source,
+        dct:BibliographicResource .
+
+:Src_katz2022 a :Source,
+        dct:BibliographicResource .
+
+:Src_knuuti2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_konstantinides2020 a :Source,
+        dct:BibliographicResource .
+
+:Src_leonhard2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_lieberthal2013 a :Source,
+        dct:BibliographicResource .
+
+:Src_lim2003 a :Source,
+        dct:BibliographicResource .
+
+:Src_loughlin1996 a :Source,
+        dct:BibliographicResource .
+
+:Src_macduff2010 a :Source,
+        dct:BibliographicResource .
+
+:Src_mcdonagh2021 a :Source,
+        dct:BibliographicResource .
+
+:Src_mckee1971 a :Source,
+        dct:BibliographicResource .
+
+:Src_metlay2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_miller1982 a :Source,
+        dct:BibliographicResource .
+
+:Src_nice2015ng12 a :Source,
+        dct:BibliographicResource .
+
+:Src_polverino2017 a :Source,
+        dct:BibliographicResource .
+
+:Src_ralston2014 a :Source,
+        dct:BibliographicResource .
+
+:Src_rassi2010 a :Source,
+        dct:BibliographicResource .
+
+:Src_reddel2022 a :Source,
+        dct:BibliographicResource .
+
+:Src_reggia1983 a :Source,
+        dct:BibliographicResource .
+
+:Src_sampson2006 a :Source,
+        dct:BibliographicResource .
+
+:Src_shortliffe1975 a :Source,
+        dct:BibliographicResource .
+
+:Src_shulman2012 a :Source,
+        dct:BibliographicResource .
+
+:Src_soreide2011 a :Source,
+        dct:BibliographicResource .
+
+:Src_stanley2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_trayes2013 a :Source,
+        dct:BibliographicResource .
+
+:Src_uyeki2019 a :Source,
+        dct:BibliographicResource .
+
+:Src_vakil2006 a :Source,
+        dct:BibliographicResource .
+
+:Src_vanharten1999 a :Source,
+        dct:BibliographicResource .
+
+:Src_wells2000 a :Source,
+        dct:BibliographicResource .
+
+:Src_wenzel2006 a :Source,
+        dct:BibliographicResource .
+
+:Src_who2011hb a :Source,
+        dct:BibliographicResource .
+
+:Src_who2013ili a :Source,
+        dct:BibliographicResource .
+
+:Src_who2014ebola a :Source,
+        dct:BibliographicResource .
+
+:Src_who2021tb a :Source,
+        dct:BibliographicResource .
+
+:Src_wood2014 a :Source,
+        dct:BibliographicResource .
+
+:VS_ABDOMEN a skos:Collection ;
+    skos:member :V_103,
+        :V_104,
+        :V_187,
+        :V_197,
+        :V_84,
+        :V_85,
+        :V_87,
+        :V_88 .
+
+:VS_ARM_NECK_JAW a skos:Collection ;
+    skos:member :V_121,
+        :V_163,
+        :V_177,
+        :V_178,
+        :V_194,
+        :V_195,
+        :V_26,
+        :V_27,
+        :V_28,
+        :V_30,
+        :V_31,
+        :V_33,
+        :V_53,
+        :V_54 .
+
+:VS_BACK a skos:Collection ;
+    skos:member :V_113,
+        :V_114,
+        :V_39,
+        :V_40 .
+
+:VS_BURNING a skos:Collection ;
+    skos:member :V_181 .
+
+:VS_CHEST a skos:Collection ;
+    skos:member :V_101,
+        :V_159,
+        :V_160,
+        :V_170,
+        :V_171,
+        :V_29,
+        :V_55,
+        :V_56 .
+
+:VS_CRAMP a skos:Collection ;
+    skos:member :V_182 .
+
+:VS_EAR a skos:Collection ;
+    skos:member :V_129,
+        :V_130 .
+
+:VS_EPIGASTRIUM a skos:Collection ;
+    skos:member :V_197 .
+
+:VS_FACE_LIPS_TONGUE a skos:Collection ;
+    skos:member :V_108,
+        :V_109,
+        :V_115,
+        :V_116,
+        :V_117,
+        :V_122,
+        :V_125,
+        :V_126,
+        :V_162,
+        :V_188,
+        :V_189,
+        :V_32,
+        :V_61,
+        :V_89 .
+
+:VS_FACE_SINUS a skos:Collection ;
+    skos:member :V_108,
+        :V_109,
+        :V_122,
+        :V_89 .
+
+:VS_GROIN a skos:Collection ;
+    skos:member :V_158,
+        :V_16,
+        :V_168,
+        :V_169,
+        :V_17,
+        :V_87,
+        :V_88 .
+
+:VS_HEAD a skos:Collection ;
+    skos:member :V_124,
+        :V_166,
+        :V_167,
+        :V_25,
+        :V_62,
+        :V_89 .
+
+:VS_JOINTS a skos:Collection ;
+    skos:member :V_100,
+        :V_151,
+        :V_152,
+        :V_194,
+        :V_195,
+        :V_34,
+        :V_35,
+        :V_45,
+        :V_46,
+        :V_63,
+        :V_64,
+        :V_65,
+        :V_66,
+        :V_67,
+        :V_68,
+        :V_69,
+        :V_70,
+        :V_74,
+        :V_75,
+        :V_80,
+        :V_81,
+        :V_92,
+        :V_93,
+        :V_99 .
+
+:VS_LATIN_AMERICA a skos:Collection ;
+    skos:member :V_3,
+        :V_5 .
+
+:VS_LEG_DEEP_VEINS a skos:Collection ;
+    skos:member :V_119,
+        :V_120,
+        :V_23,
+        :V_24,
+        :V_47,
+        :V_48,
+        :V_51,
+        :V_52 .
+
+:VS_LOWER_LEG a skos:Collection ;
+    skos:member :V_119,
+        :V_120,
+        :V_172,
+        :V_173,
+        :V_23,
+        :V_24,
+        :V_34,
+        :V_35,
+        :V_72,
+        :V_73 .
+
+:VS_MALAR a skos:Collection ;
+    skos:member :V_108,
+        :V_109,
+        :V_122 .
+
+:VS_MUCOSA a skos:Collection ;
+    skos:member :V_110,
+        :V_111,
+        :V_146,
+        :V_147,
+        :V_155,
+        :V_162,
+        :V_32,
+        :V_61,
+        :V_90,
+        :V_91,
+        :V_94,
+        :V_95,
+        :V_96 .
+
+:VS_ORBITAL_TEMPORAL a skos:Collection ;
+    skos:member :V_125,
+        :V_126,
+        :V_166,
+        :V_167,
+        :V_89 .
+
+:VS_THROAT a skos:Collection ;
+    skos:member :V_137,
+        :V_148,
+        :V_163,
+        :V_20,
+        :V_21,
+        :V_33 .
+
+:VS_WEST_AFRICA a skos:Collection ;
+    skos:member :V_1 .
+
+:VS_YELLOW a skos:Collection ;
+    skos:member :V_107 .
+
+:E_1 :indicates :AcuteOtitisMedia .
+
+:E_10 :indicates :LocalizedEdema .
+
+:E_100 :indicates :PulmonaryEmbolism .
+
+:E_101 :indicates :BronchospasmAcuteAsthmaExacerbation .
+
+:E_102 :indicates :SLE .
+
+:E_107 :indicates :Pneumonia .
+
+:E_108 :indicates :PossibleNSTEMISTEMI .
+
+:E_11 :indicates :SLE .
+
+:E_110 :indicates :PulmonaryEmbolism .
+
+:E_111 :indicates :PanicAttack ;
+    :symptomOf :PanicAttack .
+
+:E_112 :indicates :WhoopingCough ;
+    :symptomOf :WhoopingCough .
+
+:E_113 :indicates :Anemia .
+
+:E_115 :indicates :HIVInitialInfection .
+
+:E_119 :indicates :BronchospasmAcuteAsthmaExacerbation .
+
+:E_12 :indicates :Anaphylaxis .
+
+:E_126 :indicates :LocalizedEdema .
+
+:E_127 :indicates :ClusterHeadache ;
+    :symptomOf :ClusterHeadache .
+
+:E_128 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_13 :indicates :UnstableAngina ;
+    :symptomOf :UnstableAngina .
+
+:E_137 :indicates :LocalizedEdema .
+
+:E_138 :indicates :PanicAttack .
+
+:E_139 :indicates :AtrialFibrillation .
+
+:E_141 :indicates :SLE .
+
+:E_142 :indicates :Bronchiolitis .
+
+:E_145 :indicates :Anemia ;
+    :symptomOf :Anemia .
+
+:E_146 :indicates :Anemia .
+
+:E_147 :indicates :AcuteDystonicReactions .
+
+:E_149 :indicates :LocalizedEdema .
+
+:E_15 :indicates :AcuteDystonicReactions .
+
+:E_150 :indicates :InguinalHernia ;
+    :symptomOf :InguinalHernia .
+
+:E_153 :indicates :SpontaneousRibFracture .
+
+:E_154 :indicates :Anemia ;
+    :symptomOf :Anemia .
+
+:E_156 :indicates :GuillainBarreSyndrome ;
+    :symptomOf :GuillainBarreSyndrome .
+
+:E_158 :indicates :LocalizedEdema .
+
+:E_160 :indicates :InguinalHernia .
+
+:E_163 :indicates :Sarcoidosis ;
+    :symptomOf :Sarcoidosis .
+
+:E_164 :indicates :AtrialFibrillation ;
+    :symptomOf :AtrialFibrillation .
+
+:E_165 :indicates :SpontaneousPneumothorax .
+
+:E_166 :indicates :WhoopingCough ;
+    :symptomOf :WhoopingCough .
+
+:E_168 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_169 :indicates :AllergicSinusitis ;
+    :symptomOf :AllergicSinusitis .
+
+:E_17 :indicates :Bronchiectasis .
+
+:E_170 :indicates :AllergicSinusitis ;
+    :symptomOf :AllergicSinusitis .
+
+:E_171 :indicates :PanicAttack ;
+    :symptomOf :PanicAttack .
+
+:E_173 :indicates :GERD ;
+    :symptomOf :GERD .
+
+:E_174 :indicates :Chagas ;
+    :symptomOf :Chagas .
+
+:E_178 :indicates :Ebola ;
+    :symptomOf :Ebola .
+
+:E_179 :indicates :Anemia ;
+    :symptomOf :Anemia .
+
+:E_18 :indicates :Bronchiectasis .
+
+:E_180 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_183 :indicates :Bronchiolitis .
+
+:E_184 :indicates :ClusterHeadache .
+
+:E_185 :indicates :PanicAttack .
+
+:E_186 :indicates :LocalizedEdema .
+
+:E_187 :indicates :ScombroidFoodPoisoning .
+
+:E_188 :indicates :PancreaticNeoplasm ;
+    :symptomOf :PancreaticNeoplasm .
+
+:E_189 :indicates :HIVInitialInfection .
+
+:E_19 :indicates :AtrialFibrillation .
+
+:E_192 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_193 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_195 :indicates :Bronchiolitis .
+
+:E_197 :indicates :LocalizedEdema .
+
+:E_199 :indicates :AcuteCOPDExacerbationInfection .
+
+:E_20 :indicates :Bronchiectasis .
+
+:E_200 :indicates :AcuteCOPDExacerbationInfection .
+
+:E_202 :indicates :Croup ;
+    :symptomOf :Croup .
+
+:E_205 :indicates :AcuteDystonicReactions ;
+    :symptomOf :AcuteDystonicReactions .
+
+:E_206 :indicates :SLE ;
+    :symptomOf :SLE .
+
+:E_21 :indicates :SpontaneousPneumothorax .
+
+:E_211 :indicates :Boerhaave ;
+    :symptomOf :Boerhaave .
+
+:E_213 :indicates :PSVT .
+
+:E_215 :indicates :GERD ;
+    :symptomOf :GERD .
+
+:E_216 :indicates :SpontaneousRibFracture ;
+    :symptomOf :SpontaneousRibFracture .
+
+:E_221 :indicates :InguinalHernia ;
+    :symptomOf :InguinalHernia .
+
+:E_223 :indicates :PancreaticNeoplasm .
+
+:E_224 :indicates :PulmonaryNeoplasm .
+
+:E_23 :indicates :Bronchiolitis ;
+    :symptomOf :Bronchiolitis .
+
+:E_24 :indicates :Anemia .
+
+:E_25 :indicates :ClusterHeadache .
+
+:E_26 :indicates :Anemia .
+
+:E_27 :indicates :HIVInitialInfection .
+
+:E_28 :indicates :MyastheniaGravis .
+
+:E_29 :indicates :PanicAttack .
+
+:E_30 :indicates :InguinalHernia ;
+    :symptomOf :InguinalHernia .
+
+:E_32 :indicates :Bronchiolitis ;
+    :symptomOf :Bronchiolitis .
+
+:E_33 :indicates :Epiglottitis ;
+    :symptomOf :Epiglottitis .
+
+:E_34 :indicates :PulmonaryEmbolism .
+
+:E_35 :indicates :PSVT .
+
+:E_37 :indicates :SpontaneousRibFracture .
+
+:E_38 :indicates :MyastheniaGravis ;
+    :symptomOf :MyastheniaGravis .
+
+:E_39 :indicates :Ebola ;
+    :symptomOf :Ebola .
+
+:E_4 :indicates :Croup .
+
+:E_40 :indicates :WhoopingCough .
+
+:E_42 :indicates :Anaphylaxis ;
+    :symptomOf :Anaphylaxis .
+
+:E_43 :indicates :Sarcoidosis ;
+    :symptomOf :Sarcoidosis .
+
+:E_46 :indicates :BronchospasmAcuteAsthmaExacerbation .
+
+:E_47 :indicates :Bronchiectasis .
+
+:E_5 :indicates :AcutePulmonaryEdema .
+
+:E_52 :indicates :MyastheniaGravis ;
+    :symptomOf :MyastheniaGravis .
+
+:E_6 :indicates :PancreaticNeoplasm .
+
+:E_60 :indicates :PSVT .
+
+:E_63 :indicates :MyastheniaGravis ;
+    :symptomOf :MyastheniaGravis .
+
+:E_64 :indicates :Myocarditis ;
+    :symptomOf :Myocarditis .
+
+:E_7 :indicates :Anemia .
+
+:E_72 :indicates :AcuteCOPDExacerbationInfection .
+
+:E_73 :indicates :Ebola .
+
+:E_74 :indicates :Sarcoidosis ;
+    :symptomOf :Sarcoidosis .
+
+:E_75 :indicates :PanicAttack ;
+    :symptomOf :PanicAttack .
+
+:E_8 :indicates :AcutePulmonaryEdema .
+
+:E_80 :indicates :PanicAttack .
+
+:E_81 :indicates :PanicAttack .
+
+:E_83 :indicates :GuillainBarreSyndrome ;
+    :symptomOf :GuillainBarreSyndrome .
+
+:E_86 :indicates :AllergicSinusitis .
+
+:E_90 :indicates :MyastheniaGravis ;
+    :symptomOf :MyastheniaGravis .
+
+:E_92 :indicates :ScombroidFoodPoisoning ;
+    :symptomOf :ScombroidFoodPoisoning .
+
+:E_93 :indicates :GuillainBarreSyndrome ;
+    :symptomOf :GuillainBarreSyndrome .
+
+:E_95 :indicates :Pneumonia .
+
+:E_96 :indicates :LocalizedEdema ;
+    :symptomOf :LocalizedEdema .
+
+:E_98 :indicates :GERD .
+
+:E_99 :indicates :PanicAttack .
+
+:AbstractionRule rdfs:subClassOf :AbstractionRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :AbstractionRule .
+
+:AgeComparison rdfs:subClassOf :AgeComparison,
+        owl:Thing ;
+    owl:equivalentClass :AgeComparison .
+
+:AllOf rdfs:subClassOf :AllOf,
+        owl:Thing ;
+    owl:equivalentClass :AllOf .
+
+:Answer rdfs:subClassOf :Answer,
+        owl:Thing ;
+    owl:equivalentClass :Answer .
+
+:AnswerIn rdfs:subClassOf :AnswerIn,
+        owl:Thing ;
+    owl:equivalentClass :AnswerIn .
+
+:AnswerValue rdfs:subClassOf :AnswerValue,
+        owl:Thing ;
+    owl:equivalentClass :AnswerValue .
+
+:Antecedent rdfs:subClassOf :Antecedent,
+        owl:Thing ;
+    owl:equivalentClass :Antecedent .
+
+:AnyOf rdfs:subClassOf :AnyOf,
+        owl:Thing ;
+    owl:equivalentClass :AnyOf .
+
+:AtLeast rdfs:subClassOf :AtLeast,
+        owl:Thing ;
+    owl:equivalentClass :AtLeast .
+
+:BeliefAtLeast rdfs:subClassOf :BeliefAtLeast,
+        owl:Thing ;
+    owl:equivalentClass :BeliefAtLeast .
+
+:BinaryEvidence rdfs:subClassOf :BinaryEvidence,
+        owl:Thing ;
+    owl:equivalentClass :BinaryEvidence .
+
+:CaseDefinition rdfs:subClassOf :CaseDefinition,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :CaseDefinition .
+
+:CategoricalEvidence rdfs:subClassOf :CategoricalEvidence,
+        owl:Thing ;
+    owl:equivalentClass :CategoricalEvidence .
+
+:ClinicalDecisionRule rdfs:subClassOf :ClinicalDecisionRule,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :ClinicalDecisionRule .
+
+:ClinicalGuideline rdfs:subClassOf :ClinicalGuideline,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :ClinicalGuideline .
+
+:ClinicalScore rdfs:subClassOf :ClinicalScore,
+        owl:Thing ;
+    owl:equivalentClass :ClinicalScore .
+
+:ClinicalStudy rdfs:subClassOf :ClinicalStudy,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :ClinicalStudy .
+
+:ConceptConsequent rdfs:subClassOf :ConceptConsequent,
+        owl:Thing ;
+    owl:equivalentClass :ConceptConsequent .
+
+:ConceptHolds rdfs:subClassOf :ConceptHolds,
+        owl:Thing ;
+    owl:equivalentClass :ConceptHolds .
+
+:ConceptInference rdfs:subClassOf :ConceptInference,
+        owl:Thing,
+        prov:Entity ;
+    owl:equivalentClass :ConceptInference .
+
+:Consequent rdfs:subClassOf :Consequent,
+        owl:Thing ;
+    owl:equivalentClass :Consequent .
+
+:DiagnosisConsequent rdfs:subClassOf :DiagnosisConsequent,
+        owl:Thing ;
+    owl:equivalentClass :DiagnosisConsequent .
+
+:DiagnosisInference rdfs:subClassOf :DiagnosisInference,
+        owl:Thing,
+        prov:Entity ;
+    owl:equivalentClass :DiagnosisInference .
+
+:DiagnosticCriteria rdfs:subClassOf :DiagnosticCriteria,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :DiagnosticCriteria .
+
+:DiagnosticRule rdfs:subClassOf :DiagnosticRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :DiagnosticRule .
+
+:E_103 :indicates :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis ;
+    :symptomOf :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis .
+
+:E_109 :indicates :LocalizedEdema,
+        :PulmonaryEmbolism .
+
+:E_114 :indicates :AcuteOtitisMedia,
+        :Myocarditis ;
+    :symptomOf :AcuteOtitisMedia,
+        :Myocarditis .
+
+:E_120 :indicates :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis .
+
+:E_121 :indicates :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis .
+
+:E_14 :indicates :SpontaneousPneumothorax,
+        :UnstableAngina ;
+    :symptomOf :SpontaneousPneumothorax,
+        :UnstableAngina .
+
+:E_140 :indicates :Anemia,
+        :GERD ;
+    :symptomOf :Anemia,
+        :GERD .
+
+:E_143 :indicates :StableAngina,
+        :UnstableAngina .
+
+:E_157 :indicates :GuillainBarreSyndrome,
+        :PanicAttack ;
+    :symptomOf :GuillainBarreSyndrome,
+        :PanicAttack .
+
+:E_159 :indicates :Anaphylaxis,
+        :PulmonaryEmbolism ;
+    :symptomOf :Anaphylaxis,
+        :PulmonaryEmbolism .
+
+:E_16 a :Symptom ;
+    :indicates :PSVT,
+        :PanicAttack ;
+    :symptomOf :PSVT,
+        :PanicAttack .
+
+:E_167 :indicates :Anemia,
+        :GERD .
+
+:E_172 :indicates :AcuteDystonicReactions,
+        :MyastheniaGravis ;
+    :symptomOf :AcuteDystonicReactions,
+        :MyastheniaGravis .
+
+:E_177 :indicates :GuillainBarreSyndrome,
+        :PanicAttack ;
+    :symptomOf :GuillainBarreSyndrome,
+        :PanicAttack .
+
+:E_182 :indicates :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis ;
+    :symptomOf :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis .
+
+:E_190 :indicates :Croup,
+        :Epiglottitis ;
+    :symptomOf :Croup,
+        :Epiglottitis .
+
+:E_191 :indicates :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm .
+
+:E_196 :indicates :Pneumonia,
+        :PulmonaryEmbolism .
+
+:E_198 :indicates :AcuteCOPDExacerbationInfection,
+        :Sarcoidosis .
+
+:E_2 :indicates :PossibleNSTEMISTEMI,
+        :Tuberculosis .
+
+:E_207 :indicates :AllergicSinusitis,
+        :BronchospasmAcuteAsthmaExacerbation .
+
+:E_210 :indicates :Boerhaave,
+        :GERD ;
+    :symptomOf :Boerhaave,
+        :GERD .
+
+:E_212 :indicates :AcuteLaryngitis,
+        :Epiglottitis ;
+    :symptomOf :AcuteLaryngitis,
+        :Epiglottitis .
+
+:E_22 :indicates :AtrialFibrillation,
+        :LocalizedEdema .
+
+:E_3 :indicates :Pericarditis,
+        :SLE .
+
+:E_31 :indicates :AcuteCOPDExacerbationInfection,
+        :AtrialFibrillation .
+
+:E_44 :indicates :LocalizedEdema,
+        :Tuberculosis .
+
+:E_61 :indicates :HIVInitialInfection,
+        :Tuberculosis .
+
+:E_65 :indicates :Epiglottitis,
+        :MyastheniaGravis ;
+    :symptomOf :Epiglottitis,
+        :MyastheniaGravis .
+
+:E_67 :indicates :AcutePulmonaryEdema,
+        :LocalizedEdema ;
+    :symptomOf :AcutePulmonaryEdema,
+        :LocalizedEdema .
+
+:E_84 :indicates :GuillainBarreSyndrome,
+        :MyastheniaGravis ;
+    :symptomOf :GuillainBarreSyndrome,
+        :MyastheniaGravis .
+
+:E_87 :indicates :AllergicSinusitis,
+        :BronchospasmAcuteAsthmaExacerbation .
+
+:E_94 :indicates :Influenza,
+        :Pneumonia ;
+    :symptomOf :Influenza,
+        :Pneumonia .
+
+:EmergencyCase rdfs:subClassOf :EmergencyCase,
+        owl:Thing ;
+    owl:equivalentClass :EmergencyCase .
+
+:EvidencePresent rdfs:subClassOf :EvidencePresent,
+        owl:Thing ;
+    owl:equivalentClass :EvidencePresent .
+
+:EvidenceStrength rdfs:subClassOf :EvidenceStrength,
+        owl:Thing ;
+    owl:equivalentClass :EvidenceStrength .
+
+:ExclusionInference rdfs:subClassOf :ExclusionInference,
+        owl:Thing,
+        prov:Entity ;
+    owl:equivalentClass :ExclusionInference .
+
+:ExpertKnowledgeBase rdfs:subClassOf :ExpertKnowledgeBase,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :ExpertKnowledgeBase .
+
+:ICD10Chapter rdfs:subClassOf :ICD10Chapter,
+        owl:Thing ;
+    owl:equivalentClass :ICD10Chapter .
+
+:MethodSource rdfs:subClassOf :MethodSource,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :MethodSource .
+
+:MultiChoiceEvidence rdfs:subClassOf :MultiChoiceEvidence,
+        owl:Thing ;
+    owl:equivalentClass :MultiChoiceEvidence .
+
+:Not rdfs:subClassOf :Not,
+        owl:Thing ;
+    owl:equivalentClass :Not .
+
+:Recommendation rdfs:subClassOf :Recommendation,
+        owl:Thing ;
+    owl:equivalentClass :Recommendation .
+
+:RecommendationConsequent rdfs:subClassOf :RecommendationConsequent,
+        owl:Thing ;
+    owl:equivalentClass :RecommendationConsequent .
+
+:RecommendationInference rdfs:subClassOf :RecommendationInference,
+        owl:Thing,
+        prov:Entity ;
+    owl:equivalentClass :RecommendationInference .
+
+:RecommendationRule rdfs:subClassOf :RecommendationRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :RecommendationRule .
+
+:RedFlag rdfs:subClassOf :RedFlag,
+        owl:Thing ;
+    owl:equivalentClass :RedFlag .
+
+:RespiratoryCase rdfs:subClassOf :RespiratoryCase,
+        owl:Thing ;
+    owl:equivalentClass :RespiratoryCase .
+
+:ReviewArticle rdfs:subClassOf :ReviewArticle,
+        dct:BibliographicResource,
+        owl:Thing ;
+    owl:equivalentClass :ReviewArticle .
+
+:RuleFiring rdfs:subClassOf :RuleFiring,
+        owl:Thing ;
+    owl:equivalentClass :RuleFiring .
+
+:RuleSchema rdfs:subClassOf :RuleSchema,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :RuleSchema .
+
+:ScaleComparison rdfs:subClassOf :ScaleComparison,
+        owl:Thing ;
+    owl:equivalentClass :ScaleComparison .
+
+:ScoreComparison rdfs:subClassOf :ScoreComparison,
+        owl:Thing ;
+    owl:equivalentClass :ScoreComparison .
+
+:ScoreConsequent rdfs:subClassOf :ScoreConsequent,
+        owl:Thing ;
+    owl:equivalentClass :ScoreConsequent .
+
+:ScoringRule rdfs:subClassOf :ScoringRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :ScoringRule .
+
+:SeverityLevel rdfs:subClassOf :SeverityLevel,
+        owl:Thing ;
+    owl:equivalentClass :SeverityLevel .
+
+:Sex rdfs:subClassOf :Sex,
+        owl:Thing ;
+    owl:equivalentClass :Sex .
+
+:SexIs rdfs:subClassOf :SexIs,
+        owl:Thing ;
+    owl:equivalentClass :SexIs .
+
+:TriageConsequent rdfs:subClassOf :TriageConsequent,
+        owl:Thing ;
+    owl:equivalentClass :TriageConsequent .
+
+:TriageInference rdfs:subClassOf :TriageInference,
+        owl:Thing,
+        prov:Entity ;
+    owl:equivalentClass :TriageInference .
+
+:TriageLevel rdfs:subClassOf :TriageLevel,
+        owl:Thing ;
+    owl:equivalentClass :TriageLevel .
+
+:TriageRule rdfs:subClassOf :TriageRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :TriageRule .
+
+:TrulyUrgentCase rdfs:subClassOf :TrulyUrgentCase,
+        owl:Thing ;
+    owl:equivalentClass :TrulyUrgentCase .
+
+:UrgentCase rdfs:subClassOf :UrgentCase,
+        owl:Thing ;
+    owl:equivalentClass :UrgentCase .
+
+:ValueSet rdfs:subClassOf :ValueSet,
+        owl:Thing ;
+    owl:equivalentClass :ValueSet .
+
+:aboutCase rdfs:domain owl:Thing,
+        prov:Entity ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :aboutCase ;
+    owl:equivalentProperty :aboutCase .
+
+:age rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :age ;
+    owl:equivalentProperty :age .
+
+:answerValue rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :answerValue ;
+    owl:equivalentProperty :answerValue .
+
+:asserts rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :asserts ;
+    owl:equivalentProperty :asserts .
+
+:atScaleValue rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :atScaleValue ;
+    owl:equivalentProperty :atScaleValue .
+
+:candidateDiagnosis rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :candidateDiagnosis ;
+    owl:equivalentProperty :candidateDiagnosis .
+
+:certainty rdfs:subPropertyOf :certainty ;
+    owl:equivalentProperty :certainty .
+
+:certaintyFactor rdfs:subPropertyOf :certaintyFactor ;
+    owl:equivalentProperty :certaintyFactor .
+
+:characterizedBy rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :characterizedBy ;
+    owl:equivalentProperty :characterizedBy .
+
+:citationKey rdfs:domain dct:BibliographicResource,
+        owl:Thing ;
+    rdfs:subPropertyOf :citationKey ;
+    owl:equivalentProperty :citationKey .
+
+:code rdfs:subPropertyOf :code ;
+    owl:equivalentProperty :code .
+
+:comparator rdfs:subPropertyOf :comparator ;
+    owl:equivalentProperty :comparator .
+
+:concludesConcept rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :concludesConcept ;
+    owl:equivalentProperty :concludesConcept .
+
+:concludesPathology rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :concludesPathology ;
+    owl:equivalentProperty :concludesPathology .
+
+:concludesRecommendation rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :concludesRecommendation ;
+    owl:equivalentProperty :concludesRecommendation .
+
+:concludesTriage rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :concludesTriage ;
+    owl:equivalentProperty :concludesTriage .
+
+:defaultValue rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :defaultValue ;
+    owl:equivalentProperty :defaultValue .
+
+:firedRule rdfs:domain owl:Thing,
+        prov:Activity ;
+    rdfs:range owl:Thing,
+        prov:Plan ;
+    rdfs:subPropertyOf :firedRule ;
+    owl:equivalentProperty :firedRule .
+
+:hasAnswer rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasAnswer ;
+    owl:equivalentProperty :hasAnswer .
+
+:hasAntecedent rdfs:domain :Pathology,
+        owl:Thing ;
+    rdfs:range :Evidence,
+        owl:Thing ;
+    rdfs:subPropertyOf :hasAntecedent ;
+    owl:equivalentProperty :hasAntecedent .
+
+:hasDiagnosis rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasDiagnosis ;
+    owl:equivalentProperty :hasDiagnosis .
+
+:hasEvidence rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasEvidence ;
+    owl:equivalentProperty :hasEvidence .
+
+:hasInference rdfs:subPropertyOf :hasInference ;
+    owl:equivalentProperty :hasInference .
+
+:hasMember rdfs:domain owl:Thing,
+        skos:Collection ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasMember ;
+    owl:equivalentProperty :hasMember .
+
+:hasPathology rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasPathology ;
+    owl:equivalentProperty :hasPathology .
+
+:hasPossibleValue rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasPossibleValue ;
+    owl:equivalentProperty :hasPossibleValue .
+
+:hasSymptom rdfs:domain :Pathology,
+        owl:Thing ;
+    rdfs:range :Evidence,
+        owl:Thing ;
+    rdfs:subPropertyOf :hasSymptom ;
+    owl:equivalentProperty :hasSymptom .
+
+:hasTriage rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :hasTriage ;
+    owl:equivalentProperty :hasTriage .
+
+:icd10Code rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :icd10Code ;
+    owl:equivalentProperty :icd10Code .
+
+:inChapter rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :inChapter ;
+    owl:equivalentProperty :inChapter .
+
+:inValueSet rdfs:range owl:Thing,
+        skos:Collection ;
+    rdfs:subPropertyOf :inValueSet ;
+    owl:equivalentProperty :inValueSet .
+
+:indicates rdfs:subPropertyOf :indicates ;
+    owl:equivalentProperty :indicates .
+
+:inferredConcept rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :inferredConcept ;
+    owl:equivalentProperty :inferredConcept .
+
+:inferredPathology rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :inferredPathology ;
+    owl:equivalentProperty :inferredPathology .
+
+:inferredRecommendation rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :inferredRecommendation ;
+    owl:equivalentProperty :inferredRecommendation .
+
+:inferredTriage rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :inferredTriage ;
+    owl:equivalentProperty :inferredTriage .
+
+:initialEvidence rdfs:domain :Patient,
+        owl:Thing ;
+    rdfs:range :Evidence,
+        owl:Thing ;
+    rdfs:subPropertyOf :initialEvidence,
+        :mentionsEvidence ;
+    owl:equivalentProperty :initialEvidence .
+
+:isRedFlag rdfs:subPropertyOf :isRedFlag ;
+    owl:equivalentProperty :isRedFlag .
+
+:likelihoodRatio rdfs:subPropertyOf :likelihoodRatio ;
+    owl:equivalentProperty :likelihoodRatio .
+
+:mappingFidelity rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:subPropertyOf :mappingFidelity ;
+    owl:equivalentProperty :mappingFidelity .
+
+:minCount rdfs:domain :Condition,
+        owl:Thing ;
+    rdfs:subPropertyOf :minCount ;
+    owl:equivalentProperty :minCount .
+
+:ofEvidence rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :ofEvidence ;
+    owl:equivalentProperty :ofEvidence .
+
+:ofEvidence2 rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :ofEvidence2 ;
+    owl:equivalentProperty :ofEvidence2 .
+
+:ofPathology rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :ofPathology ;
+    owl:equivalentProperty :ofPathology .
+
+:ofValue rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :ofValue ;
+    owl:equivalentProperty :ofValue .
+
+:onConcept rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onConcept ;
+    owl:equivalentProperty :onConcept .
+
+:onEvidence rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onEvidence ;
+    owl:equivalentProperty :onEvidence .
+
+:onPathology rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onPathology ;
+    owl:equivalentProperty :onPathology .
+
+:onScore rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onScore ;
+    owl:equivalentProperty :onScore .
+
+:onSex rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onSex ;
+    owl:equivalentProperty :onSex .
+
+:onValue rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :onValue ;
+    owl:equivalentProperty :onValue .
+
+:operand rdfs:domain :Condition,
+        owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :operand ;
+    owl:equivalentProperty :operand .
+
+:operands rdfs:subPropertyOf :operands ;
+    owl:equivalentProperty :operands .
+
+:pGivenOthers rdfs:subPropertyOf :pGivenOthers ;
+    owl:equivalentProperty :pGivenOthers .
+
+:pGivenPathology rdfs:subPropertyOf :pGivenPathology ;
+    owl:equivalentProperty :pGivenPathology .
+
+:patientCount rdfs:subPropertyOf :patientCount ;
+    owl:equivalentProperty :patientCount .
+
+:points rdfs:subPropertyOf :points ;
+    owl:equivalentProperty :points .
+
+:polarity rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :polarity ;
+    owl:equivalentProperty :polarity .
+
+:premise rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :premise ;
+    owl:equivalentProperty :premise .
+
+:premiseCertainty rdfs:domain owl:Thing,
+        prov:Activity ;
+    rdfs:subPropertyOf :premiseCertainty ;
+    owl:equivalentProperty :premiseCertainty .
+
+:prior rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :prior ;
+    owl:equivalentProperty :prior .
+
+:probability rdfs:subPropertyOf :probability ;
+    owl:equivalentProperty :probability .
+
+:question rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :question ;
+    owl:equivalentProperty :question .
+
+:rank rdfs:subPropertyOf :rank ;
+    owl:equivalentProperty :rank .
+
+:ruleIndex rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:subPropertyOf :ruleIndex ;
+    owl:equivalentProperty :ruleIndex .
+
+:ruleText rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:subPropertyOf :ruleText ;
+    owl:equivalentProperty :ruleText .
+
+:salience rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:subPropertyOf :salience ;
+    owl:equivalentProperty :salience .
+
+:scaleMax rdfs:domain :Evidence,
+        owl:Thing ;
+    rdfs:subPropertyOf :scaleMax ;
+    owl:equivalentProperty :scaleMax .
+
+:scaleValue rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :scaleValue ;
+    owl:equivalentProperty :scaleValue .
+
+:severity rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :severity ;
+    owl:equivalentProperty :severity .
+
+:severityLevel rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :severityLevel ;
+    owl:equivalentProperty :severityLevel .
+
+:sex rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :sex ;
+    owl:equivalentProperty :sex .
+
+:step rdfs:domain owl:Thing,
+        prov:Activity ;
+    rdfs:subPropertyOf :step ;
+    owl:equivalentProperty :step .
+
+:subQuestionOf rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :subQuestionOf ;
+    owl:equivalentProperty :subQuestionOf .
+
+:symptomOf rdfs:subPropertyOf :symptomOf ;
+    owl:equivalentProperty :symptomOf .
+
+:threshold rdfs:subPropertyOf :threshold ;
+    owl:equivalentProperty :threshold .
+
+:triageRank rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :triageRank ;
+    owl:equivalentProperty :triageRank .
+
+:unexplainedEvidence rdfs:domain :Inference,
+        owl:Thing,
+        prov:Entity ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :unexplainedEvidence ;
+    owl:equivalentProperty :unexplainedEvidence .
+
+:usesConcept rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :usesConcept ;
+    owl:equivalentProperty :usesConcept .
+
+:usesEvidence rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :usesEvidence ;
+    owl:equivalentProperty :usesEvidence .
+
+:usesPathology rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :usesPathology ;
+    owl:equivalentProperty :usesPathology .
+
+:usesScore rdfs:domain owl:Thing,
+        prov:Plan ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :usesScore ;
+    owl:equivalentProperty :usesScore .
+
+:validationPatients rdfs:domain owl:Thing ;
+    rdfs:subPropertyOf :validationPatients ;
+    owl:equivalentProperty :validationPatients .
+
+:E_0 :indicates :GuillainBarreSyndrome,
+        :Myocarditis,
+        :Pericarditis .
+
+:E_106 :indicates :AcutePulmonaryEdema,
+        :LocalizedEdema,
+        :Pneumonia .
+
+:E_176 :indicates :ClusterHeadache,
+        :GuillainBarreSyndrome,
+        :MyastheniaGravis ;
+    :symptomOf :ClusterHeadache,
+        :GuillainBarreSyndrome,
+        :MyastheniaGravis .
+
+:E_203 :indicates :InguinalHernia,
+        :SpontaneousRibFracture,
+        :WhoopingCough ;
+    :symptomOf :InguinalHernia,
+        :SpontaneousRibFracture,
+        :WhoopingCough .
+
+:E_208 :indicates :Anemia,
+        :Pneumonia,
+        :Tuberculosis .
+
+:E_219 :indicates :Bronchitis,
+        :Croup,
+        :Pneumonia ;
+    :symptomOf :Bronchitis,
+        :Croup,
+        :Pneumonia .
+
+:E_225 :indicates :PossibleNSTEMISTEMI,
+        :StableAngina,
+        :UnstableAngina .
+
+:E_227 :indicates :Bronchiectasis,
+        :Influenza,
+        :ViralPharyngitis .
+
+:E_41 :indicates :Ebola,
+        :URTI,
+        :ViralPharyngitis .
+
+:E_49 :indicates :AcuteLaryngitis,
+        :URTI,
+        :ViralPharyngitis .
+
+:E_62 :indicates :AcuteDystonicReactions,
+        :Epiglottitis,
+        :PSVT .
+
+:E_71 :indicates :PossibleNSTEMISTEMI,
+        :StableAngina,
+        :UnstableAngina .
+
+:E_76 :indicates :Anemia,
+        :AtrialFibrillation,
+        :PSVT ;
+    :symptomOf :Anemia,
+        :AtrialFibrillation,
+        :PSVT .
+
+:E_88 :indicates :Anemia,
+        :HIVInitialInfection,
+        :Influenza ;
+    :symptomOf :Anemia,
+        :HIVInitialInfection,
+        :Influenza .
+
+:E_9 :indicates :Chagas,
+        :HIVInitialInfection,
+        :Sarcoidosis ;
+    :symptomOf :Chagas,
+        :HIVInitialInfection,
+        :Sarcoidosis .
+
+:Inference rdfs:subClassOf :Inference,
+        owl:Thing ;
+    owl:equivalentClass :Inference .
+
+:Patient rdfs:subClassOf :Patient,
+        owl:Thing ;
+    owl:equivalentClass :Patient .
+
+:Symptom rdfs:subClassOf :Symptom,
+        owl:Thing ;
+    owl:equivalentClass :Symptom .
+
+:mentionsEvidence rdfs:subPropertyOf :mentionsEvidence ;
+    owl:equivalentProperty :mentionsEvidence .
+
+:Condition rdfs:subClassOf :Condition,
+        owl:Thing ;
+    owl:equivalentClass :Condition .
+
+:E_118 :indicates :AcuteRhinosinusitis,
+        :Bronchiectasis,
+        :ChronicRhinosinusitis,
+        :Pneumonia .
+
+:E_125 :indicates :AcuteCOPDExacerbationInfection,
+        :AcuteRhinosinusitis,
+        :ChronicRhinosinusitis,
+        :Larygospasm .
+
+:E_161 :indicates :Influenza,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm ;
+    :symptomOf :Influenza,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm .
+
+:E_162 :indicates :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :PulmonaryNeoplasm,
+        :Tuberculosis ;
+    :symptomOf :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :PulmonaryNeoplasm,
+        :Tuberculosis .
+
+:E_175 :indicates :AcutePulmonaryEdema,
+        :Chagas,
+        :Myocarditis,
+        :Pneumonia ;
+    :symptomOf :AcutePulmonaryEdema,
+        :Chagas,
+        :Myocarditis,
+        :Pneumonia .
+
+:E_194 :indicates :Anaphylaxis,
+        :Croup,
+        :Epiglottitis,
+        :Larygospasm ;
+    :symptomOf :Anaphylaxis,
+        :Croup,
+        :Epiglottitis,
+        :Larygospasm .
+
+:E_222 :indicates :BronchospasmAcuteAsthmaExacerbation,
+        :Larygospasm,
+        :PulmonaryNeoplasm,
+        :URTI .
+
+:E_48 :indicates :AcuteLaryngitis,
+        :Bronchiolitis,
+        :URTI,
+        :ViralPharyngitis .
+
+:Neoplasm rdfs:subClassOf :Neoplasm,
+        owl:Thing ;
+    owl:equivalentClass :Neoplasm .
+
+:DigestiveDisease rdfs:subClassOf :DigestiveDisease,
+        owl:Thing ;
+    owl:equivalentClass :DigestiveDisease .
+
+:E_105 :indicates :AcutePulmonaryEdema,
+        :AtrialFibrillation,
+        :PossibleNSTEMISTEMI,
+        :StableAngina,
+        :UnstableAngina .
+
+:E_116 :indicates :AcuteLaryngitis,
+        :AcuteRhinosinusitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ChronicRhinosinusitis,
+        :Larygospasm .
+
+:E_123 :indicates :AcuteCOPDExacerbationInfection,
+        :Bronchiectasis,
+        :Bronchitis,
+        :Pneumonia,
+        :SpontaneousPneumothorax .
+
+:E_144 :indicates :Ebola,
+        :HIVInitialInfection,
+        :Influenza,
+        :Pneumonia,
+        :URTI ;
+    :symptomOf :Ebola,
+        :HIVInitialInfection,
+        :Influenza,
+        :Pneumonia,
+        :URTI .
+
+:E_152 :indicates :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Chagas,
+        :LocalizedEdema,
+        :PulmonaryEmbolism ;
+    :symptomOf :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Chagas,
+        :LocalizedEdema,
+        :PulmonaryEmbolism .
+
+:E_217 :indicates :AcutePulmonaryEdema,
+        :GERD,
+        :LocalizedEdema,
+        :Myocarditis,
+        :Pericarditis ;
+    :symptomOf :AcutePulmonaryEdema,
+        :GERD,
+        :LocalizedEdema,
+        :Myocarditis,
+        :Pericarditis .
+
+:E_220 :indicates :Pericarditis,
+        :Pneumonia,
+        :PulmonaryEmbolism,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture ;
+    :symptomOf :Pericarditis,
+        :Pneumonia,
+        :PulmonaryEmbolism,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture .
+
+:E_226 :indicates :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Anaphylaxis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ChronicRhinosinusitis .
+
+:E_77 :indicates :AcuteCOPDExacerbationInfection,
+        :Bronchiectasis,
+        :Bronchitis,
+        :Pneumonia,
+        :URTI ;
+    :symptomOf :AcuteCOPDExacerbationInfection,
+        :Bronchiectasis,
+        :Bronchitis,
+        :Pneumonia,
+        :URTI .
+
+:E_82 :indicates :Anaphylaxis,
+        :Anemia,
+        :PSVT,
+        :PanicAttack,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :Anemia,
+        :PSVT,
+        :PanicAttack,
+        :ScombroidFoodPoisoning .
+
+:E_97 :indicates :Bronchitis,
+        :Ebola,
+        :HIVInitialInfection,
+        :Influenza,
+        :URTI ;
+    :symptomOf :Bronchitis,
+        :Ebola,
+        :HIVInitialInfection,
+        :Influenza,
+        :URTI .
+
+:InjuryOrPoisoning rdfs:subClassOf :InjuryOrPoisoning,
+        owl:Thing ;
+    owl:equivalentClass :InjuryOrPoisoning .
+
+:Pathology rdfs:subClassOf :Pathology,
+        owl:Thing ;
+    owl:equivalentClass :Pathology .
+
+:E_104 :indicates :AcutePulmonaryEdema,
+        :AtrialFibrillation,
+        :Epiglottitis,
+        :PossibleNSTEMISTEMI,
+        :StableAngina,
+        :UnstableAngina .
+
+:E_155 :indicates :AtrialFibrillation,
+        :Myocarditis,
+        :PSVT,
+        :PanicAttack,
+        :Pericarditis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :AtrialFibrillation,
+        :Myocarditis,
+        :PSVT,
+        :PanicAttack,
+        :Pericarditis,
+        :ScombroidFoodPoisoning .
+
+:E_214 :indicates :AcuteCOPDExacerbationInfection,
+        :Anaphylaxis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :AcuteCOPDExacerbationInfection,
+        :Anaphylaxis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ScombroidFoodPoisoning .
+
+:E_218 :indicates :AcutePulmonaryEdema,
+        :AtrialFibrillation,
+        :Myocarditis,
+        :SpontaneousPneumothorax,
+        :StableAngina,
+        :UnstableAngina ;
+    :symptomOf :AcutePulmonaryEdema,
+        :AtrialFibrillation,
+        :Myocarditis,
+        :SpontaneousPneumothorax,
+        :StableAngina,
+        :UnstableAngina .
+
+:E_45 :indicates :Bronchiectasis,
+        :Pneumonia,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :Tuberculosis,
+        :ViralPharyngitis ;
+    :symptomOf :Bronchiectasis,
+        :Pneumonia,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :Tuberculosis,
+        :ViralPharyngitis .
+
+:E_51 :indicates :Anaphylaxis,
+        :Chagas,
+        :Ebola,
+        :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :Chagas,
+        :Ebola,
+        :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :ScombroidFoodPoisoning .
+
+:Evidence rdfs:subClassOf :Evidence,
+        owl:Thing ;
+    owl:equivalentClass :Evidence .
+
+:NervousSystemDisease rdfs:subClassOf :NervousSystemDisease,
+        owl:Thing ;
+    owl:equivalentClass :NervousSystemDisease .
+
+:E_50 :indicates :AcutePulmonaryEdema,
+        :HIVInitialInfection,
+        :Influenza,
+        :PanicAttack,
+        :PossibleNSTEMISTEMI,
+        :URTI,
+        :UnstableAngina ;
+    :symptomOf :AcutePulmonaryEdema,
+        :HIVInitialInfection,
+        :Influenza,
+        :PanicAttack,
+        :PossibleNSTEMISTEMI,
+        :URTI,
+        :UnstableAngina .
+
+:E_69 :indicates :AtrialFibrillation,
+        :Epiglottitis,
+        :PancreaticNeoplasm,
+        :PossibleNSTEMISTEMI,
+        :StableAngina,
+        :Tuberculosis,
+        :UnstableAngina .
+
+:InfectiousDisease rdfs:subClassOf :InfectiousDisease,
+        owl:Thing ;
+    owl:equivalentClass :InfectiousDisease .
+
+:LifeThreateningPathology rdfs:subClassOf :LifeThreateningPathology,
+        :Pathology,
+        owl:Thing ;
+    owl:equivalentClass :LifeThreateningPathology .
+
+:E_134 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_151 :indicates :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Chagas,
+        :LocalizedEdema,
+        :PulmonaryEmbolism,
+        :SLE,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture ;
+    :symptomOf :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Chagas,
+        :LocalizedEdema,
+        :PulmonaryEmbolism,
+        :SLE,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture .
+
+:E_209 :indicates :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :Croup,
+        :Epiglottitis,
+        :Pneumonia,
+        :WhoopingCough .
+
+:E_89 :indicates :Anemia,
+        :Ebola,
+        :PancreaticNeoplasm,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :StableAngina,
+        :UnstableAngina ;
+    :symptomOf :Anemia,
+        :Ebola,
+        :PancreaticNeoplasm,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :StableAngina,
+        :UnstableAngina .
+
+:Larygospasm a :LifeThreateningPathology,
+        :RespiratoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_116,
+        :E_124,
+        :E_125,
+        :E_194,
+        :E_204,
+        :E_222,
+        :E_79 .
+
+:ClinicalConcept rdfs:subClassOf :ClinicalConcept,
+        owl:Thing ;
+    owl:equivalentClass :ClinicalConcept .
+
+:E_129 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_130 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_131 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_132 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_133 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_135 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_136 :indicates :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning ;
+    :symptomOf :Anaphylaxis,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning .
+
+:E_70 :indicates :AtrialFibrillation,
+        :GERD,
+        :InguinalHernia,
+        :PancreaticNeoplasm,
+        :PossibleNSTEMISTEMI,
+        :Sarcoidosis,
+        :StableAngina,
+        :UnstableAngina,
+        :WhoopingCough .
+
+:CirculatoryDisease rdfs:subClassOf :CirculatoryDisease,
+        owl:Thing ;
+    owl:equivalentClass :CirculatoryDisease .
+
+:E_124 :indicates :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Bronchiectasis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ChronicRhinosinusitis,
+        :GERD,
+        :Larygospasm,
+        :PanicAttack,
+        :Pneumonia,
+        :WhoopingCough .
+
+:E_148 :indicates :Anaphylaxis,
+        :Boerhaave,
+        :Chagas,
+        :Ebola,
+        :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :PossibleNSTEMISTEMI,
+        :ScombroidFoodPoisoning,
+        :UnstableAngina ;
+    :symptomOf :Anaphylaxis,
+        :Boerhaave,
+        :Chagas,
+        :Ebola,
+        :HIVInitialInfection,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :PossibleNSTEMISTEMI,
+        :ScombroidFoodPoisoning,
+        :UnstableAngina .
+
+:E_78 :indicates :Boerhaave,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :PanicAttack,
+        :Pneumonia,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :Tuberculosis,
+        :UnstableAngina .
+
+:RedFlagRule rdfs:subClassOf :RedFlagRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :RedFlagRule .
+
+:WhoopingCough a :InfectiousDisease ;
+    :characterizedBy :E_112,
+        :E_124,
+        :E_166,
+        :E_203,
+        :E_204,
+        :E_209,
+        :E_40,
+        :E_70 .
+
+:E_181 :indicates :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Croup,
+        :Influenza,
+        :Pneumonia,
+        :URTI,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Croup,
+        :Influenza,
+        :Pneumonia,
+        :URTI,
+        :ViralPharyngitis .
+
+:AllergicSinusitis a :RespiratoryDisease ;
+    :characterizedBy :E_124,
+        :E_169,
+        :E_170,
+        :E_181,
+        :E_201,
+        :E_204,
+        :E_207,
+        :E_226,
+        :E_86,
+        :E_87 .
+
+:E_91 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :Chagas,
+        :Croup,
+        :Ebola,
+        :Epiglottitis,
+        :HIVInitialInfection,
+        :Influenza,
+        :Pneumonia,
+        :Tuberculosis,
+        :URTI,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :Chagas,
+        :Croup,
+        :Ebola,
+        :Epiglottitis,
+        :HIVInitialInfection,
+        :Influenza,
+        :Pneumonia,
+        :Tuberculosis,
+        :URTI,
+        :ViralPharyngitis .
+
+:BronchospasmAcuteAsthmaExacerbation a :RespiratoryDisease ;
+    :characterizedBy :E_101,
+        :E_116,
+        :E_119,
+        :E_124,
+        :E_201,
+        :E_204,
+        :E_207,
+        :E_214,
+        :E_222,
+        :E_226,
+        :E_46,
+        :E_66,
+        :E_87 .
+
+:AcuteCOPDExacerbationInfection a :RespiratoryDisease ;
+    :characterizedBy :E_123,
+        :E_125,
+        :E_198,
+        :E_199,
+        :E_200,
+        :E_201,
+        :E_204,
+        :E_214,
+        :E_31,
+        :E_66,
+        :E_72,
+        :E_77,
+        :E_79 .
+
+:Bronchiectasis a :RespiratoryDisease ;
+    :characterizedBy :E_118,
+        :E_123,
+        :E_124,
+        :E_17,
+        :E_18,
+        :E_20,
+        :E_201,
+        :E_204,
+        :E_227,
+        :E_45,
+        :E_47,
+        :E_66,
+        :E_77 .
+
+:Croup a :RespiratoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_181,
+        :E_190,
+        :E_194,
+        :E_202,
+        :E_204,
+        :E_209,
+        :E_219,
+        :E_4,
+        :E_66,
+        :E_91 .
+
+:Tuberculosis a :InfectiousDisease ;
+    :characterizedBy :E_162,
+        :E_2,
+        :E_201,
+        :E_204,
+        :E_208,
+        :E_44,
+        :E_45,
+        :E_61,
+        :E_66,
+        :E_69,
+        :E_78,
+        :E_91 .
+
+:E_79 :indicates :AcuteCOPDExacerbationInfection,
+        :AcuteLaryngitis,
+        :AcuteRhinosinusitis,
+        :Bronchitis,
+        :ChronicRhinosinusitis,
+        :GERD,
+        :Influenza,
+        :Larygospasm,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :SpontaneousPneumothorax,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:GuillainBarreSyndrome a :NervousSystemDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_0,
+        :E_156,
+        :E_157,
+        :E_176,
+        :E_177,
+        :E_204,
+        :E_66,
+        :E_83,
+        :E_84,
+        :E_93 .
+
+:AtrialFibrillation a :CirculatoryDisease ;
+    :characterizedBy :E_104,
+        :E_105,
+        :E_139,
+        :E_155,
+        :E_164,
+        :E_19,
+        :E_204,
+        :E_218,
+        :E_22,
+        :E_31,
+        :E_66,
+        :E_69,
+        :E_70,
+        :E_76 .
+
+:UrgentPathology rdfs:subClassOf :UrgentPathology,
+        owl:Thing ;
+    owl:equivalentClass :UrgentPathology .
+
+:AcuteDystonicReactions a :NervousSystemDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_128,
+        :E_147,
+        :E_15,
+        :E_168,
+        :E_172,
+        :E_180,
+        :E_192,
+        :E_193,
+        :E_204,
+        :E_205,
+        :E_62,
+        :E_66 .
+
+:Bronchiolitis a :RespiratoryDisease ;
+    :characterizedBy :E_142,
+        :E_181,
+        :E_183,
+        :E_195,
+        :E_201,
+        :E_204,
+        :E_209,
+        :E_214,
+        :E_23,
+        :E_32,
+        :E_48,
+        :E_66,
+        :E_91 .
+
+:E_201 :indicates :AcuteCOPDExacerbationInfection,
+        :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Bronchiectasis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ChronicRhinosinusitis,
+        :Ebola,
+        :GERD,
+        :Influenza,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :PulmonaryNeoplasm,
+        :SpontaneousRibFracture,
+        :Tuberculosis,
+        :URTI,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteCOPDExacerbationInfection,
+        :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Bronchiectasis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :ChronicRhinosinusitis,
+        :Ebola,
+        :GERD,
+        :Influenza,
+        :PancreaticNeoplasm,
+        :Pneumonia,
+        :PulmonaryNeoplasm,
+        :SpontaneousRibFracture,
+        :Tuberculosis,
+        :URTI,
+        :ViralPharyngitis .
+
+:MyastheniaGravis a :NervousSystemDisease ;
+    :characterizedBy :E_172,
+        :E_176,
+        :E_204,
+        :E_28,
+        :E_38,
+        :E_52,
+        :E_63,
+        :E_65,
+        :E_66,
+        :E_84,
+        :E_90 .
+
+:RespiratoryDisease rdfs:subClassOf :RespiratoryDisease,
+        owl:Thing ;
+    owl:equivalentClass :RespiratoryDisease .
+
+:Ebola a :InfectiousDisease,
+        :LifeThreateningPathology,
+        :UrgentPathology ;
+    :characterizedBy :E_144,
+        :E_148,
+        :E_178,
+        :E_201,
+        :E_204,
+        :E_39,
+        :E_41,
+        :E_51,
+        :E_66,
+        :E_73,
+        :E_89,
+        :E_91,
+        :E_97 .
+
+:Boerhaave a :DigestiveDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_148,
+        :E_204,
+        :E_210,
+        :E_211,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_78 .
+
+:ClusterHeadache a :NervousSystemDisease ;
+    :characterizedBy :E_127,
+        :E_176,
+        :E_181,
+        :E_184,
+        :E_204,
+        :E_25,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_78 .
+
+:AcuteLaryngitis a :RespiratoryDisease ;
+    :characterizedBy :E_116,
+        :E_201,
+        :E_204,
+        :E_212,
+        :E_48,
+        :E_49,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_79,
+        :E_91 .
+
+:AcuteOtitisMedia :characterizedBy :E_1,
+        :E_114,
+        :E_181,
+        :E_201,
+        :E_204,
+        :E_209,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_91 .
+
+:Pericarditis a :CirculatoryDisease ;
+    :characterizedBy :E_0,
+        :E_155,
+        :E_204,
+        :E_217,
+        :E_220,
+        :E_3,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 .
+
+:ViralPharyngitis a :RespiratoryDisease ;
+    :characterizedBy :E_181,
+        :E_201,
+        :E_204,
+        :E_227,
+        :E_41,
+        :E_45,
+        :E_48,
+        :E_49,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_79,
+        :E_91 .
+
+:PSVT a :CirculatoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_155,
+        :E_16,
+        :E_204,
+        :E_213,
+        :E_35,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_60,
+        :E_62,
+        :E_66,
+        :E_76,
+        :E_82 .
+
+:SpontaneousPneumothorax a :RespiratoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_123,
+        :E_14,
+        :E_151,
+        :E_165,
+        :E_204,
+        :E_21,
+        :E_218,
+        :E_220,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_79 .
+
+:Myocarditis a :CirculatoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_0,
+        :E_114,
+        :E_155,
+        :E_175,
+        :E_204,
+        :E_217,
+        :E_218,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_64,
+        :E_66 .
+
+:SpontaneousRibFracture a :InjuryOrPoisoning ;
+    :characterizedBy :E_151,
+        :E_153,
+        :E_201,
+        :E_203,
+        :E_204,
+        :E_216,
+        :E_220,
+        :E_37,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_78 .
+
+:StableAngina a :CirculatoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_104,
+        :E_105,
+        :E_143,
+        :E_204,
+        :E_218,
+        :E_225,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_78,
+        :E_79,
+        :E_89 .
+
+:ChronicRhinosinusitis a :RespiratoryDisease ;
+    :characterizedBy :E_103,
+        :E_116,
+        :E_118,
+        :E_120,
+        :E_121,
+        :E_124,
+        :E_125,
+        :E_181,
+        :E_182,
+        :E_201,
+        :E_204,
+        :E_226,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_79 .
+
+:PulmonaryNeoplasm a :Neoplasm ;
+    :characterizedBy :E_161,
+        :E_162,
+        :E_191,
+        :E_201,
+        :E_204,
+        :E_222,
+        :E_224,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_79,
+        :E_89 .
+
+:PulmonaryEmbolism a :CirculatoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_100,
+        :E_109,
+        :E_110,
+        :E_151,
+        :E_152,
+        :E_159,
+        :E_196,
+        :E_204,
+        :E_220,
+        :E_34,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 .
+
+:ScombroidFoodPoisoning a :InjuryOrPoisoning,
+        :UrgentPathology ;
+    :characterizedBy :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_155,
+        :E_187,
+        :E_204,
+        :E_214,
+        :E_51,
+        :E_66,
+        :E_82,
+        :E_92 .
+
+:Chagas a :InfectiousDisease ;
+    :characterizedBy :E_148,
+        :E_151,
+        :E_152,
+        :E_174,
+        :E_175,
+        :E_204,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_9,
+        :E_91 .
+
+:GERD a :DigestiveDisease ;
+    :characterizedBy :E_124,
+        :E_140,
+        :E_167,
+        :E_173,
+        :E_201,
+        :E_204,
+        :E_210,
+        :E_215,
+        :E_217,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_70,
+        :E_78,
+        :E_79,
+        :E_98 .
+
+:AcuteRhinosinusitis a :RespiratoryDisease ;
+    :characterizedBy :E_103,
+        :E_116,
+        :E_118,
+        :E_120,
+        :E_121,
+        :E_124,
+        :E_125,
+        :E_181,
+        :E_182,
+        :E_201,
+        :E_204,
+        :E_209,
+        :E_226,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_79,
+        :E_91 .
+
+:Bronchitis a :RespiratoryDisease ;
+    :characterizedBy :E_123,
+        :E_181,
+        :E_201,
+        :E_204,
+        :E_209,
+        :E_214,
+        :E_219,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_77,
+        :E_79,
+        :E_91,
+        :E_97 .
+
+:E_53 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_54 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_55 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_56 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_57 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_58 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_59 :indicates :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis ;
+    :symptomOf :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :Boerhaave,
+        :Bronchitis,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Epiglottitis,
+        :GERD,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :LocalizedEdema,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis .
+
+:E_66 :indicates :AcuteCOPDExacerbationInfection,
+        :AcuteDystonicReactions,
+        :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Anemia,
+        :AtrialFibrillation,
+        :Boerhaave,
+        :Bronchiectasis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :Chagas,
+        :Croup,
+        :Ebola,
+        :Epiglottitis,
+        :GuillainBarreSyndrome,
+        :LocalizedEdema,
+        :MyastheniaGravis,
+        :Myocarditis,
+        :PSVT,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :Tuberculosis,
+        :UnstableAngina ;
+    :symptomOf :AcuteCOPDExacerbationInfection,
+        :AcuteDystonicReactions,
+        :AcutePulmonaryEdema,
+        :Anaphylaxis,
+        :Anemia,
+        :AtrialFibrillation,
+        :Boerhaave,
+        :Bronchiectasis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :Chagas,
+        :Croup,
+        :Ebola,
+        :Epiglottitis,
+        :GuillainBarreSyndrome,
+        :LocalizedEdema,
+        :MyastheniaGravis,
+        :Myocarditis,
+        :PSVT,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :Tuberculosis,
+        :UnstableAngina .
+
+:Epiglottitis a :RespiratoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_104,
+        :E_190,
+        :E_194,
+        :E_204,
+        :E_209,
+        :E_212,
+        :E_33,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_62,
+        :E_65,
+        :E_66,
+        :E_69,
+        :E_78,
+        :E_91 .
+
+:URTI a :RespiratoryDisease ;
+    :characterizedBy :E_144,
+        :E_181,
+        :E_201,
+        :E_204,
+        :E_222,
+        :E_41,
+        :E_48,
+        :E_49,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_77,
+        :E_79,
+        :E_91,
+        :E_97 .
+
+:PossibleNSTEMISTEMI a :CirculatoryDisease,
+        :LifeThreateningPathology,
+        :UrgentPathology ;
+    :characterizedBy :E_104,
+        :E_105,
+        :E_108,
+        :E_148,
+        :E_161,
+        :E_191,
+        :E_2,
+        :E_204,
+        :E_225,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_79,
+        :E_89 .
+
+:AcutePulmonaryEdema a :LifeThreateningPathology,
+        :RespiratoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_104,
+        :E_105,
+        :E_106,
+        :E_151,
+        :E_152,
+        :E_175,
+        :E_204,
+        :E_217,
+        :E_218,
+        :E_5,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_67,
+        :E_8 .
+
+:LocalizedEdema :characterizedBy :E_10,
+        :E_106,
+        :E_109,
+        :E_126,
+        :E_137,
+        :E_149,
+        :E_151,
+        :E_152,
+        :E_158,
+        :E_186,
+        :E_197,
+        :E_204,
+        :E_217,
+        :E_22,
+        :E_44,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_67,
+        :E_96 .
+
+:UnstableAngina a :CirculatoryDisease,
+        :UrgentPathology ;
+    :characterizedBy :E_104,
+        :E_105,
+        :E_13,
+        :E_14,
+        :E_143,
+        :E_148,
+        :E_204,
+        :E_218,
+        :E_225,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_78,
+        :E_79,
+        :E_89 .
+
+:Anemia :characterizedBy :E_113,
+        :E_140,
+        :E_145,
+        :E_146,
+        :E_154,
+        :E_167,
+        :E_179,
+        :E_204,
+        :E_208,
+        :E_24,
+        :E_26,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_7,
+        :E_76,
+        :E_82,
+        :E_88,
+        :E_89 .
+
+:InguinalHernia a :DigestiveDisease ;
+    :characterizedBy :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_150,
+        :E_160,
+        :E_203,
+        :E_204,
+        :E_221,
+        :E_30,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_70 .
+
+:SLE :characterizedBy :E_102,
+        :E_11,
+        :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_135,
+        :E_136,
+        :E_141,
+        :E_151,
+        :E_204,
+        :E_206,
+        :E_3,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_79,
+        :E_89 .
+
+:Sarcoidosis :characterizedBy :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_163,
+        :E_198,
+        :E_204,
+        :E_43,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_70,
+        :E_74,
+        :E_9 .
+
+:PanicAttack :characterizedBy :E_111,
+        :E_124,
+        :E_138,
+        :E_148,
+        :E_155,
+        :E_157,
+        :E_16,
+        :E_171,
+        :E_177,
+        :E_185,
+        :E_204,
+        :E_29,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_75,
+        :E_78,
+        :E_80,
+        :E_81,
+        :E_82,
+        :E_99 .
+
+:PancreaticNeoplasm a :Neoplasm ;
+    :characterizedBy :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_162,
+        :E_188,
+        :E_201,
+        :E_204,
+        :E_223,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_6,
+        :E_69,
+        :E_70,
+        :E_79,
+        :E_89 .
+
+:E_204 :indicates :AcuteCOPDExacerbationInfection,
+        :AcuteDystonicReactions,
+        :AcuteLaryngitis,
+        :AcuteOtitisMedia,
+        :AcutePulmonaryEdema,
+        :AcuteRhinosinusitis,
+        :AllergicSinusitis,
+        :Anaphylaxis,
+        :Anemia,
+        :AtrialFibrillation,
+        :Boerhaave,
+        :Bronchiectasis,
+        :Bronchiolitis,
+        :Bronchitis,
+        :BronchospasmAcuteAsthmaExacerbation,
+        :Chagas,
+        :ChronicRhinosinusitis,
+        :ClusterHeadache,
+        :Croup,
+        :Ebola,
+        :Epiglottitis,
+        :GERD,
+        :GuillainBarreSyndrome,
+        :HIVInitialInfection,
+        :Influenza,
+        :InguinalHernia,
+        :Larygospasm,
+        :LocalizedEdema,
+        :MyastheniaGravis,
+        :Myocarditis,
+        :PSVT,
+        :PancreaticNeoplasm,
+        :PanicAttack,
+        :Pericarditis,
+        :Pneumonia,
+        :PossibleNSTEMISTEMI,
+        :PulmonaryEmbolism,
+        :PulmonaryNeoplasm,
+        :SLE,
+        :Sarcoidosis,
+        :ScombroidFoodPoisoning,
+        :SpontaneousPneumothorax,
+        :SpontaneousRibFracture,
+        :StableAngina,
+        :Tuberculosis,
+        :URTI,
+        :UnstableAngina,
+        :ViralPharyngitis,
+        :WhoopingCough .
+
+:Influenza a :RespiratoryDisease ;
+    :characterizedBy :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_161,
+        :E_181,
+        :E_201,
+        :E_204,
+        :E_227,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_79,
+        :E_88,
+        :E_91,
+        :E_94,
+        :E_97 .
+
+:Anaphylaxis a :InjuryOrPoisoning,
+        :LifeThreateningPathology,
+        :UrgentPathology ;
+    :characterizedBy :E_12,
+        :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_151,
+        :E_152,
+        :E_159,
+        :E_194,
+        :E_204,
+        :E_214,
+        :E_226,
+        :E_42,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_82 .
+
+:HIVInitialInfection a :InfectiousDisease ;
+    :characterizedBy :E_115,
+        :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_148,
+        :E_162,
+        :E_189,
+        :E_204,
+        :E_27,
+        :E_50,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_61,
+        :E_88,
+        :E_9,
+        :E_91,
+        :E_97 .
+
+:CriteriaBasedRule rdfs:subClassOf :CriteriaBasedRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :CriteriaBasedRule .
+
+:Pneumonia a :RespiratoryDisease ;
+    :characterizedBy :E_106,
+        :E_107,
+        :E_118,
+        :E_123,
+        :E_124,
+        :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_161,
+        :E_175,
+        :E_181,
+        :E_196,
+        :E_201,
+        :E_204,
+        :E_208,
+        :E_209,
+        :E_219,
+        :E_220,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_77,
+        :E_78,
+        :E_79,
+        :E_91,
+        :E_94,
+        :E_95 .
+
+:Source rdfs:subClassOf :Source,
+        owl:Thing ;
+    owl:equivalentClass :Source .
+
+:GuidelineBasedRule rdfs:subClassOf :GuidelineBasedRule,
+        owl:Thing,
+        prov:Plan ;
+    owl:equivalentClass :GuidelineBasedRule .
+
+:Rule rdfs:subClassOf :Rule,
+        owl:Thing ;
+    owl:equivalentClass :Rule .
+

@@ -1,0 +1,13 @@
+# The expert profile of pulmonary embolism and the guideline rules that conclude it
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?kind ?item ?detail WHERE {
+  {
+    :PulmonaryEmbolism ?p ?e . VALUES (?p ?kind) { (:hasSymptom "symptom") (:hasAntecedent "antecedent") }
+    ?e rdfs:label ?item . BIND("" AS ?detail)
+  } UNION {
+    ?rule :asserts/:concludesPathology :PulmonaryEmbolism ; :code ?item ; dct:source/:citationKey ?src ; :certaintyFactor ?cf .
+    BIND("rule" AS ?kind) BIND(CONCAT("CF ", STR(?cf), ", source ", ?src) AS ?detail)
+  }
+} ORDER BY ?kind ?item

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <h1 class="page-title">One step is missing</h1>
+  <p class="lede">This page needs {{ what }}, which has not been built yet. Run this from the repository root, then
+    reload the page:</p>
+</header>
+<pre class="code code--block">{{ how }}</pre>
+{% endblock %}

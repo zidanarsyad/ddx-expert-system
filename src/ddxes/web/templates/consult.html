@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% from "_macros.html" import triage_tag, live_differential, icon %}
+{% block title %}{% if q %}Question {{ number }}{% else %}Consultation complete{% endif %} | DDX-ES{% endblock %}
+{% block content %}
+<div class="consult-head">
+  <p class="vignette vignette--head">{{ vignette }}</p>
+  <div class="consult-head__actions">
+    {% if answers %}
+    <form method="post" action="/consult/undo"><button class="btn btn--quiet" type="submit">Undo last answer</button></form>
+    {% endif %}
+    <form method="post" action="/consult/reset"><button class="btn btn--quiet" type="submit">Start over</button></form>
+  </div>
+</div>
+
+<div class="consult">
+  <section class="sheet question" aria-labelledby="q-title">
+    {% if q %}
+    <p class="question__meta">
+      <span class="question__n">Question {{ number }}</span>
+      <span class="phase phase--{{ q.phase }}">{{ "Ruling out a dangerous diagnosis" if q.phase == "rule-out" else "Narrowing the differential" }}</span>
+    </p>
+    <h1 class="question__text" id="q-title">{{ q.text }}</h1>
+    <form class="answer" method="post" action="/consult/answer">
+      <input type="hidden" name="evidence" value="{{ q.evidence }}">
+      {% if q.dtype == "B" %}
+      <div class="answer__row">
+        <button class="btn btn--answer" type="submit" name="value" value="yes" data-key="y">Yes <kbd>Y</kbd></button>
+        <button class="btn btn--answer" type="submit" name="value" value="no" data-key="n">No <kbd>N</kbd></button>
+      </div>
+      {% elif q.dtype == "scale" %}
+      <fieldset class="scale">
+        <legend>From 0 (not at all) to 10 (the worst imaginable)</legend>
+        <div class="scale__row">
+          {% for v in range(11) %}<button class="scale__btn" type="submit" name="value" value="{{ v }}"{% if v < 10 %} data-key="{{ v }}"{% endif %}>{{ v }}</button>{% endfor %}
+        </div>
+      </fieldset>
+      {% elif q.dtype == "M" %}
+      <fieldset class="choices{% if q.many %} choices--many{% endif %}">
+        <legend>Select all that apply{% if q.many %}, or none{% endif %}</legend>
+        {% if q.many %}<input class="choices__filter" type="search" placeholder="Filter {{ q.options|length }} options" aria-label="Filter the options" data-filter hidden>{% endif %}
+        {% for v, label in q.options %}<label class="choice"><input type="checkbox" name="value" value="{{ v }}"><span>{{ label }}</span></label>{% endfor %}
+      </fieldset>
+      <div class="answer__submit"><button class="btn btn--primary" type="submit">Answer</button>
+        <span class="muted" data-count></span></div>
+      {% else %}
+      <fieldset class="choices{% if q.many %} choices--many{% endif %}">
+        <legend>Choose one</legend>
+        {% for v, label in q.options %}<label class="choice"><input type="radio" name="value" value="{{ v }}" required><span>{{ label }}</span></label>{% endfor %}
+      </fieldset>
+      <div class="answer__submit"><button class="btn btn--primary" type="submit">Answer</button></div>
+      {% endif %}
+    </form>
+    <aside class="why" aria-labelledby="why-title">
+      <h2 class="why__title" id="why-title">Why this question</h2>
+      <p class="why__text">{{ q.why }}</p>
+    </aside>
+    {% else %}
+    <p class="question__meta"><span class="question__n">Finished</span></p>
+    <h1 class="question__text" id="q-title">Consultation complete after {{ answers|length }} question{{ "s" if answers|length != 1 }}.</h1>
+    <p class="question__done">No remaining question would change the conclusion, and every dangerous diagnosis that was
+      still possible has been checked. The full explanation follows below.</p>
+    {% endif %}
+  </section>
+
+  <aside class="live" aria-label="Current assessment">
+    {{ triage_tag(result.triage) }}
+    <section class="live__block">
+      <h2 class="live__title">Differential so far</h2>
+      {{ live_differential(result.differential[:6]) }}
+    </section>
+    {% if result.red_flags %}
+    <section class="live__block flags">
+      <h2 class="live__title">Red flags</h2>
+      <ul class="flags__list">{% for f in result.red_flags %}<li>{{ icon("flag", "flags__icon") }}{{ f }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+  </aside>
+</div>
+
+{% if answers %}
+<section class="history" aria-labelledby="history-title">
+  <h2 class="section-title" id="history-title">Answers so far</h2>
+  <ol class="history__list">
+    {% for a in answers %}<li><span class="history__q">{{ a.q }}</span> <span class="history__a">{{ a.a }}</span></li>{% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+{% if show %}
+{% include "_result.html" %}
+{% else %}
+<p class="explain-now"><a href="/consult?explain=1#explanation">Show the full explanation now</a></p>
+{% endif %}
+{% endblock %}

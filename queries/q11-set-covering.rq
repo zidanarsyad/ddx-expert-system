@@ -1,0 +1,12 @@
+# Abduction in SPARQL: which pathologies explain every symptom a demo patient reports?
+# (run with --with-cases). NOT EXISTS gives the closed-world negation that OWL itself cannot express.
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?pathology WHERE {
+  ?p a :Pathology ; rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
+  FILTER NOT EXISTS {
+    { :Patient_T002456 :hasEvidence ?e } UNION { :Patient_T002456 :hasAnswer/:ofEvidence ?e }
+    ?e a :Symptom .
+    FILTER NOT EXISTS { ?p :characterizedBy ?e }
+  }
+}

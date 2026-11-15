@@ -1,0 +1,10 @@
+# Runtime: knowledge graph, reasoner, rule base, web UI
+rdflib>=7.1,<8
+owlrl>=7.1,<8
+PyYAML>=6.0
+starlette>=0.40
+uvicorn>=0.30
+jinja2>=3.1
+python-multipart>=0.0.9
+# Tests
+pytest>=8.0

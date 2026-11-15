@@ -1,0 +1,198 @@
+[
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "patients": 2076
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "patients": 3281
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "patients": 3407
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "patients": 3474
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "patients": 2500
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "patients": 1866
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "patients": 2136
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "patients": 3754
+ },
+ {
+  "pathology": "Anemia",
+  "patients": 6903
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "patients": 2609
+ },
+ {
+  "pathology": "Boerhaave",
+  "patients": 2075
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "patients": 2319
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "patients": 28
+ },
+ {
+  "pathology": "Bronchitis",
+  "patients": 3543
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "patients": 2209
+ },
+ {
+  "pathology": "Chagas",
+  "patients": 1124
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "patients": 2717
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "patients": 2841
+ },
+ {
+  "pathology": "Croup",
+  "patients": 267
+ },
+ {
+  "pathology": "Ebola",
+  "patients": 90
+ },
+ {
+  "pathology": "Epiglottitis",
+  "patients": 2248
+ },
+ {
+  "pathology": "GERD",
+  "patients": 3426
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "patients": 2557
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "patients": 3852
+ },
+ {
+  "pathology": "Influenza",
+  "patients": 3590
+ },
+ {
+  "pathology": "InguinalHernia",
+  "patients": 2632
+ },
+ {
+  "pathology": "Larygospasm",
+  "patients": 668
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "patients": 3694
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "patients": 2159
+ },
+ {
+  "pathology": "Myocarditis",
+  "patients": 1547
+ },
+ {
+  "pathology": "PSVT",
+  "patients": 2376
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "patients": 2582
+ },
+ {
+  "pathology": "PanicAttack",
+  "patients": 3237
+ },
+ {
+  "pathology": "Pericarditis",
+  "patients": 3032
+ },
+ {
+  "pathology": "Pneumonia",
+  "patients": 3484
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "patients": 2943
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "patients": 3725
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "patients": 1891
+ },
+ {
+  "pathology": "SLE",
+  "patients": 1579
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "patients": 3028
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "patients": 2250
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "patients": 1405
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "patients": 782
+ },
+ {
+  "pathology": "StableAngina",
+  "patients": 2340
+ },
+ {
+  "pathology": "Tuberculosis",
+  "patients": 2007
+ },
+ {
+  "pathology": "URTI",
+  "patients": 8656
+ },
+ {
+  "pathology": "UnstableAngina",
+  "patients": 2748
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "patients": 8246
+ },
+ {
+  "pathology": "WhoopingCough",
+  "patients": 545
+ }
+]

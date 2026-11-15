@@ -1,0 +1,16 @@
+evidence,value,polarity,pd,pother,lr,cf
+Stroke,,present,0.592083,0.00000775398,76358.5,1.0
+Lesions peel off,Y,present,0.993689,0.00000775398,128152.0,1.0
+Where is the affected region located,posterior chest wall(R),present,0.187608,0.00000775398,24195.0,1.0
+Where is the affected region located,posterior chest wall(L),present,0.17097,0.00000775398,22049.3,1.0
+Where is the affected region located,commissure(R),present,0.2642,0.00000775398,34072.8,1.0
+Where is the affected region located,commissure(L),present,0.254159,0.00000775398,32777.9,1.0
+Where is the affected region located,buttock(R),present,0.242972,0.00000775398,31335.1,1.0
+Where is the affected region located,buttock(L),present,0.242685,0.00000775398,31298.1,1.0
+Where is the affected region located,flank(R),present,0.233505,0.00000775398,30114.3,1.0
+Where is the affected region located,flank(L),present,0.220023,0.00000775398,28375.5,1.0
+Parkinson’s disease,,present,0.643431,0.00000775398,82980.7,1.0
+Where is the affected region located,belly,present,0.153758,0.00000775398,19829.5,0.9999
+Where is the affected region located,shoulder(L),present,0.245554,0.00011631,2111.2,0.9995
+Where is the affected region located,shoulder(R),present,0.243259,0.000263635,922.709,0.9989
+Where is the affected region located,lumbar spine,present,0.260757,0.00255881,101.906,0.9902

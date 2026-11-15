@@ -1,0 +1,8 @@
+{
+ "test_patients": 134529,
+ "validation_patients": 132448,
+ "sample": 980,
+ "kb_links": 888,
+ "values": 199,
+ "feature_pairs": 2248
+}

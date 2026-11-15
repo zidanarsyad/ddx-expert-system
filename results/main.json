@@ -1,0 +1,359 @@
+{
+ "patients": 134529,
+ "ms_per_patient": 5.234713512876306,
+ "es": {
+  "top1": 0.994201993622193,
+  "top3": 0.99999256665849,
+  "top5": 1.0,
+  "gtpa": 0.9985133316979982,
+  "ddr": 0.21612695299937842,
+  "ddp": 0.9970000272555857,
+  "ddf1": 0.3096683372921801
+ },
+ "nb": {
+  "top1": 0.9857948843743728,
+  "top3": 0.99995539995094,
+  "top5": 0.99998513331698,
+  "gtpa": 0.9999182332433899,
+  "ddr": 0.21667080665958732,
+  "ddp": 0.9962103586091726,
+  "ddf1": 0.3102514973683612
+ },
+ "hybrid": {
+  "top1": 0.9969671966639163,
+  "top3": 1.0,
+  "top5": 1.0,
+  "gtpa": 0.99999256665849,
+  "ddr": 0.21734428315680146,
+  "ddp": 0.9961989077235605,
+  "ddf1": 0.31117107613753875
+ },
+ "triage": {
+  "exact": 0.7868712322250221,
+  "under": 0.003798437511614596,
+  "over": 0.20933033026336328,
+  "urgent_recall": 1.0,
+  "urgent_specificity": 0.8606351924247269,
+  "binary_accuracy": 0.8995681228582685,
+  "emergency_recall": 1.0,
+  "matrix": {
+   "Emergency": {
+    "Emergency": 10193,
+    "Urgent": 0,
+    "NonUrgent": 0,
+    "SelfCare": 0
+   },
+   "Urgent": {
+    "Emergency": 14650,
+    "Urgent": 12739,
+    "NonUrgent": 0,
+    "SelfCare": 0
+   },
+   "NonUrgent": {
+    "Emergency": 1379,
+    "Urgent": 10201,
+    "NonUrgent": 69979,
+    "SelfCare": 511
+   },
+   "SelfCare": {
+    "Emergency": 1931,
+    "Urgent": 0,
+    "NonUrgent": 0,
+    "SelfCare": 12946
+   }
+  }
+ },
+ "explanation": {
+  "rules_fired_mean": 11.038251975410507,
+  "top1_supported_by_guideline_rule": 0.8158686974555672,
+  "truth_supported_by_guideline_rule": 0.8095726571965896,
+  "candidates_after_covering_mean": 2.158761307970772,
+  "single_candidate_share": 0.6767462777542389,
+  "correct_top1_with_guideline_support": 0.8153107686786443
+ },
+ "per_pathology": {
+  "AcuteCOPDExacerbationInfection": {
+   "n": 2153,
+   "top1": 1.0,
+   "guideline_support": 0.9897816999535531
+  },
+  "AcuteDystonicReactions": {
+   "n": 3302,
+   "top1": 1.0,
+   "guideline_support": 0.9954572986069049
+  },
+  "AcuteLaryngitis": {
+   "n": 3217,
+   "top1": 0.9595896798259248,
+   "guideline_support": 0.8557662418402238
+  },
+  "AcuteOtitisMedia": {
+   "n": 3516,
+   "top1": 1.0,
+   "guideline_support": 0.9175199089874858
+  },
+  "AcutePulmonaryEdema": {
+   "n": 2598,
+   "top1": 1.0,
+   "guideline_support": 0.7594303310238645
+  },
+  "AcuteRhinosinusitis": {
+   "n": 1829,
+   "top1": 0.6746856205576818,
+   "guideline_support": 0.8780754510661564
+  },
+  "AllergicSinusitis": {
+   "n": 2411,
+   "top1": 0.9995852343425964,
+   "guideline_support": 0.8523434259643301
+  },
+  "Anaphylaxis": {
+   "n": 3799,
+   "top1": 1.0,
+   "guideline_support": 0.9981574098446959
+  },
+  "Anemia": {
+   "n": 6842,
+   "top1": 1.0,
+   "guideline_support": 0.57731657410114
+  },
+  "AtrialFibrillation": {
+   "n": 2831,
+   "top1": 1.0,
+   "guideline_support": 0.9798657718120806
+  },
+  "Boerhaave": {
+   "n": 2083,
+   "top1": 1.0,
+   "guideline_support": 0.8094095055208833
+  },
+  "Bronchiectasis": {
+   "n": 2454,
+   "top1": 1.0,
+   "guideline_support": 0.7351263243683781
+  },
+  "Bronchiolitis": {
+   "n": 36,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Bronchitis": {
+   "n": 3594,
+   "top1": 0.9997217584863661,
+   "guideline_support": 0.1538675570395103
+  },
+  "BronchospasmAcuteAsthmaExacerbation": {
+   "n": 2222,
+   "top1": 1.0,
+   "guideline_support": 0.6750675067506751
+  },
+  "Chagas": {
+   "n": 1077,
+   "top1": 1.0,
+   "guideline_support": 0.11327762302692665
+  },
+  "ChronicRhinosinusitis": {
+   "n": 2747,
+   "top1": 1.0,
+   "guideline_support": 0.900618856934838
+  },
+  "ClusterHeadache": {
+   "n": 2825,
+   "top1": 1.0,
+   "guideline_support": 0.8307964601769912
+  },
+  "Croup": {
+   "n": 344,
+   "top1": 1.0,
+   "guideline_support": 0.8633720930232558
+  },
+  "Ebola": {
+   "n": 100,
+   "top1": 1.0,
+   "guideline_support": 0.99
+  },
+  "Epiglottitis": {
+   "n": 2364,
+   "top1": 1.0,
+   "guideline_support": 0.9966159052453468
+  },
+  "GERD": {
+   "n": 3543,
+   "top1": 1.0,
+   "guideline_support": 0.9009314140558848
+  },
+  "GuillainBarreSyndrome": {
+   "n": 2601,
+   "top1": 1.0,
+   "guideline_support": 0.7131872356785851
+  },
+  "HIVInitialInfection": {
+   "n": 3919,
+   "top1": 1.0,
+   "guideline_support": 0.836948201071702
+  },
+  "Influenza": {
+   "n": 3554,
+   "top1": 1.0,
+   "guideline_support": 0.6274620146314013
+  },
+  "InguinalHernia": {
+   "n": 2751,
+   "top1": 1.0,
+   "guideline_support": 0.6092330061795711
+  },
+  "Larygospasm": {
+   "n": 785,
+   "top1": 1.0,
+   "guideline_support": 0.5171974522292994
+  },
+  "LocalizedEdema": {
+   "n": 3734,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "MyastheniaGravis": {
+   "n": 2215,
+   "top1": 1.0,
+   "guideline_support": 0.7530474040632055
+  },
+  "Myocarditis": {
+   "n": 1478,
+   "top1": 1.0,
+   "guideline_support": 0.6765899864682002
+  },
+  "PSVT": {
+   "n": 2443,
+   "top1": 1.0,
+   "guideline_support": 0.9832173557101924
+  },
+  "PancreaticNeoplasm": {
+   "n": 2585,
+   "top1": 1.0,
+   "guideline_support": 0.5729206963249517
+  },
+  "PanicAttack": {
+   "n": 3387,
+   "top1": 1.0,
+   "guideline_support": 0.994390315913788
+  },
+  "Pericarditis": {
+   "n": 3095,
+   "top1": 1.0,
+   "guideline_support": 0.9705977382875606
+  },
+  "Pneumonia": {
+   "n": 3542,
+   "top1": 1.0,
+   "guideline_support": 0.5677583286278939
+  },
+  "PossibleNSTEMISTEMI": {
+   "n": 2911,
+   "top1": 1.0,
+   "guideline_support": 0.9986259017519753
+  },
+  "PulmonaryEmbolism": {
+   "n": 3679,
+   "top1": 1.0,
+   "guideline_support": 0.9646643109540636
+  },
+  "PulmonaryNeoplasm": {
+   "n": 1918,
+   "top1": 1.0,
+   "guideline_support": 0.8237747653806048
+  },
+  "SLE": {
+   "n": 1564,
+   "top1": 1.0,
+   "guideline_support": 0.9929667519181585
+  },
+  "Sarcoidosis": {
+   "n": 2902,
+   "top1": 1.0,
+   "guideline_support": 0.4083390764989662
+  },
+  "ScombroidFoodPoisoning": {
+   "n": 2486,
+   "top1": 1.0,
+   "guideline_support": 0.996379726468222
+  },
+  "SpontaneousPneumothorax": {
+   "n": 1343,
+   "top1": 1.0,
+   "guideline_support": 0.6440804169769173
+  },
+  "SpontaneousRibFracture": {
+   "n": 778,
+   "top1": 1.0,
+   "guideline_support": 0.9910025706940874
+  },
+  "StableAngina": {
+   "n": 2386,
+   "top1": 0.9970662196144174,
+   "guideline_support": 0.998742665549036
+  },
+  "Tuberculosis": {
+   "n": 2080,
+   "top1": 1.0,
+   "guideline_support": 0.9831730769230769
+  },
+  "URTI": {
+   "n": 8743,
+   "top1": 1.0,
+   "guideline_support": 0.7439094132448816
+  },
+  "UnstableAngina": {
+   "n": 2880,
+   "top1": 0.9840277777777777,
+   "guideline_support": 0.9996527777777777
+  },
+  "ViralPharyngitis": {
+   "n": 8334,
+   "top1": 1.0,
+   "guideline_support": 0.904247660187185
+  },
+  "WhoopingCough": {
+   "n": 549,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  }
+ },
+ "confusions": [
+  {
+   "truth": "AcuteRhinosinusitis",
+   "predicted": "ChronicRhinosinusitis",
+   "patients": 595
+  },
+  {
+   "truth": "AcuteLaryngitis",
+   "predicted": "ViralPharyngitis",
+   "patients": 130
+  },
+  {
+   "truth": "UnstableAngina",
+   "predicted": "StableAngina",
+   "patients": 43
+  },
+  {
+   "truth": "StableAngina",
+   "predicted": "PossibleNSTEMISTEMI",
+   "patients": 7
+  },
+  {
+   "truth": "UnstableAngina",
+   "predicted": "PossibleNSTEMISTEMI",
+   "patients": 3
+  },
+  {
+   "truth": "Bronchitis",
+   "predicted": "PulmonaryNeoplasm",
+   "patients": 1
+  },
+  {
+   "truth": "AllergicSinusitis",
+   "predicted": "AcuteOtitisMedia",
+   "patients": 1
+  }
+ ],
+ "split": "full test split"
+}

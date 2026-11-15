@@ -1,0 +1,339 @@
+{
+ "patients": 980,
+ "ms_per_patient": 5.3544285346050655,
+ "es": {
+  "top1": 0.9928571428571429,
+  "top3": 1.0,
+  "top5": 1.0,
+  "gtpa": 0.9989795918367347,
+  "ddr": 0.2230391177258529,
+  "ddp": 0.9964285714285714,
+  "ddf1": 0.31409427684152846
+ },
+ "nb": {
+  "top1": 0.9846938775510204,
+  "top3": 1.0,
+  "top5": 1.0,
+  "gtpa": 1.0,
+  "ddr": 0.2230823322091855,
+  "ddp": 0.9946428571428572,
+  "ddf1": 0.3135028388011108
+ },
+ "hybrid": {
+  "top1": 0.9948979591836735,
+  "top3": 1.0,
+  "top5": 1.0,
+  "gtpa": 1.0,
+  "ddr": 0.2236107578651622,
+  "ddp": 0.9948979591836735,
+  "ddf1": 0.3145580704175668
+ },
+ "triage": {
+  "exact": 0.7795918367346939,
+  "under": 0.004081632653061225,
+  "over": 0.2163265306122449,
+  "urgent_recall": 1.0,
+  "urgent_specificity": 0.871875,
+  "binary_accuracy": 0.9163265306122449,
+  "emergency_recall": 1.0,
+  "matrix": {
+   "Emergency": {
+    "Emergency": 100,
+    "Urgent": 0,
+    "NonUrgent": 0,
+    "SelfCare": 0
+   },
+   "Urgent": {
+    "Emergency": 130,
+    "Urgent": 110,
+    "NonUrgent": 0,
+    "SelfCare": 0
+   },
+   "NonUrgent": {
+    "Emergency": 22,
+    "Urgent": 49,
+    "NonUrgent": 505,
+    "SelfCare": 4
+   },
+   "SelfCare": {
+    "Emergency": 11,
+    "Urgent": 0,
+    "NonUrgent": 0,
+    "SelfCare": 49
+   }
+  }
+ },
+ "explanation": {
+  "rules_fired_mean": 10.4,
+  "top1_supported_by_guideline_rule": 0.8336734693877551,
+  "truth_supported_by_guideline_rule": 0.8224489795918367,
+  "candidates_after_covering_mean": 1.936734693877551,
+  "single_candidate_share": 0.7163265306122449,
+  "correct_top1_with_guideline_support": 0.8324768756423433
+ },
+ "per_pathology": {
+  "AcuteCOPDExacerbationInfection": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "AcuteDystonicReactions": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "AcuteLaryngitis": {
+   "n": 20,
+   "top1": 0.95,
+   "guideline_support": 0.85
+  },
+  "AcuteOtitisMedia": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.9
+  },
+  "AcutePulmonaryEdema": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.8
+  },
+  "AcuteRhinosinusitis": {
+   "n": 20,
+   "top1": 0.8,
+   "guideline_support": 0.95
+  },
+  "AllergicSinusitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.95
+  },
+  "Anaphylaxis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Anemia": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.4
+  },
+  "AtrialFibrillation": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Boerhaave": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.85
+  },
+  "Bronchiectasis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.7
+  },
+  "Bronchiolitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Bronchitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.15
+  },
+  "BronchospasmAcuteAsthmaExacerbation": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.6
+  },
+  "Chagas": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.1
+  },
+  "ChronicRhinosinusitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.9
+  },
+  "ClusterHeadache": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.85
+  },
+  "Croup": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.9
+  },
+  "Ebola": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Epiglottitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "GERD": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.9
+  },
+  "GuillainBarreSyndrome": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.6
+  },
+  "HIVInitialInfection": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.8
+  },
+  "Influenza": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.45
+  },
+  "InguinalHernia": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.7
+  },
+  "Larygospasm": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.45
+  },
+  "LocalizedEdema": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "MyastheniaGravis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.75
+  },
+  "Myocarditis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.6
+  },
+  "PSVT": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.95
+  },
+  "PancreaticNeoplasm": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.6
+  },
+  "PanicAttack": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Pericarditis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Pneumonia": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.65
+  },
+  "PossibleNSTEMISTEMI": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "PulmonaryEmbolism": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "PulmonaryNeoplasm": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.95
+  },
+  "SLE": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Sarcoidosis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.65
+  },
+  "ScombroidFoodPoisoning": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "SpontaneousPneumothorax": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.7
+  },
+  "SpontaneousRibFracture": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.95
+  },
+  "StableAngina": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "Tuberculosis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  },
+  "URTI": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.75
+  },
+  "UnstableAngina": {
+   "n": 20,
+   "top1": 0.9,
+   "guideline_support": 1.0
+  },
+  "ViralPharyngitis": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 0.95
+  },
+  "WhoopingCough": {
+   "n": 20,
+   "top1": 1.0,
+   "guideline_support": 1.0
+  }
+ },
+ "confusions": [
+  {
+   "truth": "AcuteRhinosinusitis",
+   "predicted": "ChronicRhinosinusitis",
+   "patients": 4
+  },
+  {
+   "truth": "UnstableAngina",
+   "predicted": "StableAngina",
+   "patients": 2
+  },
+  {
+   "truth": "AcuteLaryngitis",
+   "predicted": "ViralPharyngitis",
+   "patients": 1
+  }
+ ],
+ "split": "demo sample (980)"
+}

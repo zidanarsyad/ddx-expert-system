@@ -1,0 +1,25 @@
+{% from "_macros.html" import differential, cite %}
+<section class="block" aria-labelledby="dx-title">
+  <h2 class="section-title" id="dx-title">Differential diagnosis</h2>
+  {{ differential(result.differential) }}
+  <p class="note">{{ result.fired }} rule firings derived {{ result.concepts_n }} clinical concept{{ "s" if result.concepts_n != 1 }}.
+    Probabilities combine the guideline rules with the knowledge-base links of each pathology; only pathologies
+    that explain every reported symptom are ranked.</p>
+</section>
+
+{% if result.recommendations %}
+<section class="block" aria-labelledby="rec-title">
+  <h2 class="section-title" id="rec-title">Recommended next steps</h2>
+  <ul class="recs">
+    {% for r in result.recommendations %}
+    <li class="recs__item"><span class="recs__text">{{ r.label }}</span>
+      <span class="recs__src">{{ cite(r.source, r.citation, r.link) }}, rule {{ r.rule }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section class="block" id="explanation" aria-labelledby="ex-title">
+  <h2 class="section-title" id="ex-title">Explanation</h2>
+  {% include "_explain.html" %}
+</section>

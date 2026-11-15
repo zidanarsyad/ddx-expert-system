@@ -1,0 +1,15 @@
+class,n
+:EvidenceStrength,2816
+:Evidence,223
+:AnswerValue,199
+:Antecedent,113
+:Symptom,110
+:DiagnosticRule,88
+:AbstractionRule,55
+:Pathology,49
+:ClinicalConcept,48
+:RecommendationRule,26
+:TriageRule,16
+:ScoringRule,7
+:RedFlag,7
+:RuleSchema,3

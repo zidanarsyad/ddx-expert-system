@@ -1,0 +1,10 @@
+# Where the rules come from: number of rules per bibliographic source and source type
+PREFIX : <http://example.org/ddx#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+SELECT ?type ?key (COUNT(?rule) AS ?rules) ?doi WHERE {
+  ?rule a :Rule ; dct:source ?src .
+  ?src :citationKey ?key ; a ?type .
+  FILTER(?type IN (:ClinicalGuideline, :CaseDefinition, :DiagnosticCriteria, :ClinicalDecisionRule, :ReviewArticle, :ClinicalStudy, :ExpertKnowledgeBase))
+  OPTIONAL { ?src bibo:doi ?doi }
+} GROUP BY ?type ?key ?doi ORDER BY DESC(?rules) ?key

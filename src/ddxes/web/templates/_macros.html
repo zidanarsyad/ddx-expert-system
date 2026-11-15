@@ -1,0 +1,126 @@
+{# Shared pieces of the interface. #}
+
+{% macro icon(name, cls="icon") -%}
+<svg class="{{ cls }}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+{%- if name == "alert" -%}<path d="M12 3.5 22 20.5H2z"/><path d="M12 10v5" class="icon__cut"/><circle cx="12" cy="17.6" r="1.1" class="icon__dot"/>
+{%- elif name == "clock" -%}<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" class="icon__cut"/>
+{%- elif name == "calendar" -%}<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4" class="icon__cut"/>
+{%- elif name == "home" -%}<path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-5h4v5" class="icon__cut"/>
+{%- elif name == "flag" -%}<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>
+{%- elif name == "link" -%}<path d="M14 5h5v5M19 5l-8 8M17 14v5H5V7h5"/>
+{%- elif name == "download" -%}<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>
+{%- endif -%}
+</svg>
+{%- endmacro %}
+
+{% macro cite(short, citation, link) -%}
+{%- if link -%}<a class="cite" href="{{ link }}" title="{{ citation }}" target="_blank" rel="noopener">{{ short }}</a>
+{%- else -%}<span class="cite" title="{{ citation }}">{{ short }}</span>{%- endif -%}
+{%- endmacro %}
+
+{% set TRIAGE_ICON = {"Emergency": "alert", "Urgent": "clock", "NonUrgent": "calendar", "SelfCare": "home"} %}
+
+{% macro triage_tag(t) -%}
+<section class="tag tag--{{ t.level|lower }}{% if t.changed %} tag--changed{% endif %}" aria-label="Triage: {{ t.label }}">
+  <div class="tag__band" aria-hidden="true">
+    <span class="tag__eyelet"></span>
+    {{ icon(TRIAGE_ICON[t.level], "tag__icon") }}
+  </div>
+  <div class="tag__body">
+    <p class="tag__kicker">Triage</p>
+    <p class="tag__level">{{ t.label }}</p>
+    <p class="tag__advice">{{ t.advice }}</p>
+    {% if t.changed %}<p class="tag__change">Was {{ t.previous|lower }} before the last answer.</p>{% endif %}
+    <details class="tag__why">
+      <summary>Why this level</summary>
+      <p>The most urgent level proposed by a rule with a certainty factor of at least {{ t.threshold }} wins, so a
+        single red flag is enough to escalate.</p>
+      <ul class="tag__reasons">
+        {% for r in t.reasons %}
+        <li>{% if r.id %}<b>{{ r.id }}</b> {{ r.name }}, CF {{ r.cf|signed }}. {{ cite(r.source, r.citation, r.link) }}
+            {% else %}{{ r.label }}{% endif %}</li>
+        {% else %}
+        <li>No rule proposed a higher level; this is the default for the leading diagnosis.</li>
+        {% endfor %}
+      </ul>
+      {% if t.others %}<p class="muted">{{ t.others }} less urgent proposal{{ "s" if t.others != 1 }} also fired.</p>{% endif %}
+    </details>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro pbar(p, delta=None) -%}
+<span class="pbar">
+  <span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(p * 100) }}%"></span></span>
+  <span class="pbar__val">{{ p|num(3) }}</span>
+  {%- if delta is not none and (delta|abs) >= 0.0005 %}
+  <span class="delta" title="Change after the last answer">{{ "▲" if delta > 0 else "▼" }} {{ (delta|abs)|num(3) }}</span>
+  {%- endif %}
+</span>
+{%- endmacro %}
+
+{% macro live_differential(rows) -%}
+<ol class="ldx">
+  {% for r in rows %}
+  <li class="ldx__row">
+    <span class="ldx__name">{{ r.name }}{% if r.severity <= 2 %}<span class="sev" title="DDXPlus severity {{ r.severity }} of 5 (1 is the most severe)">severe</span>{% endif %}</span>
+    {{ pbar(r.p, r.delta) }}
+  </li>
+  {% else %}
+  <li class="muted">No hypothesis above P = 0.01 yet.</li>
+  {% endfor %}
+</ol>
+{%- endmacro %}
+
+{% macro differential(rows) -%}
+<div class="table-wrap">
+<table class="table dx">
+  <thead>
+    <tr>
+      <th scope="col" class="num">Rank</th>
+      <th scope="col">Pathology</th>
+      <th scope="col" class="dx__p">Probability</th>
+      <th scope="col" class="num" title="Combined certainty factor of all the evidence">CF</th>
+      <th scope="col" class="num" title="Weight of evidence: base-10 logarithm of the combined likelihood ratio">log<sub>10</sub> LR</th>
+      <th scope="col" class="num" title="Reported symptoms this pathology can explain (set covering)">Explains</th>
+      <th scope="col" class="num" title="DDXPlus severity, 1 is the most severe">Severity</th>
+      <th scope="col">Guideline rules</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td class="num">{{ r.rank }}</td>
+      <td class="dx__name">{{ r.name }}</td>
+      <td>{{ pbar(r.p) }}</td>
+      <td class="num">{{ r.cf|signed(3) }}</td>
+      <td class="num">{{ r.lr10|signed(1) }}</td>
+      <td class="num">{{ r.covers }} of {{ r.of }}</td>
+      <td class="num{% if r.severity <= 2 %} strong{% endif %}">{{ r.severity }}</td>
+      <td>{% for id in r.rules %}<span class="chip">{{ id }}</span>{% else %}<span class="muted">none</span>{% endfor %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{%- endmacro %}
+
+{% macro cond_tree(n) -%}
+{% set st = "holds" if n.status is true else ("fails" if n.status is false else "unknown") %}
+<li class="ct ct--{{ st }}">
+  <span class="ct__mark" aria-hidden="true">{{ "✓" if st == "holds" else ("✗" if st == "fails" else "?") }}</span>
+  <span class="sr">{{ st }}:</span>
+  <span class="ct__text">{{ n.text }}</span>
+  {% if st == "unknown" and n.missing %}<span class="ct__missing">not asked yet: {{ n.missing|join(", ") }}</span>{% endif %}
+  {% if st != "holds" and n.children %}<ul class="ct__list">{% for c in n.children %}{{ cond_tree(c) }}{% endfor %}</ul>{% endif %}
+</li>
+{%- endmacro %}
+
+{% macro proof_legend() -%}
+<ul class="legend" aria-label="Legend">
+  <li><span class="legend__sw legend__sw--fact"></span>Patient's answer</li>
+  <li><span class="legend__sw legend__sw--rule"></span>Rule, with the certainty factor it adds and its source</li>
+  <li><span class="legend__sw legend__sw--derived"></span>Derived fact</li>
+  <li><span class="legend__sw legend__sw--root"></span>Conclusion</li>
+</ul>
+{%- endmacro %}

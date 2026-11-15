@@ -1,0 +1,997 @@
+[
+ {
+  "code": "V_0",
+  "en": "North Africa",
+  "fr": "Afrique du Nord"
+ },
+ {
+  "code": "V_1",
+  "en": "West Africa",
+  "fr": "Afrique de l'Ouest"
+ },
+ {
+  "code": "V_2",
+  "en": "South Africa",
+  "fr": "Afrique du Sud"
+ },
+ {
+  "code": "V_3",
+  "en": "Central America",
+  "fr": "Amérique Centrale"
+ },
+ {
+  "code": "V_4",
+  "en": "North America",
+  "fr": "Amérique du Nord"
+ },
+ {
+  "code": "V_5",
+  "en": "South America",
+  "fr": "Amérique du Sud"
+ },
+ {
+  "code": "V_6",
+  "en": "Asia",
+  "fr": "Asie"
+ },
+ {
+  "code": "V_7",
+  "en": "South East Asia",
+  "fr": "Asie Sud-Sud-Est"
+ },
+ {
+  "code": "V_8",
+  "en": "Caraibes",
+  "fr": "Caraibes"
+ },
+ {
+  "code": "V_9",
+  "en": "Europe",
+  "fr": "Europe"
+ },
+ {
+  "code": "V_10",
+  "en": "N",
+  "fr": "N"
+ },
+ {
+  "code": "V_11",
+  "en": "NA",
+  "fr": "NA"
+ },
+ {
+  "code": "V_12",
+  "en": "Y",
+  "fr": "O"
+ },
+ {
+  "code": "V_13",
+  "en": "Oceania",
+  "fr": "Océeanie"
+ },
+ {
+  "code": "V_14",
+  "en": "iliac wing(R)",
+  "fr": "aile iliaque(D)"
+ },
+ {
+  "code": "V_15",
+  "en": "iliac wing(L)",
+  "fr": "aile iliaque(G)"
+ },
+ {
+  "code": "V_16",
+  "en": "groin(R)",
+  "fr": "aine(D)"
+ },
+ {
+  "code": "V_17",
+  "en": "groin(L)",
+  "fr": "aine(G)"
+ },
+ {
+  "code": "V_18",
+  "en": "axilla(R)",
+  "fr": "aisselle(D)"
+ },
+ {
+  "code": "V_19",
+  "en": "axilla(L)",
+  "fr": "aisselle(G)"
+ },
+ {
+  "code": "V_20",
+  "en": "tonsil(R)",
+  "fr": "amygdale(D)"
+ },
+ {
+  "code": "V_21",
+  "en": "tonsil(L)",
+  "fr": "amygdale(G)"
+ },
+ {
+  "code": "V_22",
+  "en": "anus",
+  "fr": "anus"
+ },
+ {
+  "code": "V_23",
+  "en": "posterior aspect of the ankle(R)",
+  "fr": "arrière de la cheville(D)"
+ },
+ {
+  "code": "V_24",
+  "en": "posterior aspect of the ankle(L)",
+  "fr": "arrière de la cheville(G)"
+ },
+ {
+  "code": "V_25",
+  "en": "back of head",
+  "fr": "arrière de tête"
+ },
+ {
+  "code": "V_26",
+  "en": "back of the neck",
+  "fr": "arrière du cou"
+ },
+ {
+  "code": "V_27",
+  "en": "forearm(R)",
+  "fr": "avant-bras(D)"
+ },
+ {
+  "code": "V_28",
+  "en": "forearm(L)",
+  "fr": "avant-bras(G)"
+ },
+ {
+  "code": "V_29",
+  "en": "lower chest",
+  "fr": "bas du thorax"
+ },
+ {
+  "code": "V_30",
+  "en": "biceps(R)",
+  "fr": "biceps(D)"
+ },
+ {
+  "code": "V_31",
+  "en": "biceps(L)",
+  "fr": "biceps(G)"
+ },
+ {
+  "code": "V_32",
+  "en": "mouth",
+  "fr": "bouche"
+ },
+ {
+  "code": "V_33",
+  "en": "thyroid cartilage",
+  "fr": "cartilage thyroidien"
+ },
+ {
+  "code": "V_34",
+  "en": "ankle(R)",
+  "fr": "cheville(D)"
+ },
+ {
+  "code": "V_35",
+  "en": "ankle(L)",
+  "fr": "cheville(G)"
+ },
+ {
+  "code": "V_36",
+  "en": "clitoris",
+  "fr": "clitoris"
+ },
+ {
+  "code": "V_37",
+  "en": "coccyx",
+  "fr": "coccyx"
+ },
+ {
+  "code": "V_38",
+  "en": "cervical spine",
+  "fr": "colonne cervicale"
+ },
+ {
+  "code": "V_39",
+  "en": "thoracic spine",
+  "fr": "colonne dorsale"
+ },
+ {
+  "code": "V_40",
+  "en": "lumbar spine",
+  "fr": "colonne lombaire"
+ },
+ {
+  "code": "V_41",
+  "en": "commissure(R)",
+  "fr": "commissure(D)"
+ },
+ {
+  "code": "V_42",
+  "en": "commissure(L)",
+  "fr": "commissure(G)"
+ },
+ {
+  "code": "V_43",
+  "en": "lateral side of the foot(R)",
+  "fr": "coté lateral du pied(D)"
+ },
+ {
+  "code": "V_44",
+  "en": "lateral side of the foot(L)",
+  "fr": "coté lateral du pied(G)"
+ },
+ {
+  "code": "V_45",
+  "en": "elbow(R)",
+  "fr": "coude(D)"
+ },
+ {
+  "code": "V_46",
+  "en": "elbow(L)",
+  "fr": "coude(G)"
+ },
+ {
+  "code": "V_47",
+  "en": "popliteal fossa(R)",
+  "fr": "creux poplité(D)"
+ },
+ {
+  "code": "V_48",
+  "en": "popliteal fossa(L)",
+  "fr": "creux poplité(G)"
+ },
+ {
+  "code": "V_49",
+  "en": "iliac crest(R)",
+  "fr": "crête iliaque(D)"
+ },
+ {
+  "code": "V_50",
+  "en": "iliac crest(L)",
+  "fr": "crête iliaque(G)"
+ },
+ {
+  "code": "V_51",
+  "en": "thigh(R)",
+  "fr": "cuisse(D)"
+ },
+ {
+  "code": "V_52",
+  "en": "thigh(L)",
+  "fr": "cuisse(G)"
+ },
+ {
+  "code": "V_53",
+  "en": "side of the neck(R)",
+  "fr": "côté du cou(D)"
+ },
+ {
+  "code": "V_54",
+  "en": "side of the neck(L)",
+  "fr": "côté du cou(G)"
+ },
+ {
+  "code": "V_55",
+  "en": "side of the chest(R)",
+  "fr": "côté du thorax(D)"
+ },
+ {
+  "code": "V_56",
+  "en": "side of the chest(L)",
+  "fr": "côté du thorax(G)"
+ },
+ {
+  "code": "V_57",
+  "en": "lower teeth(R)",
+  "fr": "dents inférieures(D)"
+ },
+ {
+  "code": "V_58",
+  "en": "lower teeth(L)",
+  "fr": "dents inférieures(G)"
+ },
+ {
+  "code": "V_59",
+  "en": "upper teeth(R)",
+  "fr": "dents supérieures(D)"
+ },
+ {
+  "code": "V_60",
+  "en": "upper teeth(L)",
+  "fr": "dents supérieures(G)"
+ },
+ {
+  "code": "V_61",
+  "en": "above the tongue",
+  "fr": "dessus de la langue"
+ },
+ {
+  "code": "V_62",
+  "en": "top of the head",
+  "fr": "dessus de tête"
+ },
+ {
+  "code": "V_63",
+  "en": "finger (ring finger)(R)",
+  "fr": "doigt(annulaire)(D)"
+ },
+ {
+  "code": "V_64",
+  "en": "finger (ring finger)(L)",
+  "fr": "doigt(annulaire)(G)"
+ },
+ {
+  "code": "V_65",
+  "en": "finger (little finger)(R)",
+  "fr": "doigt(auriculaire)(D)"
+ },
+ {
+  "code": "V_66",
+  "en": "finger (little finger)(L)",
+  "fr": "doigt(auriculaire)(G)"
+ },
+ {
+  "code": "V_67",
+  "en": "finger (index)(R)",
+  "fr": "doigt(index)(D)"
+ },
+ {
+  "code": "V_68",
+  "en": "finger (index)(L)",
+  "fr": "doigt(index)(G)"
+ },
+ {
+  "code": "V_69",
+  "en": "finger (middle)(R)",
+  "fr": "doigt(majeur)(D)"
+ },
+ {
+  "code": "V_70",
+  "en": "finger (middle)(L)",
+  "fr": "doigt(majeur)(G)"
+ },
+ {
+  "code": "V_71",
+  "en": "heartbreaking",
+  "fr": "déchirante"
+ },
+ {
+  "code": "V_72",
+  "en": "dorsal aspect of the foot(R)",
+  "fr": "face dorsale du pied(D)"
+ },
+ {
+  "code": "V_73",
+  "en": "dorsal aspect of the foot(L)",
+  "fr": "face dorsale du pied(G)"
+ },
+ {
+  "code": "V_74",
+  "en": "dorsal aspect of the wrist(R)",
+  "fr": "face dorsale du poignet(D)"
+ },
+ {
+  "code": "V_75",
+  "en": "dorsal aspect of the wrist(L)",
+  "fr": "face dorsale du poignet(G)"
+ },
+ {
+  "code": "V_76",
+  "en": "dorsal aspect of the hand(R)",
+  "fr": "face dorsale main(D)"
+ },
+ {
+  "code": "V_77",
+  "en": "dorsal aspect of the hand(L)",
+  "fr": "face dorsale main(G)"
+ },
+ {
+  "code": "V_78",
+  "en": "palmar side of the forearm(R)",
+  "fr": "face palmaire de l'avant-bras(D)"
+ },
+ {
+  "code": "V_79",
+  "en": "palmar side of the forearm(L)",
+  "fr": "face palmaire de l'avant-bras(G)"
+ },
+ {
+  "code": "V_80",
+  "en": "palmar face of the wrist(R)",
+  "fr": "face palmaire du poignet(D)"
+ },
+ {
+  "code": "V_81",
+  "en": "palmar face of the wrist(L)",
+  "fr": "face palmaire du poignet(G)"
+ },
+ {
+  "code": "V_82",
+  "en": "buttock(R)",
+  "fr": "fesse(D)"
+ },
+ {
+  "code": "V_83",
+  "en": "buttock(L)",
+  "fr": "fesse(G)"
+ },
+ {
+  "code": "V_84",
+  "en": "flank(R)",
+  "fr": "flanc(D)"
+ },
+ {
+  "code": "V_85",
+  "en": "flank(L)",
+  "fr": "flanc(G)"
+ },
+ {
+  "code": "V_86",
+  "en": "dark",
+  "fr": "foncée"
+ },
+ {
+  "code": "V_87",
+  "en": "iliac fossa(R)",
+  "fr": "fosse iliaque(D)"
+ },
+ {
+  "code": "V_88",
+  "en": "iliac fossa(L)",
+  "fr": "fosse iliaque(G)"
+ },
+ {
+  "code": "V_89",
+  "en": "forehead",
+  "fr": "front"
+ },
+ {
+  "code": "V_90",
+  "en": "lower gum",
+  "fr": "gencive inférieure"
+ },
+ {
+  "code": "V_91",
+  "en": "upper gum",
+  "fr": "gencive supérieure"
+ },
+ {
+  "code": "V_92",
+  "en": "knee(R)",
+  "fr": "genou(D)"
+ },
+ {
+  "code": "V_93",
+  "en": "knee(L)",
+  "fr": "genou(G)"
+ },
+ {
+  "code": "V_94",
+  "en": "glans",
+  "fr": "gland"
+ },
+ {
+  "code": "V_95",
+  "en": "labia majora(R)",
+  "fr": "grande lèvre(D)"
+ },
+ {
+  "code": "V_96",
+  "en": "labia majora(L)",
+  "fr": "grande lèvre(G)"
+ },
+ {
+  "code": "V_97",
+  "en": "big toe(R)",
+  "fr": "gros orteil(D)"
+ },
+ {
+  "code": "V_98",
+  "en": "big toe(L)",
+  "fr": "gros orteil(G)"
+ },
+ {
+  "code": "V_99",
+  "en": "hip(R)",
+  "fr": "hanche(D)"
+ },
+ {
+  "code": "V_100",
+  "en": "hip(L)",
+  "fr": "hanche(G)"
+ },
+ {
+  "code": "V_101",
+  "en": "upper chest",
+  "fr": "haut du thorax"
+ },
+ {
+  "code": "V_102",
+  "en": "hymen",
+  "fr": "hymen"
+ },
+ {
+  "code": "V_103",
+  "en": "hypochondrium(R)",
+  "fr": "hypochondre(D)"
+ },
+ {
+  "code": "V_104",
+  "en": "hypochondrium(L)",
+  "fr": "hypochondre(G)"
+ },
+ {
+  "code": "V_105",
+  "en": "ischio jambier(R)",
+  "fr": "ischio(D)"
+ },
+ {
+  "code": "V_106",
+  "en": "ischio jambier(L)",
+  "fr": "ischio(G)"
+ },
+ {
+  "code": "V_107",
+  "en": "yellow",
+  "fr": "jaune"
+ },
+ {
+  "code": "V_108",
+  "en": "cheek(R)",
+  "fr": "joue(D)"
+ },
+ {
+  "code": "V_109",
+  "en": "cheek(L)",
+  "fr": "joue(G)"
+ },
+ {
+  "code": "V_110",
+  "en": "internal cheek(R)",
+  "fr": "joue interne(D)"
+ },
+ {
+  "code": "V_111",
+  "en": "internal cheek(L)",
+  "fr": "joue interne(G)"
+ },
+ {
+  "code": "V_112",
+  "en": "haunting",
+  "fr": "lancinante"
+ },
+ {
+  "code": "V_113",
+  "en": "renal fossa(R)",
+  "fr": "loge renale(D)"
+ },
+ {
+  "code": "V_114",
+  "en": "renal fossa(L)",
+  "fr": "loge renale(G)"
+ },
+ {
+  "code": "V_115",
+  "en": "uvula",
+  "fr": "luette"
+ },
+ {
+  "code": "V_116",
+  "en": "bottom lip(R)",
+  "fr": "lèvre inferieure(D)"
+ },
+ {
+  "code": "V_117",
+  "en": "upper lip(R)",
+  "fr": "lèvre supérieure(D)"
+ },
+ {
+  "code": "V_118",
+  "en": "chin",
+  "fr": "menton"
+ },
+ {
+  "code": "V_119",
+  "en": "calf(R)",
+  "fr": "mollet(D)"
+ },
+ {
+  "code": "V_120",
+  "en": "calf(L)",
+  "fr": "mollet(G)"
+ },
+ {
+  "code": "V_121",
+  "en": "jaw",
+  "fr": "mâchoire"
+ },
+ {
+  "code": "V_122",
+  "en": "nose",
+  "fr": "nez"
+ },
+ {
+  "code": "V_123",
+  "en": "nowhere",
+  "fr": "nulle part"
+ },
+ {
+  "code": "V_124",
+  "en": "occiput",
+  "fr": "occiput"
+ },
+ {
+  "code": "V_125",
+  "en": "eye(R)",
+  "fr": "oeil(D)"
+ },
+ {
+  "code": "V_126",
+  "en": "eye(L)",
+  "fr": "oeil(G)"
+ },
+ {
+  "code": "V_127",
+  "en": "scapula(R)",
+  "fr": "omoplate(D)"
+ },
+ {
+  "code": "V_128",
+  "en": "scapula(L)",
+  "fr": "omoplate(G)"
+ },
+ {
+  "code": "V_129",
+  "en": "ear(R)",
+  "fr": "oreille(D)"
+ },
+ {
+  "code": "V_130",
+  "en": "ear(L)",
+  "fr": "oreille(G)"
+ },
+ {
+  "code": "V_131",
+  "en": "toe (1)(R)",
+  "fr": "orteil (1)(D)"
+ },
+ {
+  "code": "V_132",
+  "en": "toe (1)(L)",
+  "fr": "orteil (1)(G)"
+ },
+ {
+  "code": "V_133",
+  "en": "toe (2)(R)",
+  "fr": "orteil (2)(D)"
+ },
+ {
+  "code": "V_134",
+  "en": "toe (2)(L)",
+  "fr": "orteil (2)(G)"
+ },
+ {
+  "code": "V_135",
+  "en": "toe (3)(R)",
+  "fr": "orteil (3)(D)"
+ },
+ {
+  "code": "V_136",
+  "en": "toe (3)(L)",
+  "fr": "orteil (3)(G)"
+ },
+ {
+  "code": "V_137",
+  "en": "palace",
+  "fr": "palais"
+ },
+ {
+  "code": "V_138",
+  "en": "pale",
+  "fr": "pâle"
+ },
+ {
+  "code": "V_139",
+  "en": "vaginal wall",
+  "fr": "paroi vaginale"
+ },
+ {
+  "code": "V_140",
+  "en": "vaginal wall(R)",
+  "fr": "paroi vaginale(D)"
+ },
+ {
+  "code": "V_141",
+  "en": "vaginal wall(L)",
+  "fr": "paroi vaginale(G)"
+ },
+ {
+  "code": "V_142",
+  "en": "palm(R)",
+  "fr": "paume(D)"
+ },
+ {
+  "code": "V_143",
+  "en": "palm(L)",
+  "fr": "paume(G)"
+ },
+ {
+  "code": "V_144",
+  "en": "little toe (4)(R)",
+  "fr": "petit orteil (4)(D)"
+ },
+ {
+  "code": "V_145",
+  "en": "little toe (4)(L)",
+  "fr": "petit orteil (4)(G)"
+ },
+ {
+  "code": "V_146",
+  "en": "labia minora(R)",
+  "fr": "petite lèvre(D)"
+ },
+ {
+  "code": "V_147",
+  "en": "labia minora(L)",
+  "fr": "petite lèvre(G)"
+ },
+ {
+  "code": "V_148",
+  "en": "pharynx",
+  "fr": "pharynx"
+ },
+ {
+  "code": "V_149",
+  "en": "sole(R)",
+  "fr": "plante du pied(D)"
+ },
+ {
+  "code": "V_150",
+  "en": "sole(L)",
+  "fr": "plante du pied(G)"
+ },
+ {
+  "code": "V_151",
+  "en": "thumb(R)",
+  "fr": "pouce(D)"
+ },
+ {
+  "code": "V_152",
+  "en": "thumb(L)",
+  "fr": "pouce(G)"
+ },
+ {
+  "code": "V_153",
+  "en": "pubis",
+  "fr": "pubis"
+ },
+ {
+  "code": "V_154",
+  "en": "tedious",
+  "fr": "pénible"
+ },
+ {
+  "code": "V_155",
+  "en": "penis",
+  "fr": "pénis"
+ },
+ {
+  "code": "V_156",
+  "en": "pink",
+  "fr": "rose"
+ },
+ {
+  "code": "V_157",
+  "en": "red",
+  "fr": "rouge"
+ },
+ {
+  "code": "V_158",
+  "en": "scrotum",
+  "fr": "scrotum"
+ },
+ {
+  "code": "V_159",
+  "en": "breast(R)",
+  "fr": "sein(D)"
+ },
+ {
+  "code": "V_160",
+  "en": "breast(L)",
+  "fr": "sein(G)"
+ },
+ {
+  "code": "V_161",
+  "en": "sensitive",
+  "fr": "sensible"
+ },
+ {
+  "code": "V_162",
+  "en": "under the tongue",
+  "fr": "sous la langue"
+ },
+ {
+  "code": "V_163",
+  "en": "under the jaw",
+  "fr": "sous la machoire"
+ },
+ {
+  "code": "V_164",
+  "en": "heel(R)",
+  "fr": "talon(D)"
+ },
+ {
+  "code": "V_165",
+  "en": "heel(L)",
+  "fr": "talon(G)"
+ },
+ {
+  "code": "V_166",
+  "en": "temple(R)",
+  "fr": "tempe(D)"
+ },
+ {
+  "code": "V_167",
+  "en": "temple(L)",
+  "fr": "tempe(G)"
+ },
+ {
+  "code": "V_168",
+  "en": "testicle(R)",
+  "fr": "testicule(D)"
+ },
+ {
+  "code": "V_169",
+  "en": "testicle(L)",
+  "fr": "testicule(G)"
+ },
+ {
+  "code": "V_170",
+  "en": "posterior chest wall(R)",
+  "fr": "thorax postérieur(D)"
+ },
+ {
+  "code": "V_171",
+  "en": "posterior chest wall(L)",
+  "fr": "thorax postérieur(G)"
+ },
+ {
+  "code": "V_172",
+  "en": "tibia(R)",
+  "fr": "tibia(D)"
+ },
+ {
+  "code": "V_173",
+  "en": "tibia(L)",
+  "fr": "tibia(G)"
+ },
+ {
+  "code": "V_174",
+  "en": "trachea",
+  "fr": "trachée"
+ },
+ {
+  "code": "V_175",
+  "en": "trapezius(R)",
+  "fr": "trapèze(D)"
+ },
+ {
+  "code": "V_176",
+  "en": "trapezius(L)",
+  "fr": "trapèze(G)"
+ },
+ {
+  "code": "V_177",
+  "en": "triceps(R)",
+  "fr": "triceps(D)"
+ },
+ {
+  "code": "V_178",
+  "en": "triceps(L)",
+  "fr": "triceps(G)"
+ },
+ {
+  "code": "V_179",
+  "en": "a knife stroke",
+  "fr": "un coup de couteau"
+ },
+ {
+  "code": "V_180",
+  "en": "tugging",
+  "fr": "un tiraillement"
+ },
+ {
+  "code": "V_181",
+  "en": "burning",
+  "fr": "une brûlure"
+ },
+ {
+  "code": "V_182",
+  "en": "a cramp",
+  "fr": "une crampe"
+ },
+ {
+  "code": "V_183",
+  "en": "heavy",
+  "fr": "une lourdeur"
+ },
+ {
+  "code": "V_184",
+  "en": "a pulse",
+  "fr": "une pulsation"
+ },
+ {
+  "code": "V_185",
+  "en": "urethra",
+  "fr": "urètre"
+ },
+ {
+  "code": "V_186",
+  "en": "vagina",
+  "fr": "vagin"
+ },
+ {
+  "code": "V_187",
+  "en": "belly",
+  "fr": "ventre"
+ },
+ {
+  "code": "V_188",
+  "en": "vermilion(R)",
+  "fr": "vermillon(D)"
+ },
+ {
+  "code": "V_189",
+  "en": "vermilion(L)",
+  "fr": "vermillon(G)"
+ },
+ {
+  "code": "V_190",
+  "en": "vulval vestibule",
+  "fr": "vestibule"
+ },
+ {
+  "code": "V_191",
+  "en": "violent",
+  "fr": "violente"
+ },
+ {
+  "code": "V_192",
+  "en": "sharp",
+  "fr": "vive"
+ },
+ {
+  "code": "V_193",
+  "en": "sickening",
+  "fr": "écoeurante"
+ },
+ {
+  "code": "V_194",
+  "en": "shoulder(R)",
+  "fr": "épaule(D)"
+ },
+ {
+  "code": "V_195",
+  "en": "shoulder(L)",
+  "fr": "épaule(G)"
+ },
+ {
+  "code": "V_196",
+  "en": "scary",
+  "fr": "épeurante"
+ },
+ {
+  "code": "V_197",
+  "en": "epigastric",
+  "fr": "épigastre"
+ },
+ {
+  "code": "V_198",
+  "en": "exhausting",
+  "fr": "épuisante"
+ }
+]

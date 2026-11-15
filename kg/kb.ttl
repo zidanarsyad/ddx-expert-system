@@ -1,0 +1,5219 @@
+@prefix : <http://example.org/ddx#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:AcuteCOPDExacerbationInfection a :Pathology ;
+    rdfs:label "Acute COPD exacerbation / infection"@en,
+        "Exacerbation aigue de MPOC et/ou surinfection associée"@fr ;
+    :code "AcuteCOPDExacerbationInfection" ;
+    :hasAntecedent :E_123,
+        :E_125,
+        :E_198,
+        :E_199,
+        :E_200,
+        :E_204,
+        :E_31,
+        :E_72,
+        :E_79 ;
+    :hasSymptom :E_201,
+        :E_214,
+        :E_66,
+        :E_77 ;
+    :icd10Code "J44.1" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0156741 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2076 .
+
+:AcuteDystonicReactions a :Pathology ;
+    rdfs:label "Acute dystonic reactions"@en,
+        "Réaction dystonique aïgue"@fr ;
+    :code "AcuteDystonicReactions" ;
+    :hasAntecedent :E_147,
+        :E_15,
+        :E_204,
+        :E_62 ;
+    :hasSymptom :E_128,
+        :E_168,
+        :E_172,
+        :E_180,
+        :E_192,
+        :E_193,
+        :E_205,
+        :E_66 ;
+    :icd10Code "G24.02" ;
+    :inChapter :ICD10_VI ;
+    :prior 0.024772 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 3281 .
+
+:AcuteLaryngitis a :Pathology ;
+    rdfs:label "Acute laryngitis"@en,
+        "Laryngite aigue"@fr ;
+    :code "AcuteLaryngitis" ;
+    :hasAntecedent :E_116,
+        :E_204,
+        :E_48,
+        :E_49,
+        :E_79 ;
+    :hasSymptom :E_201,
+        :E_212,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_91 ;
+    :icd10Code "J04.0" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0257233 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3407 .
+
+:AcuteOtitisMedia a :Pathology ;
+    rdfs:label "Acute otitis media"@en,
+        "Otite moyenne aigue (OMA)"@fr ;
+    :code "AcuteOtitisMedia" ;
+    :hasAntecedent :E_1,
+        :E_204,
+        :E_209 ;
+    :hasSymptom :E_114,
+        :E_181,
+        :E_201,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_91 ;
+    :icd10Code "H66.90" ;
+    :inChapter :ICD10_VIII ;
+    :prior 0.0262292 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3474 .
+
+:AcutePulmonaryEdema a :Pathology ;
+    rdfs:label "Acute pulmonary edema"@en,
+        "OAP/Surcharge pulmonaire"@fr ;
+    :code "AcutePulmonaryEdema" ;
+    :hasAntecedent :E_104,
+        :E_105,
+        :E_106,
+        :E_204,
+        :E_5,
+        :E_8 ;
+    :hasSymptom :E_151,
+        :E_152,
+        :E_175,
+        :E_217,
+        :E_218,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_67 ;
+    :icd10Code "J81.0" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0188753 ;
+    :severity 1 ;
+    :severityLevel :Severity1 ;
+    :validationPatients 2500 .
+
+:AcuteRhinosinusitis a :Pathology ;
+    rdfs:label "Acute rhinosinusitis"@en,
+        "Rhinosinusite aigue"@fr ;
+    :code "AcuteRhinosinusitis" ;
+    :hasAntecedent :E_116,
+        :E_118,
+        :E_120,
+        :E_121,
+        :E_124,
+        :E_125,
+        :E_204,
+        :E_209,
+        :E_226,
+        :E_79 ;
+    :hasSymptom :E_103,
+        :E_181,
+        :E_182,
+        :E_201,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_91 ;
+    :icd10Code "J01" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0140885 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 1866 .
+
+:AllergicSinusitis a :Pathology ;
+    rdfs:label "Allergic sinusitis"@en,
+        "Rhinite allergique"@fr ;
+    :code "AllergicSinusitis" ;
+    :hasAntecedent :E_124,
+        :E_204,
+        :E_207,
+        :E_226,
+        :E_86,
+        :E_87 ;
+    :hasSymptom :E_169,
+        :E_170,
+        :E_181,
+        :E_201 ;
+    :icd10Code "J30" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0161271 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 2136 .
+
+:Anaphylaxis a :Pathology ;
+    rdfs:label "Anaphylaxis"@en,
+        "Anaphylaxie"@fr ;
+    :code "Anaphylaxis" ;
+    :hasAntecedent :E_12,
+        :E_204,
+        :E_226 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_151,
+        :E_152,
+        :E_159,
+        :E_194,
+        :E_214,
+        :E_42,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_82 ;
+    :icd10Code "T78.0" ;
+    :inChapter :ICD10_XIX ;
+    :prior 0.0283432 ;
+    :severity 1 ;
+    :severityLevel :Severity1 ;
+    :validationPatients 3754 .
+
+:Anemia a :Pathology ;
+    rdfs:label "Anemia"@en,
+        "Anémie"@fr ;
+    :code "Anemia" ;
+    :hasAntecedent :E_113,
+        :E_146,
+        :E_167,
+        :E_204,
+        :E_208,
+        :E_24,
+        :E_26,
+        :E_7 ;
+    :hasSymptom :E_140,
+        :E_145,
+        :E_154,
+        :E_179,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_76,
+        :E_82,
+        :E_88,
+        :E_89 ;
+    :icd10Code "D64.9" ;
+    :inChapter :ICD10_III ;
+    :prior 0.0521186 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 6903 .
+
+:AtrialFibrillation a :Pathology ;
+    rdfs:label "Atrial fibrillation"@en,
+        "Fibrillation auriculaire/Flutter auriculaire"@fr ;
+    :code "AtrialFibrillation" ;
+    :hasAntecedent :E_104,
+        :E_105,
+        :E_139,
+        :E_19,
+        :E_204,
+        :E_22,
+        :E_31,
+        :E_69,
+        :E_70 ;
+    :hasSymptom :E_155,
+        :E_164,
+        :E_218,
+        :E_66,
+        :E_76 ;
+    :icd10Code "I48.91" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0196983 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2609 .
+
+:Boerhaave a :Pathology ;
+    rdfs:label "Boerhaave"@en,
+        "Syndrome de Boerhaave"@fr ;
+    :code "Boerhaave" ;
+    :hasAntecedent :E_204,
+        :E_78 ;
+    :hasSymptom :E_148,
+        :E_210,
+        :E_211,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 ;
+    :icd10Code "K22.3" ;
+    :inChapter :ICD10_XI ;
+    :prior 0.0156665 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2075 .
+
+:Bronchiectasis a :Pathology ;
+    rdfs:label "Bronchiectasis"@en,
+        "Bronchiectasies"@fr ;
+    :code "Bronchiectasis" ;
+    :hasAntecedent :E_118,
+        :E_123,
+        :E_124,
+        :E_17,
+        :E_18,
+        :E_20,
+        :E_204,
+        :E_227,
+        :E_47 ;
+    :hasSymptom :E_201,
+        :E_45,
+        :E_66,
+        :E_77 ;
+    :icd10Code "J47" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0175088 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2319 .
+
+:Bronchiolitis a :Pathology ;
+    rdfs:label "Bronchiolitis"@en,
+        "Bronchiolite"@fr ;
+    :code "Bronchiolitis" ;
+    :hasAntecedent :E_142,
+        :E_183,
+        :E_195,
+        :E_204,
+        :E_209,
+        :E_48 ;
+    :hasSymptom :E_181,
+        :E_201,
+        :E_214,
+        :E_23,
+        :E_32,
+        :E_66,
+        :E_91 ;
+    :icd10Code "J21" ;
+    :inChapter :ICD10_X ;
+    :prior 0.000211404 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 28 .
+
+:Bronchitis a :Pathology ;
+    rdfs:label "Bronchitis"@en,
+        "Bronchite"@fr ;
+    :code "Bronchitis" ;
+    :hasAntecedent :E_123,
+        :E_204,
+        :E_209,
+        :E_79 ;
+    :hasSymptom :E_181,
+        :E_201,
+        :E_214,
+        :E_219,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_77,
+        :E_91,
+        :E_97 ;
+    :icd10Code "J40" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0267501 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3543 .
+
+:BronchospasmAcuteAsthmaExacerbation a :Pathology ;
+    rdfs:label "Bronchospasm / acute asthma exacerbation"@en,
+        "Asthme exacerbé ou bronchospasme"@fr ;
+    :code "BronchospasmAcuteAsthmaExacerbation" ;
+    :hasAntecedent :E_101,
+        :E_116,
+        :E_119,
+        :E_124,
+        :E_204,
+        :E_207,
+        :E_222,
+        :E_226,
+        :E_46,
+        :E_87 ;
+    :hasSymptom :E_201,
+        :E_214,
+        :E_66 ;
+    :icd10Code "J45" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0166782 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2209 .
+
+:Chagas a :Pathology ;
+    rdfs:label "Chagas"@en,
+        "Chagas"@fr ;
+    :code "Chagas" ;
+    :hasAntecedent :E_204 ;
+    :hasSymptom :E_148,
+        :E_151,
+        :E_152,
+        :E_174,
+        :E_175,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_9,
+        :E_91 ;
+    :icd10Code "B57" ;
+    :inChapter :ICD10_I ;
+    :prior 0.00848635 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 1124 .
+
+:ChronicRhinosinusitis a :Pathology ;
+    rdfs:label "Chronic rhinosinusitis"@en,
+        "Rhinosinusite chronique"@fr ;
+    :code "ChronicRhinosinusitis" ;
+    :hasAntecedent :E_116,
+        :E_118,
+        :E_120,
+        :E_121,
+        :E_124,
+        :E_125,
+        :E_204,
+        :E_226,
+        :E_79 ;
+    :hasSymptom :E_103,
+        :E_181,
+        :E_182,
+        :E_201,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59 ;
+    :icd10Code "J32" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0205137 ;
+    :severity 5 ;
+    :severityLevel :Severity5 ;
+    :validationPatients 2717 .
+
+:ClusterHeadache a :Pathology ;
+    rdfs:label "Cluster headache"@en,
+        "Céphalée en grappe"@fr ;
+    :code "ClusterHeadache" ;
+    :hasAntecedent :E_184,
+        :E_204,
+        :E_25,
+        :E_78 ;
+    :hasSymptom :E_127,
+        :E_176,
+        :E_181,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59 ;
+    :icd10Code "G44.009" ;
+    :inChapter :ICD10_VI ;
+    :prior 0.0214499 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2841 .
+
+:Croup a :Pathology ;
+    rdfs:label "Croup"@en,
+        "Laryngo-trachéo-bronchite (Croup)"@fr ;
+    :code "Croup" ;
+    :hasAntecedent :E_204,
+        :E_209,
+        :E_4 ;
+    :hasSymptom :E_181,
+        :E_190,
+        :E_194,
+        :E_202,
+        :E_219,
+        :E_66,
+        :E_91 ;
+    :icd10Code "J05.0" ;
+    :inChapter :ICD10_X ;
+    :prior 0.00201589 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 267 .
+
+:Ebola a :Pathology ;
+    rdfs:label "Ebola"@en,
+        "Ebola"@fr ;
+    :code "Ebola" ;
+    :hasAntecedent :E_204,
+        :E_41,
+        :E_73 ;
+    :hasSymptom :E_144,
+        :E_148,
+        :E_178,
+        :E_201,
+        :E_39,
+        :E_51,
+        :E_66,
+        :E_89,
+        :E_91,
+        :E_97 ;
+    :icd10Code "A98.4" ;
+    :inChapter :ICD10_I ;
+    :prior 0.000679512 ;
+    :severity 1 ;
+    :severityLevel :Severity1 ;
+    :validationPatients 90 .
+
+:Epiglottitis a :Pathology ;
+    rdfs:label "Epiglottitis"@en,
+        "Épiglottite"@fr ;
+    :code "Epiglottitis" ;
+    :hasAntecedent :E_104,
+        :E_204,
+        :E_209,
+        :E_62,
+        :E_69,
+        :E_78 ;
+    :hasSymptom :E_190,
+        :E_194,
+        :E_212,
+        :E_33,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_65,
+        :E_66,
+        :E_91 ;
+    :icd10Code "J05.1" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0169727 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2248 .
+
+:GERD a :Pathology ;
+    rdfs:label "GERD"@en,
+        "RGO"@fr ;
+    :code "GERD" ;
+    :hasAntecedent :E_124,
+        :E_167,
+        :E_204,
+        :E_70,
+        :E_78,
+        :E_79,
+        :E_98 ;
+    :hasSymptom :E_140,
+        :E_173,
+        :E_201,
+        :E_210,
+        :E_215,
+        :E_217,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59 ;
+    :icd10Code "K21" ;
+    :inChapter :ICD10_XI ;
+    :prior 0.0258668 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 3426 .
+
+:GuillainBarreSyndrome a :Pathology ;
+    rdfs:label "Guillain-Barré syndrome"@en,
+        "Syndrome de Guillain-Barré"@fr ;
+    :code "GuillainBarreSyndrome" ;
+    :hasAntecedent :E_0,
+        :E_204 ;
+    :hasSymptom :E_156,
+        :E_157,
+        :E_176,
+        :E_177,
+        :E_66,
+        :E_83,
+        :E_84,
+        :E_93 ;
+    :icd10Code "G61.0" ;
+    :inChapter :ICD10_VI ;
+    :prior 0.0193057 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2557 .
+
+:HIVInitialInfection a :Pathology ;
+    rdfs:label "HIV (initial infection)"@en,
+        "VIH (Primo-infection)"@fr ;
+    :code "HIVInitialInfection" ;
+    :hasAntecedent :E_115,
+        :E_189,
+        :E_204,
+        :E_27,
+        :E_61 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_148,
+        :E_162,
+        :E_50,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_88,
+        :E_9,
+        :E_91,
+        :E_97 ;
+    :icd10Code "B20" ;
+    :inChapter :ICD10_I ;
+    :prior 0.0290831 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 3852 .
+
+:Influenza a :Pathology ;
+    rdfs:label "Influenza"@en,
+        "Possible influenza ou syndrome virémique typique"@fr ;
+    :code "Influenza" ;
+    :hasAntecedent :E_204,
+        :E_227,
+        :E_79 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_161,
+        :E_181,
+        :E_201,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_88,
+        :E_91,
+        :E_94,
+        :E_97 ;
+    :icd10Code "J11.1" ;
+    :inChapter :ICD10_X ;
+    :prior 0.027105 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 3590 .
+
+:InguinalHernia a :Pathology ;
+    rdfs:label "Inguinal hernia"@en,
+        "Hernie inguinale"@fr ;
+    :code "InguinalHernia" ;
+    :hasAntecedent :E_160,
+        :E_204,
+        :E_70 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_150,
+        :E_203,
+        :E_221,
+        :E_30,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59 ;
+    :icd10Code "K40" ;
+    :inChapter :ICD10_XI ;
+    :prior 0.0198719 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2632 .
+
+:Larygospasm a :Pathology ;
+    rdfs:label "Larygospasm"@en,
+        "Laryngospasme"@fr ;
+    :code "Larygospasm" ;
+    :hasAntecedent :E_116,
+        :E_124,
+        :E_125,
+        :E_204,
+        :E_222,
+        :E_79 ;
+    :hasSymptom :E_194 ;
+    :icd10Code "J38.5" ;
+    :inChapter :ICD10_X ;
+    :prior 0.00504349 ;
+    :severity 1 ;
+    :severityLevel :Severity1 ;
+    :validationPatients 668 .
+
+:LocalizedEdema a :Pathology ;
+    rdfs:label "Localized edema"@en,
+        "Oedème localisé ou généralisé sans atteinte pulmonaire associée"@fr ;
+    :code "LocalizedEdema" ;
+    :hasAntecedent :E_10,
+        :E_106,
+        :E_109,
+        :E_126,
+        :E_137,
+        :E_149,
+        :E_158,
+        :E_186,
+        :E_197,
+        :E_204,
+        :E_22,
+        :E_44 ;
+    :hasSymptom :E_151,
+        :E_152,
+        :E_217,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_67,
+        :E_96 ;
+    :icd10Code "R60.0" ;
+    :inChapter :ICD10_XVIII ;
+    :prior 0.0278902 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3694 .
+
+:MyastheniaGravis a :Pathology ;
+    rdfs:label "Myasthenia gravis"@en,
+        "Myasthénie grave"@fr ;
+    :code "MyastheniaGravis" ;
+    :hasAntecedent :E_204,
+        :E_28 ;
+    :hasSymptom :E_172,
+        :E_176,
+        :E_38,
+        :E_52,
+        :E_63,
+        :E_65,
+        :E_66,
+        :E_84,
+        :E_90 ;
+    :icd10Code "G70.0" ;
+    :inChapter :ICD10_VI ;
+    :prior 0.0163007 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2159 .
+
+:Myocarditis a :Pathology ;
+    rdfs:label "Myocarditis"@en,
+        "Myocardite"@fr ;
+    :code "Myocarditis" ;
+    :hasAntecedent :E_0,
+        :E_204 ;
+    :hasSymptom :E_114,
+        :E_155,
+        :E_175,
+        :E_217,
+        :E_218,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_64,
+        :E_66 ;
+    :icd10Code "I51.4" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0116801 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 1547 .
+
+:PSVT a :Pathology ;
+    rdfs:label "PSVT"@en,
+        "TSVP"@fr ;
+    :code "PSVT" ;
+    :hasAntecedent :E_204,
+        :E_213,
+        :E_35,
+        :E_60,
+        :E_62 ;
+    :hasSymptom :E_155,
+        :E_16,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_76,
+        :E_82 ;
+    :icd10Code "I47.1" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0179391 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2376 .
+
+:PancreaticNeoplasm a :Pathology ;
+    rdfs:label "Pancreatic neoplasm"@en,
+        "Néoplasie du pancréas"@fr ;
+    :code "PancreaticNeoplasm" ;
+    :hasAntecedent :E_204,
+        :E_223,
+        :E_6,
+        :E_69,
+        :E_70,
+        :E_79 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_162,
+        :E_188,
+        :E_201,
+        :E_51,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_89 ;
+    :icd10Code "C25" ;
+    :inChapter :ICD10_II ;
+    :prior 0.0194944 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2582 .
+
+:PanicAttack a :Pathology ;
+    rdfs:label "Panic attack"@en,
+        "Attaque de panique"@fr ;
+    :code "PanicAttack" ;
+    :hasAntecedent :E_124,
+        :E_138,
+        :E_185,
+        :E_204,
+        :E_29,
+        :E_78,
+        :E_80,
+        :E_81,
+        :E_99 ;
+    :hasSymptom :E_111,
+        :E_148,
+        :E_155,
+        :E_157,
+        :E_16,
+        :E_171,
+        :E_177,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_75,
+        :E_82 ;
+    :icd10Code "F41" ;
+    :inChapter :ICD10_V ;
+    :prior 0.0244398 ;
+    :severity 5 ;
+    :severityLevel :Severity5 ;
+    :validationPatients 3237 .
+
+:Pericarditis a :Pathology ;
+    rdfs:label "Pericarditis"@en,
+        "Péricardite"@fr ;
+    :code "Pericarditis" ;
+    :hasAntecedent :E_0,
+        :E_204,
+        :E_3 ;
+    :hasSymptom :E_155,
+        :E_217,
+        :E_220,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 ;
+    :icd10Code "I30" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.022892 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3032 .
+
+:Pneumonia a :Pathology ;
+    rdfs:label "Pneumonia"@en,
+        "Pneumonie"@fr ;
+    :code "Pneumonia" ;
+    :hasAntecedent :E_106,
+        :E_107,
+        :E_118,
+        :E_123,
+        :E_124,
+        :E_196,
+        :E_204,
+        :E_208,
+        :E_209,
+        :E_78,
+        :E_79,
+        :E_95 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_144,
+        :E_161,
+        :E_175,
+        :E_181,
+        :E_201,
+        :E_219,
+        :E_220,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_77,
+        :E_91,
+        :E_94 ;
+    :icd10Code "J17, J18" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0263047 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 3484 .
+
+:PossibleNSTEMISTEMI a :Pathology ;
+    rdfs:label "Possible NSTEMI / STEMI"@en,
+        "Possible NSTEMI / STEMI"@fr ;
+    :code "PossibleNSTEMISTEMI" ;
+    :hasAntecedent :E_104,
+        :E_105,
+        :E_108,
+        :E_191,
+        :E_2,
+        :E_204,
+        :E_225,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_79 ;
+    :hasSymptom :E_148,
+        :E_161,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_89 ;
+    :icd10Code "I21" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.02222 ;
+    :severity 1 ;
+    :severityLevel :Severity1 ;
+    :validationPatients 2943 .
+
+:PulmonaryEmbolism a :Pathology ;
+    rdfs:label "Pulmonary embolism"@en,
+        "Embolie pulmonaire"@fr ;
+    :code "PulmonaryEmbolism" ;
+    :hasAntecedent :E_100,
+        :E_109,
+        :E_110,
+        :E_196,
+        :E_204,
+        :E_34 ;
+    :hasSymptom :E_151,
+        :E_152,
+        :E_159,
+        :E_220,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 ;
+    :icd10Code "I26" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0281242 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 3725 .
+
+:PulmonaryNeoplasm a :Pathology ;
+    rdfs:label "Pulmonary neoplasm"@en,
+        "néoplasie pulmonaire"@fr ;
+    :code "PulmonaryNeoplasm" ;
+    :hasAntecedent :E_191,
+        :E_204,
+        :E_222,
+        :E_224,
+        :E_79 ;
+    :hasSymptom :E_161,
+        :E_162,
+        :E_201,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_89 ;
+    :icd10Code "C34" ;
+    :inChapter :ICD10_II ;
+    :prior 0.0142773 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 1891 .
+
+:SLE a :Pathology ;
+    rdfs:label "SLE"@en,
+        "Lupus érythémateux disséminé (LED)"@fr ;
+    :code "SLE" ;
+    :hasAntecedent :E_102,
+        :E_11,
+        :E_141,
+        :E_204,
+        :E_3,
+        :E_79 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_135,
+        :E_136,
+        :E_151,
+        :E_206,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_89 ;
+    :icd10Code "M32" ;
+    :inChapter :ICD10_XIII ;
+    :prior 0.0119217 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 1579 .
+
+:Sarcoidosis a :Pathology ;
+    rdfs:label "Sarcoidosis"@en,
+        "Sarcoïdose"@fr ;
+    :code "Sarcoidosis" ;
+    :hasAntecedent :E_198,
+        :E_204,
+        :E_70 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_163,
+        :E_43,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_74,
+        :E_9 ;
+    :icd10Code "D86" ;
+    :inChapter :ICD10_III ;
+    :prior 0.0228618 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 3028 .
+
+:ScombroidFoodPoisoning a :Pathology ;
+    rdfs:label "Scombroid food poisoning"@en,
+        "Scombroïde"@fr ;
+    :code "ScombroidFoodPoisoning" ;
+    :hasAntecedent :E_187,
+        :E_204 ;
+    :hasSymptom :E_129,
+        :E_130,
+        :E_131,
+        :E_132,
+        :E_133,
+        :E_134,
+        :E_135,
+        :E_136,
+        :E_148,
+        :E_155,
+        :E_214,
+        :E_51,
+        :E_66,
+        :E_82,
+        :E_92 ;
+    :icd10Code "T61.1" ;
+    :inChapter :ICD10_XIX ;
+    :prior 0.0169878 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2250 .
+
+:SpontaneousPneumothorax a :Pathology ;
+    rdfs:label "Spontaneous pneumothorax"@en,
+        "Pneumothorax spontané"@fr ;
+    :code "SpontaneousPneumothorax" ;
+    :hasAntecedent :E_123,
+        :E_165,
+        :E_204,
+        :E_21,
+        :E_79 ;
+    :hasSymptom :E_14,
+        :E_151,
+        :E_218,
+        :E_220,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 ;
+    :icd10Code "J93" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0106079 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 1405 .
+
+:SpontaneousRibFracture a :Pathology ;
+    rdfs:label "Spontaneous rib fracture"@en,
+        "Fracture de côte spontanée"@fr ;
+    :code "SpontaneousRibFracture" ;
+    :hasAntecedent :E_153,
+        :E_204,
+        :E_37,
+        :E_78 ;
+    :hasSymptom :E_151,
+        :E_201,
+        :E_203,
+        :E_216,
+        :E_220,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66 ;
+    :icd10Code "S22.9" ;
+    :inChapter :ICD10_XIX ;
+    :prior 0.0059042 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 782 .
+
+:StableAngina a :Pathology ;
+    rdfs:label "Stable angina"@en,
+        "Angine stable"@fr ;
+    :code "StableAngina" ;
+    :hasAntecedent :E_104,
+        :E_105,
+        :E_143,
+        :E_204,
+        :E_225,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_78,
+        :E_79 ;
+    :hasSymptom :E_218,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_89 ;
+    :icd10Code "I20.9" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0176673 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2340 .
+
+:Tuberculosis a :Pathology ;
+    rdfs:label "Tuberculosis"@en,
+        "Tuberculose"@fr ;
+    :code "Tuberculosis" ;
+    :hasAntecedent :E_2,
+        :E_204,
+        :E_208,
+        :E_44,
+        :E_61,
+        :E_69,
+        :E_78 ;
+    :hasSymptom :E_162,
+        :E_201,
+        :E_45,
+        :E_66,
+        :E_91 ;
+    :icd10Code "A15" ;
+    :inChapter :ICD10_I ;
+    :prior 0.0151531 ;
+    :severity 3 ;
+    :severityLevel :Severity3 ;
+    :validationPatients 2007 .
+
+:URTI a :Pathology ;
+    rdfs:label "URTI"@en,
+        "IVRS ou virémie"@fr ;
+    :code "URTI" ;
+    :hasAntecedent :E_204,
+        :E_222,
+        :E_41,
+        :E_48,
+        :E_49,
+        :E_79 ;
+    :hasSymptom :E_144,
+        :E_181,
+        :E_201,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_77,
+        :E_91,
+        :E_97 ;
+    :icd10Code "J06.9" ;
+    :inChapter :ICD10_X ;
+    :prior 0.065354 ;
+    :severity 5 ;
+    :severityLevel :Severity5 ;
+    :validationPatients 8656 .
+
+:UnstableAngina a :Pathology ;
+    rdfs:label "Unstable angina"@en,
+        "Angine instable"@fr ;
+    :code "UnstableAngina" ;
+    :hasAntecedent :E_104,
+        :E_105,
+        :E_143,
+        :E_204,
+        :E_225,
+        :E_69,
+        :E_70,
+        :E_71,
+        :E_78,
+        :E_79 ;
+    :hasSymptom :E_13,
+        :E_14,
+        :E_148,
+        :E_218,
+        :E_50,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_66,
+        :E_89 ;
+    :icd10Code "I20.0" ;
+    :inChapter :ICD10_IX ;
+    :prior 0.0207478 ;
+    :severity 2 ;
+    :severityLevel :Severity2 ;
+    :validationPatients 2748 .
+
+:ViralPharyngitis a :Pathology ;
+    rdfs:label "Viral pharyngitis"@en,
+        "Pharyngite virale"@fr ;
+    :code "ViralPharyngitis" ;
+    :hasAntecedent :E_204,
+        :E_227,
+        :E_41,
+        :E_48,
+        :E_49,
+        :E_79 ;
+    :hasSymptom :E_181,
+        :E_201,
+        :E_45,
+        :E_53,
+        :E_54,
+        :E_55,
+        :E_56,
+        :E_57,
+        :E_58,
+        :E_59,
+        :E_91 ;
+    :icd10Code "J02.9" ;
+    :inChapter :ICD10_X ;
+    :prior 0.0622584 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 8246 .
+
+:WhoopingCough a :Pathology ;
+    rdfs:label "Whooping cough"@en,
+        "Coqueluche"@fr ;
+    :code "WhoopingCough" ;
+    :hasAntecedent :E_124,
+        :E_204,
+        :E_209,
+        :E_40,
+        :E_70 ;
+    :hasSymptom :E_112,
+        :E_166,
+        :E_203 ;
+    :icd10Code "A37" ;
+    :inChapter :ICD10_I ;
+    :prior 0.00411482 ;
+    :severity 4 ;
+    :severityLevel :Severity4 ;
+    :validationPatients 545 .
+
+:E_1 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Being treated or have you recently been treated with an oral antibiotic for an ear infection"@en ;
+    :code "E_1" ;
+    :defaultValue "0" ;
+    :question "Are you currently being treated or have you recently been treated with an oral antibiotic for an ear infection?"@en,
+        "Êtes-vous actuellement traité ou avez-vous été récemment traité avec un antibiotique pris par la bouche pour une infection de l’oreille ou une otite?"@fr .
+
+:E_10 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Taking or have you recently taken anti-inflammatory drugs (NSAIDs)"@en ;
+    :code "E_10" ;
+    :defaultValue "0" ;
+    :question "Are you currently taking or have you recently taken anti-inflammatory drugs (NSAIDs)?"@en,
+        "Prenez-vous ou avez-vous pris des anti-inflammatoires récemment?"@fr .
+
+:E_100 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Take hormones"@en ;
+    :code "E_100" ;
+    :defaultValue "0" ;
+    :question "Do you currently take hormones?"@en,
+        "Prenez-vous des hormones?"@fr .
+
+:E_101 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Hospitalized for an asthma attack in the past year"@en ;
+    :code "E_101" ;
+    :defaultValue "0" ;
+    :question "Have you been hospitalized for an asthma attack in the past year?"@en,
+        "Avez-vous été hospitalisé pour une crise d’asthme dans la dernière année?"@fr .
+
+:E_102 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Consulting because you have high blood pressure"@en ;
+    :code "E_102" ;
+    :defaultValue "0" ;
+    :question "Are you consulting because you have high blood pressure?"@en,
+        "Consultez-vous ou avez-vous été référé car votre tension artérielle est élevée?"@fr .
+
+:E_107 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Stroke"@en ;
+    :code "E_107" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a stroke?"@en,
+        "Avez-vous déjà fait un accident vasculaire cérébral ou AVC?"@fr .
+
+:E_108 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Problem with poor circulation"@en ;
+    :code "E_108" ;
+    :defaultValue "0" ;
+    :question "Do you have a problem with poor circulation?"@en,
+        "Avez-vous un problème de mauvaise circulation sanguine?"@fr .
+
+:E_11 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Breastfed one of your children for more than 9 months"@en ;
+    :code "E_11" ;
+    :defaultValue "0" ;
+    :question "Have you breastfed one of your children for more than 9 months?"@en,
+        "Avez-vous allaité plus de 9 mois un de vos enfants?"@fr .
+
+:E_110 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Unable to move or get up for more than 3 consecutive days within the last 4 weeks"@en ;
+    :code "E_110" ;
+    :defaultValue "0" ;
+    :question "Have you been unable to move or get up for more than 3 consecutive days within the last 4 weeks?"@en,
+        "Avez-vous été incapable de vous mobiliser ou vous lever plus de 3 jours consécutifs dans le dernier mois?"@fr .
+
+:E_111 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Dying or were you afraid that you were about do die"@en ;
+    :code "E_111" ;
+    :defaultValue "0" ;
+    :question "Do you feel like you are dying or were you afraid that you were about do die?"@en,
+        "Avez-vous l’impression que vous pourriez mourir ou que vous alliez mourir?"@fr .
+
+:E_112 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Wheeze while inhaling or is your breathing noisy after coughing spells"@en ;
+    :code "E_112" ;
+    :defaultValue "0" ;
+    :question "Do you wheeze while inhaling or is your breathing noisy after coughing spells?"@en,
+        "Avez-vous une inspiration sifflante après vos quintes de toux?"@fr .
+
+:E_113 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Chronic kidney failure"@en ;
+    :code "E_113" ;
+    :defaultValue "0" ;
+    :question "Do you have chronic kidney failure?"@en,
+        "Souffrez-vous d’insuffisance rénale chronique?"@fr .
+
+:E_115 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Unprotected sex with more than one partner in the last 6 months"@en ;
+    :code "E_115" ;
+    :defaultValue "0" ;
+    :question "Have you had unprotected sex with more than one partner in the last 6 months?"@en,
+        "Avez-vous eu des relations sexuelles non-protégées avec plus d’un partenaire dans les derniers 6 mois?"@fr .
+
+:E_119 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Chronic sinusitis"@en ;
+    :code "E_119" ;
+    :defaultValue "0" ;
+    :question "Have you been diagnosed with chronic sinusitis?"@en,
+        "Avez-vous un diagnostic de sinusite chronique fait par un médecin?"@fr .
+
+:E_12 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Known severe food allergy"@en ;
+    :code "E_12" ;
+    :defaultValue "0" ;
+    :question "Do you have a known severe food allergy?"@en,
+        "Avez-vous un allergie alimentaire connue et sévère?"@fr .
+
+:E_126 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Liver cirrhosis"@en ;
+    :code "E_126" ;
+    :defaultValue "0" ;
+    :question "Do you have liver cirrhosis?"@en,
+        "Souffrez-vous de cirrhose hépatique?"@fr .
+
+:E_127 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Your eyes produce excessive tears"@en ;
+    :code "E_127" ;
+    :defaultValue "0" ;
+    :question "Do you feel that your eyes produce excessive tears?"@en,
+        "Avez-vous l’impression que votre oeil produit des larmes de façon excessive?"@fr .
+
+:E_128 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Felt like you were suffocating for a very short time associated with inability to breathe or speak"@en ;
+    :code "E_128" ;
+    :defaultValue "0" ;
+    :question "Have you ever felt like you were suffocating for a very short time associated with inability to breathe or speak?"@en,
+        "Avez-vous eu l’impression que vous étouffiez pendant un court instant et que vous étiez incapable de respirer ou parler?"@fr .
+
+:E_13 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Find that your symptoms have worsened over the last 2 weeks and that progressively less effort is required to cause the symptoms"@en ;
+    :code "E_13" ;
+    :defaultValue "0" ;
+    :question "Do you find that your symptoms have worsened over the last 2 weeks and that progressively less effort is required to cause the symptoms?"@en,
+        "Trouvez-vous que vos symptômes sont pires depuis environ 2 semaines et que de moins en moins d’effort provoquent les symptômes?"@fr .
+
+:E_137 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Surgery to remove lymph nodes"@en ;
+    :code "E_137" ;
+    :defaultValue "0" ;
+    :question "Have you ever had surgery to remove lymph nodes?"@en,
+        "Vous a-t-on déjà retiré les ganglions lors d’une opération dans le passé?"@fr .
+
+:E_138 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Fibromyalgia"@en ;
+    :code "E_138" ;
+    :defaultValue "0" ;
+    :question "Do you suffer from fibromyalgia?"@en,
+        "Souffrez-vous de fibromyalgie?"@fr .
+
+:E_139 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Known heart defect"@en ;
+    :code "E_139" ;
+    :defaultValue "0" ;
+    :question "Do you have a known heart defect?"@en,
+        "Êtes-vous connu pour une malformation cardiaque?"@fr .
+
+:E_141 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Have your first menstrual period before the age of 12"@en ;
+    :code "E_141" ;
+    :defaultValue "0" ;
+    :question "Did you have your first menstrual period before the age of 12?"@en,
+        "Avez-vous eu vos premières menstruations avant l’âge de 12 ans?"@fr .
+
+:E_142 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Mother suffer from asthma"@en ;
+    :code "E_142" ;
+    :defaultValue "0" ;
+    :question "Does your mother suffer from asthma?"@en,
+        "Avez-vous une mère qui souffre d’asthme?"@fr .
+
+:E_145 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Very abundant or very long menstruation periods"@en ;
+    :code "E_145" ;
+    :defaultValue "0" ;
+    :question "Do you have very abundant or very long menstruation periods?"@en,
+        "Avez-vous des menstruations très abondantes ou très longues?"@fr .
+
+:E_146 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Taking any new oral anticoagulants ((NOACs)"@en ;
+    :code "E_146" ;
+    :defaultValue "0" ;
+    :question "Are you taking any new oral anticoagulants ((NOACs)?"@en,
+        "Prenez-vous des nouveaux anticoagulants oraux?"@fr .
+
+:E_147 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Treated in hospital recently for nausea, agitation, intoxication or aggressive behavior and received medication via an intravenous or intramuscular route"@en ;
+    :code "E_147" ;
+    :defaultValue "0" ;
+    :question "Have you been treated in hospital recently for nausea, agitation, intoxication or aggressive behavior and received medication via an intravenous or intramuscular route?"@en,
+        "Avez-vous été traité à l’hôpital récemment pour de la nausée, de l’agitation, une intoxication ou de l’agressivité et reçu un médicament via une voie intra-veineuse ou intra-musculaire?"@fr .
+
+:E_149 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Take a calcium channel blockers (medication)"@en ;
+    :code "E_149" ;
+    :defaultValue "0" ;
+    :question "Do you take a calcium channel blockers (medication)?"@en,
+        "Prenez-vous un médicaments de la classe des bloqueurs des canaux calciques?"@fr .
+
+:E_15 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Started or taken any antipsychotic medication within the last 7 days"@en ;
+    :code "E_15" ;
+    :defaultValue "0" ;
+    :question "Have you started or taken any antipsychotic medication within the last 7 days?"@en,
+        "Avez-vous pris ou commencer un antipsychotique dans les derniers 7 jours?"@fr .
+
+:E_150 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Able to pass stools or gas since your symptoms increased"@en ;
+    :code "E_150" ;
+    :defaultValue "0" ;
+    :question "Have you been able to pass stools or gas since your symptoms increased?"@en,
+        "Passez-vous des selles ou des gaz depuis que vos symptômes sont pires?"@fr .
+
+:E_153 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Being treated for osteoporosis"@en ;
+    :code "E_153" ;
+    :defaultValue "0" ;
+    :question "Are you being treated for osteoporosis?"@en,
+        "Êtes-vous traité pour de l’ostéoporose?"@fr .
+
+:E_154 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Skin much paler than usual"@en ;
+    :code "E_154" ;
+    :defaultValue "0" ;
+    :question "Is your skin much paler than usual?"@en,
+        "Avez-vous un teint beaucoup plus pâle que d’habitude?"@fr .
+
+:E_156 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Weakness or paralysis on one side of the face, which may still be present or completely resolved"@en ;
+    :code "E_156" ;
+    :defaultValue "0" ;
+    :question "Have you had weakness or paralysis on one side of the face, which may still be present or completely resolved?"@en,
+        "Avez-vous une faiblesse ou une paralysie d’un côté du visage, qui peut être encore présente ou complètement résolue?"@fr .
+
+:E_158 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Endocrine disease or a hormone dysfunction"@en ;
+    :code "E_158" ;
+    :defaultValue "0" ;
+    :question "Were you diagnosed with endocrine disease or a hormone dysfunction?"@en,
+        "Avez-vous une maladie endocrinienne ou un dysfonctionnement hormonal?"@fr .
+
+:E_160 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Born prematurely or did you suffer any complication at birth"@en ;
+    :code "E_160" ;
+    :defaultValue "0" ;
+    :question "Were you born prematurely or did you suffer any complication at birth?"@en,
+        "Êtes-vous né de façon prématuré ou avez vous souffert de complications à la naissance?"@fr .
+
+:E_163 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Vaginal discharge"@en ;
+    :code "E_163" ;
+    :defaultValue "0" ;
+    :question "Have you had any vaginal discharge?"@en,
+        "Avez-vous des pertes vaginales?"@fr .
+
+:E_164 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Heart is beating very irregularly or in a disorganized pattern"@en ;
+    :code "E_164" ;
+    :defaultValue "0" ;
+    :question "Do you feel your heart is beating very irregularly or in a disorganized pattern?"@en,
+        "Sentez-vous que votre cœur bat de façon très irrégulière ou désorganisée?"@fr .
+
+:E_165 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Have any of your family members ever had a pneumothorax"@en ;
+    :code "E_165" ;
+    :defaultValue "0" ;
+    :question "Have any of your family members ever had a pneumothorax?"@en,
+        "Avez-vous des membres de votre famille qui ont déjà fait un pneumothorax?"@fr .
+
+:E_166 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Vomit after coughing"@en ;
+    :code "E_166" ;
+    :defaultValue "0" ;
+    :question "Did you vomit after coughing?"@en,
+        "Avez-vous eu des vomissements après des quintes de toux?"@fr .
+
+:E_168 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Trouble keeping your tongue in your mouth"@en ;
+    :code "E_168" ;
+    :defaultValue "0" ;
+    :question "Do you have trouble keeping your tongue in your mouth?"@en,
+        "Avez-vous de la difficulté à garder votre langue dans votre bouche?"@fr .
+
+:E_169 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Nose or the back of your throat itchy"@en ;
+    :code "E_169" ;
+    :defaultValue "0" ;
+    :question "Is your nose or the back of your throat itchy?"@en,
+        "Avez-vous le nez et/ou le palais qui pique?"@fr .
+
+:E_17 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Of Asian descent"@en ;
+    :code "E_17" ;
+    :defaultValue "0" ;
+    :question "Are you of Asian descent?"@en,
+        "Avez-vous des origines asiatiques?"@fr .
+
+:E_170 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Severe itching in one or both eyes"@en ;
+    :code "E_170" ;
+    :defaultValue "0" ;
+    :question "Do you have severe itching in one or both eyes?"@en,
+        "Avez-vous des démangeaisons importantes au niveau d’un oeil ou des 2 yeux simultanément?"@fr .
+
+:E_171 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Detached from your own body or your surroundings"@en ;
+    :code "E_171" ;
+    :defaultValue "0" ;
+    :question "Do you feel like you are detached from your own body or your surroundings?"@en,
+        "Avez-vous l’impression que vous êtes détaché de votre propre corps ou de l’environnement qui vous entoure?"@fr .
+
+:E_173 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Burning sensation that starts in your stomach then goes up into your throat, and can be associated with a bitter taste in your mouth"@en ;
+    :code "E_173" ;
+    :defaultValue "0" ;
+    :question "Do you have a burning sensation that starts in your stomach then goes up into your throat, and can be associated with a bitter taste in your mouth?"@en,
+        "Avez-vous une sensation de brûlure partant du creux de l’estomac et remontant vers la bouche avec même parfois un goût amer associé?"@fr .
+
+:E_174 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Unintentionally losing weight or have you lost your appetite"@en ;
+    :code "E_174" ;
+    :defaultValue "0" ;
+    :question "Have you been unintentionally losing weight or have you lost your appetite?"@en,
+        "Avez-vous remarqué une perte de poids involontaire ou une perte d’appétit qui semble en lien avec votre consultation aujourd’hui?"@fr .
+
+:E_178 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Unusual bleeding or bruising related to your consultation today"@en ;
+    :code "E_178" ;
+    :defaultValue "0" ;
+    :question "Have you noticed any unusual bleeding or bruising related to your consultation today?"@en,
+        "Avez-vous remarqué des saignement ou des bleus inhabituels en lien avec votre consultation aujourd’hui?"@fr .
+
+:E_179 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Light red blood or blood clots in your stool"@en ;
+    :code "E_179" ;
+    :defaultValue "0" ;
+    :question "Have you noticed light red blood or blood clots in your stool?"@en,
+        "Avez-vous noté du sang rouge clair ou des caillots de sang dans vos selles?"@fr .
+
+:E_18 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Cystic fibrosis"@en ;
+    :code "E_18" ;
+    :defaultValue "0" ;
+    :question "Do you have cystic fibrosis?"@en,
+        "Êtes-vous atteint par la fibrose kystique?"@fr .
+
+:E_180 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Unable to control the direction of your eyes"@en ;
+    :code "E_180" ;
+    :defaultValue "0" ;
+    :question "Are you unable to control the direction of your eyes?"@en,
+        "Êtes-vous incapable de contrôler la direction de votre regard?"@fr .
+
+:E_183 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Live in a rural area"@en ;
+    :code "E_183" ;
+    :defaultValue "0" ;
+    :question "Do you live in a rural area?"@en,
+        "Habitez-vous en à la campagne?"@fr .
+
+:E_184 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Take medication that dilates your blood vessels"@en ;
+    :code "E_184" ;
+    :defaultValue "0" ;
+    :question "Do you take medication that dilates your blood vessels?"@en,
+        "Prenez-vous un médicament qui vasodilate vos vaisseaux sanguins?"@fr .
+
+:E_185 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Head trauma"@en ;
+    :code "E_185" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a head trauma?"@en,
+        "Avez-vous déjà eu un trauma crânien?"@fr .
+
+:E_186 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Obstructive sleep apnea (OSA)"@en ;
+    :code "E_186" ;
+    :defaultValue "0" ;
+    :question "Have you ever been diagnosed with obstructive sleep apnea (OSA)?"@en,
+        "A-t-on déjà diagnostiqué chez vous un syndrome d’apnées hypopnées obstructives du sommeil (SAHOS)?"@fr .
+
+:E_187 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Eat dark-fleshed fish (such as tuna) or Swiss cheese before the reaction occurred"@en ;
+    :code "E_187" ;
+    :defaultValue "0" ;
+    :question "Did you eat dark-fleshed fish (such as tuna) or Swiss cheese before the reaction occurred?"@en,
+        "Avez-vous mangé du poisson à chair foncé (tel que le thon) ou fromage suisse avant la réaction?"@fr .
+
+:E_188 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pale stools and dark urine"@en ;
+    :code "E_188" ;
+    :defaultValue "0" ;
+    :question "Do you have pale stools and dark urine?"@en,
+        "Avez-vous les selles pâles et les urines foncées?"@fr .
+
+:E_189 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Sexual intercourse with an HIV-positive partner in the past 12 months"@en ;
+    :code "E_189" ;
+    :defaultValue "0" ;
+    :question "Have you had sexual intercourse with an HIV-positive partner in the past 12 months?"@en,
+        "Avez-vous eu des relations sexuelles avec une partenaire séropositif dans les 12 derniers mois?"@fr .
+
+:E_19 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Hyperthyroidism"@en ;
+    :code "E_19" ;
+    :defaultValue "0" ;
+    :question "Have you been diagnosed with hyperthyroidism?"@en,
+        "Êtes-vous connu pour de l’hyperthyroïdie?"@fr .
+
+:E_192 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Muscle spasms or soreness in your neck are keeping you from turning your head to one side"@en ;
+    :code "E_192" ;
+    :defaultValue "0" ;
+    :question "Do you feel that muscle spasms or soreness in your neck are keeping you from turning your head to one side?"@en,
+        "Avez-vous l’impression qu’il y a des muscles spasmés ou endoloris, dans votre cou, qui vous empêchent de tourner votre tête d’un bord ou de l’autre?"@fr .
+
+:E_193 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Annoying muscle spasms in your face, neck or any other part of your body"@en ;
+    :code "E_193" ;
+    :defaultValue "0" ;
+    :question "Do you have annoying muscle spasms in your face, neck or any other part of your body?"@en,
+        "Avez-vous des spasmes musculaires très incommodants au niveau du visage, du cou ou de tout autre endroit de votre corps?"@fr .
+
+:E_195 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Live in the suburbs"@en ;
+    :code "E_195" ;
+    :defaultValue "0" ;
+    :question "Do you live in the suburbs?"@en,
+        "Habitez-vous en banlieue?"@fr .
+
+:E_197 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Known kidney problem resulting in an inability to retain proteins"@en ;
+    :code "E_197" ;
+    :defaultValue "0" ;
+    :question "Do you have a known kidney problem resulting in an inability to retain proteins?"@en,
+        "Avez-vous un problème rénal qui se caractérise par la perte de protéines via les reins?"@fr .
+
+:E_199 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Work in construction"@en ;
+    :code "E_199" ;
+    :defaultValue "0" ;
+    :question "Do you work in construction?"@en,
+        "Travaillez-vous dans le domaine de la construction?"@fr .
+
+:E_20 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Rheumatoid Arthritis"@en ;
+    :code "E_20" ;
+    :defaultValue "0" ;
+    :question "Do you have Rheumatoid Arthritis?"@en,
+        "Souffrez-vous d’arthrite rhumatoïde?"@fr .
+
+:E_200 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Work in the mining sector"@en ;
+    :code "E_200" ;
+    :defaultValue "0" ;
+    :question "Do you work in the mining sector?"@en,
+        "Travaillez-vous dans le domaine minier?"@fr .
+
+:E_202 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Whooping cough"@en ;
+    :code "E_202" ;
+    :defaultValue "0" ;
+    :question "Does the person have a whooping cough?"@en,
+        "Avez-vous une toux aboyante?"@fr .
+
+:E_205 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Suddenly have difficulty or an inability to open your mouth or have jaw pain when opening it"@en ;
+    :code "E_205" ;
+    :defaultValue "0" ;
+    :question "Do you suddenly have difficulty or an inability to open your mouth or have jaw pain when opening it?"@en,
+        "Avez-vous soudainement de la difficulté ou une incapacité à ouvrir la bouche ou même de la douleur au niveau de la mâchoire lors de l’ouverture de celle-ci?"@fr .
+
+:E_206 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Painful mouth ulcers or sores"@en ;
+    :code "E_206" ;
+    :defaultValue "0" ;
+    :question "Do you have painful mouth ulcers or sores?"@en,
+        "Avez-vous des ulcères ou des lésions ulcérées et douloureuses dans la bouche?"@fr .
+
+:E_21 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Spontaneous pneumothorax"@en ;
+    :code "E_21" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a spontaneous pneumothorax?"@en,
+        "Avez vous déjà fait un pneumothorax spontané?"@fr .
+
+:E_211 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Vomited several times or have you made several efforts to vomit"@en ;
+    :code "E_211" ;
+    :defaultValue "0" ;
+    :question "Have you vomited several times or have you made several efforts to vomit?"@en,
+        "Avez-vous eu plusieurs vomissements ou fait plusieurs efforts pour vomir?"@fr .
+
+:E_213 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Decongestants or other substances that may have stimulant effects"@en ;
+    :code "E_213" ;
+    :defaultValue "0" ;
+    :question "Have you recently taken decongestants or other substances that may have stimulant effects?"@en,
+        "Avez-vous pris récemment, en vente libre, des décongestionnant ou autres substances pouvant avoir des effets stimulants ?"@fr .
+
+:E_215 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Symptoms that get worse after eating"@en ;
+    :code "E_215" ;
+    :defaultValue "0" ;
+    :question "Do you have symptoms that get worse after eating?"@en,
+        "Avez-vous des symptômes qui sont pires après les repas?"@fr .
+
+:E_216 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pain that is increased with movement"@en ;
+    :code "E_216" ;
+    :defaultValue "0" ;
+    :question "Do you have pain that is increased with movement?"@en,
+        "Avez-vous une douleur qui est pire lors des mouvements?"@fr .
+
+:E_221 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Are the symptoms or pain increased with coughing, with an effort like lifting a weight or from forcing a bowel movement"@en ;
+    :code "E_221" ;
+    :defaultValue "0" ;
+    :question "Are the symptoms or pain increased with coughing, with an effort like lifting a weight or from forcing a bowel movement?"@en,
+        "Les symptômes ou la douleur sont-ils augmentés avec la toux, un effort comme lever un poids ou quand vous forcez pour aller à la selle?"@fr .
+
+:E_223 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Are there members of your family who have been diagnosed with pancreatic cancer"@en ;
+    :code "E_223" ;
+    :defaultValue "0" ;
+    :question "Are there members of your family who have been diagnosed with pancreatic cancer?"@en,
+        "Avez-vous des membre de votre famille proche qui sont atteints du cancer du pancréas?"@fr .
+
+:E_224 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Family members who have had lung cancer"@en ;
+    :code "E_224" ;
+    :defaultValue "0" ;
+    :question "Do you have family members who have had lung cancer?"@en,
+        "Avez-vous des membres de votre famille ayant eu le cancer des poumons?"@fr .
+
+:E_23 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Ever temporarily stop breathing while you’re asleep"@en ;
+    :code "E_23" ;
+    :defaultValue "0" ;
+    :question "Do you ever temporarily stop breathing while you’re asleep?"@en,
+        "Faites-vous des pauses respiratoires durant votre sommeil?"@fr .
+
+:E_24 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Diagnosis of anemia"@en ;
+    :code "E_24" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a diagnosis of anemia?"@en,
+        "Avez-vous déjà eu un diagnostic d’anémie?"@fr .
+
+:E_25 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Have any of your family members been diagnosed with cluster headaches"@en ;
+    :code "E_25" ;
+    :defaultValue "0" ;
+    :question "Have any of your family members been diagnosed with cluster headaches?"@en,
+        "Avez-vous des membres de votre famille qui ont déjà été diagnostiqué avec des céphalée en grappes?"@fr .
+
+:E_26 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Family members who have been diagnosed with anemia"@en ;
+    :code "E_26" ;
+    :defaultValue "0" ;
+    :question "Do you have any family members who have been diagnosed with anemia?"@en,
+        "Avez-vous des membres de votre famille qui ont déjà eu un diagnostic d’anémie?"@fr .
+
+:E_27 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Sexually transmitted infection"@en ;
+    :code "E_27" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a sexually transmitted infection?"@en,
+        "Avez-vous déjà eu une infection transmise sexuellement?"@fr .
+
+:E_28 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Are there any members of your family who have been diagnosed myasthenia gravis"@en ;
+    :code "E_28" ;
+    :defaultValue "0" ;
+    :question "Are there any members of your family who have been diagnosed myasthenia gravis?"@en,
+        "Avez-vous des membres de votre famille qui ont la myasthénie grave?"@fr .
+
+:E_29 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Do any members of your immediate family have a psychiatric illness"@en ;
+    :code "E_29" ;
+    :defaultValue "0" ;
+    :question "Do any members of your immediate family have a psychiatric illness?"@en,
+        "Avez-vous des membres de votre famille proche qui ont eu une maladie psychiatrique?"@fr .
+
+:E_30 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Abdomen is bloated or distended (swollen due to pressure from inside)"@en ;
+    :code "E_30" ;
+    :defaultValue "0" ;
+    :question "Do you feel your abdomen is bloated or distended (swollen due to pressure from inside)?"@en,
+        "Ressentez-vous un ballonnement abdominal ou un gonflement de votre ventre?"@fr .
+
+:E_32 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Decrease in appetite"@en ;
+    :code "E_32" ;
+    :defaultValue "0" ;
+    :question "Do you have a decrease in appetite?"@en,
+        "Avez-vous une diminution de l’appétit ou des boires?"@fr .
+
+:E_33 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pain that improves when you lean forward"@en ;
+    :code "E_33" ;
+    :defaultValue "0" ;
+    :question "Do you have pain that improves when you lean forward?"@en,
+        "Avez-vous une douleur qui s’améliore lorsque vous penchez votre corps vers l’avant?"@fr .
+
+:E_34 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Active cancer"@en ;
+    :code "E_34" ;
+    :defaultValue "0" ;
+    :question "Do you have an active cancer?"@en,
+        "Avez-vous un cancer actif?"@fr .
+
+:E_35 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Drink coffee or tea"@en ;
+    :code "E_35" ;
+    :defaultValue "0" ;
+    :question "Do you regularly drink coffee or tea?"@en,
+        "Buvez-vous régulièrement du café ou du thé?"@fr .
+
+:E_37 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Metastatic cancer"@en ;
+    :code "E_37" ;
+    :defaultValue "0" ;
+    :question "Do you have metastatic cancer?"@en,
+        "Avez-vous un cancer métastatique?"@fr .
+
+:E_38 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pain or weakness in your jaw"@en ;
+    :code "E_38" ;
+    :defaultValue "0" ;
+    :question "Do you have pain or weakness in your jaw?"@en,
+        "Avez-vous des douleurs ou une faiblesse au niveau de la mâchoire?"@fr .
+
+:E_39 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Felt confused or disorientated lately"@en ;
+    :code "E_39" ;
+    :defaultValue "0" ;
+    :question "Have you felt confused or disorientated lately?"@en,
+        "Vous sentez-vous confus ou mélangé?"@fr .
+
+:E_4 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Or any member of your family ever had croup"@en ;
+    :code "E_4" ;
+    :defaultValue "0" ;
+    :question "Have you or any member of your family ever had croup?"@en,
+        "Est-ce que vous ou un membre de votre famille a déjà eu le croup?"@fr .
+
+:E_40 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "In contact with someone who has had pertussis (whoooping cough)"@en ;
+    :code "E_40" ;
+    :defaultValue "0" ;
+    :question "Have you been in contact with someone who has had pertussis (whoooping cough)?"@en,
+        "Avez-vous été en contact avec quelqu’un qui a eu la coqueluche?"@fr .
+
+:E_42 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "In contact with or ate something that you have an allergy to"@en ;
+    :code "E_42" ;
+    :defaultValue "0" ;
+    :question "Have you been in contact with or ate something that you have an allergy to?"@en,
+        "Avez-vous été en contact ou mangé une chose à laquelle vous avez une allergie?"@fr .
+
+:E_43 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lost consciousness associated with violent and sustained muscle contractions or had an absence episode"@en ;
+    :code "E_43" ;
+    :defaultValue "0" ;
+    :question "Have you lost consciousness associated with violent and sustained muscle contractions or had an absence episode?"@en,
+        "Avez-vous eu une épisode de perte de conscience avec des contractions violentes et soutenues d’un ou de plusieurs muscles de votre corps ou une période d'absence?"@fr .
+
+:E_46 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "2 or more asthma attacks in the past year"@en ;
+    :code "E_46" ;
+    :defaultValue "0" ;
+    :question "Have you had 2 or more asthma attacks in the past year?"@en,
+        "Avez-vous fait 2 crises d’asthme ou plus dans la dernière année?"@fr .
+
+:E_47 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Crohn’s disease or ulcerative colitis (UC)"@en ;
+    :code "E_47" ;
+    :defaultValue "0" ;
+    :question "Do you suffer from Crohn’s disease or ulcerative colitis (UC)?"@en,
+        "Souffrez-vous de la maladie de Crohn ou de la colite ulcéreuse?"@fr .
+
+:E_5 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Fluid in your lungs"@en ;
+    :code "E_5" ;
+    :defaultValue "0" ;
+    :question "Have you ever had fluid in your lungs?"@en,
+        "Avez-vous déjà fait de l’eau sur les poumons?"@fr .
+
+:E_52 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Perception of seeing two images of a single object seen overlapping or adjacent to each other (double vision)"@en ;
+    :code "E_52" ;
+    :defaultValue "0" ;
+    :question "Do you have the perception of seeing two images of a single object seen overlapping or adjacent to each other (double vision)?"@en,
+        "Avez-vous l’impression de voir double ou de voir simultanément 2 images semblables?"@fr .
+
+:E_6 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Chronic pancreatitis"@en ;
+    :code "E_6" ;
+    :defaultValue "0" ;
+    :question "Do you have chronic pancreatitis?"@en,
+        "Souffrez-vous de pancréatite chronique?"@fr .
+
+:E_60 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Consume energy drinks regularly"@en ;
+    :code "E_60" ;
+    :defaultValue "0" ;
+    :question "Do you consume energy drinks regularly?"@en,
+        "Prenez-vous des boissons énergisantes régulièrement?"@fr .
+
+:E_63 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Difficulty articulating words/speaking"@en ;
+    :code "E_63" ;
+    :defaultValue "0" ;
+    :question "Do you have difficulty articulating words/speaking?"@en,
+        "Avez-vous de la difficulté à articuler les mots?"@fr .
+
+:E_64 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Out of breath with minimal physical effort"@en ;
+    :code "E_64" ;
+    :defaultValue "0" ;
+    :question "Do you feel out of breath with minimal physical effort?"@en,
+        "Vous sentez-vous facilement essoufflé à l’effort?"@fr .
+
+:E_7 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Poor diet"@en ;
+    :code "E_7" ;
+    :defaultValue "0" ;
+    :question "Do you have a poor diet?"@en,
+        "Avez-vous une mauvaise alimentation?"@fr .
+
+:E_72 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "One or several flare ups of chronic obstructive pulmonary disease (COPD) in the past year"@en ;
+    :code "E_72" ;
+    :defaultValue "0" ;
+    :question "Have you had one or several flare ups of chronic obstructive pulmonary disease (COPD) in the past year?"@en,
+        "Avez-vous eu une ou des épisodes d’aggravation ou de détérioration de votre maladie pulmonaire obstructive chronique dans la dernière année?"@fr .
+
+:E_73 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "In the last month, have you been in contact with anyone infected with the Ebola virus"@en ;
+    :code "E_73" ;
+    :defaultValue "0" ;
+    :question "In the last month, have you been in contact with anyone infected with the Ebola virus?"@en,
+        "Avez-vous été en contact avec une personne infectée par le virus Ebola dans le dernier mois?"@fr .
+
+:E_74 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Diffuse (widespread) redness in one or both eyes"@en ;
+    :code "E_74" ;
+    :defaultValue "0" ;
+    :question "Have you noticed a diffuse (widespread) redness in one or both eyes?"@en,
+        "Avez-vous remarqué une rougeur diffuse à un oeil ou aux 2 yeux?"@fr .
+
+:E_75 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "(or were) choking or suffocating"@en ;
+    :code "E_75" ;
+    :defaultValue "0" ;
+    :question "Do you feel like you are (or were) choking or suffocating?"@en,
+        "Avez-vous l’impression que vous étouffez ou avez-vous eu l’impression que vous étouffiez?"@fr .
+
+:E_8 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Undergo dialysis"@en ;
+    :code "E_8" ;
+    :defaultValue "0" ;
+    :question "Do you currently undergo dialysis?"@en,
+        "Êtes-vous dialysé?"@fr .
+
+:E_80 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Depression"@en ;
+    :code "E_80" ;
+    :defaultValue "0" ;
+    :question "Have you ever been diagnosed with depression?"@en,
+        "Avez-vous déjà fait une dépression diagnostiqué par un médecin?"@fr .
+
+:E_81 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Chronic anxiety"@en ;
+    :code "E_81" ;
+    :defaultValue "0" ;
+    :question "Do you suffer from chronic anxiety?"@en,
+        "Souffrez-vous d’anxiété chronique?"@fr .
+
+:E_83 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Weakness in your facial muscles and/or eyes"@en ;
+    :code "E_83" ;
+    :defaultValue "0" ;
+    :question "Have you noticed weakness in your facial muscles and/or eyes?"@en,
+        "Avez-vous noté une faiblesse au niveau des muscles du visage et/ou des yeux?"@fr .
+
+:E_86 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Close family members who suffer from allergies (any type), hay fever or eczema"@en ;
+    :code "E_86" ;
+    :defaultValue "0" ;
+    :question "Do you have any close family members who suffer from allergies (any type), hay fever or eczema?"@en,
+        "Avez-vous des membres de votre famille proche qui souffre d’allergies (tout type), de rhume des foins ou d'eczéma?"@fr .
+
+:E_90 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Symptoms of muscle weakness increase with fatigue and/or stress"@en ;
+    :code "E_90" ;
+    :defaultValue "0" ;
+    :question "Do your symptoms of muscle weakness increase with fatigue and/or stress?"@en,
+        "Est-ce que vos symptômes de faiblesse musculaire augmente avec la fatigue et/ou le stress?"@fr .
+
+:E_92 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Cheeks suddenly turn red"@en ;
+    :code "E_92" ;
+    :defaultValue "0" ;
+    :question "Did your cheeks suddenly turn red?"@en,
+        "Est-ce que vos joues sont devenues rouges soudainement?"@fr .
+
+:E_93 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Numbness, loss of sensation or tingling in the feet"@en ;
+    :code "E_93" ;
+    :defaultValue "0" ;
+    :question "Do you have numbness, loss of sensation or tingling in the feet?"@en,
+        "Avez-vous des engourdissements, une perte de sensibilité ou des fourmillements dans les pieds?"@fr .
+
+:E_95 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Parkinson’s disease"@en ;
+    :code "E_95" ;
+    :defaultValue "0" ;
+    :question "Do you have Parkinson’s disease?"@en,
+        "Souffrez-vous de la maladie de parkinson?"@fr .
+
+:E_96 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Gained weight recently"@en ;
+    :code "E_96" ;
+    :defaultValue "0" ;
+    :question "Have you gained weight recently?"@en,
+        "Avez-vous pris du poids récemment?"@fr .
+
+:E_98 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Hiatal hernia"@en ;
+    :code "E_98" ;
+    :defaultValue "0" ;
+    :question "Do you have a hiatal hernia?"@en,
+        "Avez-vous une hernie hiatale?"@fr .
+
+:E_99 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Migraine or is a member of your family known to have migraines"@en ;
+    :code "E_99" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a migraine or is a member of your family known to have migraines?"@en,
+        "Avez-vous déjà fait une migraine ou est-ce qu’un membre de votre famille est connu pour faire des migraines?"@fr .
+
+:ICD10_V a :ICD10Chapter ;
+    rdfs:label "ICD-10 V: Mental and behavioural disorders (F00–F99)"@en ;
+    :code "V" .
+
+:ICD10_VIII a :ICD10Chapter ;
+    rdfs:label "ICD-10 VIII: Diseases of the ear and mastoid process (H60–H95)"@en ;
+    :code "VIII" .
+
+:ICD10_XIII a :ICD10Chapter ;
+    rdfs:label "ICD-10 XIII: Diseases of the musculoskeletal system (M00–M99)"@en ;
+    :code "XIII" .
+
+:ICD10_XVIII a :ICD10Chapter ;
+    rdfs:label "ICD-10 XVIII: Symptoms and signs not elsewhere classified (R00–R99)"@en ;
+    :code "XVIII" .
+
+:V_0 a :AnswerValue ;
+    rdfs:label "North Africa"@en,
+        "Afrique du Nord"@fr ;
+    :code "V_0" .
+
+:V_1 a :AnswerValue ;
+    rdfs:label "West Africa"@en,
+        "Afrique de l'Ouest"@fr ;
+    :code "V_1" .
+
+:V_107 a :AnswerValue ;
+    rdfs:label "yellow"@en,
+        "jaune"@fr ;
+    :code "V_107" .
+
+:V_112 a :AnswerValue ;
+    rdfs:label "haunting"@en,
+        "lancinante"@fr ;
+    :code "V_112" .
+
+:V_13 a :AnswerValue ;
+    rdfs:label "Oceania"@en,
+        "Océeanie"@fr ;
+    :code "V_13" .
+
+:V_138 a :AnswerValue ;
+    rdfs:label "pale"@en,
+        "pâle"@fr ;
+    :code "V_138" .
+
+:V_154 a :AnswerValue ;
+    rdfs:label "tedious"@en,
+        "pénible"@fr ;
+    :code "V_154" .
+
+:V_156 a :AnswerValue ;
+    rdfs:label "pink"@en,
+        "rose"@fr ;
+    :code "V_156" .
+
+:V_157 a :AnswerValue ;
+    rdfs:label "red"@en,
+        "rouge"@fr ;
+    :code "V_157" .
+
+:V_161 a :AnswerValue ;
+    rdfs:label "sensitive"@en,
+        "sensible"@fr ;
+    :code "V_161" .
+
+:V_179 a :AnswerValue ;
+    rdfs:label "a knife stroke"@en,
+        "un coup de couteau"@fr ;
+    :code "V_179" .
+
+:V_180 a :AnswerValue ;
+    rdfs:label "tugging"@en,
+        "un tiraillement"@fr ;
+    :code "V_180" .
+
+:V_181 a :AnswerValue ;
+    rdfs:label "burning"@en,
+        "une brûlure"@fr ;
+    :code "V_181" .
+
+:V_182 a :AnswerValue ;
+    rdfs:label "a cramp"@en,
+        "une crampe"@fr ;
+    :code "V_182" .
+
+:V_183 a :AnswerValue ;
+    rdfs:label "heavy"@en,
+        "une lourdeur"@fr ;
+    :code "V_183" .
+
+:V_184 a :AnswerValue ;
+    rdfs:label "a pulse"@en,
+        "une pulsation"@fr ;
+    :code "V_184" .
+
+:V_191 a :AnswerValue ;
+    rdfs:label "violent"@en,
+        "violente"@fr ;
+    :code "V_191" .
+
+:V_192 a :AnswerValue ;
+    rdfs:label "sharp"@en,
+        "vive"@fr ;
+    :code "V_192" .
+
+:V_193 a :AnswerValue ;
+    rdfs:label "sickening"@en,
+        "écoeurante"@fr ;
+    :code "V_193" .
+
+:V_196 a :AnswerValue ;
+    rdfs:label "scary"@en,
+        "épeurante"@fr ;
+    :code "V_196" .
+
+:V_198 a :AnswerValue ;
+    rdfs:label "exhausting"@en,
+        "épuisante"@fr ;
+    :code "V_198" .
+
+:V_2 a :AnswerValue ;
+    rdfs:label "South Africa"@en,
+        "Afrique du Sud"@fr ;
+    :code "V_2" .
+
+:V_3 a :AnswerValue ;
+    rdfs:label "Central America"@en,
+        "Amérique Centrale"@fr ;
+    :code "V_3" .
+
+:V_4 a :AnswerValue ;
+    rdfs:label "North America"@en,
+        "Amérique du Nord"@fr ;
+    :code "V_4" .
+
+:V_5 a :AnswerValue ;
+    rdfs:label "South America"@en,
+        "Amérique du Sud"@fr ;
+    :code "V_5" .
+
+:V_6 a :AnswerValue ;
+    rdfs:label "Asia"@en,
+        "Asie"@fr ;
+    :code "V_6" .
+
+:V_7 a :AnswerValue ;
+    rdfs:label "South East Asia"@en,
+        "Asie Sud-Sud-Est"@fr ;
+    :code "V_7" .
+
+:V_71 a :AnswerValue ;
+    rdfs:label "heartbreaking"@en,
+        "déchirante"@fr ;
+    :code "V_71" .
+
+:V_8 a :AnswerValue ;
+    rdfs:label "Caraibes"@en,
+        "Caraibes"@fr ;
+    :code "V_8" .
+
+:V_86 a :AnswerValue ;
+    rdfs:label "dark"@en,
+        "foncée"@fr ;
+    :code "V_86" .
+
+:V_9 a :AnswerValue ;
+    rdfs:label "Europe"@en,
+        "Europe"@fr ;
+    :code "V_9" .
+
+:E_103 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lost your sense of smell"@en ;
+    :code "E_103" ;
+    :defaultValue "0" ;
+    :question "Have you lost your sense of smell?"@en,
+        "Avez-vous une perte d’odorat accompagnant vos symptômes?"@fr .
+
+:E_109 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Deep vein thrombosis (DVT)"@en ;
+    :code "E_109" ;
+    :defaultValue "0" ;
+    :question "Have you ever had deep vein thrombosis (DVT)?"@en,
+        "Avez-vous déjà fait une thrombophlébite profonde?"@fr .
+
+:E_114 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "More irritable or has your mood been very unstable recently"@en ;
+    :code "E_114" ;
+    :defaultValue "0" ;
+    :question "Are you more irritable or has your mood been very unstable recently?"@en,
+        "Êtes-vous plus irritable dernièrement ou avez-vous une humeur très changeante?"@fr .
+
+:E_120 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Polyps in your nose"@en ;
+    :code "E_120" ;
+    :defaultValue "0" ;
+    :question "Do you have polyps in your nose?"@en,
+        "Avez-vous des polypes dans le nez?"@fr .
+
+:E_121 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Deviated nasal septum"@en ;
+    :code "E_121" ;
+    :defaultValue "0" ;
+    :question "Do you have a deviated nasal septum?"@en,
+        "Êtes-vous connu pour avoir une déviation du septum ou cloison nasal?"@fr .
+
+:E_14 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Chest pain even at rest"@en ;
+    :code "E_14" ;
+    :defaultValue "0" ;
+    :question "Do you have chest pain even at rest?"@en,
+        "Avez-vous des douleurs au thorax même au repos?"@fr .
+
+:E_140 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Stools that were black (like coal)"@en ;
+    :code "E_140" ;
+    :defaultValue "0" ;
+    :question "Have you recently had stools that were black (like coal)?"@en,
+        "Avez-vous eu récemment des selles noires comme du charbon?"@fr .
+
+:E_143 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Exercise regularly, 4 times per week or more"@en ;
+    :code "E_143" ;
+    :defaultValue "0" ;
+    :question "Do you exercise regularly, 4 times per week or more?"@en,
+        "Faites-vous de l’activité physique régulièrement, soit 4 fois par semaine ou plus?"@fr .
+
+:E_157 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Numbness, loss of sensation or tingling, in both arms and legs and around your mouth"@en ;
+    :code "E_157" ;
+    :defaultValue "0" ;
+    :question "Have you recently had numbness, loss of sensation or tingling, in both arms and legs and around your mouth?"@en,
+        "Avez-vous présentement ou avez-vous eu récemment des engourdissements, une perte de sensibilité ou des fourmillements, dans les mains, les pieds et autour de la bouche?"@fr .
+
+:E_159 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lose consciousness"@en ;
+    :code "E_159" ;
+    :defaultValue "0" ;
+    :question "Did you lose consciousness?"@en,
+        "Avez-vous perdu conscience?"@fr .
+
+:E_16 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Anxious"@en ;
+    :code "E_16" ;
+    :defaultValue "0" ;
+    :question "Do you feel anxious?"@en,
+        "Ressentez-vous une certaine anxiété, une fébrilité?"@fr .
+
+:E_167 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Think you are pregnant or are you currently pregnant"@en ;
+    :code "E_167" ;
+    :defaultValue "0" ;
+    :question "Do you think you are pregnant or are you currently pregnant?"@en,
+        "Croyez-vous être enceinte ou êtes vous présentement enceinte?"@fr .
+
+:E_172 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Hard time opening/raising one or both eyelids"@en ;
+    :code "E_172" ;
+    :defaultValue "0" ;
+    :question "Do you have a hard time opening/raising one or both eyelids?"@en,
+        "Avez-vous de la misère à ouvrir/relever une ou les deux paupières?"@fr .
+
+:E_177 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Currently, or did you ever, have numbness, loss of sensitivity or tingling anywhere on your body"@en ;
+    :code "E_177" ;
+    :defaultValue "0" ;
+    :question "Do you currently, or did you ever, have numbness, loss of sensitivity or tingling anywhere on your body?"@en,
+        "Avez-vous présentement ou avez-vous eu récemment des engourdissements, une perte de sensibilité ou des fourmillements, n’importe où sur votre le corps?"@fr .
+
+:E_182 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Greenish or yellowish nasal discharge"@en ;
+    :code "E_182" ;
+    :defaultValue "0" ;
+    :question "Do you have greenish or yellowish nasal discharge?"@en,
+        "Avez-vous un écoulement nasal coloré?"@fr .
+
+:E_190 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "You produce more saliva than usual"@en ;
+    :code "E_190" ;
+    :defaultValue "0" ;
+    :question "Have you noticed that you produce more saliva than usual?"@en,
+        "Avez-vous noté que vous produisez plus de salive que d’habitude?"@fr .
+
+:E_191 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Former smoker"@en ;
+    :code "E_191" ;
+    :defaultValue "0" ;
+    :question "Are you a former smoker?"@en,
+        "Dans le passé, fumiez-vous la cigarette quotidiennement?"@fr .
+
+:E_196 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Surgery within the last month"@en ;
+    :code "E_196" ;
+    :defaultValue "0" ;
+    :question "Have you had surgery within the last month?"@en,
+        "Avez-vous subi une intervention chirurgicale dans le dernier mois?"@fr .
+
+:E_198 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Work in agriculture"@en ;
+    :code "E_198" ;
+    :defaultValue "0" ;
+    :question "Do you work in agriculture?"@en,
+        "Travaillez-vous dans le domaine de l’agriculture?"@fr .
+
+:E_2 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Infected with the human immunodeficiency virus (HIV)"@en ;
+    :code "E_2" ;
+    :defaultValue "0" ;
+    :question "Are you infected with the human immunodeficiency virus (HIV)?"@en,
+        "Êtes-vous infecté par le virus de l’immunodéficience humaine ou êtes-vous séropositif?"@fr .
+
+:E_207 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Live in in a big city"@en ;
+    :code "E_207" ;
+    :defaultValue "0" ;
+    :question "Do you live in in a big city?"@en,
+        "Habitez-vous en dans une grande ville?"@fr .
+
+:E_210 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Recently thrown up blood or something resembling coffee beans"@en ;
+    :code "E_210" ;
+    :defaultValue "0" ;
+    :question "Have you recently thrown up blood or something resembling coffee beans?"@en,
+        "Avez-vous récemment remarqué du sang dans vos vomissements ou quelque chose qui ressemble à des grains de café?"@fr .
+
+:E_212 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Tone of your voice has become deeper, softer or hoarse"@en ;
+    :code "E_212" ;
+    :defaultValue "0" ;
+    :question "Have you noticed that the tone of your voice has become deeper, softer or hoarse?"@en,
+        "Avez-vous remarqué que votre ton de voix a changé, soit diminué, s’est éteint ou est devenu plus grave?"@fr .
+
+:E_22 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Known issue with one of your heart valves"@en ;
+    :code "E_22" ;
+    :defaultValue "0" ;
+    :question "Do you have a known issue with one of your heart valves?"@en,
+        "Êtes-vous connu pour un problème au niveau d’une valve cardiaque?"@fr .
+
+:E_3 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Pericarditis"@en ;
+    :code "E_3" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a pericarditis?"@en,
+        "Avez-vous déjà eu une péricardite?"@fr .
+
+:E_31 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Severe Chronic Obstructive Pulmonary Disease (COPD)"@en ;
+    :code "E_31" ;
+    :defaultValue "0" ;
+    :question "Do you have severe Chronic Obstructive Pulmonary Disease (COPD)?"@en,
+        "Êtes-vous considéré comme une personne ayant une maladie pulmonaire obstructive chronique sévère?"@fr .
+
+:E_44 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Take corticosteroids"@en ;
+    :code "E_44" ;
+    :defaultValue "0" ;
+    :question "Do you take corticosteroids?"@en,
+        "Prenez-vous des corticostéroïdes?"@fr .
+
+:E_61 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Using intravenous drugs"@en ;
+    :code "E_61" ;
+    :defaultValue "0" ;
+    :question "Are you currently using intravenous drugs?"@en,
+        "Faites-vous actuellement usage de drogues intraveineuses?"@fr .
+
+:E_65 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Difficulty swallowing, or have a feeling of discomfort/blockage when swallowing"@en ;
+    :code "E_65" ;
+    :defaultValue "0" ;
+    :question "Do you have difficulty swallowing, or have a feeling of discomfort/blockage when swallowing?"@en,
+        "Avez-vous des de la difficulté à avaler ou une sensation de gêne ou de blocage lors de la déglutition?"@fr .
+
+:E_67 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Bouts of choking or shortness of breath that wake you up at night"@en ;
+    :code "E_67" ;
+    :defaultValue "0" ;
+    :question "Do you have bouts of choking or shortness of breath that wake you up at night?"@en,
+        "Avez-vous des crises de suffocation qui vous réveille la nuit?"@fr .
+
+:E_84 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Weakness in both arms and/or both legs"@en ;
+    :code "E_84" ;
+    :defaultValue "0" ;
+    :question "Do you feel weakness in both arms and/or both legs?"@en,
+        "Avez-vous présentement une faiblesse des 2 bras et/ou des 2 jambes?"@fr .
+
+:E_87 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Family members who have asthma"@en ;
+    :code "E_87" ;
+    :defaultValue "0" ;
+    :question "Do you have any family members who have asthma?"@en,
+        "Avez-vous des membres de votre famille qui font de l’asthme?"@fr .
+
+:E_94 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Chills or shivers"@en ;
+    :code "E_94" ;
+    :defaultValue "0" ;
+    :question "Have you had chills or shivers?"@en,
+        "Avez-vous eu des frissons?"@fr .
+
+:ICD10_II a :ICD10Chapter ;
+    rdfs:label "ICD-10 II: Neoplasms (C00–D48)"@en ;
+    :code "II" .
+
+:ICD10_III a :ICD10Chapter ;
+    rdfs:label "ICD-10 III: Diseases of the blood and immune mechanism (D50–D89)"@en ;
+    :code "III" .
+
+:V_11 a :AnswerValue ;
+    rdfs:label "NA"@en,
+        "NA"@fr ;
+    :code "V_11" .
+
+:V_12 a :AnswerValue ;
+    rdfs:label "Y"@en,
+        "O"@fr ;
+    :code "V_12" .
+
+:E_0 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Viral infection"@en ;
+    :code "E_0" ;
+    :defaultValue "0" ;
+    :question "Have you recently had a viral infection?"@en,
+        "Avez-vous été infecté par un virus récemment?"@fr .
+
+:E_106 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Heart failure"@en ;
+    :code "E_106" ;
+    :defaultValue "0" ;
+    :question "Do you have heart failure?"@en,
+        "Êtes-vous atteint d’insuffisance cardiaque?"@fr .
+
+:E_176 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Previously, or do you currently, have any weakness/paralysis in one or more of your limbs or in your face"@en ;
+    :code "E_176" ;
+    :defaultValue "0" ;
+    :question "Did you previously, or do you currently, have any weakness/paralysis in one or more of your limbs or in your face?"@en,
+        "Avez-vous noté une faiblesse ou paralysie d’un ou plusieurs de vos membres ou au niveau du visage, encore présentes ou résolues?"@fr .
+
+:E_203 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Intense coughing fits"@en ;
+    :code "E_203" ;
+    :defaultValue "0" ;
+    :question "Do you have intense coughing fits?"@en,
+        "Avez-vous des quintes de toux intenses et dérangeantes?"@fr .
+
+:E_208 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "BMI less than 18.5, or are you underweight"@en ;
+    :code "E_208" ;
+    :defaultValue "0" ;
+    :question "Is your BMI less than 18.5, or are you underweight?"@en,
+        "Avez-vous un IMC plus petit que 18.5, soit un poids plus petit que la normal?"@fr .
+
+:E_219 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Symptoms more prominent at night"@en ;
+    :code "E_219" ;
+    :defaultValue "0" ;
+    :question "Are your symptoms more prominent at night?"@en,
+        "Ressentez vous davantage vos symptômes la nuit?"@fr .
+
+:E_225 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Close family members who had a cardiovascular disease problem before the age of 50"@en ;
+    :code "E_225" ;
+    :defaultValue "0" ;
+    :question "Do you have close family members who had a cardiovascular disease problem before the age of 50?"@en,
+        "Avez-vous des membres de votre famille proche qui ont eu un problème de maladie cardiovasculaire avant l’âge de 50 ans?"@fr .
+
+:E_227 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Immunosuppressed"@en ;
+    :code "E_227" ;
+    :defaultValue "0" ;
+    :question "Are you immunosuppressed?"@en,
+        "Êtes-vous immunosupprimé?"@fr .
+
+:E_41 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "In contact with a person with similar symptoms in the past 2 weeks"@en ;
+    :code "E_41" ;
+    :defaultValue "0" ;
+    :question "Have you been in contact with a person with similar symptoms in the past 2 weeks?"@en,
+        "Avez-vous été en contact avec une autre personne qui présentait des symptômes similaires, dans les 2 dernières semaines?"@fr .
+
+:E_49 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Attend or work in a daycare"@en ;
+    :code "E_49" ;
+    :defaultValue "0" ;
+    :question "Do you attend or work in a daycare?"@en,
+        "Fréquentez-vous ou travaillez-vous dans une garderie?"@fr .
+
+:E_62 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Take stimulant drugs"@en ;
+    :code "E_62" ;
+    :defaultValue "0" ;
+    :question "Do you regularly take stimulant drugs?"@en,
+        "Prenez-vous régulièrement des substances illicites stimulantes?"@fr .
+
+:E_71 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "High cholesterol or do you take medications to treat high cholesterol"@en ;
+    :code "E_71" ;
+    :defaultValue "0" ;
+    :question "Do you have high cholesterol or do you take medications to treat high cholesterol?"@en,
+        "Souffrez-vous d’hypercholestérolémie ou prenez-vous des médicaments pour traiter un taux de cholestérol élevé?"@fr .
+
+:E_76 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Slightly dizzy or lightheaded"@en ;
+    :code "E_76" ;
+    :defaultValue "0" ;
+    :question "Do you feel slightly dizzy or lightheaded?"@en,
+        "Avez-vous l’impression de vous sentir légèrement étourdi ou d’avoir une impression de déséquilibre léger?"@fr .
+
+:E_88 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "So tired that you are unable to do your usual activities or are you stuck in your bed all day long"@en ;
+    :code "E_88" ;
+    :defaultValue "0" ;
+    :question "Do you feel so tired that you are unable to do your usual activities or are you stuck in your bed all day long?"@en,
+        "Vous sentez-vous incapable de faire vos activités ou êtes-vous cloué au lit toute la journée?"@fr .
+
+:E_9 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Swollen or painful lymph nodes"@en ;
+    :code "E_9" ;
+    :defaultValue "0" ;
+    :question "Do you have swollen or painful lymph nodes?"@en,
+        "Avez-vous des ganglions enflés ou douloureux?"@fr .
+
+:ICD10_XI a :ICD10Chapter ;
+    rdfs:label "ICD-10 XI: Diseases of the digestive system (K00–K93)"@en ;
+    :code "XI" .
+
+:ICD10_XIX a :ICD10Chapter ;
+    rdfs:label "ICD-10 XIX: Injury, poisoning and other external causes (S00–T98)"@en ;
+    :code "XIX" .
+
+:Severity5 a :SeverityLevel ;
+    rdfs:label "Severity 5 (least severe)"@en ;
+    :code 5 .
+
+:V_10 a :AnswerValue ;
+    rdfs:label "N"@en,
+        "N"@fr ;
+    :code "V_10" .
+
+:E_118 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Pneumonia"@en ;
+    :code "E_118" ;
+    :defaultValue "0" ;
+    :question "Have you ever had pneumonia?"@en,
+        "Avez-vous déjà fait une pneumonie?"@fr .
+
+:E_125 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Gastroesophageal reflux"@en ;
+    :code "E_125" ;
+    :defaultValue "0" ;
+    :question "Have you ever been diagnosed with gastroesophageal reflux?"@en,
+        "Avez-vous déjà reçu un diagnostic de reflux gastro-oesophagien?"@fr .
+
+:E_161 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Loss of appetite or do you get full more quickly then usually"@en ;
+    :code "E_161" ;
+    :defaultValue "0" ;
+    :question "Have you recently had a loss of appetite or do you get full more quickly then usually?"@en,
+        "Avez-vous une perte d’appétit ou êtes-vous rassasié rapidement?"@fr .
+
+:E_162 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Involuntary weight loss over the last 3 months"@en ;
+    :code "E_162" ;
+    :defaultValue "0" ;
+    :question "Have you had an involuntary weight loss over the last 3 months?"@en,
+        "Avez-vous eu une perte de poids involontaire dans les 3 derniers mois?"@fr .
+
+:E_175 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "New fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today"@en ;
+    :code "E_175" ;
+    :defaultValue "0" ;
+    :question "Have you noticed any new fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today?"@en,
+        "Avez-vous de la fatigue, un malaise généralisé, un inconfort vague, des douleurs musculaires diffuses ou une atteinte de votre état général en lien avec votre consultation aujourd’hui?"@fr .
+
+:E_194 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "High pitched sound when breathing in"@en ;
+    :code "E_194" ;
+    :defaultValue "0" ;
+    :question "Have you noticed a high pitched sound when breathing in?"@en,
+        "Avez-vous noté un bruit respiratoire aigu surtout à l’inspiration?"@fr .
+
+:E_222 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Exposed to secondhand cigarette smoke on a daily basis"@en ;
+    :code "E_222" ;
+    :defaultValue "0" ;
+    :question "Are you exposed to secondhand cigarette smoke on a daily basis?"@en,
+        "Êtes-vous en contact régulièrement avec de la fumée de cigarette sans être vous-même fumeur?"@fr .
+
+:E_48 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Live with 4 or more people"@en ;
+    :code "E_48" ;
+    :defaultValue "0" ;
+    :question "Do you live with 4 or more people?"@en,
+        "Habitez-vous avec 4 personnes ou plus?"@fr .
+
+:ICD10_VI a :ICD10Chapter ;
+    rdfs:label "ICD-10 VI: Diseases of the nervous system (G00–G99)"@en ;
+    :code "VI" .
+
+:V_100 a :AnswerValue ;
+    rdfs:label "hip(L)"@en,
+        "hanche(G)"@fr ;
+    :code "V_100" .
+
+:V_101 a :AnswerValue ;
+    rdfs:label "upper chest"@en,
+        "haut du thorax"@fr ;
+    :code "V_101" .
+
+:V_102 a :AnswerValue ;
+    rdfs:label "hymen"@en,
+        "hymen"@fr ;
+    :code "V_102" .
+
+:V_103 a :AnswerValue ;
+    rdfs:label "hypochondrium(R)"@en,
+        "hypochondre(D)"@fr ;
+    :code "V_103" .
+
+:V_104 a :AnswerValue ;
+    rdfs:label "hypochondrium(L)"@en,
+        "hypochondre(G)"@fr ;
+    :code "V_104" .
+
+:V_105 a :AnswerValue ;
+    rdfs:label "ischio jambier(R)"@en,
+        "ischio(D)"@fr ;
+    :code "V_105" .
+
+:V_106 a :AnswerValue ;
+    rdfs:label "ischio jambier(L)"@en,
+        "ischio(G)"@fr ;
+    :code "V_106" .
+
+:V_108 a :AnswerValue ;
+    rdfs:label "cheek(R)"@en,
+        "joue(D)"@fr ;
+    :code "V_108" .
+
+:V_109 a :AnswerValue ;
+    rdfs:label "cheek(L)"@en,
+        "joue(G)"@fr ;
+    :code "V_109" .
+
+:V_110 a :AnswerValue ;
+    rdfs:label "internal cheek(R)"@en,
+        "joue interne(D)"@fr ;
+    :code "V_110" .
+
+:V_111 a :AnswerValue ;
+    rdfs:label "internal cheek(L)"@en,
+        "joue interne(G)"@fr ;
+    :code "V_111" .
+
+:V_113 a :AnswerValue ;
+    rdfs:label "renal fossa(R)"@en,
+        "loge renale(D)"@fr ;
+    :code "V_113" .
+
+:V_114 a :AnswerValue ;
+    rdfs:label "renal fossa(L)"@en,
+        "loge renale(G)"@fr ;
+    :code "V_114" .
+
+:V_115 a :AnswerValue ;
+    rdfs:label "uvula"@en,
+        "luette"@fr ;
+    :code "V_115" .
+
+:V_116 a :AnswerValue ;
+    rdfs:label "bottom lip(R)"@en,
+        "lèvre inferieure(D)"@fr ;
+    :code "V_116" .
+
+:V_117 a :AnswerValue ;
+    rdfs:label "upper lip(R)"@en,
+        "lèvre supérieure(D)"@fr ;
+    :code "V_117" .
+
+:V_118 a :AnswerValue ;
+    rdfs:label "chin"@en,
+        "menton"@fr ;
+    :code "V_118" .
+
+:V_119 a :AnswerValue ;
+    rdfs:label "calf(R)"@en,
+        "mollet(D)"@fr ;
+    :code "V_119" .
+
+:V_120 a :AnswerValue ;
+    rdfs:label "calf(L)"@en,
+        "mollet(G)"@fr ;
+    :code "V_120" .
+
+:V_121 a :AnswerValue ;
+    rdfs:label "jaw"@en,
+        "mâchoire"@fr ;
+    :code "V_121" .
+
+:V_122 a :AnswerValue ;
+    rdfs:label "nose"@en,
+        "nez"@fr ;
+    :code "V_122" .
+
+:V_123 a :AnswerValue ;
+    rdfs:label "nowhere"@en,
+        "nulle part"@fr ;
+    :code "V_123" .
+
+:V_124 a :AnswerValue ;
+    rdfs:label "occiput"@en,
+        "occiput"@fr ;
+    :code "V_124" .
+
+:V_125 a :AnswerValue ;
+    rdfs:label "eye(R)"@en,
+        "oeil(D)"@fr ;
+    :code "V_125" .
+
+:V_126 a :AnswerValue ;
+    rdfs:label "eye(L)"@en,
+        "oeil(G)"@fr ;
+    :code "V_126" .
+
+:V_127 a :AnswerValue ;
+    rdfs:label "scapula(R)"@en,
+        "omoplate(D)"@fr ;
+    :code "V_127" .
+
+:V_128 a :AnswerValue ;
+    rdfs:label "scapula(L)"@en,
+        "omoplate(G)"@fr ;
+    :code "V_128" .
+
+:V_129 a :AnswerValue ;
+    rdfs:label "ear(R)"@en,
+        "oreille(D)"@fr ;
+    :code "V_129" .
+
+:V_130 a :AnswerValue ;
+    rdfs:label "ear(L)"@en,
+        "oreille(G)"@fr ;
+    :code "V_130" .
+
+:V_131 a :AnswerValue ;
+    rdfs:label "toe (1)(R)"@en,
+        "orteil (1)(D)"@fr ;
+    :code "V_131" .
+
+:V_132 a :AnswerValue ;
+    rdfs:label "toe (1)(L)"@en,
+        "orteil (1)(G)"@fr ;
+    :code "V_132" .
+
+:V_133 a :AnswerValue ;
+    rdfs:label "toe (2)(R)"@en,
+        "orteil (2)(D)"@fr ;
+    :code "V_133" .
+
+:V_134 a :AnswerValue ;
+    rdfs:label "toe (2)(L)"@en,
+        "orteil (2)(G)"@fr ;
+    :code "V_134" .
+
+:V_135 a :AnswerValue ;
+    rdfs:label "toe (3)(R)"@en,
+        "orteil (3)(D)"@fr ;
+    :code "V_135" .
+
+:V_136 a :AnswerValue ;
+    rdfs:label "toe (3)(L)"@en,
+        "orteil (3)(G)"@fr ;
+    :code "V_136" .
+
+:V_137 a :AnswerValue ;
+    rdfs:label "palace"@en,
+        "palais"@fr ;
+    :code "V_137" .
+
+:V_139 a :AnswerValue ;
+    rdfs:label "vaginal wall"@en,
+        "paroi vaginale"@fr ;
+    :code "V_139" .
+
+:V_14 a :AnswerValue ;
+    rdfs:label "iliac wing(R)"@en,
+        "aile iliaque(D)"@fr ;
+    :code "V_14" .
+
+:V_140 a :AnswerValue ;
+    rdfs:label "vaginal wall(R)"@en,
+        "paroi vaginale(D)"@fr ;
+    :code "V_140" .
+
+:V_141 a :AnswerValue ;
+    rdfs:label "vaginal wall(L)"@en,
+        "paroi vaginale(G)"@fr ;
+    :code "V_141" .
+
+:V_142 a :AnswerValue ;
+    rdfs:label "palm(R)"@en,
+        "paume(D)"@fr ;
+    :code "V_142" .
+
+:V_143 a :AnswerValue ;
+    rdfs:label "palm(L)"@en,
+        "paume(G)"@fr ;
+    :code "V_143" .
+
+:V_144 a :AnswerValue ;
+    rdfs:label "little toe (4)(R)"@en,
+        "petit orteil (4)(D)"@fr ;
+    :code "V_144" .
+
+:V_145 a :AnswerValue ;
+    rdfs:label "little toe (4)(L)"@en,
+        "petit orteil (4)(G)"@fr ;
+    :code "V_145" .
+
+:V_146 a :AnswerValue ;
+    rdfs:label "labia minora(R)"@en,
+        "petite lèvre(D)"@fr ;
+    :code "V_146" .
+
+:V_147 a :AnswerValue ;
+    rdfs:label "labia minora(L)"@en,
+        "petite lèvre(G)"@fr ;
+    :code "V_147" .
+
+:V_148 a :AnswerValue ;
+    rdfs:label "pharynx"@en,
+        "pharynx"@fr ;
+    :code "V_148" .
+
+:V_149 a :AnswerValue ;
+    rdfs:label "sole(R)"@en,
+        "plante du pied(D)"@fr ;
+    :code "V_149" .
+
+:V_15 a :AnswerValue ;
+    rdfs:label "iliac wing(L)"@en,
+        "aile iliaque(G)"@fr ;
+    :code "V_15" .
+
+:V_150 a :AnswerValue ;
+    rdfs:label "sole(L)"@en,
+        "plante du pied(G)"@fr ;
+    :code "V_150" .
+
+:V_151 a :AnswerValue ;
+    rdfs:label "thumb(R)"@en,
+        "pouce(D)"@fr ;
+    :code "V_151" .
+
+:V_152 a :AnswerValue ;
+    rdfs:label "thumb(L)"@en,
+        "pouce(G)"@fr ;
+    :code "V_152" .
+
+:V_153 a :AnswerValue ;
+    rdfs:label "pubis"@en,
+        "pubis"@fr ;
+    :code "V_153" .
+
+:V_155 a :AnswerValue ;
+    rdfs:label "penis"@en,
+        "pénis"@fr ;
+    :code "V_155" .
+
+:V_158 a :AnswerValue ;
+    rdfs:label "scrotum"@en,
+        "scrotum"@fr ;
+    :code "V_158" .
+
+:V_159 a :AnswerValue ;
+    rdfs:label "breast(R)"@en,
+        "sein(D)"@fr ;
+    :code "V_159" .
+
+:V_16 a :AnswerValue ;
+    rdfs:label "groin(R)"@en,
+        "aine(D)"@fr ;
+    :code "V_16" .
+
+:V_160 a :AnswerValue ;
+    rdfs:label "breast(L)"@en,
+        "sein(G)"@fr ;
+    :code "V_160" .
+
+:V_162 a :AnswerValue ;
+    rdfs:label "under the tongue"@en,
+        "sous la langue"@fr ;
+    :code "V_162" .
+
+:V_163 a :AnswerValue ;
+    rdfs:label "under the jaw"@en,
+        "sous la machoire"@fr ;
+    :code "V_163" .
+
+:V_164 a :AnswerValue ;
+    rdfs:label "heel(R)"@en,
+        "talon(D)"@fr ;
+    :code "V_164" .
+
+:V_165 a :AnswerValue ;
+    rdfs:label "heel(L)"@en,
+        "talon(G)"@fr ;
+    :code "V_165" .
+
+:V_166 a :AnswerValue ;
+    rdfs:label "temple(R)"@en,
+        "tempe(D)"@fr ;
+    :code "V_166" .
+
+:V_167 a :AnswerValue ;
+    rdfs:label "temple(L)"@en,
+        "tempe(G)"@fr ;
+    :code "V_167" .
+
+:V_168 a :AnswerValue ;
+    rdfs:label "testicle(R)"@en,
+        "testicule(D)"@fr ;
+    :code "V_168" .
+
+:V_169 a :AnswerValue ;
+    rdfs:label "testicle(L)"@en,
+        "testicule(G)"@fr ;
+    :code "V_169" .
+
+:V_17 a :AnswerValue ;
+    rdfs:label "groin(L)"@en,
+        "aine(G)"@fr ;
+    :code "V_17" .
+
+:V_170 a :AnswerValue ;
+    rdfs:label "posterior chest wall(R)"@en,
+        "thorax postérieur(D)"@fr ;
+    :code "V_170" .
+
+:V_171 a :AnswerValue ;
+    rdfs:label "posterior chest wall(L)"@en,
+        "thorax postérieur(G)"@fr ;
+    :code "V_171" .
+
+:V_172 a :AnswerValue ;
+    rdfs:label "tibia(R)"@en,
+        "tibia(D)"@fr ;
+    :code "V_172" .
+
+:V_173 a :AnswerValue ;
+    rdfs:label "tibia(L)"@en,
+        "tibia(G)"@fr ;
+    :code "V_173" .
+
+:V_174 a :AnswerValue ;
+    rdfs:label "trachea"@en,
+        "trachée"@fr ;
+    :code "V_174" .
+
+:V_175 a :AnswerValue ;
+    rdfs:label "trapezius(R)"@en,
+        "trapèze(D)"@fr ;
+    :code "V_175" .
+
+:V_176 a :AnswerValue ;
+    rdfs:label "trapezius(L)"@en,
+        "trapèze(G)"@fr ;
+    :code "V_176" .
+
+:V_177 a :AnswerValue ;
+    rdfs:label "triceps(R)"@en,
+        "triceps(D)"@fr ;
+    :code "V_177" .
+
+:V_178 a :AnswerValue ;
+    rdfs:label "triceps(L)"@en,
+        "triceps(G)"@fr ;
+    :code "V_178" .
+
+:V_18 a :AnswerValue ;
+    rdfs:label "axilla(R)"@en,
+        "aisselle(D)"@fr ;
+    :code "V_18" .
+
+:V_185 a :AnswerValue ;
+    rdfs:label "urethra"@en,
+        "urètre"@fr ;
+    :code "V_185" .
+
+:V_186 a :AnswerValue ;
+    rdfs:label "vagina"@en,
+        "vagin"@fr ;
+    :code "V_186" .
+
+:V_187 a :AnswerValue ;
+    rdfs:label "belly"@en,
+        "ventre"@fr ;
+    :code "V_187" .
+
+:V_188 a :AnswerValue ;
+    rdfs:label "vermilion(R)"@en,
+        "vermillon(D)"@fr ;
+    :code "V_188" .
+
+:V_189 a :AnswerValue ;
+    rdfs:label "vermilion(L)"@en,
+        "vermillon(G)"@fr ;
+    :code "V_189" .
+
+:V_19 a :AnswerValue ;
+    rdfs:label "axilla(L)"@en,
+        "aisselle(G)"@fr ;
+    :code "V_19" .
+
+:V_190 a :AnswerValue ;
+    rdfs:label "vulval vestibule"@en,
+        "vestibule"@fr ;
+    :code "V_190" .
+
+:V_194 a :AnswerValue ;
+    rdfs:label "shoulder(R)"@en,
+        "épaule(D)"@fr ;
+    :code "V_194" .
+
+:V_195 a :AnswerValue ;
+    rdfs:label "shoulder(L)"@en,
+        "épaule(G)"@fr ;
+    :code "V_195" .
+
+:V_197 a :AnswerValue ;
+    rdfs:label "epigastric"@en,
+        "épigastre"@fr ;
+    :code "V_197" .
+
+:V_20 a :AnswerValue ;
+    rdfs:label "tonsil(R)"@en,
+        "amygdale(D)"@fr ;
+    :code "V_20" .
+
+:V_21 a :AnswerValue ;
+    rdfs:label "tonsil(L)"@en,
+        "amygdale(G)"@fr ;
+    :code "V_21" .
+
+:V_22 a :AnswerValue ;
+    rdfs:label "anus"@en,
+        "anus"@fr ;
+    :code "V_22" .
+
+:V_23 a :AnswerValue ;
+    rdfs:label "posterior aspect of the ankle(R)"@en,
+        "arrière de la cheville(D)"@fr ;
+    :code "V_23" .
+
+:V_24 a :AnswerValue ;
+    rdfs:label "posterior aspect of the ankle(L)"@en,
+        "arrière de la cheville(G)"@fr ;
+    :code "V_24" .
+
+:V_25 a :AnswerValue ;
+    rdfs:label "back of head"@en,
+        "arrière de tête"@fr ;
+    :code "V_25" .
+
+:V_26 a :AnswerValue ;
+    rdfs:label "back of the neck"@en,
+        "arrière du cou"@fr ;
+    :code "V_26" .
+
+:V_27 a :AnswerValue ;
+    rdfs:label "forearm(R)"@en,
+        "avant-bras(D)"@fr ;
+    :code "V_27" .
+
+:V_28 a :AnswerValue ;
+    rdfs:label "forearm(L)"@en,
+        "avant-bras(G)"@fr ;
+    :code "V_28" .
+
+:V_29 a :AnswerValue ;
+    rdfs:label "lower chest"@en,
+        "bas du thorax"@fr ;
+    :code "V_29" .
+
+:V_30 a :AnswerValue ;
+    rdfs:label "biceps(R)"@en,
+        "biceps(D)"@fr ;
+    :code "V_30" .
+
+:V_31 a :AnswerValue ;
+    rdfs:label "biceps(L)"@en,
+        "biceps(G)"@fr ;
+    :code "V_31" .
+
+:V_32 a :AnswerValue ;
+    rdfs:label "mouth"@en,
+        "bouche"@fr ;
+    :code "V_32" .
+
+:V_33 a :AnswerValue ;
+    rdfs:label "thyroid cartilage"@en,
+        "cartilage thyroidien"@fr ;
+    :code "V_33" .
+
+:V_34 a :AnswerValue ;
+    rdfs:label "ankle(R)"@en,
+        "cheville(D)"@fr ;
+    :code "V_34" .
+
+:V_35 a :AnswerValue ;
+    rdfs:label "ankle(L)"@en,
+        "cheville(G)"@fr ;
+    :code "V_35" .
+
+:V_36 a :AnswerValue ;
+    rdfs:label "clitoris"@en,
+        "clitoris"@fr ;
+    :code "V_36" .
+
+:V_37 a :AnswerValue ;
+    rdfs:label "coccyx"@en,
+        "coccyx"@fr ;
+    :code "V_37" .
+
+:V_38 a :AnswerValue ;
+    rdfs:label "cervical spine"@en,
+        "colonne cervicale"@fr ;
+    :code "V_38" .
+
+:V_39 a :AnswerValue ;
+    rdfs:label "thoracic spine"@en,
+        "colonne dorsale"@fr ;
+    :code "V_39" .
+
+:V_40 a :AnswerValue ;
+    rdfs:label "lumbar spine"@en,
+        "colonne lombaire"@fr ;
+    :code "V_40" .
+
+:V_41 a :AnswerValue ;
+    rdfs:label "commissure(R)"@en,
+        "commissure(D)"@fr ;
+    :code "V_41" .
+
+:V_42 a :AnswerValue ;
+    rdfs:label "commissure(L)"@en,
+        "commissure(G)"@fr ;
+    :code "V_42" .
+
+:V_43 a :AnswerValue ;
+    rdfs:label "lateral side of the foot(R)"@en,
+        "coté lateral du pied(D)"@fr ;
+    :code "V_43" .
+
+:V_44 a :AnswerValue ;
+    rdfs:label "lateral side of the foot(L)"@en,
+        "coté lateral du pied(G)"@fr ;
+    :code "V_44" .
+
+:V_45 a :AnswerValue ;
+    rdfs:label "elbow(R)"@en,
+        "coude(D)"@fr ;
+    :code "V_45" .
+
+:V_46 a :AnswerValue ;
+    rdfs:label "elbow(L)"@en,
+        "coude(G)"@fr ;
+    :code "V_46" .
+
+:V_47 a :AnswerValue ;
+    rdfs:label "popliteal fossa(R)"@en,
+        "creux poplité(D)"@fr ;
+    :code "V_47" .
+
+:V_48 a :AnswerValue ;
+    rdfs:label "popliteal fossa(L)"@en,
+        "creux poplité(G)"@fr ;
+    :code "V_48" .
+
+:V_49 a :AnswerValue ;
+    rdfs:label "iliac crest(R)"@en,
+        "crête iliaque(D)"@fr ;
+    :code "V_49" .
+
+:V_50 a :AnswerValue ;
+    rdfs:label "iliac crest(L)"@en,
+        "crête iliaque(G)"@fr ;
+    :code "V_50" .
+
+:V_51 a :AnswerValue ;
+    rdfs:label "thigh(R)"@en,
+        "cuisse(D)"@fr ;
+    :code "V_51" .
+
+:V_52 a :AnswerValue ;
+    rdfs:label "thigh(L)"@en,
+        "cuisse(G)"@fr ;
+    :code "V_52" .
+
+:V_53 a :AnswerValue ;
+    rdfs:label "side of the neck(R)"@en,
+        "côté du cou(D)"@fr ;
+    :code "V_53" .
+
+:V_54 a :AnswerValue ;
+    rdfs:label "side of the neck(L)"@en,
+        "côté du cou(G)"@fr ;
+    :code "V_54" .
+
+:V_55 a :AnswerValue ;
+    rdfs:label "side of the chest(R)"@en,
+        "côté du thorax(D)"@fr ;
+    :code "V_55" .
+
+:V_56 a :AnswerValue ;
+    rdfs:label "side of the chest(L)"@en,
+        "côté du thorax(G)"@fr ;
+    :code "V_56" .
+
+:V_57 a :AnswerValue ;
+    rdfs:label "lower teeth(R)"@en,
+        "dents inférieures(D)"@fr ;
+    :code "V_57" .
+
+:V_58 a :AnswerValue ;
+    rdfs:label "lower teeth(L)"@en,
+        "dents inférieures(G)"@fr ;
+    :code "V_58" .
+
+:V_59 a :AnswerValue ;
+    rdfs:label "upper teeth(R)"@en,
+        "dents supérieures(D)"@fr ;
+    :code "V_59" .
+
+:V_60 a :AnswerValue ;
+    rdfs:label "upper teeth(L)"@en,
+        "dents supérieures(G)"@fr ;
+    :code "V_60" .
+
+:V_61 a :AnswerValue ;
+    rdfs:label "above the tongue"@en,
+        "dessus de la langue"@fr ;
+    :code "V_61" .
+
+:V_62 a :AnswerValue ;
+    rdfs:label "top of the head"@en,
+        "dessus de tête"@fr ;
+    :code "V_62" .
+
+:V_63 a :AnswerValue ;
+    rdfs:label "finger (ring finger)(R)"@en,
+        "doigt(annulaire)(D)"@fr ;
+    :code "V_63" .
+
+:V_64 a :AnswerValue ;
+    rdfs:label "finger (ring finger)(L)"@en,
+        "doigt(annulaire)(G)"@fr ;
+    :code "V_64" .
+
+:V_65 a :AnswerValue ;
+    rdfs:label "finger (little finger)(R)"@en,
+        "doigt(auriculaire)(D)"@fr ;
+    :code "V_65" .
+
+:V_66 a :AnswerValue ;
+    rdfs:label "finger (little finger)(L)"@en,
+        "doigt(auriculaire)(G)"@fr ;
+    :code "V_66" .
+
+:V_67 a :AnswerValue ;
+    rdfs:label "finger (index)(R)"@en,
+        "doigt(index)(D)"@fr ;
+    :code "V_67" .
+
+:V_68 a :AnswerValue ;
+    rdfs:label "finger (index)(L)"@en,
+        "doigt(index)(G)"@fr ;
+    :code "V_68" .
+
+:V_69 a :AnswerValue ;
+    rdfs:label "finger (middle)(R)"@en,
+        "doigt(majeur)(D)"@fr ;
+    :code "V_69" .
+
+:V_70 a :AnswerValue ;
+    rdfs:label "finger (middle)(L)"@en,
+        "doigt(majeur)(G)"@fr ;
+    :code "V_70" .
+
+:V_72 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the foot(R)"@en,
+        "face dorsale du pied(D)"@fr ;
+    :code "V_72" .
+
+:V_73 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the foot(L)"@en,
+        "face dorsale du pied(G)"@fr ;
+    :code "V_73" .
+
+:V_74 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the wrist(R)"@en,
+        "face dorsale du poignet(D)"@fr ;
+    :code "V_74" .
+
+:V_75 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the wrist(L)"@en,
+        "face dorsale du poignet(G)"@fr ;
+    :code "V_75" .
+
+:V_76 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the hand(R)"@en,
+        "face dorsale main(D)"@fr ;
+    :code "V_76" .
+
+:V_77 a :AnswerValue ;
+    rdfs:label "dorsal aspect of the hand(L)"@en,
+        "face dorsale main(G)"@fr ;
+    :code "V_77" .
+
+:V_78 a :AnswerValue ;
+    rdfs:label "palmar side of the forearm(R)"@en,
+        "face palmaire de l'avant-bras(D)"@fr ;
+    :code "V_78" .
+
+:V_79 a :AnswerValue ;
+    rdfs:label "palmar side of the forearm(L)"@en,
+        "face palmaire de l'avant-bras(G)"@fr ;
+    :code "V_79" .
+
+:V_80 a :AnswerValue ;
+    rdfs:label "palmar face of the wrist(R)"@en,
+        "face palmaire du poignet(D)"@fr ;
+    :code "V_80" .
+
+:V_81 a :AnswerValue ;
+    rdfs:label "palmar face of the wrist(L)"@en,
+        "face palmaire du poignet(G)"@fr ;
+    :code "V_81" .
+
+:V_82 a :AnswerValue ;
+    rdfs:label "buttock(R)"@en,
+        "fesse(D)"@fr ;
+    :code "V_82" .
+
+:V_83 a :AnswerValue ;
+    rdfs:label "buttock(L)"@en,
+        "fesse(G)"@fr ;
+    :code "V_83" .
+
+:V_84 a :AnswerValue ;
+    rdfs:label "flank(R)"@en,
+        "flanc(D)"@fr ;
+    :code "V_84" .
+
+:V_85 a :AnswerValue ;
+    rdfs:label "flank(L)"@en,
+        "flanc(G)"@fr ;
+    :code "V_85" .
+
+:V_87 a :AnswerValue ;
+    rdfs:label "iliac fossa(R)"@en,
+        "fosse iliaque(D)"@fr ;
+    :code "V_87" .
+
+:V_88 a :AnswerValue ;
+    rdfs:label "iliac fossa(L)"@en,
+        "fosse iliaque(G)"@fr ;
+    :code "V_88" .
+
+:V_89 a :AnswerValue ;
+    rdfs:label "forehead"@en,
+        "front"@fr ;
+    :code "V_89" .
+
+:V_90 a :AnswerValue ;
+    rdfs:label "lower gum"@en,
+        "gencive inférieure"@fr ;
+    :code "V_90" .
+
+:V_91 a :AnswerValue ;
+    rdfs:label "upper gum"@en,
+        "gencive supérieure"@fr ;
+    :code "V_91" .
+
+:V_92 a :AnswerValue ;
+    rdfs:label "knee(R)"@en,
+        "genou(D)"@fr ;
+    :code "V_92" .
+
+:V_93 a :AnswerValue ;
+    rdfs:label "knee(L)"@en,
+        "genou(G)"@fr ;
+    :code "V_93" .
+
+:V_94 a :AnswerValue ;
+    rdfs:label "glans"@en,
+        "gland"@fr ;
+    :code "V_94" .
+
+:V_95 a :AnswerValue ;
+    rdfs:label "labia majora(R)"@en,
+        "grande lèvre(D)"@fr ;
+    :code "V_95" .
+
+:V_96 a :AnswerValue ;
+    rdfs:label "labia majora(L)"@en,
+        "grande lèvre(G)"@fr ;
+    :code "V_96" .
+
+:V_97 a :AnswerValue ;
+    rdfs:label "big toe(R)"@en,
+        "gros orteil(D)"@fr ;
+    :code "V_97" .
+
+:V_98 a :AnswerValue ;
+    rdfs:label "big toe(L)"@en,
+        "gros orteil(G)"@fr ;
+    :code "V_98" .
+
+:V_99 a :AnswerValue ;
+    rdfs:label "hip(R)"@en,
+        "hanche(D)"@fr ;
+    :code "V_99" .
+
+:E_105 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Heart attack or do you have angina (chest pain)"@en ;
+    :code "E_105" ;
+    :defaultValue "0" ;
+    :question "Have you ever had a heart attack or do you have angina (chest pain)?"@en,
+        "Avez-vous déjà fait une crise de coeur ou faites-vous de l’angine?"@fr .
+
+:E_116 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Cold in the last 2 weeks"@en ;
+    :code "E_116" ;
+    :defaultValue "0" ;
+    :question "Have you had a cold in the last 2 weeks?"@en,
+        "Avez-vous eu un rhume, au cours des 2 dernières semaines?"@fr .
+
+:E_123 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Chronic obstructive pulmonary disease (COPD)"@en ;
+    :code "E_123" ;
+    :defaultValue "0" ;
+    :question "Do you have a chronic obstructive pulmonary disease (COPD)?"@en,
+        "Souffrez-vous de maladie pulmonaire obstructive chronique?"@fr .
+
+:E_144 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Diffuse (widespread) muscle pain"@en ;
+    :code "E_144" ;
+    :defaultValue "0" ;
+    :question "Do you have diffuse (widespread) muscle pain?"@en,
+        "Avez-vous des douleurs musculaires diffuses?"@fr .
+
+:E_152 a :Evidence,
+        :MultiChoiceEvidence,
+        :Symptom ;
+    rdfs:label "Where is the swelling located"@en ;
+    :code "E_152" ;
+    :defaultValue "V_123" ;
+    :hasPossibleValue :V_100,
+        :V_101,
+        :V_102,
+        :V_103,
+        :V_104,
+        :V_105,
+        :V_106,
+        :V_108,
+        :V_109,
+        :V_110,
+        :V_111,
+        :V_113,
+        :V_114,
+        :V_115,
+        :V_116,
+        :V_117,
+        :V_118,
+        :V_119,
+        :V_120,
+        :V_121,
+        :V_122,
+        :V_123,
+        :V_124,
+        :V_125,
+        :V_126,
+        :V_127,
+        :V_128,
+        :V_129,
+        :V_130,
+        :V_131,
+        :V_132,
+        :V_133,
+        :V_134,
+        :V_135,
+        :V_136,
+        :V_137,
+        :V_139,
+        :V_14,
+        :V_140,
+        :V_141,
+        :V_142,
+        :V_143,
+        :V_144,
+        :V_145,
+        :V_146,
+        :V_147,
+        :V_148,
+        :V_149,
+        :V_15,
+        :V_150,
+        :V_151,
+        :V_152,
+        :V_153,
+        :V_155,
+        :V_158,
+        :V_159,
+        :V_16,
+        :V_160,
+        :V_162,
+        :V_163,
+        :V_164,
+        :V_165,
+        :V_166,
+        :V_167,
+        :V_168,
+        :V_169,
+        :V_17,
+        :V_170,
+        :V_171,
+        :V_172,
+        :V_173,
+        :V_174,
+        :V_175,
+        :V_176,
+        :V_177,
+        :V_178,
+        :V_18,
+        :V_185,
+        :V_186,
+        :V_187,
+        :V_188,
+        :V_189,
+        :V_19,
+        :V_190,
+        :V_194,
+        :V_195,
+        :V_197,
+        :V_20,
+        :V_21,
+        :V_22,
+        :V_23,
+        :V_24,
+        :V_25,
+        :V_26,
+        :V_27,
+        :V_28,
+        :V_29,
+        :V_30,
+        :V_31,
+        :V_32,
+        :V_33,
+        :V_34,
+        :V_35,
+        :V_36,
+        :V_37,
+        :V_38,
+        :V_39,
+        :V_40,
+        :V_41,
+        :V_42,
+        :V_43,
+        :V_44,
+        :V_45,
+        :V_46,
+        :V_47,
+        :V_48,
+        :V_49,
+        :V_50,
+        :V_51,
+        :V_52,
+        :V_53,
+        :V_54,
+        :V_55,
+        :V_56,
+        :V_57,
+        :V_58,
+        :V_59,
+        :V_60,
+        :V_61,
+        :V_62,
+        :V_63,
+        :V_64,
+        :V_65,
+        :V_66,
+        :V_67,
+        :V_68,
+        :V_69,
+        :V_70,
+        :V_72,
+        :V_73,
+        :V_74,
+        :V_75,
+        :V_76,
+        :V_77,
+        :V_78,
+        :V_79,
+        :V_80,
+        :V_81,
+        :V_82,
+        :V_83,
+        :V_84,
+        :V_85,
+        :V_87,
+        :V_88,
+        :V_89,
+        :V_90,
+        :V_91,
+        :V_92,
+        :V_93,
+        :V_94,
+        :V_95,
+        :V_96,
+        :V_97,
+        :V_98,
+        :V_99 ;
+    :question "Where is the swelling located?"@en,
+        "À quel endroit est situé l’enflure?"@fr ;
+    :subQuestionOf :E_151 .
+
+:E_217 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Symptoms worse when lying down and alleviated while sitting up"@en ;
+    :code "E_217" ;
+    :defaultValue "0" ;
+    :question "Are your symptoms worse when lying down and alleviated while sitting up?"@en,
+        "Vos symptômes sont-ils pire en position couchée et améliorés en position assise?"@fr .
+
+:E_220 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pain that is increased when you breathe in deeply"@en ;
+    :code "E_220" ;
+    :defaultValue "0" ;
+    :question "Do you have pain that is increased when you breathe in deeply?"@en,
+        "Avez-vous une douleur qui est pire à l’inspiration profonde?"@fr .
+
+:E_226 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "More likely to develop common allergies than the general population"@en ;
+    :code "E_226" ;
+    :defaultValue "0" ;
+    :question "Are you more likely to develop common allergies than the general population?"@en,
+        "Êtes-vous susceptible de développer plus facilement que la population générale des allergies courantes?"@fr .
+
+:E_77 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Cough that produces colored or more abundant sputum than usual"@en ;
+    :code "E_77" ;
+    :defaultValue "0" ;
+    :question "Do you have a cough that produces colored or more abundant sputum than usual?"@en,
+        "Avez-vous une toux produisant des crachats colorés ou plus abondants qu’habituellement?"@fr .
+
+:E_82 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lightheaded and dizzy or do you feel like you are about to faint"@en ;
+    :code "E_82" ;
+    :defaultValue "0" ;
+    :question "Do you feel lightheaded and dizzy or do you feel like you are about to faint?"@en,
+        "Vous sentez-vous faible et étourdi ou avez vous l’impression que vous allez perdre conscience?"@fr .
+
+:E_97 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Sore throat"@en ;
+    :code "E_97" ;
+    :defaultValue "0" ;
+    :question "Do you have a sore throat?"@en,
+        "Avez-vous mal à la gorge?"@fr .
+
+:ICD10_I a :ICD10Chapter ;
+    rdfs:label "ICD-10 I: Certain infectious and parasitic diseases (A00–B99)"@en ;
+    :code "I" .
+
+:Severity1 a :SeverityLevel ;
+    rdfs:label "Severity 1 (most severe)"@en ;
+    :code 1 .
+
+:E_104 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "High blood pressure or do you take medications to treat high blood pressure"@en ;
+    :code "E_104" ;
+    :defaultValue "0" ;
+    :question "Do you have high blood pressure or do you take medications to treat high blood pressure?"@en,
+        "Souffrez-vous d’hypertension ou prenez-vous des médicaments pour traiter la haute pression?"@fr .
+
+:E_155 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Heart is beating fast (racing), irregularly (missing a beat) or do you feel palpitations"@en ;
+    :code "E_155" ;
+    :defaultValue "0" ;
+    :question "Do you feel your heart is beating fast (racing), irregularly (missing a beat) or do you feel palpitations?"@en,
+        "Avez-vous l’impression que votre coeur bat vite, de façon irrégulière ou ressentez-vous des palpitations?"@fr .
+
+:E_214 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Wheezing sound when you exhale"@en ;
+    :code "E_214" ;
+    :defaultValue "0" ;
+    :question "Have you noticed a wheezing sound when you exhale?"@en,
+        "Avez-vous noté un un son aigu lorsque vous sortez l’air de vos poumons?"@fr .
+
+:E_218 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Symptoms that are increased with physical exertion but alleviated with rest"@en ;
+    :code "E_218" ;
+    :defaultValue "0" ;
+    :question "Do you have symptoms that are increased with physical exertion but alleviated with rest?"@en,
+        "Avez-vous des symptômes qui sont pires lors de l’effort physique et soulagés par le repos?"@fr .
+
+:E_45 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Coughing up blood"@en ;
+    :code "E_45" ;
+    :defaultValue "0" ;
+    :question "Have you been coughing up blood?"@en,
+        "Avez-vous visualisé du sang dans vos crachats?"@fr .
+
+:E_51 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Diarrhea or an increase in stool frequency"@en ;
+    :code "E_51" ;
+    :defaultValue "0" ;
+    :question "Have you had diarrhea or an increase in stool frequency?"@en,
+        "Avez-vous eu des diarrhées ou une augmentation de la fréquence de vos selles?"@fr .
+
+:E_50 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Significantly increased sweating"@en ;
+    :code "E_50" ;
+    :defaultValue "0" ;
+    :question "Have you had significantly increased sweating?"@en,
+        "Avez-vous eu des sueurs importantes?"@fr .
+
+:E_69 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Diabetes"@en ;
+    :code "E_69" ;
+    :defaultValue "0" ;
+    :question "Do you have diabetes?"@en,
+        "Souffrez-vous de diabète?"@fr .
+
+:E_134 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "How intense is the pain caused by the rash"@en ;
+    :code "E_134" ;
+    :defaultValue "0" ;
+    :question "How intense is the pain caused by the rash?"@en,
+        "Quelle est l’intensité de la douleur causée par les lésions?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_129 .
+
+:E_209 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Vaccinations up to date"@en ;
+    :code "E_209" ;
+    :defaultValue "0" ;
+    :question "Are your vaccinations up to date?"@en,
+        "Vos vaccins sont-ils à jour?"@fr .
+
+:E_89 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Constantly feel fatigued or do you have non-restful sleep"@en ;
+    :code "E_89" ;
+    :defaultValue "0" ;
+    :question "Do you constantly feel fatigued or do you have non-restful sleep?"@en,
+        "Ressentez-vous une fatigue constante ou avez-vous un sommeil non réparateur?"@fr .
+
+:ICD10_IX a :ICD10Chapter ;
+    rdfs:label "ICD-10 IX: Diseases of the circulatory system (I00–I99)"@en ;
+    :code "IX" .
+
+:E_130 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "What color is the rash"@en ;
+    :code "E_130" ;
+    :defaultValue "V_11" ;
+    :hasPossibleValue :V_107,
+        :V_11,
+        :V_138,
+        :V_156,
+        :V_157,
+        :V_86 ;
+    :question "What color is the rash?"@en,
+        "De quelle couleur sont les lésions?"@fr ;
+    :subQuestionOf :E_129 .
+
+:E_131 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lesions peel off"@en ;
+    :code "E_131" ;
+    :defaultValue "V_10" ;
+    :hasPossibleValue :V_10,
+        :V_12 ;
+    :question "Do your lesions peel off?"@en,
+        "Est-ce que vos lésions pèlent (morceaux de peau qui se détachent)?"@fr ;
+    :subQuestionOf :E_129 .
+
+:E_132 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Is the rash swollen"@en ;
+    :code "E_132" ;
+    :defaultValue "0" ;
+    :question "Is the rash swollen?"@en,
+        "La ou les lésions sont-elles surélevées?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_129 .
+
+:E_133 a :Evidence,
+        :MultiChoiceEvidence,
+        :Symptom ;
+    rdfs:label "Where is the affected region located"@en ;
+    :code "E_133" ;
+    :defaultValue "V_123" ;
+    :hasPossibleValue :V_100,
+        :V_101,
+        :V_102,
+        :V_103,
+        :V_104,
+        :V_105,
+        :V_106,
+        :V_108,
+        :V_109,
+        :V_110,
+        :V_111,
+        :V_113,
+        :V_114,
+        :V_115,
+        :V_116,
+        :V_117,
+        :V_118,
+        :V_119,
+        :V_120,
+        :V_121,
+        :V_122,
+        :V_123,
+        :V_124,
+        :V_125,
+        :V_126,
+        :V_127,
+        :V_128,
+        :V_129,
+        :V_130,
+        :V_131,
+        :V_132,
+        :V_133,
+        :V_134,
+        :V_135,
+        :V_136,
+        :V_137,
+        :V_139,
+        :V_14,
+        :V_140,
+        :V_141,
+        :V_142,
+        :V_143,
+        :V_144,
+        :V_145,
+        :V_146,
+        :V_147,
+        :V_148,
+        :V_149,
+        :V_15,
+        :V_150,
+        :V_151,
+        :V_152,
+        :V_153,
+        :V_155,
+        :V_158,
+        :V_159,
+        :V_16,
+        :V_160,
+        :V_162,
+        :V_163,
+        :V_164,
+        :V_165,
+        :V_166,
+        :V_167,
+        :V_168,
+        :V_169,
+        :V_17,
+        :V_170,
+        :V_171,
+        :V_172,
+        :V_173,
+        :V_174,
+        :V_175,
+        :V_176,
+        :V_177,
+        :V_178,
+        :V_18,
+        :V_185,
+        :V_186,
+        :V_187,
+        :V_188,
+        :V_189,
+        :V_19,
+        :V_190,
+        :V_194,
+        :V_195,
+        :V_197,
+        :V_20,
+        :V_21,
+        :V_22,
+        :V_23,
+        :V_24,
+        :V_25,
+        :V_26,
+        :V_27,
+        :V_28,
+        :V_29,
+        :V_30,
+        :V_31,
+        :V_32,
+        :V_33,
+        :V_34,
+        :V_35,
+        :V_36,
+        :V_37,
+        :V_38,
+        :V_39,
+        :V_40,
+        :V_41,
+        :V_42,
+        :V_43,
+        :V_44,
+        :V_45,
+        :V_46,
+        :V_47,
+        :V_48,
+        :V_49,
+        :V_50,
+        :V_51,
+        :V_52,
+        :V_53,
+        :V_54,
+        :V_55,
+        :V_56,
+        :V_57,
+        :V_58,
+        :V_59,
+        :V_60,
+        :V_61,
+        :V_62,
+        :V_63,
+        :V_64,
+        :V_65,
+        :V_66,
+        :V_67,
+        :V_68,
+        :V_69,
+        :V_70,
+        :V_72,
+        :V_73,
+        :V_74,
+        :V_75,
+        :V_76,
+        :V_77,
+        :V_78,
+        :V_79,
+        :V_80,
+        :V_81,
+        :V_82,
+        :V_83,
+        :V_84,
+        :V_85,
+        :V_87,
+        :V_88,
+        :V_89,
+        :V_90,
+        :V_91,
+        :V_92,
+        :V_93,
+        :V_94,
+        :V_95,
+        :V_96,
+        :V_97,
+        :V_98,
+        :V_99 ;
+    :question "Where is the affected region located?"@en,
+        "À quel endroit est situé chaque lésion?"@fr ;
+    :subQuestionOf :E_129 .
+
+:E_135 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Is the lesion (or are the lesions) larger than 1cm"@en ;
+    :code "E_135" ;
+    :defaultValue "V_10" ;
+    :hasPossibleValue :V_10,
+        :V_12 ;
+    :question "Is the lesion (or are the lesions) larger than 1cm?"@en,
+        "Est-ce que la ou les lésions sont plus grande que 1 cm?"@fr ;
+    :subQuestionOf :E_129 .
+
+:E_136 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "How severe is the itching"@en ;
+    :code "E_136" ;
+    :defaultValue "0" ;
+    :question "How severe is the itching?"@en,
+        "Quel est le niveau de la démangeaisons?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_129 .
+
+:E_151 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Swelling in one or more areas of your body"@en ;
+    :code "E_151" ;
+    :defaultValue "0" ;
+    :question "Do you have swelling in one or more areas of your body?"@en,
+        "Avez-vous de l’enflure à un ou plusieurs endroits sur votre corps?"@fr .
+
+:E_70 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Significantly overweight compared to people of the same height as you"@en ;
+    :code "E_70" ;
+    :defaultValue "0" ;
+    :question "Are you significantly overweight compared to people of the same height as you?"@en,
+        "Avez-vous un surpoids important par rapport aux personnes de la même taille que vous?"@fr .
+
+:E_124 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Asthma or have you ever had to use a bronchodilator in the past"@en ;
+    :code "E_124" ;
+    :defaultValue "0" ;
+    :question "Do you have asthma or have you ever had to use a bronchodilator in the past?"@en,
+        "Souffrez-vous d’asthme ou avez vous déjà eu une prescription de bronchodilatateurs dans le passé?"@fr .
+
+:E_148 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Feeling nauseous or do you feel like vomiting"@en ;
+    :code "E_148" ;
+    :defaultValue "0" ;
+    :question "Are you feeling nauseous or do you feel like vomiting?"@en,
+        "Avez-vous des nausées ou envie de vomir?"@fr .
+
+:E_78 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Drink alcohol excessively or do you have an addiction to alcohol"@en ;
+    :code "E_78" ;
+    :defaultValue "0" ;
+    :question "Do you drink alcohol excessively or do you have an addiction to alcohol?"@en,
+        "Prenez-vous de l’alcool de façon excessive ou avez-vous une dépendance à l’alcool?"@fr .
+
+:E_181 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Nasal congestion or a clear runny nose"@en ;
+    :code "E_181" ;
+    :defaultValue "0" ;
+    :question "Do you have nasal congestion or a clear runny nose?"@en,
+        "Avez-vous de la congestion nasale ou le nez qui coule clair?"@fr .
+
+:Severity2 a :SeverityLevel ;
+    rdfs:label "Severity 2"@en ;
+    :code 2 .
+
+:Severity4 a :SeverityLevel ;
+    rdfs:label "Severity 4"@en ;
+    :code 4 .
+
+:E_91 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Fever (either felt or measured with a thermometer)"@en ;
+    :code "E_91" ;
+    :defaultValue "0" ;
+    :question "Do you have a fever (either felt or measured with a thermometer)?"@en,
+        "Avez-vous objectivé ou ressenti de la fièvre?"@fr .
+
+:E_129 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Lesions, redness or problems on your skin that you believe are related to the condition you are consulting for"@en ;
+    :code "E_129" ;
+    :defaultValue "0" ;
+    :question "Do you have any lesions, redness or problems on your skin that you believe are related to the condition you are consulting for?"@en,
+        "Avez vous des lésions, rougeurs ou problèmes au niveau de votre peau que vous croyez être reliés à la condition pour laquelle vous consultez?"@fr .
+
+:Severity3 a :SeverityLevel ;
+    rdfs:label "Severity 3"@en ;
+    :code 3 .
+
+:E_79 a :Antecedent,
+        :BinaryEvidence,
+        :Evidence ;
+    rdfs:label "Smoke cigarettes"@en ;
+    :code "E_79" ;
+    :defaultValue "0" ;
+    :question "Do you smoke cigarettes?"@en,
+        "Fumez-vous la cigarette quotidiennement?"@fr .
+
+:ICD10_X a :ICD10Chapter ;
+    rdfs:label "ICD-10 X: Diseases of the respiratory system (J00–J99)"@en ;
+    :code "X" .
+
+:E_201 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Cough"@en ;
+    :code "E_201" ;
+    :defaultValue "0" ;
+    :question "Do you have a cough?"@en,
+        "Avez-vous de la toux?"@fr .
+
+:E_54 a :Evidence,
+        :MultiChoiceEvidence,
+        :Symptom ;
+    rdfs:label "Characterize your pain"@en ;
+    :code "E_54" ;
+    :defaultValue "V_11" ;
+    :hasPossibleValue :V_11,
+        :V_112,
+        :V_154,
+        :V_161,
+        :V_179,
+        :V_180,
+        :V_181,
+        :V_182,
+        :V_183,
+        :V_184,
+        :V_191,
+        :V_192,
+        :V_193,
+        :V_196,
+        :V_198,
+        :V_71 ;
+    :question "Characterize your pain:"@en,
+        "Caractérisez votre douleur:"@fr ;
+    :subQuestionOf :E_53 .
+
+:E_55 a :Evidence,
+        :MultiChoiceEvidence,
+        :Symptom ;
+    rdfs:label "Pain somewhere"@en ;
+    :code "E_55" ;
+    :defaultValue "V_123" ;
+    :hasPossibleValue :V_100,
+        :V_101,
+        :V_102,
+        :V_103,
+        :V_104,
+        :V_105,
+        :V_106,
+        :V_108,
+        :V_109,
+        :V_110,
+        :V_111,
+        :V_113,
+        :V_114,
+        :V_115,
+        :V_116,
+        :V_117,
+        :V_118,
+        :V_119,
+        :V_120,
+        :V_121,
+        :V_122,
+        :V_123,
+        :V_124,
+        :V_125,
+        :V_126,
+        :V_127,
+        :V_128,
+        :V_129,
+        :V_130,
+        :V_131,
+        :V_132,
+        :V_133,
+        :V_134,
+        :V_135,
+        :V_136,
+        :V_137,
+        :V_139,
+        :V_14,
+        :V_140,
+        :V_141,
+        :V_142,
+        :V_143,
+        :V_144,
+        :V_145,
+        :V_146,
+        :V_147,
+        :V_148,
+        :V_149,
+        :V_15,
+        :V_150,
+        :V_151,
+        :V_152,
+        :V_153,
+        :V_155,
+        :V_158,
+        :V_159,
+        :V_16,
+        :V_160,
+        :V_162,
+        :V_163,
+        :V_164,
+        :V_165,
+        :V_166,
+        :V_167,
+        :V_168,
+        :V_169,
+        :V_17,
+        :V_170,
+        :V_171,
+        :V_172,
+        :V_173,
+        :V_174,
+        :V_175,
+        :V_176,
+        :V_177,
+        :V_178,
+        :V_18,
+        :V_185,
+        :V_186,
+        :V_187,
+        :V_188,
+        :V_189,
+        :V_19,
+        :V_190,
+        :V_194,
+        :V_195,
+        :V_197,
+        :V_20,
+        :V_21,
+        :V_22,
+        :V_23,
+        :V_24,
+        :V_25,
+        :V_26,
+        :V_27,
+        :V_28,
+        :V_29,
+        :V_30,
+        :V_31,
+        :V_32,
+        :V_33,
+        :V_34,
+        :V_35,
+        :V_36,
+        :V_37,
+        :V_38,
+        :V_39,
+        :V_40,
+        :V_41,
+        :V_42,
+        :V_43,
+        :V_44,
+        :V_45,
+        :V_46,
+        :V_47,
+        :V_48,
+        :V_49,
+        :V_50,
+        :V_51,
+        :V_52,
+        :V_53,
+        :V_54,
+        :V_55,
+        :V_56,
+        :V_57,
+        :V_58,
+        :V_59,
+        :V_60,
+        :V_61,
+        :V_62,
+        :V_63,
+        :V_64,
+        :V_65,
+        :V_66,
+        :V_67,
+        :V_68,
+        :V_69,
+        :V_70,
+        :V_72,
+        :V_73,
+        :V_74,
+        :V_75,
+        :V_76,
+        :V_77,
+        :V_78,
+        :V_79,
+        :V_80,
+        :V_81,
+        :V_82,
+        :V_83,
+        :V_84,
+        :V_85,
+        :V_87,
+        :V_88,
+        :V_89,
+        :V_90,
+        :V_91,
+        :V_92,
+        :V_93,
+        :V_94,
+        :V_95,
+        :V_96,
+        :V_97,
+        :V_98,
+        :V_99 ;
+    :question "Do you feel pain somewhere?"@en,
+        "Avez-vous de la douleur quelque part?"@fr ;
+    :subQuestionOf :E_53 .
+
+:E_56 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "How intense is the pain"@en ;
+    :code "E_56" ;
+    :defaultValue "0" ;
+    :question "How intense is the pain?"@en,
+        "Quelle est l’intensité de la douleur?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_53 .
+
+:E_57 a :Evidence,
+        :MultiChoiceEvidence,
+        :Symptom ;
+    rdfs:label "Does the pain radiate to another location"@en ;
+    :code "E_57" ;
+    :defaultValue "V_123" ;
+    :hasPossibleValue :V_100,
+        :V_101,
+        :V_102,
+        :V_103,
+        :V_104,
+        :V_105,
+        :V_106,
+        :V_108,
+        :V_109,
+        :V_110,
+        :V_111,
+        :V_113,
+        :V_114,
+        :V_115,
+        :V_116,
+        :V_117,
+        :V_118,
+        :V_119,
+        :V_120,
+        :V_121,
+        :V_122,
+        :V_123,
+        :V_124,
+        :V_125,
+        :V_126,
+        :V_127,
+        :V_128,
+        :V_129,
+        :V_130,
+        :V_131,
+        :V_132,
+        :V_133,
+        :V_134,
+        :V_135,
+        :V_136,
+        :V_137,
+        :V_139,
+        :V_14,
+        :V_140,
+        :V_141,
+        :V_142,
+        :V_143,
+        :V_144,
+        :V_145,
+        :V_146,
+        :V_147,
+        :V_148,
+        :V_149,
+        :V_15,
+        :V_150,
+        :V_151,
+        :V_152,
+        :V_153,
+        :V_155,
+        :V_158,
+        :V_159,
+        :V_16,
+        :V_160,
+        :V_162,
+        :V_163,
+        :V_164,
+        :V_165,
+        :V_166,
+        :V_167,
+        :V_168,
+        :V_169,
+        :V_17,
+        :V_170,
+        :V_171,
+        :V_172,
+        :V_173,
+        :V_174,
+        :V_175,
+        :V_176,
+        :V_177,
+        :V_178,
+        :V_18,
+        :V_185,
+        :V_186,
+        :V_187,
+        :V_188,
+        :V_189,
+        :V_19,
+        :V_190,
+        :V_194,
+        :V_195,
+        :V_197,
+        :V_20,
+        :V_21,
+        :V_22,
+        :V_23,
+        :V_24,
+        :V_25,
+        :V_26,
+        :V_27,
+        :V_28,
+        :V_29,
+        :V_30,
+        :V_31,
+        :V_32,
+        :V_33,
+        :V_34,
+        :V_35,
+        :V_36,
+        :V_37,
+        :V_38,
+        :V_39,
+        :V_40,
+        :V_41,
+        :V_42,
+        :V_43,
+        :V_44,
+        :V_45,
+        :V_46,
+        :V_47,
+        :V_48,
+        :V_49,
+        :V_50,
+        :V_51,
+        :V_52,
+        :V_53,
+        :V_54,
+        :V_55,
+        :V_56,
+        :V_57,
+        :V_58,
+        :V_59,
+        :V_60,
+        :V_61,
+        :V_62,
+        :V_63,
+        :V_64,
+        :V_65,
+        :V_66,
+        :V_67,
+        :V_68,
+        :V_69,
+        :V_70,
+        :V_72,
+        :V_73,
+        :V_74,
+        :V_75,
+        :V_76,
+        :V_77,
+        :V_78,
+        :V_79,
+        :V_80,
+        :V_81,
+        :V_82,
+        :V_83,
+        :V_84,
+        :V_85,
+        :V_87,
+        :V_88,
+        :V_89,
+        :V_90,
+        :V_91,
+        :V_92,
+        :V_93,
+        :V_94,
+        :V_95,
+        :V_96,
+        :V_97,
+        :V_98,
+        :V_99 ;
+    :question "Does the pain radiate to another location?"@en,
+        "Est-ce que la douleur se propage vers un autre endroit?"@fr ;
+    :subQuestionOf :E_53 .
+
+:E_58 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "How precisely is the pain located"@en ;
+    :code "E_58" ;
+    :defaultValue "0" ;
+    :question "How precisely is the pain located?"@en,
+        "À quel point la douleur est-elle précisément localisée?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_53 .
+
+:E_59 a :CategoricalEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "How fast did the pain appear"@en ;
+    :code "E_59" ;
+    :defaultValue "0" ;
+    :question "How fast did the pain appear?"@en,
+        "À quelle vitesse la douleur est-elle apparue ?"@fr ;
+    :scaleMax 10 ;
+    :subQuestionOf :E_53 .
+
+:E_66 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Experiencing shortness of breath or difficulty breathing in a significant way"@en ;
+    :code "E_66" ;
+    :defaultValue "0" ;
+    :question "Are you experiencing shortness of breath or difficulty breathing in a significant way?"@en,
+        "Vous sentez-vous essoufflé ou avez vous de la difficulté à respirer de façon importante?"@fr .
+
+:E_53 a :BinaryEvidence,
+        :Evidence,
+        :Symptom ;
+    rdfs:label "Pain somewhere, related to your reason for consulting"@en ;
+    :code "E_53" ;
+    :defaultValue "0" ;
+    :question "Do you have pain somewhere, related to your reason for consulting?"@en,
+        "Avez-vous de la douleur à quelque part en lien avec votre raison de consultation?"@fr .
+
+:E_204 a :Antecedent,
+        :CategoricalEvidence,
+        :Evidence ;
+    rdfs:label "Traveled out of the country in the last 4 weeks"@en ;
+    :code "E_204" ;
+    :defaultValue "V_10" ;
+    :hasPossibleValue :V_0,
+        :V_1,
+        :V_10,
+        :V_13,
+        :V_2,
+        :V_3,
+        :V_4,
+        :V_5,
+        :V_6,
+        :V_7,
+        :V_8,
+        :V_9 ;
+    :question "Have you traveled out of the country in the last 4 weeks?"@en,
+        "Avez-vous voyagé dans les 4 dernières semaines?"@fr .
+

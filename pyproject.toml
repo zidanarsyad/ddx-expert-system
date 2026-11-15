@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ddxes"
+version = "1.0.0"
+description = "DDX-ES: an explainable knowledge-graph expert system for differential diagnosis and triage on DDXPlus"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT (code); data CC BY 4.0 (DDXPlus)"}
+dependencies = ["rdflib>=7.1,<8", "owlrl>=7.1,<8", "PyYAML>=6.0", "starlette>=0.40", "uvicorn>=0.30",
+                "jinja2>=3.1", "python-multipart>=0.0.9"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+docs = ["matplotlib>=3.8", "python-pptx>=1.0", "Pillow>=10.0", "playwright>=1.45"]
+
+[project.scripts]
+ddxes = "ddxes.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ddxes = ["web/templates/*.html", "web/static/css/*", "web/static/js/*", "web/static/fonts/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

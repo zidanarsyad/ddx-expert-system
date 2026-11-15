@@ -1,0 +1,492 @@
+[
+ {
+  "id": "SpontaneousPneumothorax",
+  "name_en": "Spontaneous pneumothorax",
+  "name_fr": "Pneumothorax spontané",
+  "icd10": "J93",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 2
+ },
+ {
+  "id": "ClusterHeadache",
+  "name_en": "Cluster headache",
+  "name_fr": "Céphalée en grappe",
+  "icd10": "G44.009",
+  "chapter": "VI",
+  "chapter_title": "Diseases of the nervous system",
+  "chapter_range": "G00–G99",
+  "severity": 3
+ },
+ {
+  "id": "Boerhaave",
+  "name_en": "Boerhaave",
+  "name_fr": "Syndrome de Boerhaave",
+  "icd10": "K22.3",
+  "chapter": "XI",
+  "chapter_title": "Diseases of the digestive system",
+  "chapter_range": "K00–K93",
+  "severity": 2
+ },
+ {
+  "id": "SpontaneousRibFracture",
+  "name_en": "Spontaneous rib fracture",
+  "name_fr": "Fracture de côte spontanée",
+  "icd10": "S22.9",
+  "chapter": "XIX",
+  "chapter_title": "Injury, poisoning and other external causes",
+  "chapter_range": "S00–T98",
+  "severity": 3
+ },
+ {
+  "id": "GERD",
+  "name_en": "GERD",
+  "name_fr": "RGO",
+  "icd10": "K21",
+  "chapter": "XI",
+  "chapter_title": "Diseases of the digestive system",
+  "chapter_range": "K00–K93",
+  "severity": 3
+ },
+ {
+  "id": "HIVInitialInfection",
+  "name_en": "HIV (initial infection)",
+  "name_fr": "VIH (Primo-infection)",
+  "icd10": "B20",
+  "chapter": "I",
+  "chapter_title": "Certain infectious and parasitic diseases",
+  "chapter_range": "A00–B99",
+  "severity": 3
+ },
+ {
+  "id": "Anemia",
+  "name_en": "Anemia",
+  "name_fr": "Anémie",
+  "icd10": "D64.9",
+  "chapter": "III",
+  "chapter_title": "Diseases of the blood and immune mechanism",
+  "chapter_range": "D50–D89",
+  "severity": 4
+ },
+ {
+  "id": "ViralPharyngitis",
+  "name_en": "Viral pharyngitis",
+  "name_fr": "Pharyngite virale",
+  "icd10": "J02.9",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 4
+ },
+ {
+  "id": "InguinalHernia",
+  "name_en": "Inguinal hernia",
+  "name_fr": "Hernie inguinale",
+  "icd10": "K40",
+  "chapter": "XI",
+  "chapter_title": "Diseases of the digestive system",
+  "chapter_range": "K00–K93",
+  "severity": 3
+ },
+ {
+  "id": "MyastheniaGravis",
+  "name_en": "Myasthenia gravis",
+  "name_fr": "Myasthénie grave",
+  "icd10": "G70.0",
+  "chapter": "VI",
+  "chapter_title": "Diseases of the nervous system",
+  "chapter_range": "G00–G99",
+  "severity": 3
+ },
+ {
+  "id": "WhoopingCough",
+  "name_en": "Whooping cough",
+  "name_fr": "Coqueluche",
+  "icd10": "A37",
+  "chapter": "I",
+  "chapter_title": "Certain infectious and parasitic diseases",
+  "chapter_range": "A00–B99",
+  "severity": 4
+ },
+ {
+  "id": "Anaphylaxis",
+  "name_en": "Anaphylaxis",
+  "name_fr": "Anaphylaxie",
+  "icd10": "T78.0",
+  "chapter": "XIX",
+  "chapter_title": "Injury, poisoning and other external causes",
+  "chapter_range": "S00–T98",
+  "severity": 1
+ },
+ {
+  "id": "Epiglottitis",
+  "name_en": "Epiglottitis",
+  "name_fr": "Épiglottite",
+  "icd10": "J05.1",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 2
+ },
+ {
+  "id": "GuillainBarreSyndrome",
+  "name_en": "Guillain-Barré syndrome",
+  "name_fr": "Syndrome de Guillain-Barré",
+  "icd10": "G61.0",
+  "chapter": "VI",
+  "chapter_title": "Diseases of the nervous system",
+  "chapter_range": "G00–G99",
+  "severity": 2
+ },
+ {
+  "id": "AcuteLaryngitis",
+  "name_en": "Acute laryngitis",
+  "name_fr": "Laryngite aigue",
+  "icd10": "J04.0",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 4
+ },
+ {
+  "id": "Croup",
+  "name_en": "Croup",
+  "name_fr": "Laryngo-trachéo-bronchite (Croup)",
+  "icd10": "J05.0",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 2
+ },
+ {
+  "id": "PSVT",
+  "name_en": "PSVT",
+  "name_fr": "TSVP",
+  "icd10": "I47.1",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 2
+ },
+ {
+  "id": "AtrialFibrillation",
+  "name_en": "Atrial fibrillation",
+  "name_fr": "Fibrillation auriculaire/Flutter auriculaire",
+  "icd10": "I48.91",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 3
+ },
+ {
+  "id": "Bronchiectasis",
+  "name_en": "Bronchiectasis",
+  "name_fr": "Bronchiectasies",
+  "icd10": "J47",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "AllergicSinusitis",
+  "name_en": "Allergic sinusitis",
+  "name_fr": "Rhinite allergique",
+  "icd10": "J30",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 4
+ },
+ {
+  "id": "Chagas",
+  "name_en": "Chagas",
+  "name_fr": "Chagas",
+  "icd10": "B57",
+  "chapter": "I",
+  "chapter_title": "Certain infectious and parasitic diseases",
+  "chapter_range": "A00–B99",
+  "severity": 3
+ },
+ {
+  "id": "ScombroidFoodPoisoning",
+  "name_en": "Scombroid food poisoning",
+  "name_fr": "Scombroïde",
+  "icd10": "T61.1",
+  "chapter": "XIX",
+  "chapter_title": "Injury, poisoning and other external causes",
+  "chapter_range": "S00–T98",
+  "severity": 2
+ },
+ {
+  "id": "Myocarditis",
+  "name_en": "Myocarditis",
+  "name_fr": "Myocardite",
+  "icd10": "I51.4",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 2
+ },
+ {
+  "id": "Larygospasm",
+  "name_en": "Larygospasm",
+  "name_fr": "Laryngospasme",
+  "icd10": "J38.5",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 1
+ },
+ {
+  "id": "AcuteDystonicReactions",
+  "name_en": "Acute dystonic reactions",
+  "name_fr": "Réaction dystonique aïgue",
+  "icd10": "G24.02",
+  "chapter": "VI",
+  "chapter_title": "Diseases of the nervous system",
+  "chapter_range": "G00–G99",
+  "severity": 2
+ },
+ {
+  "id": "LocalizedEdema",
+  "name_en": "Localized edema",
+  "name_fr": "Oedème localisé ou généralisé sans atteinte pulmonaire associée",
+  "icd10": "R60.0",
+  "chapter": "XVIII",
+  "chapter_title": "Symptoms and signs not elsewhere classified",
+  "chapter_range": "R00–R99",
+  "severity": 4
+ },
+ {
+  "id": "SLE",
+  "name_en": "SLE",
+  "name_fr": "Lupus érythémateux disséminé (LED)",
+  "icd10": "M32",
+  "chapter": "XIII",
+  "chapter_title": "Diseases of the musculoskeletal system",
+  "chapter_range": "M00–M99",
+  "severity": 4
+ },
+ {
+  "id": "Tuberculosis",
+  "name_en": "Tuberculosis",
+  "name_fr": "Tuberculose",
+  "icd10": "A15",
+  "chapter": "I",
+  "chapter_title": "Certain infectious and parasitic diseases",
+  "chapter_range": "A00–B99",
+  "severity": 3
+ },
+ {
+  "id": "UnstableAngina",
+  "name_en": "Unstable angina",
+  "name_fr": "Angine instable",
+  "icd10": "I20.0",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 2
+ },
+ {
+  "id": "StableAngina",
+  "name_en": "Stable angina",
+  "name_fr": "Angine stable",
+  "icd10": "I20.9",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 2
+ },
+ {
+  "id": "Ebola",
+  "name_en": "Ebola",
+  "name_fr": "Ebola",
+  "icd10": "A98.4",
+  "chapter": "I",
+  "chapter_title": "Certain infectious and parasitic diseases",
+  "chapter_range": "A00–B99",
+  "severity": 1
+ },
+ {
+  "id": "AcuteOtitisMedia",
+  "name_en": "Acute otitis media",
+  "name_fr": "Otite moyenne aigue (OMA)",
+  "icd10": "H66.90",
+  "chapter": "VIII",
+  "chapter_title": "Diseases of the ear and mastoid process",
+  "chapter_range": "H60–H95",
+  "severity": 4
+ },
+ {
+  "id": "PanicAttack",
+  "name_en": "Panic attack",
+  "name_fr": "Attaque de panique",
+  "icd10": "F41",
+  "chapter": "V",
+  "chapter_title": "Mental and behavioural disorders",
+  "chapter_range": "F00–F99",
+  "severity": 5
+ },
+ {
+  "id": "BronchospasmAcuteAsthmaExacerbation",
+  "name_en": "Bronchospasm / acute asthma exacerbation",
+  "name_fr": "Asthme exacerbé ou bronchospasme",
+  "icd10": "J45",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "Bronchitis",
+  "name_en": "Bronchitis",
+  "name_fr": "Bronchite",
+  "icd10": "J40",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 4
+ },
+ {
+  "id": "AcuteCOPDExacerbationInfection",
+  "name_en": "Acute COPD exacerbation / infection",
+  "name_fr": "Exacerbation aigue de MPOC et/ou surinfection associée",
+  "icd10": "J44.1",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "PulmonaryEmbolism",
+  "name_en": "Pulmonary embolism",
+  "name_fr": "Embolie pulmonaire",
+  "icd10": "I26",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 2
+ },
+ {
+  "id": "URTI",
+  "name_en": "URTI",
+  "name_fr": "IVRS ou virémie",
+  "icd10": "J06.9",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 5
+ },
+ {
+  "id": "Influenza",
+  "name_en": "Influenza",
+  "name_fr": "Possible influenza ou syndrome virémique typique",
+  "icd10": "J11.1",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "Pneumonia",
+  "name_en": "Pneumonia",
+  "name_fr": "Pneumonie",
+  "icd10": "J17, J18",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "AcuteRhinosinusitis",
+  "name_en": "Acute rhinosinusitis",
+  "name_fr": "Rhinosinusite aigue",
+  "icd10": "J01",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 4
+ },
+ {
+  "id": "ChronicRhinosinusitis",
+  "name_en": "Chronic rhinosinusitis",
+  "name_fr": "Rhinosinusite chronique",
+  "icd10": "J32",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 5
+ },
+ {
+  "id": "Bronchiolitis",
+  "name_en": "Bronchiolitis",
+  "name_fr": "Bronchiolite",
+  "icd10": "J21",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 3
+ },
+ {
+  "id": "PulmonaryNeoplasm",
+  "name_en": "Pulmonary neoplasm",
+  "name_fr": "néoplasie pulmonaire",
+  "icd10": "C34",
+  "chapter": "II",
+  "chapter_title": "Neoplasms",
+  "chapter_range": "C00–D48",
+  "severity": 3
+ },
+ {
+  "id": "PossibleNSTEMISTEMI",
+  "name_en": "Possible NSTEMI / STEMI",
+  "name_fr": "Possible NSTEMI / STEMI",
+  "icd10": "I21",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 1
+ },
+ {
+  "id": "Sarcoidosis",
+  "name_en": "Sarcoidosis",
+  "name_fr": "Sarcoïdose",
+  "icd10": "D86",
+  "chapter": "III",
+  "chapter_title": "Diseases of the blood and immune mechanism",
+  "chapter_range": "D50–D89",
+  "severity": 4
+ },
+ {
+  "id": "PancreaticNeoplasm",
+  "name_en": "Pancreatic neoplasm",
+  "name_fr": "Néoplasie du pancréas",
+  "icd10": "C25",
+  "chapter": "II",
+  "chapter_title": "Neoplasms",
+  "chapter_range": "C00–D48",
+  "severity": 3
+ },
+ {
+  "id": "AcutePulmonaryEdema",
+  "name_en": "Acute pulmonary edema",
+  "name_fr": "OAP/Surcharge pulmonaire",
+  "icd10": "J81.0",
+  "chapter": "X",
+  "chapter_title": "Diseases of the respiratory system",
+  "chapter_range": "J00–J99",
+  "severity": 1
+ },
+ {
+  "id": "Pericarditis",
+  "name_en": "Pericarditis",
+  "name_fr": "Péricardite",
+  "icd10": "I30",
+  "chapter": "IX",
+  "chapter_title": "Diseases of the circulatory system",
+  "chapter_range": "I00–I99",
+  "severity": 4
+ }
+]

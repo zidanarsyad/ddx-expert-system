@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="en-GB">
+  <!-- Harvard author-date style following the Panduan Penulisan Tugas Akhir FMIPA UGM (2009):
+       in text (Author, year), "et al." for more than two authors; reference list sorted by first author,
+       "Surname, I., Surname, I. and Surname, I., year, Title, Journal, volume(issue), pages." -->
+  <info>
+    <title>Harvard (FMIPA UGM thesis guide), DDX-ES report</title>
+    <id>ddxes-harvard-fmipa-ugm</id>
+    <updated>2026-11-15T00:00:00+00:00</updated>
+  </info>
+  <macro name="author-bib">
+    <names variable="author">
+      <name and="text" delimiter=", " delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all"
+            sort-separator=", " et-al-min="7" et-al-use-first="3"/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="author-cite">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", "/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title" font-style="italic"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="year">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date" form="short"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="book report webpage dataset thesis" match="any">
+        <text variable="title" font-style="italic"/>
+      </if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="details">
+    <choose>
+      <if type="article-journal article-magazine article" match="any">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <group>
+            <text variable="volume"/>
+            <text variable="issue" prefix="(" suffix=")"/>
+          </group>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else-if type="chapter paper-conference" match="any">
+        <group delimiter=", ">
+          <group delimiter=" ">
+            <text term="in" text-case="capitalize-first"/>
+            <names variable="editor">
+              <name and="text" delimiter=", " initialize-with="." delimiter-precedes-last="never"/>
+              <label form="short" prefix=" (" suffix=")"/>
+            </names>
+          </group>
+          <text variable="container-title" font-style="italic"/>
+          <text variable="collection-title"/>
+          <text variable="volume"/>
+          <text variable="page"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+        </group>
+      </else-if>
+      <else>
+        <group delimiter=", ">
+          <group delimiter=" ">
+            <text variable="genre"/>
+            <text variable="number"/>
+          </group>
+          <number variable="edition" form="ordinal" suffix=" ed."/>
+          <text variable="container-title"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+          <text variable="note"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+  <macro name="access">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
+    <sort>
+      <key macro="author-cite"/>
+      <key macro="year"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-cite"/>
+        <text macro="year"/>
+        <text variable="locator"/>
+      </group>
+    </layout>
+  </citation>
+  <bibliography hanging-indent="true" entry-spacing="1">
+    <sort>
+      <key macro="author-bib"/>
+      <key macro="year"/>
+    </sort>
+    <layout>
+      <group delimiter=", " suffix=".">
+        <text macro="author-bib"/>
+        <text macro="year"/>
+        <text macro="title"/>
+        <text macro="details"/>
+      </group>
+      <text macro="access" prefix=" "/>
+    </layout>
+  </bibliography>
+</style>

@@ -1,0 +1,293 @@
+# =============================================================================
+#  DDX-ES -- an explainable knowledge-graph expert system for differential diagnosis
+#  TBox (ontology), written by hand.
+#
+#  Layers of the knowledge graph
+#    1. Domain knowledge base  (kb.ttl)    pathologies, evidences (questions), answer values, ICD-10, severity,
+#                                           and the pathology -> symptom/antecedent links curated by the DDXPlus
+#                                           physicians (Fansi Tchango et al., 2022)
+#    2. Rule base              (rules.ttl) expert IF-THEN rules taken from clinical guidelines, each with its
+#                                           conditions, consequents, certainty factor and bibliographic source,
+#                                           stored as RDF so the rules are themselves part of the graph
+#    3. Calibration            (stats.ttl) likelihood ratios and certainty factors of the knowledge-base links,
+#                                           counted on the DDXPlus validation split
+#    4. Case base              (cases.ttl) DDXPlus test patients (a stratified sample)
+#    5. Inferences             (written at run time) conclusions of the inference engine with PROV-O provenance
+#
+#  The OWL 2 RL axioms below are materialised with owlrl (scripts/build_kg.py) and the inference engine reads
+#  some of the entailed triples (disease families, urgent pathologies, characterizedBy links, rule classes).
+# =============================================================================
+@prefix :     <http://example.org/ddx#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+
+<http://example.org/ddx> a owl:Ontology ;
+    rdfs:label   "DDX-ES knowledge graph"@en ;
+    rdfs:comment "Ontology of an explainable expert system for differential diagnosis and triage built on the DDXPlus knowledge base: domain model, rule base, calibration statistics, case base and inference provenance."@en ;
+    dct:source   <https://doi.org/10.6084/m9.figshare.20043374> , <https://doi.org/10.48550/arXiv.2205.09148> ;
+    owl:versionInfo "2.0" ;
+    rdfs:seeAlso <http://www.w3.org/ns/prov#> .
+
+# =============================================================================
+#  1. Domain model (kept from the DDXPlus graph database, version 1)
+# =============================================================================
+:Pathology     a owl:Class ; rdfs:label "Pathology"@en .
+:ICD10Chapter  a owl:Class ; rdfs:label "ICD-10 chapter"@en .
+:SeverityLevel a owl:Class ; rdfs:label "Severity level"@en ;
+               rdfs:comment "DDXPlus severity, 1 = most severe ... 5 = least severe."@en .
+:Evidence      a owl:Class ; rdfs:label "Evidence (question)"@en ;
+               rdfs:comment "A question the system can ask: a symptom or an antecedent."@en .
+:Symptom       a owl:Class ; rdfs:subClassOf :Evidence ; rdfs:label "Symptom"@en .
+:Antecedent    a owl:Class ; rdfs:subClassOf :Evidence ; rdfs:label "Antecedent (risk factor, history)"@en .
+:BinaryEvidence      a owl:Class ; rdfs:subClassOf :Evidence ; rdfs:label "Yes/no question"@en .
+:CategoricalEvidence a owl:Class ; rdfs:subClassOf :Evidence ; rdfs:label "Categorical question"@en .
+:MultiChoiceEvidence a owl:Class ; rdfs:subClassOf :Evidence ; rdfs:label "Multi-choice question"@en .
+:AnswerValue   a owl:Class ; rdfs:label "Answer value"@en .
+:Patient       a owl:Class ; rdfs:label "Patient (case)"@en .
+:Sex           a owl:Class ; rdfs:label "Sex"@en .
+:Female a :Sex , owl:NamedIndividual ; rdfs:label "Female"@en .
+:Male   a :Sex , owl:NamedIndividual ; rdfs:label "Male"@en .
+
+[] a owl:AllDisjointClasses ; owl:members ( :Pathology :Evidence :AnswerValue :Patient ) .
+
+:characterizedBy a owl:ObjectProperty ; rdfs:domain :Pathology ; rdfs:range :Evidence ;
+                 rdfs:label "characterized by"@en ;
+                 rdfs:comment "The pathology can explain (cause) the evidence: the manifestation relation of the set-covering model (Reggia et al., 1983)."@en .
+:hasSymptom      a owl:ObjectProperty ; rdfs:subPropertyOf :characterizedBy ; rdfs:range :Symptom ; rdfs:label "has symptom"@en .
+:hasAntecedent   a owl:ObjectProperty ; rdfs:subPropertyOf :characterizedBy ; rdfs:range :Antecedent ; rdfs:label "has antecedent"@en .
+:indicates       a owl:ObjectProperty ; owl:inverseOf :characterizedBy ; rdfs:label "indicates"@en .
+:symptomOf       a owl:ObjectProperty ; owl:inverseOf :hasSymptom ; rdfs:label "symptom of"@en .
+:inChapter       a owl:ObjectProperty ; rdfs:domain :Pathology ; rdfs:range :ICD10Chapter ; rdfs:label "in ICD-10 chapter"@en .
+:severityLevel   a owl:ObjectProperty ; rdfs:domain :Pathology ; rdfs:range :SeverityLevel ; rdfs:label "severity level"@en .
+:hasPossibleValue a owl:ObjectProperty ; rdfs:domain :Evidence ; rdfs:range :AnswerValue ; rdfs:label "has possible value"@en .
+:subQuestionOf    a owl:ObjectProperty ; rdfs:domain :Evidence ; rdfs:range :Evidence ; rdfs:label "sub-question of"@en .
+
+:code      a owl:DatatypeProperty ; rdfs:label "code"@en .
+:question  a owl:DatatypeProperty ; rdfs:domain :Evidence ; rdfs:label "question (as asked)"@en .
+:icd10Code a owl:DatatypeProperty ; rdfs:domain :Pathology ; rdfs:label "ICD-10 code"@en .
+:severity  a owl:DatatypeProperty ; rdfs:domain :Pathology ; rdfs:range xsd:integer ; rdfs:label "severity (1 = most severe)"@en .
+:prior     a owl:DatatypeProperty ; rdfs:domain :Pathology ; rdfs:range xsd:decimal ; rdfs:label "prior probability (validation split)"@en .
+:defaultValue a owl:DatatypeProperty ; rdfs:domain :Evidence ; rdfs:label "default answer"@en .
+:scaleMax a owl:DatatypeProperty ; rdfs:domain :CategoricalEvidence ; rdfs:range xsd:integer ; rdfs:label "maximum of a 0..n answer scale"@en .
+
+# --- case base -----------------------------------------------------------------------------------
+:hasEvidence     a owl:ObjectProperty ; rdfs:domain :Patient ; rdfs:range :Evidence ; rdfs:label "answered yes to"@en .
+:initialEvidence a owl:ObjectProperty ; rdfs:subPropertyOf :hasEvidence ; rdfs:label "chief complaint"@en .
+:hasAnswer       a owl:ObjectProperty ; rdfs:domain :Patient ; rdfs:range :Answer ; rdfs:label "gave answer"@en .
+:Answer          a owl:Class ; rdfs:label "Answer to a categorical or multi-choice question"@en .
+:ofEvidence      a owl:ObjectProperty ; rdfs:domain :Answer ; rdfs:range :Evidence ; rdfs:label "answers question"@en .
+:answerValue     a owl:ObjectProperty ; rdfs:domain :Answer ; rdfs:range :AnswerValue ; rdfs:label "answer value"@en .
+:scaleValue      a owl:DatatypeProperty ; rdfs:domain :Answer ; rdfs:range xsd:integer ; rdfs:label "answer on a 0-10 scale"@en .
+:hasPathology    a owl:ObjectProperty ; rdfs:domain :Patient ; rdfs:range :Pathology ; rdfs:label "ground-truth pathology"@en .
+:sex             a owl:ObjectProperty ; rdfs:domain :Patient ; rdfs:range :Sex ; rdfs:label "sex"@en .
+:age             a owl:DatatypeProperty ; rdfs:domain :Patient ; rdfs:range xsd:integer ; rdfs:label "age"@en .
+# a patient answered a categorical question -> he also mentions that question (OWL 2 property chain)
+:mentionsEvidence a owl:ObjectProperty ; owl:propertyChainAxiom ( :hasAnswer :ofEvidence ) ; rdfs:label "mentions evidence"@en .
+:hasEvidence rdfs:subPropertyOf :mentionsEvidence .
+# forward chaining of hypotheses from the chief complaint (property chain, slide 32 of the KG lecture)
+:candidateDiagnosis a owl:ObjectProperty ; owl:propertyChainAxiom ( :initialEvidence :symptomOf ) ;
+                    rdfs:domain :Patient ; rdfs:range :Pathology ; rdfs:label "candidate diagnosis (from the chief complaint)"@en .
+
+# =============================================================================
+#  2. Defined classes over the domain (OWL 2 RL, materialised by owlrl)
+# =============================================================================
+:UrgentPathology a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Urgent pathology (severity 1-2)"@en .
+[ a owl:Restriction ; owl:onProperty :severityLevel ; owl:hasValue :Severity1 ] rdfs:subClassOf :UrgentPathology .
+[ a owl:Restriction ; owl:onProperty :severityLevel ; owl:hasValue :Severity2 ] rdfs:subClassOf :UrgentPathology .
+:LifeThreateningPathology a owl:Class ; rdfs:subClassOf :UrgentPathology ; rdfs:label "Life-threatening pathology (severity 1)"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :severityLevel ; owl:hasValue :Severity1 ] .
+
+:InfectiousDisease  a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Infectious disease"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_I ] .
+:Neoplasm           a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Neoplasm"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_II ] .
+:RespiratoryDisease a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Respiratory disease"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_X ] .
+:CirculatoryDisease a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Circulatory disease"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_IX ] .
+:NervousSystemDisease a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Nervous system disease"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_VI ] .
+:DigestiveDisease   a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Digestive disease"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_XI ] .
+:InjuryOrPoisoning  a owl:Class ; rdfs:subClassOf :Pathology ; rdfs:label "Injury, poisoning or external cause"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :inChapter ; owl:hasValue :ICD10_XIX ] .
+
+# =============================================================================
+#  3. Expert knowledge: concepts, scores, triage levels, recommendations, value sets
+# =============================================================================
+:ClinicalConcept a owl:Class ; rdfs:label "Clinical concept"@en ;
+    rdfs:comment "An intermediate conclusion (syndrome, sign cluster, risk profile) derived by abstraction rules, e.g. influenza-like illness."@en .
+:RedFlag a owl:Class ; rdfs:subClassOf :ClinicalConcept ; rdfs:label "Red-flag concept"@en ;
+    rdfs:comment "A clinical concept that signals a possibly life-threatening situation."@en .
+:ClinicalScore a owl:Class ; rdfs:label "Clinical score"@en ;
+    rdfs:comment "A points-based decision instrument (e.g. the Wells score), computed by scoring rules."@en .
+:TriageLevel a owl:Class ; rdfs:label "Triage level"@en ;
+    owl:equivalentClass [ a owl:Class ; owl:oneOf ( :Emergency :Urgent :NonUrgent :SelfCare ) ] .
+:triageRank a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain :TriageLevel ; rdfs:range xsd:integer ;
+    rdfs:label "triage rank (1 = most urgent)"@en .
+:Emergency a :TriageLevel , owl:NamedIndividual ; :triageRank 1 ; rdfs:label "Emergency"@en ;
+    rdfs:comment "Call emergency services or go to the emergency department now."@en .
+:Urgent    a :TriageLevel , owl:NamedIndividual ; :triageRank 2 ; rdfs:label "Urgent"@en ;
+    rdfs:comment "See a doctor the same day."@en .
+:NonUrgent a :TriageLevel , owl:NamedIndividual ; :triageRank 3 ; rdfs:label "Non-urgent"@en ;
+    rdfs:comment "Book a primary-care appointment within a few days."@en .
+:SelfCare  a :TriageLevel , owl:NamedIndividual ; :triageRank 4 ; rdfs:label "Self-care"@en ;
+    rdfs:comment "Self-care with safety-netting advice; see a doctor if symptoms worsen."@en .
+[] a owl:AllDifferent ; owl:distinctMembers ( :Emergency :Urgent :NonUrgent :SelfCare ) .
+
+:Recommendation a owl:Class ; rdfs:label "Recommendation (next step)"@en .
+:ValueSet a owl:Class ; rdfs:subClassOf skos:Collection ; rdfs:label "Value set"@en ;
+    rdfs:comment "A named set of answer values, e.g. the body locations that count as the chest."@en .
+:hasMember a owl:ObjectProperty ; rdfs:subPropertyOf skos:member ; rdfs:domain :ValueSet ; rdfs:range :AnswerValue ;
+    rdfs:label "has member"@en .
+:isRedFlag a owl:DatatypeProperty ; rdfs:range xsd:boolean ; rdfs:label "is a red flag"@en .
+
+# --- bibliographic sources ------------------------------------------------------------------------
+:Source a owl:Class ; rdfs:subClassOf dct:BibliographicResource ; rdfs:label "Knowledge source"@en .
+:ClinicalGuideline     a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Clinical practice guideline"@en .
+:CaseDefinition        a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Surveillance case definition"@en .
+:DiagnosticCriteria    a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Diagnostic or classification criteria"@en .
+:ClinicalDecisionRule  a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Clinical decision rule (validated score)"@en .
+:ReviewArticle         a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Review article"@en .
+:ClinicalStudy         a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Clinical study"@en .
+:ExpertKnowledgeBase   a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Expert-curated knowledge base"@en .
+:MethodSource          a owl:Class ; rdfs:subClassOf :Source ; rdfs:label "Methodological source"@en .
+:citationKey a owl:DatatypeProperty ; rdfs:domain :Source ; rdfs:label "citation key"@en .
+
+# =============================================================================
+#  4. Rule base vocabulary: a rule is a prov:Plan with a premise (condition tree) and consequents
+# =============================================================================
+:Rule a owl:Class ; rdfs:subClassOf prov:Plan ; rdfs:label "Production rule (IF-THEN)"@en .
+:AbstractionRule     a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Abstraction rule (data -> clinical concept)"@en .
+:ScoringRule         a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Scoring rule (adds points to a clinical score)"@en .
+:DiagnosticRule      a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Diagnostic rule (-> belief in a pathology)"@en .
+:TriageRule          a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Triage rule (-> urgency level)"@en .
+:RecommendationRule  a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Recommendation rule (-> next step)"@en .
+:RuleSchema          a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Rule schema"@en ;
+    rdfs:comment "A first-order rule with variables over the knowledge graph, instantiated once per matching pathology or knowledge-base link (e.g. set covering, evidence strength, severity triage)."@en .
+
+:premise   a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain :Rule ; rdfs:range :Condition ; rdfs:label "IF (premise)"@en .
+:asserts   a owl:ObjectProperty ; rdfs:domain :Rule ; rdfs:range :Consequent ; rdfs:label "THEN (consequent)"@en .
+:certaintyFactor a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "certainty factor (MYCIN, -1..1)"@en .
+:salience  a owl:DatatypeProperty ; rdfs:domain :Rule ; rdfs:range xsd:integer ; rdfs:label "salience (conflict-resolution priority)"@en .
+:ruleIndex a owl:DatatypeProperty ; rdfs:domain :Rule ; rdfs:range xsd:integer ; rdfs:label "position in the rule base (last conflict-resolution criterion)"@en .
+:patientCount a owl:DatatypeProperty ; rdfs:range xsd:integer ; rdfs:label "number of validation patients"@en .
+:validationPatients a owl:DatatypeProperty ; rdfs:domain :Pathology ; rdfs:range xsd:integer ; rdfs:label "patients with this pathology in the validation split"@en .
+:mappingFidelity a owl:DatatypeProperty ; rdfs:domain :Rule ; rdfs:label "fidelity of the mapping to DDXPlus questions"@en ;
+    rdfs:comment "faithful = every item of the published criterion has a DDXPlus question; partial = some items are missing (e.g. vital signs, duration); proxy = an item is approximated by a related question."@en .
+:ruleText  a owl:DatatypeProperty ; rdfs:domain :Rule ; rdfs:label "rule as text"@en .
+:usesEvidence a owl:ObjectProperty ; rdfs:domain :Rule ; rdfs:range :Evidence ; rdfs:label "uses evidence"@en .
+:usesConcept  a owl:ObjectProperty ; rdfs:domain :Rule ; rdfs:range :ClinicalConcept ; rdfs:label "uses concept"@en .
+:usesPathology a owl:ObjectProperty ; rdfs:domain :Rule ; rdfs:range :Pathology ; rdfs:label "uses belief in pathology"@en .
+:usesScore    a owl:ObjectProperty ; rdfs:domain :Rule ; rdfs:range :ClinicalScore ; rdfs:label "uses score"@en .
+
+# --- conditions (the IF part), a tree of these nodes ------------------------------------------------
+:Condition a owl:Class ; rdfs:label "Condition"@en .
+:AllOf     a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "all of (AND)"@en .
+:AnyOf     a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "any of (OR)"@en .
+:AtLeast   a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "at least n of"@en .
+:Not       a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "not"@en .
+:EvidencePresent  a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "evidence present"@en .
+:AnswerIn         a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "answer in value set"@en .
+:ScaleComparison  a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "0-10 scale comparison"@en .
+:AgeComparison    a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "age comparison"@en .
+:SexIs            a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "sex is"@en .
+:ConceptHolds     a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "clinical concept holds"@en .
+:BeliefAtLeast    a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "belief in pathology at least"@en .
+:ScoreComparison  a owl:Class ; rdfs:subClassOf :Condition ; rdfs:label "score comparison"@en .
+:operands   a owl:ObjectProperty ; rdfs:label "operands (rdf:List of conditions)"@en .
+:operand    a owl:ObjectProperty ; rdfs:domain :Not ; rdfs:range :Condition ; rdfs:label "operand"@en .
+:minCount   a owl:DatatypeProperty ; rdfs:domain :AtLeast ; rdfs:range xsd:integer ; rdfs:label "minimum count"@en .
+:onEvidence a owl:ObjectProperty ; rdfs:range :Evidence ; rdfs:label "on evidence"@en .
+:onConcept  a owl:ObjectProperty ; rdfs:range :ClinicalConcept ; rdfs:label "on concept"@en .
+:onPathology a owl:ObjectProperty ; rdfs:range :Pathology ; rdfs:label "on pathology"@en .
+:onScore    a owl:ObjectProperty ; rdfs:range :ClinicalScore ; rdfs:label "on score"@en .
+:inValueSet a owl:ObjectProperty ; rdfs:range :ValueSet ; rdfs:label "in value set"@en .
+:onValue    a owl:ObjectProperty ; rdfs:range :AnswerValue ; rdfs:label "on value"@en .
+:comparator a owl:DatatypeProperty ; rdfs:label "comparator (ge, gt, le, lt, eq)"@en .
+:threshold  a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "threshold"@en .
+:onSex      a owl:ObjectProperty ; rdfs:range :Sex ; rdfs:label "on sex"@en .
+
+# --- consequents (the THEN part) -----------------------------------------------------------------
+:Consequent a owl:Class ; rdfs:label "Consequent"@en .
+:ConceptConsequent        a owl:Class ; rdfs:subClassOf :Consequent ; rdfs:label "concludes a clinical concept"@en .
+:DiagnosisConsequent      a owl:Class ; rdfs:subClassOf :Consequent ; rdfs:label "adds belief to a pathology"@en .
+:TriageConsequent         a owl:Class ; rdfs:subClassOf :Consequent ; rdfs:label "sets a triage level"@en .
+:RecommendationConsequent a owl:Class ; rdfs:subClassOf :Consequent ; rdfs:label "recommends a next step"@en .
+:ScoreConsequent          a owl:Class ; rdfs:subClassOf :Consequent ; rdfs:label "adds points to a score"@en .
+:concludesConcept        a owl:ObjectProperty ; rdfs:range :ClinicalConcept ; rdfs:label "concludes concept"@en .
+:concludesPathology      a owl:ObjectProperty ; rdfs:range :Pathology ; rdfs:label "concludes pathology"@en .
+:concludesTriage         a owl:ObjectProperty ; rdfs:range :TriageLevel ; rdfs:label "concludes triage level"@en .
+:concludesRecommendation a owl:ObjectProperty ; rdfs:range :Recommendation ; rdfs:label "concludes recommendation"@en .
+:points     a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "points"@en .
+
+# --- rule classes entailed from the rule structure (OWL 2 RL: someValuesFrom on the left-hand side) ---
+:RedFlagRule a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Red-flag rule (concludes Emergency)"@en .
+[ a owl:Restriction ; owl:onProperty :asserts ;
+  owl:someValuesFrom [ a owl:Restriction ; owl:onProperty :concludesTriage ; owl:hasValue :Emergency ] ]
+    rdfs:subClassOf :RedFlagRule .
+:GuidelineBasedRule a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Rule based on a clinical guideline"@en .
+[ a owl:Restriction ; owl:onProperty dct:source ; owl:someValuesFrom :ClinicalGuideline ] rdfs:subClassOf :GuidelineBasedRule .
+:CriteriaBasedRule a owl:Class ; rdfs:subClassOf :Rule ; rdfs:label "Rule based on published criteria, a case definition or a decision rule"@en .
+[ a owl:Restriction ; owl:onProperty dct:source ; owl:someValuesFrom :DiagnosticCriteria ] rdfs:subClassOf :CriteriaBasedRule .
+[ a owl:Restriction ; owl:onProperty dct:source ; owl:someValuesFrom :CaseDefinition ] rdfs:subClassOf :CriteriaBasedRule .
+[ a owl:Restriction ; owl:onProperty dct:source ; owl:someValuesFrom :ClinicalDecisionRule ] rdfs:subClassOf :CriteriaBasedRule .
+
+# =============================================================================
+#  5. Calibration of the knowledge-base links (stats.ttl)
+# =============================================================================
+:EvidenceStrength a owl:Class ; rdfs:label "Evidence strength of a knowledge-base link"@en ;
+    rdfs:comment "n-ary node: how strongly a present (or absent) feature supports a pathology. lr = P(f|d)/P(f|not d) counted on the validation split; cf = Heckerman's (1986) mapping of lr to a MYCIN certainty factor."@en .
+:ofPathology  a owl:ObjectProperty ; rdfs:domain :EvidenceStrength ; rdfs:range :Pathology ; rdfs:label "of pathology"@en .
+:ofEvidence2  a owl:ObjectProperty ; rdfs:domain :EvidenceStrength ; rdfs:range :Evidence ; rdfs:label "of evidence"@en .
+:ofValue      a owl:ObjectProperty ; rdfs:domain :EvidenceStrength ; rdfs:range :AnswerValue ; rdfs:label "of answer value"@en .
+:atScaleValue a owl:DatatypeProperty ; rdfs:domain :EvidenceStrength ; rdfs:range xsd:integer ; rdfs:label "at scale answer (0-10)"@en .
+:polarity     a owl:DatatypeProperty ; rdfs:domain :EvidenceStrength ; rdfs:label "polarity (present / absent)"@en .
+:pGivenPathology a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "P(feature | pathology)"@en .
+:pGivenOthers    a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "P(feature | other pathologies)"@en .
+:likelihoodRatio a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "likelihood ratio"@en .
+
+# =============================================================================
+#  6. Inferences written back by the engine, with W3C PROV-O provenance
+# =============================================================================
+:DDXES a prov:SoftwareAgent , owl:NamedIndividual ; rdfs:label "DDX-ES inference engine"@en .
+:Inference a owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Inferred fact about a case"@en .
+:ConceptInference        a owl:Class ; rdfs:subClassOf :Inference ; rdfs:label "Inferred clinical concept"@en .
+:DiagnosisInference      a owl:Class ; rdfs:subClassOf :Inference ; rdfs:label "Differential-diagnosis entry"@en .
+:TriageInference         a owl:Class ; rdfs:subClassOf :Inference ; rdfs:label "Inferred triage level"@en .
+:RecommendationInference a owl:Class ; rdfs:subClassOf :Inference ; rdfs:label "Inferred recommendation"@en .
+:ExclusionInference      a owl:Class ; rdfs:subClassOf :Inference ; rdfs:label "Pathology ruled out by set covering"@en .
+:RuleFiring a owl:Class ; rdfs:subClassOf prov:Activity ; rdfs:label "Rule firing"@en .
+
+:aboutCase a owl:ObjectProperty ; rdfs:domain :Inference ; rdfs:range :Patient ; rdfs:label "about case"@en .
+:hasInference a owl:ObjectProperty ; owl:inverseOf :aboutCase ; rdfs:label "has inference"@en .
+:inferredConcept        a owl:ObjectProperty ; rdfs:range :ClinicalConcept ; rdfs:label "inferred concept"@en .
+:inferredPathology      a owl:ObjectProperty ; rdfs:range :Pathology ; rdfs:label "inferred pathology"@en .
+:inferredTriage         a owl:ObjectProperty ; rdfs:range :TriageLevel ; rdfs:label "inferred triage level"@en .
+:inferredRecommendation a owl:ObjectProperty ; rdfs:range :Recommendation ; rdfs:label "inferred recommendation"@en .
+:certainty   a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "combined certainty factor"@en .
+:probability a owl:DatatypeProperty ; rdfs:range xsd:decimal ; rdfs:label "normalised probability"@en .
+:rank        a owl:DatatypeProperty ; rdfs:range xsd:integer ; rdfs:label "rank in the differential"@en .
+:unexplainedEvidence a owl:ObjectProperty ; rdfs:domain :ExclusionInference ; rdfs:range :Evidence ;
+    rdfs:label "symptom the pathology cannot explain"@en .
+:firedRule  a owl:ObjectProperty ; rdfs:subPropertyOf prov:used ; rdfs:domain :RuleFiring ; rdfs:range :Rule ; rdfs:label "fired rule"@en .
+:step       a owl:DatatypeProperty ; rdfs:domain :RuleFiring ; rdfs:range xsd:integer ; rdfs:label "agenda step"@en .
+:premiseCertainty a owl:DatatypeProperty ; rdfs:domain :RuleFiring ; rdfs:range xsd:decimal ; rdfs:label "certainty of the premise"@en .
+
+# shortcuts on the case itself, so that the defined case classes below can be inferred
+:hasTriage    a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain :Patient ; rdfs:range :TriageLevel ; rdfs:label "triage level (expert system)"@en .
+:hasDiagnosis a owl:ObjectProperty ; rdfs:domain :Patient ; rdfs:range :Pathology ; rdfs:label "leading diagnosis (expert system)"@en .
+:EmergencyCase a owl:Class ; rdfs:subClassOf :Patient ; rdfs:label "Emergency case (expert system)"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :hasTriage ; owl:hasValue :Emergency ] .
+:UrgentCase a owl:Class ; rdfs:subClassOf :Patient ; rdfs:label "Urgent case (expert system)"@en ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty :hasTriage ; owl:hasValue :Urgent ] .
+:TrulyUrgentCase a owl:Class ; rdfs:subClassOf :Patient ; rdfs:label "Case whose true pathology is urgent (severity 1-2)"@en .
+[ a owl:Restriction ; owl:onProperty :hasPathology ; owl:someValuesFrom :UrgentPathology ] rdfs:subClassOf :TrulyUrgentCase .
+:RespiratoryCase a owl:Class ; rdfs:subClassOf :Patient ; rdfs:label "Case diagnosed with a respiratory disease"@en .
+[ a owl:Restriction ; owl:onProperty :hasDiagnosis ; owl:someValuesFrom :RespiratoryDisease ] rdfs:subClassOf :RespiratoryCase .

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% block title %}Knowledge base | DDX-ES{% endblock %}
+{% block content %}
+{% set s = summary %}
+<header class="page-head">
+  <h1 class="page-title">Knowledge base</h1>
+  <p class="lede lede--figures">{{ s.pathologies }} pathologies, {{ s.questions }} questions and {{ s.rules }} rules drawn from
+    {{ s.sources }} sources, stored as {{ s.triples|thousands }} RDF triples. The OWL 2 RL reasoner entails
+    {{ s.inferred|thousands }} more.</p>
+</header>
+
+<div class="tabs tabs--page" role="tablist" aria-label="Knowledge base">
+  {% for key, label in [("rules", "Rules"), ("pathologies", "Pathologies"), ("sources", "Sources")] %}
+  <a class="tab" role="tab" href="/kb?tab={{ key }}" aria-selected="{{ 'true' if key == tab else 'false' }}">{{ label }}</a>
+  {% endfor %}
+</div>
+
+{% if tab == "rules" %}
+<div id="kb-rules" class="kb-rules">
+  <form class="filters" method="get" action="/kb" data-swap="#kb-rules">
+    <input type="hidden" name="tab" value="rules"><input type="hidden" name="f" value="1">
+    <fieldset class="filters__group">
+      <legend>Kind of rule</legend>
+      {% for c in categories %}<label class="check"><input type="checkbox" name="cat" value="{{ c }}"{% if c in cats %} checked{% endif %} data-autosubmit>
+        {{ c|capitalize }} <span class="muted">{{ s.categories[c] }}</span></label>{% endfor %}
+    </fieldset>
+    <fieldset class="filters__group">
+      <legend>Fidelity to DDXPlus</legend>
+      {% for f in fidelities %}<label class="check"><input type="checkbox" name="fid" value="{{ f }}"{% if f in fids %} checked{% endif %} data-autosubmit> {{ f|capitalize }}</label>{% endfor %}
+    </fieldset>
+    <div class="filters__search">
+      <label for="kb-q">Search rules</label>
+      <input id="kb-q" type="search" name="q" value="{{ query }}" placeholder="Rule id, name or condition" data-autosubmit-typing>
+    </div>
+  </form>
+
+  <div class="kb-rules__grid">
+    <div class="table-wrap">
+    <table class="table table--compact rules-table">
+      <caption class="sr">{{ rows|length }} rules</caption>
+      <thead><tr><th scope="col">Rule</th><th scope="col" class="num">CF</th><th scope="col">Fidelity</th><th scope="col">Source</th>
+        <th scope="col" class="num" title="Validation patients on whom the rule fires">Fires</th>
+        <th scope="col" class="num" title="Share of firings where the concluded pathology is the true one (diagnostic rules)">Precision</th></tr></thead>
+      <tbody>
+        {% for r in rows %}
+        <tr{% if r.id == rid %} class="is-current"{% endif %}>
+          <td><a href="/kb?{{ params|urlencode }}&rule={{ r.id }}" data-swap="#rule-detail"><b>{{ r.id }}</b></a> {{ r.name }}</td>
+          <td class="num">{{ r.cf|num(2) }}</td><td>{{ r.fidelity }}</td><td class="nowrap">{{ r.source }}</td>
+          <td class="num">{{ r.fires|thousands if r.fires is not none else "" }}</td>
+          <td class="num">{{ r.precision|pct(0) if r.precision is not none else "" }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="muted">No rule matches these filters. Tick at least one kind and one fidelity level.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+    <aside id="rule-detail" class="sheet rule-detail" aria-label="Rule detail">
+      {% if detail %}{% set d = detail %}
+      <p class="rule-detail__id">{{ d.id }}</p>
+      <h2 class="rule-detail__name">{{ d.name }}</h2>
+      <pre class="code rule__text">{{ d.text }}</pre>
+      <dl class="kv">
+        <div><dt>Kind</dt><dd>{{ d.category|capitalize }}</dd></div>
+        <div><dt>Certainty factor</dt><dd>{{ d.cf|num(2) }}</dd></div>
+        <div><dt>Fidelity</dt><dd>{{ d.fidelity|capitalize }}</dd></div>
+        {% if d.validation.fires is defined %}<div><dt>Fires on validation patients</dt><dd>{{ d.validation.fires|thousands }}</dd></div>{% endif %}
+        {% if d.validation.precision is defined %}<div><dt>Precision, recall, lift</dt><dd>{{ d.validation.precision|pct(0) }}, {{ d.validation.recall|pct(0) }}, {{ d.validation.lift|round(1) }}</dd></div>{% endif %}
+      </dl>
+      <p class="rule-detail__src"><b>Source.</b> {{ d.citation }}{% if d.link %} <a href="{{ d.link }}" target="_blank" rel="noopener">{{ icon("link", "inline-icon") }}<span class="sr">Open the source</span></a>{% endif %}</p>
+      {% if d.note %}<p class="muted">{{ d.note }}</p>{% endif %}
+      <p class="muted">OWL classes, including entailed ones: {{ d.classes|join(", ") }}.</p>
+      {% else %}
+      <p class="muted">Select a rule to see its conditions and its source.</p>
+      {% endif %}
+    </aside>
+  </div>
+</div>
+
+{% elif tab == "pathologies" %}
+<form class="picker" method="get" action="/kb">
+  <input type="hidden" name="tab" value="pathologies">
+  <div class="field">
+    <label for="kb-d">Pathology</label>
+    <select id="kb-d" name="d" data-autosubmit>{% for k, label in options %}<option value="{{ k }}"{% if k == d %} selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+  </div>
+  <noscript><button class="btn btn--quiet" type="submit">Show</button></noscript>
+</form>
+{% set p = p %}
+<section class="pathology">
+  <h2 class="pathology__name">{{ p.name }}</h2>
+  <dl class="facts">
+    <div><dt>ICD-10</dt><dd>{{ p.icd10 }}</dd></div>
+    <div><dt>Severity</dt><dd>{{ p.severity }} of 5</dd></div>
+    <div><dt>Prior</dt><dd>{{ p.prior|num(4) }}</dd></div>
+    <div><dt>Training patients</dt><dd>{{ p.patients|thousands }}</dd></div>
+  </dl>
+  <p class="prose">OWL classes, including entailed ones: {{ p.classes|join(", ") }}.</p>
+  <div class="two-col">
+    <section><h3 class="sub-title">Symptoms in the expert profile</h3><ul class="plain cols">{% for x in p.symptoms %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h3 class="sub-title">Antecedents and risk factors</h3><ul class="plain cols">{% for x in p.antecedents %}<li>{{ x }}</li>{% else %}<li class="muted">None</li>{% endfor %}</ul></section>
+  </div>
+  <h3 class="sub-title">Rules about {{ p.name }}</h3>
+  <ul class="plain">{% for r in p.rules %}<li><a href="/kb?f=1&cat={{ r.category }}&fid=faithful&fid=partial&fid=proxy&rule={{ r.id }}"><b>{{ r.id }}</b></a> {{ r.name }} <span class="muted">{{ r.source }}</span></li>{% else %}<li class="muted">No rule mentions it.</li>{% endfor %}</ul>
+</section>
+
+{% else %}
+<div class="table-wrap">
+<table class="table table--compact">
+  <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col" class="num">Rules</th></tr></thead>
+  <tbody>
+    {% for x in sources %}
+    <tr><td>{{ x.citation }}{% if x.link %} <a href="{{ x.link }}" target="_blank" rel="noopener">{{ icon("link", "inline-icon") }}<span class="sr">Open</span></a>{% endif %}</td>
+      <td class="nowrap">{{ x.type }}</td><td class="num">{{ x.rules }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

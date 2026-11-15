@@ -1,0 +1,13 @@
+# Completeness check (closed-world, with FILTER NOT EXISTS): pathologies that no positive diagnostic rule concludes.
+# Expected result: no rows -- every one of the 49 pathologies has at least one guideline-based rule.
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?pathology WHERE {
+  ?p a :Pathology ; rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
+  FILTER NOT EXISTS {
+    ?r a :DiagnosticRule ; :asserts ?k .
+    ?k :concludesPathology ?p .
+    FILTER NOT EXISTS { ?k :certaintyFactor ?kcf . FILTER(?kcf < 0) }
+    ?r :certaintyFactor ?cf . FILTER(?cf > 0)
+  }
+}

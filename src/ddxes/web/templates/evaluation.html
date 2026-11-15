@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Evaluation | DDX-ES{% endblock %}
+{% block content %}
+{% set m = ev.main %}{% set t = ev.triage %}
+<header class="page-head">
+  <h1 class="page-title">Evaluation</h1>
+  <p class="lede lede--figures">On the {{ m.patients|thousands }} patients of the DDXPlus {{ m.split or "test split" }}, DDX-ES
+    ranks the true pathology first for {{ m.es.top1|pct(2) }} of them, in {{ "%.1f"|format(m.ms_per_patient) }} ms per
+    patient. It never triages an emergency too low.</p>
+</header>
+
+<section class="block" aria-labelledby="acc-title">
+  <h2 class="section-title" id="acc-title">Diagnostic accuracy</h2>
+  <div class="table-wrap">
+  <table class="table metrics">
+    <thead><tr><th scope="col">Metric</th>{% for s in ev.systems %}<th scope="col" class="num">{{ s }}</th>{% endfor %}</tr></thead>
+    <tbody>
+      {% for row in ev.table %}
+      <tr><th scope="row">{{ row.label }}</th>
+        {% for v in row["values"] %}<td class="num{% if v|pct(2) == row.best|pct(2) %} strong{% endif %}">{{ v|pct(2) }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Naive Bayes is the machine-learning baseline built from the same counts; the hybrid pools both. The
+    differential metrics are low by design: DDX-ES commits to a diagnosis, while the reference differential lists about
+    ten pathologies. The best value in each row is in bold.</p>
+</section>
+
+<section class="block" aria-labelledby="tri-title">
+  <h2 class="section-title" id="tri-title">Triage</h2>
+  <dl class="facts facts--wide">
+    <div><dt>Exact level</dt><dd>{{ t.exact|pct(1) }}</dd></div>
+    <div><dt>Under-triage (unsafe)</dt><dd>{{ t.under|pct(2) }}</dd></div>
+    <div><dt>Over-triage</dt><dd>{{ t.over|pct(1) }}</dd></div>
+    <div><dt>Emergencies recognised</dt><dd>{{ t.emergency_recall|pct(1) }}</dd></div>
+    <div><dt>Urgent or worse recognised</dt><dd>{{ t.urgent_recall|pct(1) }}</dd></div>
+  </dl>
+  <div class="table-wrap">
+  <table class="matrix" aria-describedby="matrix-note">
+    <thead>
+      <tr><th scope="col" class="matrix__corner">True level, predicted level</th>
+        {% for l in ev.levels %}<th scope="col">{{ l }}</th>{% endfor %}<th scope="col" class="num">Patients</th></tr>
+    </thead>
+    <tbody>
+      {% for row in ev.matrix %}
+      <tr><th scope="row">{{ row.label }}</th>
+        {% for c in row.cells %}
+        <td class="matrix__cell shade-{{ c.shade }}{% if c.diag %} is-diag{% endif %}" title="{{ row.label }} predicted as {{ ev.levels[loop.index0] }}: {{ c.n|thousands }} patients">
+          <span class="matrix__n">{{ c.n|thousands }}</span><span class="matrix__share">{{ c.share|pct(1) }}</span></td>
+        {% endfor %}
+        <td class="num">{{ row.n|thousands }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p class="note" id="matrix-note">Rows are the level implied by the severity of the true pathology, columns the level DDX-ES
+    gives; the diagonal is outlined. Cells right of the diagonal would be under-triage, left of it over-triage.</p>
+</section>
+
+{% if ev.ablation %}{% set abl = ev.ablation %}
+<section class="block" aria-labelledby="abl-title">
+  <h2 class="section-title" id="abl-title">Ablation</h2>
+  <p class="prose">Top-1 accuracy of each configuration on a stratified sample of {{ abl.patients|thousands }} test patients
+    (up to 100 per pathology).</p>
+  <ol class="hbars">
+    {% for r in abl.rows %}
+    <li class="hbars__row"><span class="hbars__label">{{ r.name }}</span>
+      <span class="hbars__bar"><span style="width: {{ '%.1f'|format(r.top1 * 100) }}%"></span></span>
+      <span class="hbars__val">{{ r.top1|pct(1) }}</span></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+{% if ev.consultation %}{% set c = ev.consultation.summary %}{% set w = ev.consultation.without_rule_out %}
+<section class="block" aria-labelledby="con-title">
+  <h2 class="section-title" id="con-title">Interactive consultation, simulated</h2>
+  <p class="prose">Replaying the {{ c.patients }} demo patients through the consultation, each answering from their own
+    record: DDX-ES asks {{ "%.1f"|format(c.questions_mean) }} questions on average and ranks the true pathology first
+    for {{ c.top1|pct(1) }} of them. The rule-out phase cuts the urgent cases that end up non-urgent from
+    {{ w.urgent_missed|pct(1) }} to {{ c.urgent_missed|pct(1) }}.</p>
+  {% if ev.curve_svg %}
+  <figure class="chart-wrap">
+    {{ ev.curve_svg }}
+    <figcaption class="note">Each point is a stopping threshold on the probability of the leading hypothesis. Asking more
+      questions buys accuracy.</figcaption>
+  </figure>
+  {% endif %}
+</section>
+{% endif %}
+
+<section class="block" aria-labelledby="per-title">
+  <h2 class="section-title" id="per-title">Accuracy per pathology</h2>
+  <p class="prose">Sorted from the hardest. Guideline support is the share of leading diagnoses backed by at least one cited
+    rule.</p>
+  <div class="table-wrap">
+  <table class="table table--compact per">
+    <thead><tr><th scope="col">Pathology</th><th scope="col" class="num">Patients</th><th scope="col" class="per__bar">Top-1</th>
+      <th scope="col" class="num">Guideline support</th></tr></thead>
+    <tbody>
+      {% for r in ev.per %}
+      <tr><td>{{ r.name }}</td><td class="num">{{ r.n|thousands }}</td>
+        <td><span class="pbar"><span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(r.top1 * 100) }}%"></span></span>
+          <span class="pbar__val">{{ r.top1|pct(1) }}</span></span></td>
+        <td class="num">{{ r.support|pct(1) }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+{% endblock %}

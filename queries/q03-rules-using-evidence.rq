@@ -1,0 +1,8 @@
+# Which rules read the answer "coughing up blood" (E_45), and what do they conclude?
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?code ?name ?concludes ?cf WHERE {
+  ?rule :usesEvidence :E_45 ; :code ?code ; rdfs:label ?name ; :certaintyFactor ?cf ; :asserts ?k .
+  ?k (:concludesPathology|:concludesConcept|:concludesTriage|:concludesRecommendation|:onScore) ?target .
+  ?target rdfs:label ?concludes . FILTER(lang(?concludes) = "en")
+} ORDER BY ?code

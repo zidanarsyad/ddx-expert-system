@@ -1,0 +1,10 @@
+code,name,src
+T-ACS,Suspected acute coronary syndrome is an emergency,gulati2021
+T-AIRWAY,Upper-airway obstruction with stridor is an emergency,guldfred2008
+T-ANA,Anaphylaxis is an emergency,cardona2020
+T-APE,Suspected acute pulmonary oedema is an emergency,mcdonagh2021
+T-BOE,Suspected oesophageal rupture is an emergency,soreide2011
+T-CHEST-RED,"Chest pain with radiation, diaphoresis or rest pain needs emergency assessment",gulati2021
+T-EBOLA,Suspected Ebola: emergency isolation,who2014ebola
+T-PE,Suspected pulmonary embolism is an emergency,konstantinides2020
+T-SUDDEN-CHEST,Sudden severe chest pain needs emergency assessment,gulati2021

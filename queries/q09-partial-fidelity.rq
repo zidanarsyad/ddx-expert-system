@@ -1,0 +1,8 @@
+# Knowledge-engineering audit: rules whose mapping to DDXPlus questions is partial or a proxy, with the reason
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?code ?fidelity ?note WHERE {
+  ?r a :Rule ; :code ?code ; :mappingFidelity ?fidelity .
+  FILTER(?fidelity != "faithful")
+  OPTIONAL { ?r rdfs:comment ?note }
+} ORDER BY ?fidelity ?code

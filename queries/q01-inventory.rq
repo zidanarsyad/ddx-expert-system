@@ -1,0 +1,8 @@
+# Inventory of the knowledge graph: how many nodes of each class (asserted + entailed types)
+PREFIX : <http://example.org/ddx#>
+SELECT ?class (COUNT(DISTINCT ?x) AS ?n) WHERE {
+  VALUES ?class { :Pathology :Evidence :Symptom :Antecedent :AnswerValue :Rule :AbstractionRule :ScoringRule
+                  :DiagnosticRule :TriageRule :RecommendationRule :RuleSchema :ClinicalConcept :RedFlag :Source
+                  :EvidenceStrength :UrgentPathology :LifeThreateningPathology :RedFlagRule :GuidelineBasedRule }
+  ?x a ?class .
+} GROUP BY ?class ORDER BY DESC(?n)

@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+build/
+dist/
+
+# compiled knowledge base cache (rebuilt automatically)
+kg/.cache/
+
+# local logs and editor / OS files
+results/*.log
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
+
+# the report holds the authors' student numbers (NIM): submitted separately, never published
+docs/report.md
+docs/report.pdf

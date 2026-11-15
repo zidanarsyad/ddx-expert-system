@@ -1,0 +1,10 @@
+# Calibration of the knowledge base: the most and least diagnostic features of pneumonia
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?evidence ?value ?polarity ?pd ?pother ?lr ?cf WHERE {
+  ?s a :EvidenceStrength ; :ofPathology :Pneumonia ; :ofEvidence2 ?e ; :polarity ?polarity ;
+     :pGivenPathology ?pd ; :pGivenOthers ?pother ; :likelihoodRatio ?lr ; :certaintyFactor ?cf .
+  ?e rdfs:label ?evidence .
+  OPTIONAL { ?s :ofValue/rdfs:label ?value . FILTER(lang(?value) = "en") }
+  FILTER(lang(?evidence) = "en")
+} ORDER BY DESC(?cf) LIMIT 15

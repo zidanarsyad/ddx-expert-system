@@ -1,0 +1,9 @@
+# Disease families and urgency classes of the pathologies: all entailed (owl:hasValue restrictions)
+PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?name ?severity (GROUP_CONCAT(DISTINCT ?cls; separator=", ") AS ?classes) WHERE {
+  ?p a :Pathology ; rdfs:label ?name ; :severity ?severity ; a ?c .
+  FILTER(lang(?name) = "en" && ?c != :Pathology)
+  ?c rdfs:subClassOf+ :Pathology .
+  BIND(STRAFTER(STR(?c), "#") AS ?cls)
+} GROUP BY ?name ?severity ORDER BY ?severity ?name

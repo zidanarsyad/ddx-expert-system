@@ -1,0 +1,4202 @@
+[
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_123",
+  "count": 1659
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_125",
+  "count": 1763
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_198",
+  "count": 1205
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_199",
+  "count": 1130
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_200",
+  "count": 1255
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_201",
+  "count": 1564
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_204",
+  "count": 75
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_214",
+  "count": 1877
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_31",
+  "count": 1332
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_66",
+  "count": 1519
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_72",
+  "count": 1490
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_77",
+  "count": 1496
+ },
+ {
+  "pathology": "AcuteCOPDExacerbationInfection",
+  "evidence": "E_79",
+  "count": 1685
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_128",
+  "count": 1962
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_147",
+  "count": 2294
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_15",
+  "count": 2271
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_168",
+  "count": 2190
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_172",
+  "count": 1959
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_180",
+  "count": 1922
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_192",
+  "count": 2082
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_193",
+  "count": 2136
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_204",
+  "count": 106
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_205",
+  "count": 2126
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_62",
+  "count": 2299
+ },
+ {
+  "pathology": "AcuteDystonicReactions",
+  "evidence": "E_66",
+  "count": 1920
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_116",
+  "count": 2254
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_201",
+  "count": 1962
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_204",
+  "count": 91
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_212",
+  "count": 2934
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_48",
+  "count": 2022
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_49",
+  "count": 2054
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_53",
+  "count": 3404
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_54",
+  "count": 3404
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_55",
+  "count": 3404
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_56",
+  "count": 3404
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_58",
+  "count": 3404
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_59",
+  "count": 2820
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_79",
+  "count": 2031
+ },
+ {
+  "pathology": "AcuteLaryngitis",
+  "evidence": "E_91",
+  "count": 1845
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_1",
+  "count": 1848
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_114",
+  "count": 1925
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_181",
+  "count": 2085
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_201",
+  "count": 1879
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_204",
+  "count": 83
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_209",
+  "count": 1756
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_53",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_54",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_55",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_56",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_58",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_59",
+  "count": 3469
+ },
+ {
+  "pathology": "AcuteOtitisMedia",
+  "evidence": "E_91",
+  "count": 2008
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_104",
+  "count": 1881
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_105",
+  "count": 2059
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_106",
+  "count": 2283
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_151",
+  "count": 2491
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_152",
+  "count": 2491
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_175",
+  "count": 1777
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_204",
+  "count": 79
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_217",
+  "count": 1918
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_218",
+  "count": 1906
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_5",
+  "count": 2031
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_50",
+  "count": 1472
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_53",
+  "count": 2500
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_54",
+  "count": 2500
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_55",
+  "count": 2500
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_56",
+  "count": 2500
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_57",
+  "count": 2499
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_58",
+  "count": 2500
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_59",
+  "count": 2203
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_66",
+  "count": 1985
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_67",
+  "count": 1888
+ },
+ {
+  "pathology": "AcutePulmonaryEdema",
+  "evidence": "E_8",
+  "count": 1907
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_103",
+  "count": 1380
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_116",
+  "count": 1182
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_118",
+  "count": 1331
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_120",
+  "count": 1713
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_121",
+  "count": 1275
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_124",
+  "count": 1626
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_125",
+  "count": 1253
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_181",
+  "count": 609
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_182",
+  "count": 1468
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_201",
+  "count": 1447
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_204",
+  "count": 64
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_209",
+  "count": 920
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_226",
+  "count": 1487
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_53",
+  "count": 1866
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_54",
+  "count": 1866
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_55",
+  "count": 1866
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_56",
+  "count": 1866
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_57",
+  "count": 1863
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_58",
+  "count": 1866
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_59",
+  "count": 1595
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_79",
+  "count": 1341
+ },
+ {
+  "pathology": "AcuteRhinosinusitis",
+  "evidence": "E_91",
+  "count": 636
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_124",
+  "count": 1454
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_169",
+  "count": 1685
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_170",
+  "count": 1489
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_181",
+  "count": 1808
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_201",
+  "count": 1262
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_204",
+  "count": 143
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_207",
+  "count": 1235
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_226",
+  "count": 1408
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_86",
+  "count": 1362
+ },
+ {
+  "pathology": "AllergicSinusitis",
+  "evidence": "E_87",
+  "count": 1102
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_12",
+  "count": 3004
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_129",
+  "count": 3754
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_130",
+  "count": 3754
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_132",
+  "count": 3227
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_133",
+  "count": 3754
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_134",
+  "count": 2792
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_135",
+  "count": 3754
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_136",
+  "count": 3754
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_148",
+  "count": 2075
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_151",
+  "count": 3725
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_152",
+  "count": 3725
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_159",
+  "count": 2242
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_194",
+  "count": 2289
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_204",
+  "count": 130
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_214",
+  "count": 2287
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_226",
+  "count": 2535
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_42",
+  "count": 2918
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_51",
+  "count": 2259
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_53",
+  "count": 3752
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_54",
+  "count": 3752
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_55",
+  "count": 3752
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_56",
+  "count": 3752
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_58",
+  "count": 3187
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_59",
+  "count": 3752
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_66",
+  "count": 2271
+ },
+ {
+  "pathology": "Anaphylaxis",
+  "evidence": "E_82",
+  "count": 2352
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_113",
+  "count": 5178
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_140",
+  "count": 4114
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_145",
+  "count": 1500
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_146",
+  "count": 5492
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_154",
+  "count": 4157
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_167",
+  "count": 2337
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_179",
+  "count": 4153
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_204",
+  "count": 3208
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_208",
+  "count": 5411
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_24",
+  "count": 5387
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_26",
+  "count": 4927
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_53",
+  "count": 6847
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_54",
+  "count": 6847
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_55",
+  "count": 6847
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_56",
+  "count": 6847
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_58",
+  "count": 6847
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_59",
+  "count": 5733
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_66",
+  "count": 4165
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_7",
+  "count": 5201
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_76",
+  "count": 4188
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_82",
+  "count": 4590
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_88",
+  "count": 4432
+ },
+ {
+  "pathology": "Anemia",
+  "evidence": "E_89",
+  "count": 4183
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_104",
+  "count": 1927
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_105",
+  "count": 1875
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_139",
+  "count": 1714
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_155",
+  "count": 1901
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_164",
+  "count": 1995
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_19",
+  "count": 1800
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_204",
+  "count": 87
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_218",
+  "count": 1491
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_22",
+  "count": 1960
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_31",
+  "count": 1962
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_66",
+  "count": 1853
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_69",
+  "count": 1504
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_70",
+  "count": 1604
+ },
+ {
+  "pathology": "AtrialFibrillation",
+  "evidence": "E_76",
+  "count": 1793
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_148",
+  "count": 1556
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_204",
+  "count": 62
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_210",
+  "count": 1498
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_211",
+  "count": 1661
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_53",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_54",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_55",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_56",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_57",
+  "count": 2050
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_58",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_59",
+  "count": 2075
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_66",
+  "count": 1318
+ },
+ {
+  "pathology": "Boerhaave",
+  "evidence": "E_78",
+  "count": 1494
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_118",
+  "count": 1447
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_123",
+  "count": 1504
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_124",
+  "count": 1325
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_17",
+  "count": 253
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_18",
+  "count": 1810
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_20",
+  "count": 1531
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_201",
+  "count": 1645
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_204",
+  "count": 98
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_227",
+  "count": 1600
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_45",
+  "count": 1332
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_47",
+  "count": 1522
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_66",
+  "count": 1619
+ },
+ {
+  "pathology": "Bronchiectasis",
+  "evidence": "E_77",
+  "count": 1990
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_142",
+  "count": 19
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_181",
+  "count": 28
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_183",
+  "count": 16
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_195",
+  "count": 12
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_201",
+  "count": 17
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_204",
+  "count": 1
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_209",
+  "count": 14
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_214",
+  "count": 21
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_23",
+  "count": 12
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_32",
+  "count": 10
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_48",
+  "count": 15
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_66",
+  "count": 28
+ },
+ {
+  "pathology": "Bronchiolitis",
+  "evidence": "E_91",
+  "count": 28
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_123",
+  "count": 2799
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_181",
+  "count": 1616
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_201",
+  "count": 3084
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_204",
+  "count": 106
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_209",
+  "count": 1506
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_214",
+  "count": 1924
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_219",
+  "count": 2050
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_53",
+  "count": 3526
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_54",
+  "count": 3526
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_55",
+  "count": 3526
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_56",
+  "count": 3526
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_58",
+  "count": 3526
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_59",
+  "count": 2944
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_66",
+  "count": 1990
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_77",
+  "count": 2741
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_79",
+  "count": 2068
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_91",
+  "count": 1900
+ },
+ {
+  "pathology": "Bronchitis",
+  "evidence": "E_97",
+  "count": 1721
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_101",
+  "count": 1538
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_116",
+  "count": 1710
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_119",
+  "count": 1615
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_124",
+  "count": 2157
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_201",
+  "count": 1709
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_204",
+  "count": 87
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_207",
+  "count": 1260
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_214",
+  "count": 1875
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_222",
+  "count": 1341
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_226",
+  "count": 1543
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_46",
+  "count": 1664
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_66",
+  "count": 1833
+ },
+ {
+  "pathology": "BronchospasmAcuteAsthmaExacerbation",
+  "evidence": "E_87",
+  "count": 1420
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_148",
+  "count": 618
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_174",
+  "count": 615
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_175",
+  "count": 695
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_204",
+  "count": 224
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_51",
+  "count": 615
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_53",
+  "count": 1124
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_54",
+  "count": 1124
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_55",
+  "count": 1124
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_56",
+  "count": 1124
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_58",
+  "count": 1124
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_59",
+  "count": 969
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_66",
+  "count": 663
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_9",
+  "count": 584
+ },
+ {
+  "pathology": "Chagas",
+  "evidence": "E_91",
+  "count": 684
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_103",
+  "count": 2329
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_116",
+  "count": 1728
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_118",
+  "count": 1949
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_120",
+  "count": 2458
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_121",
+  "count": 1896
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_124",
+  "count": 2321
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_125",
+  "count": 1887
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_181",
+  "count": 1403
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_182",
+  "count": 1850
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_201",
+  "count": 2213
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_204",
+  "count": 91
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_226",
+  "count": 2246
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_53",
+  "count": 2717
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_54",
+  "count": 2717
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_55",
+  "count": 2717
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_56",
+  "count": 2717
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_57",
+  "count": 2703
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_58",
+  "count": 2717
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_59",
+  "count": 2201
+ },
+ {
+  "pathology": "ChronicRhinosinusitis",
+  "evidence": "E_79",
+  "count": 1957
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_127",
+  "count": 1695
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_176",
+  "count": 41
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_181",
+  "count": 1693
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_184",
+  "count": 2143
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_204",
+  "count": 85
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_25",
+  "count": 2375
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_53",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_54",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_55",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_56",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_58",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_59",
+  "count": 2841
+ },
+ {
+  "pathology": "ClusterHeadache",
+  "evidence": "E_78",
+  "count": 1882
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_181",
+  "count": 179
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_190",
+  "count": 153
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_194",
+  "count": 195
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_202",
+  "count": 177
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_204",
+  "count": 12
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_209",
+  "count": 125
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_219",
+  "count": 170
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_4",
+  "count": 192
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_66",
+  "count": 167
+ },
+ {
+  "pathology": "Croup",
+  "evidence": "E_91",
+  "count": 161
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_144",
+  "count": 47
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_148",
+  "count": 53
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_178",
+  "count": 80
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_201",
+  "count": 60
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_204",
+  "count": 90
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_39",
+  "count": 67
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_41",
+  "count": 76
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_51",
+  "count": 52
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_66",
+  "count": 60
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_73",
+  "count": 80
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_89",
+  "count": 44
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_91",
+  "count": 38
+ },
+ {
+  "pathology": "Ebola",
+  "evidence": "E_97",
+  "count": 57
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_104",
+  "count": 1343
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_190",
+  "count": 1676
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_194",
+  "count": 1722
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_204",
+  "count": 67
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_209",
+  "count": 1136
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_212",
+  "count": 1712
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_33",
+  "count": 1386
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_53",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_54",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_55",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_56",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_58",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_59",
+  "count": 2248
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_62",
+  "count": 1301
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_65",
+  "count": 1655
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_66",
+  "count": 1552
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_69",
+  "count": 1388
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_78",
+  "count": 1324
+ },
+ {
+  "pathology": "Epiglottitis",
+  "evidence": "E_91",
+  "count": 1521
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_124",
+  "count": 2298
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_140",
+  "count": 1047
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_167",
+  "count": 1158
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_173",
+  "count": 2532
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_201",
+  "count": 2363
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_204",
+  "count": 97
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_210",
+  "count": 1103
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_215",
+  "count": 2580
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_217",
+  "count": 2167
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_53",
+  "count": 3410
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_54",
+  "count": 3410
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_55",
+  "count": 3410
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_56",
+  "count": 3410
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_57",
+  "count": 3199
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_58",
+  "count": 3410
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_59",
+  "count": 2904
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_70",
+  "count": 2045
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_78",
+  "count": 2046
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_79",
+  "count": 2339
+ },
+ {
+  "pathology": "GERD",
+  "evidence": "E_98",
+  "count": 2365
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_0",
+  "count": 1709
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_156",
+  "count": 1420
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_157",
+  "count": 1770
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_176",
+  "count": 1455
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_177",
+  "count": 1436
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_204",
+  "count": 101
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_66",
+  "count": 1637
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_83",
+  "count": 1591
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_84",
+  "count": 1823
+ },
+ {
+  "pathology": "GuillainBarreSyndrome",
+  "evidence": "E_93",
+  "count": 1513
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_115",
+  "count": 2770
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_129",
+  "count": 3852
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_130",
+  "count": 3852
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_132",
+  "count": 3046
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_133",
+  "count": 3852
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_134",
+  "count": 3852
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_135",
+  "count": 3852
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_144",
+  "count": 2484
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_148",
+  "count": 2438
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_162",
+  "count": 2556
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_189",
+  "count": 2779
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_204",
+  "count": 312
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_27",
+  "count": 2756
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_50",
+  "count": 2397
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_51",
+  "count": 2276
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_53",
+  "count": 3841
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_54",
+  "count": 3841
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_55",
+  "count": 3841
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_56",
+  "count": 3841
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_58",
+  "count": 3841
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_59",
+  "count": 3326
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_61",
+  "count": 2340
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_88",
+  "count": 2444
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_9",
+  "count": 2919
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_91",
+  "count": 3232
+ },
+ {
+  "pathology": "HIVInitialInfection",
+  "evidence": "E_97",
+  "count": 2161
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_129",
+  "count": 3099
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_130",
+  "count": 3099
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_132",
+  "count": 2570
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_133",
+  "count": 3099
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_134",
+  "count": 2684
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_135",
+  "count": 3099
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_136",
+  "count": 2582
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_144",
+  "count": 2469
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_161",
+  "count": 2196
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_181",
+  "count": 2356
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_201",
+  "count": 2935
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_204",
+  "count": 106
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_227",
+  "count": 2025
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_50",
+  "count": 2436
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_53",
+  "count": 3590
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_54",
+  "count": 3590
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_55",
+  "count": 3590
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_56",
+  "count": 3590
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_58",
+  "count": 3590
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_59",
+  "count": 3089
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_79",
+  "count": 2680
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_88",
+  "count": 2762
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_91",
+  "count": 2898
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_94",
+  "count": 2334
+ },
+ {
+  "pathology": "Influenza",
+  "evidence": "E_97",
+  "count": 1988
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_129",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_130",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_132",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_133",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_134",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_135",
+  "count": 2384
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_150",
+  "count": 1367
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_160",
+  "count": 1555
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_203",
+  "count": 1741
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_204",
+  "count": 90
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_221",
+  "count": 1551
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_30",
+  "count": 1627
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_53",
+  "count": 2631
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_54",
+  "count": 2631
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_55",
+  "count": 2631
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_56",
+  "count": 2631
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_58",
+  "count": 2259
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_59",
+  "count": 2631
+ },
+ {
+  "pathology": "InguinalHernia",
+  "evidence": "E_70",
+  "count": 931
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_116",
+  "count": 326
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_124",
+  "count": 324
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_125",
+  "count": 325
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_194",
+  "count": 668
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_204",
+  "count": 74
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_222",
+  "count": 325
+ },
+ {
+  "pathology": "Larygospasm",
+  "evidence": "E_79",
+  "count": 337
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_10",
+  "count": 2090
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_106",
+  "count": 2770
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_109",
+  "count": 2122
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_126",
+  "count": 2517
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_137",
+  "count": 2748
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_149",
+  "count": 2247
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_151",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_152",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_158",
+  "count": 2040
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_186",
+  "count": 2178
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_197",
+  "count": 2461
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_204",
+  "count": 85
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_22",
+  "count": 2287
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_44",
+  "count": 2369
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_53",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_54",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_55",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_56",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_58",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_59",
+  "count": 3694
+ },
+ {
+  "pathology": "LocalizedEdema",
+  "evidence": "E_96",
+  "count": 2236
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_172",
+  "count": 1526
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_176",
+  "count": 1233
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_204",
+  "count": 97
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_28",
+  "count": 1377
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_38",
+  "count": 1418
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_52",
+  "count": 1555
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_63",
+  "count": 1547
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_65",
+  "count": 1567
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_66",
+  "count": 1664
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_84",
+  "count": 1366
+ },
+ {
+  "pathology": "MyastheniaGravis",
+  "evidence": "E_90",
+  "count": 1063
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_0",
+  "count": 1106
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_155",
+  "count": 814
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_175",
+  "count": 904
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_204",
+  "count": 45
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_217",
+  "count": 969
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_218",
+  "count": 990
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_53",
+  "count": 1533
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_54",
+  "count": 1533
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_55",
+  "count": 1533
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_56",
+  "count": 1533
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_58",
+  "count": 1533
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_59",
+  "count": 1290
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_64",
+  "count": 939
+ },
+ {
+  "pathology": "Myocarditis",
+  "evidence": "E_66",
+  "count": 1198
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_155",
+  "count": 2355
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_16",
+  "count": 1578
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_204",
+  "count": 69
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_213",
+  "count": 1391
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_35",
+  "count": 1327
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_53",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_54",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_55",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_56",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_58",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_59",
+  "count": 1605
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_60",
+  "count": 1397
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_62",
+  "count": 1690
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_66",
+  "count": 1261
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_76",
+  "count": 1681
+ },
+ {
+  "pathology": "PSVT",
+  "evidence": "E_82",
+  "count": 1658
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_129",
+  "count": 1843
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_130",
+  "count": 1843
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_132",
+  "count": 1360
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_133",
+  "count": 1843
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_134",
+  "count": 1386
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_135",
+  "count": 1843
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_136",
+  "count": 1473
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_148",
+  "count": 1280
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_162",
+  "count": 1628
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_188",
+  "count": 1855
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_201",
+  "count": 1330
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_204",
+  "count": 85
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_223",
+  "count": 1960
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_51",
+  "count": 1449
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_53",
+  "count": 2512
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_54",
+  "count": 2512
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_55",
+  "count": 2512
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_56",
+  "count": 2512
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_57",
+  "count": 1528
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_58",
+  "count": 2107
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_59",
+  "count": 2105
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_6",
+  "count": 1623
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_69",
+  "count": 1529
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_70",
+  "count": 1733
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_79",
+  "count": 1711
+ },
+ {
+  "pathology": "PancreaticNeoplasm",
+  "evidence": "E_89",
+  "count": 1569
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_111",
+  "count": 2437
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_124",
+  "count": 1986
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_138",
+  "count": 2196
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_148",
+  "count": 1696
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_155",
+  "count": 2284
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_157",
+  "count": 2619
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_16",
+  "count": 2192
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_171",
+  "count": 2351
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_177",
+  "count": 1789
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_185",
+  "count": 2323
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_204",
+  "count": 111
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_29",
+  "count": 1786
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_50",
+  "count": 1944
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_53",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_54",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_55",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_56",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_58",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_59",
+  "count": 3237
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_66",
+  "count": 2277
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_75",
+  "count": 1773
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_78",
+  "count": 1821
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_80",
+  "count": 2368
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_81",
+  "count": 2444
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_82",
+  "count": 2264
+ },
+ {
+  "pathology": "PanicAttack",
+  "evidence": "E_99",
+  "count": 1792
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_0",
+  "count": 2252
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_155",
+  "count": 1665
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_204",
+  "count": 81
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_217",
+  "count": 2201
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_220",
+  "count": 2135
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_3",
+  "count": 2526
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_53",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_54",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_55",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_56",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_57",
+  "count": 2993
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_58",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_59",
+  "count": 3032
+ },
+ {
+  "pathology": "Pericarditis",
+  "evidence": "E_66",
+  "count": 1915
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_106",
+  "count": 2487
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_107",
+  "count": 2063
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_118",
+  "count": 2800
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_123",
+  "count": 2561
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_124",
+  "count": 2118
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_129",
+  "count": 3463
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_130",
+  "count": 3463
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_131",
+  "count": 3463
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_132",
+  "count": 2973
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_133",
+  "count": 3463
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_134",
+  "count": 2857
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_136",
+  "count": 2897
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_144",
+  "count": 2378
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_161",
+  "count": 2344
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_175",
+  "count": 2157
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_181",
+  "count": 1425
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_196",
+  "count": 1732
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_201",
+  "count": 2875
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_204",
+  "count": 94
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_208",
+  "count": 2169
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_209",
+  "count": 1495
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_219",
+  "count": 2014
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_220",
+  "count": 1814
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_45",
+  "count": 1858
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_53",
+  "count": 3432
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_54",
+  "count": 3432
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_55",
+  "count": 3432
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_56",
+  "count": 3432
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_58",
+  "count": 3139
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_59",
+  "count": 2882
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_66",
+  "count": 2343
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_77",
+  "count": 2993
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_78",
+  "count": 2142
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_79",
+  "count": 2277
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_91",
+  "count": 2407
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_94",
+  "count": 2429
+ },
+ {
+  "pathology": "Pneumonia",
+  "evidence": "E_95",
+  "count": 2242
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_104",
+  "count": 2114
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_105",
+  "count": 2099
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_108",
+  "count": 2181
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_148",
+  "count": 1755
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_161",
+  "count": 1881
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_191",
+  "count": 1743
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_2",
+  "count": 1954
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_204",
+  "count": 80
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_225",
+  "count": 1768
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_50",
+  "count": 1843
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_53",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_54",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_55",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_56",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_57",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_58",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_59",
+  "count": 2943
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_66",
+  "count": 1963
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_69",
+  "count": 2267
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_70",
+  "count": 2037
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_71",
+  "count": 2236
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_79",
+  "count": 2208
+ },
+ {
+  "pathology": "PossibleNSTEMISTEMI",
+  "evidence": "E_89",
+  "count": 1635
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_100",
+  "count": 1121
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_109",
+  "count": 2430
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_110",
+  "count": 2296
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_151",
+  "count": 3345
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_152",
+  "count": 3345
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_159",
+  "count": 2526
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_196",
+  "count": 3552
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_204",
+  "count": 2629
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_220",
+  "count": 2680
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_34",
+  "count": 2491
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_45",
+  "count": 2345
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_53",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_54",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_55",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_56",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_57",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_58",
+  "count": 3725
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_59",
+  "count": 3389
+ },
+ {
+  "pathology": "PulmonaryEmbolism",
+  "evidence": "E_66",
+  "count": 2674
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_161",
+  "count": 1153
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_162",
+  "count": 1502
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_191",
+  "count": 1526
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_201",
+  "count": 1349
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_204",
+  "count": 57
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_222",
+  "count": 1480
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_224",
+  "count": 1297
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_45",
+  "count": 1577
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_53",
+  "count": 1653
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_54",
+  "count": 1653
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_55",
+  "count": 1653
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_56",
+  "count": 1653
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_58",
+  "count": 1428
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_59",
+  "count": 1378
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_66",
+  "count": 1508
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_79",
+  "count": 1771
+ },
+ {
+  "pathology": "PulmonaryNeoplasm",
+  "evidence": "E_89",
+  "count": 1143
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_102",
+  "count": 914
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_11",
+  "count": 140
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_129",
+  "count": 1531
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_130",
+  "count": 1531
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_132",
+  "count": 1225
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_133",
+  "count": 1531
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_135",
+  "count": 1531
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_136",
+  "count": 1148
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_141",
+  "count": 522
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_151",
+  "count": 1
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_204",
+  "count": 126
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_206",
+  "count": 1069
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_3",
+  "count": 945
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_53",
+  "count": 1579
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_54",
+  "count": 1579
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_55",
+  "count": 1579
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_56",
+  "count": 1579
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_58",
+  "count": 1579
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_59",
+  "count": 1359
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_66",
+  "count": 1122
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_79",
+  "count": 1057
+ },
+ {
+  "pathology": "SLE",
+  "evidence": "E_89",
+  "count": 933
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_163",
+  "count": 1308
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_198",
+  "count": 1843
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_204",
+  "count": 90
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_43",
+  "count": 1716
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_53",
+  "count": 3028
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_54",
+  "count": 3028
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_55",
+  "count": 3028
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_56",
+  "count": 3028
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_58",
+  "count": 2719
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_59",
+  "count": 2517
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_66",
+  "count": 1985
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_70",
+  "count": 2169
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_74",
+  "count": 1609
+ },
+ {
+  "pathology": "Sarcoidosis",
+  "evidence": "E_9",
+  "count": 2086
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_129",
+  "count": 2250
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_130",
+  "count": 2250
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_132",
+  "count": 1929
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_133",
+  "count": 2250
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_134",
+  "count": 1651
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_135",
+  "count": 2250
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_136",
+  "count": 2250
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_148",
+  "count": 1146
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_155",
+  "count": 1228
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_187",
+  "count": 2239
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_204",
+  "count": 60
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_214",
+  "count": 1230
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_51",
+  "count": 1166
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_66",
+  "count": 1274
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_82",
+  "count": 1136
+ },
+ {
+  "pathology": "ScombroidFoodPoisoning",
+  "evidence": "E_92",
+  "count": 2223
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_123",
+  "count": 828
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_14",
+  "count": 784
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_165",
+  "count": 952
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_204",
+  "count": 44
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_21",
+  "count": 1177
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_218",
+  "count": 816
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_220",
+  "count": 1297
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_53",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_54",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_55",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_56",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_58",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_59",
+  "count": 1405
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_66",
+  "count": 918
+ },
+ {
+  "pathology": "SpontaneousPneumothorax",
+  "evidence": "E_79",
+  "count": 1115
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_153",
+  "count": 593
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_201",
+  "count": 492
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_203",
+  "count": 670
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_204",
+  "count": 22
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_216",
+  "count": 781
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_220",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_37",
+  "count": 536
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_53",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_54",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_55",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_56",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_57",
+  "count": 716
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_58",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_59",
+  "count": 782
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_66",
+  "count": 343
+ },
+ {
+  "pathology": "SpontaneousRibFracture",
+  "evidence": "E_78",
+  "count": 538
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_104",
+  "count": 1592
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_105",
+  "count": 1888
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_143",
+  "count": 1520
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_204",
+  "count": 76
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_218",
+  "count": 1981
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_225",
+  "count": 1817
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_53",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_54",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_55",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_56",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_57",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_58",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_59",
+  "count": 2340
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_66",
+  "count": 1415
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_69",
+  "count": 1828
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_70",
+  "count": 1680
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_71",
+  "count": 1657
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_78",
+  "count": 1449
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_79",
+  "count": 1660
+ },
+ {
+  "pathology": "StableAngina",
+  "evidence": "E_89",
+  "count": 1299
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_162",
+  "count": 1151
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_2",
+  "count": 1171
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_201",
+  "count": 2006
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_204",
+  "count": 66
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_208",
+  "count": 1238
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_44",
+  "count": 1117
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_45",
+  "count": 1545
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_61",
+  "count": 1125
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_66",
+  "count": 1165
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_69",
+  "count": 1383
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_78",
+  "count": 1200
+ },
+ {
+  "pathology": "Tuberculosis",
+  "evidence": "E_91",
+  "count": 1294
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_144",
+  "count": 5055
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_181",
+  "count": 7057
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_201",
+  "count": 5971
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_204",
+  "count": 263
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_222",
+  "count": 5555
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_41",
+  "count": 5711
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_48",
+  "count": 6161
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_49",
+  "count": 5296
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_50",
+  "count": 5572
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_53",
+  "count": 8623
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_54",
+  "count": 8623
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_55",
+  "count": 8623
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_56",
+  "count": 8623
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_58",
+  "count": 8623
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_59",
+  "count": 7193
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_77",
+  "count": 3585
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_79",
+  "count": 4969
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_91",
+  "count": 6141
+ },
+ {
+  "pathology": "URTI",
+  "evidence": "E_97",
+  "count": 6699
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_104",
+  "count": 1847
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_105",
+  "count": 2246
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_13",
+  "count": 1890
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_14",
+  "count": 1802
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_143",
+  "count": 1819
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_148",
+  "count": 1457
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_204",
+  "count": 87
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_218",
+  "count": 1988
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_225",
+  "count": 2118
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_50",
+  "count": 1423
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_53",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_54",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_55",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_56",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_57",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_58",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_59",
+  "count": 2748
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_66",
+  "count": 1708
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_69",
+  "count": 2129
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_70",
+  "count": 2008
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_71",
+  "count": 1949
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_78",
+  "count": 1717
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_79",
+  "count": 1951
+ },
+ {
+  "pathology": "UnstableAngina",
+  "evidence": "E_89",
+  "count": 1463
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_181",
+  "count": 5768
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_201",
+  "count": 4884
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_204",
+  "count": 255
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_227",
+  "count": 4936
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_41",
+  "count": 6554
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_45",
+  "count": 4576
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_48",
+  "count": 5275
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_49",
+  "count": 5910
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_53",
+  "count": 8246
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_54",
+  "count": 8246
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_55",
+  "count": 8246
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_56",
+  "count": 8246
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_58",
+  "count": 8246
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_59",
+  "count": 6857
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_79",
+  "count": 4887
+ },
+ {
+  "pathology": "ViralPharyngitis",
+  "evidence": "E_91",
+  "count": 4058
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_112",
+  "count": 300
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_124",
+  "count": 301
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_166",
+  "count": 541
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_203",
+  "count": 323
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_204",
+  "count": 91
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_209",
+  "count": 485
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_40",
+  "count": 330
+ },
+ {
+  "pathology": "WhoopingCough",
+  "evidence": "E_70",
+  "count": 273
+ }
+]

@@ -1,0 +1,65 @@
+{
+ "patients": 980,
+ "rows": [
+  {
+   "red_flag_rules": true,
+   "questions": 0,
+   "under": 0.20510204081632652,
+   "urgent_missed": 0.4676470588235294
+  },
+  {
+   "red_flag_rules": true,
+   "questions": 1,
+   "under": 0.11938775510204082,
+   "urgent_missed": 0.23823529411764705
+  },
+  {
+   "red_flag_rules": true,
+   "questions": 3,
+   "under": 0.05,
+   "urgent_missed": 0.1264705882352941
+  },
+  {
+   "red_flag_rules": true,
+   "questions": 5,
+   "under": 0.02346938775510204,
+   "urgent_missed": 0.052941176470588235
+  },
+  {
+   "red_flag_rules": true,
+   "questions": 30,
+   "under": 0.007142857142857143,
+   "urgent_missed": 0.0058823529411764705
+  },
+  {
+   "red_flag_rules": false,
+   "questions": 0,
+   "under": 0.20510204081632652,
+   "urgent_missed": 0.4676470588235294
+  },
+  {
+   "red_flag_rules": false,
+   "questions": 1,
+   "under": 0.11938775510204082,
+   "urgent_missed": 0.23823529411764705
+  },
+  {
+   "red_flag_rules": false,
+   "questions": 3,
+   "under": 0.05,
+   "urgent_missed": 0.1264705882352941
+  },
+  {
+   "red_flag_rules": false,
+   "questions": 5,
+   "under": 0.02346938775510204,
+   "urgent_missed": 0.052941176470588235
+  },
+  {
+   "red_flag_rules": false,
+   "questions": 30,
+   "under": 0.007142857142857143,
+   "urgent_missed": 0.0058823529411764705
+  }
+ ]
+}

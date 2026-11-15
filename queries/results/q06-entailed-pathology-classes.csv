@@ -1,0 +1,44 @@
+name,severity,classes
+Acute pulmonary edema,1,"UrgentPathology, LifeThreateningPathology, RespiratoryDisease"
+Anaphylaxis,1,"UrgentPathology, LifeThreateningPathology, InjuryOrPoisoning"
+Ebola,1,"UrgentPathology, LifeThreateningPathology, InfectiousDisease"
+Larygospasm,1,"UrgentPathology, LifeThreateningPathology, RespiratoryDisease"
+Possible NSTEMI / STEMI,1,"UrgentPathology, LifeThreateningPathology, CirculatoryDisease"
+Acute dystonic reactions,2,"UrgentPathology, NervousSystemDisease"
+Boerhaave,2,"UrgentPathology, DigestiveDisease"
+Croup,2,"UrgentPathology, RespiratoryDisease"
+Epiglottitis,2,"UrgentPathology, RespiratoryDisease"
+Guillain-Barré syndrome,2,"UrgentPathology, NervousSystemDisease"
+Myocarditis,2,"UrgentPathology, CirculatoryDisease"
+PSVT,2,"UrgentPathology, CirculatoryDisease"
+Pulmonary embolism,2,"UrgentPathology, CirculatoryDisease"
+Scombroid food poisoning,2,"UrgentPathology, InjuryOrPoisoning"
+Spontaneous pneumothorax,2,"UrgentPathology, RespiratoryDisease"
+Stable angina,2,"UrgentPathology, CirculatoryDisease"
+Unstable angina,2,"UrgentPathology, CirculatoryDisease"
+Acute COPD exacerbation / infection,3,RespiratoryDisease
+Atrial fibrillation,3,CirculatoryDisease
+Bronchiectasis,3,RespiratoryDisease
+Bronchiolitis,3,RespiratoryDisease
+Bronchospasm / acute asthma exacerbation,3,RespiratoryDisease
+Chagas,3,InfectiousDisease
+Cluster headache,3,NervousSystemDisease
+GERD,3,DigestiveDisease
+HIV (initial infection),3,InfectiousDisease
+Influenza,3,RespiratoryDisease
+Inguinal hernia,3,DigestiveDisease
+Myasthenia gravis,3,NervousSystemDisease
+Pancreatic neoplasm,3,Neoplasm
+Pneumonia,3,RespiratoryDisease
+Pulmonary neoplasm,3,Neoplasm
+Spontaneous rib fracture,3,InjuryOrPoisoning
+Tuberculosis,3,InfectiousDisease
+Acute laryngitis,4,RespiratoryDisease
+Acute rhinosinusitis,4,RespiratoryDisease
+Allergic sinusitis,4,RespiratoryDisease
+Bronchitis,4,RespiratoryDisease
+Pericarditis,4,CirculatoryDisease
+Viral pharyngitis,4,RespiratoryDisease
+Whooping cough,4,InfectiousDisease
+Chronic rhinosinusitis,5,RespiratoryDisease
+URTI,5,RespiratoryDisease
