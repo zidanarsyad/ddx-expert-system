@@ -112,6 +112,7 @@ def main():
     for s, p in (("es", "es"), ("nb", "nb"), ("hybrid", "hy")):
         for k in ("top1", "top3", "top5", "gtpa", "ddr", "ddp", "ddf1"):
             V[f"{p}_{k}"] = pct(main_r[s][k], 2)
+        V[f"{p}_top3_miss"] = num(round((1 - main_r[s]["top3"]) * main_r["patients"]))
     t = main_r["triage"]
     V.update(tri_exact=pct(t["exact"]), tri_under=pct(t["under"], 2), tri_over=pct(t["over"]), tri_spec=pct(t["urgent_specificity"]),
              tri_urgent_recall=pct(t["urgent_recall"]), tri_emergency_recall=pct(t["emergency_recall"]))

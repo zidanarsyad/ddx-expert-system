@@ -18,7 +18,7 @@ encodes. The domain is the 49 respiratory, cardiac and emergency pathologies of 
 | Reasoning that derives new facts, with explanations | `src/ddxes/engine.py` (forward chaining with certainty factors, abductive set covering, triage) and `src/ddxes/explain.py` (HOW, WHY, WHY NOT, proof trees); conclusions are written back to the graph with W3C PROV-O provenance |
 | Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py` |
 | README with how to run | this file |
-| Report and presentation | `docs/slides.pptx`; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
+| Report and presentation | `docs/slides.pptx` (25 slides); `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
 
 ## Results
 
@@ -135,6 +135,7 @@ python -I scripts/make_figures.py    # docs/figures/*.png
 python -I scripts/capture_screenshots.py  # docs/figures/ui-*.png (Playwright with the installed Microsoft Edge)
 python -I scripts/build_report.py    # docs/report.pdf from docs/report.md, which is not in the repository (needs pandoc >= 3 and XeLaTeX)
 python -I scripts/build_deck.py      # docs/slides.pptx
+python -I scripts/build_explainer.py # docs/explainer.pdf from docs/explainer.html.j2 (Playwright with Microsoft Edge)
 ```
 
 Every number in the report is filled in from `results/*.json`, `kg/stats.json` and the rule base when the report is
@@ -195,10 +196,10 @@ inference written back to the graph with PROV-O, queryable with SPARQL (`queries
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
 | `queries/` | 12 SPARQL queries; results with and without the OWL closure in `results/` and `results-no-inference/` |
-| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py` |
+| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py` |
 | `results/` | evaluation outputs (JSON) |
 | `tests/` | pytest suite |
-| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, `figures/` |
+| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), `figures/` |
 
 ## References
 

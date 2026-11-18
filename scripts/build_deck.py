@@ -343,7 +343,8 @@ def build(kb):
     set_lines(sub, ["Differential diagnosis and triage on DDXPlus with",
                     "cited IF–THEN rules, OWL 2 RL and PROV-O",
                     "Muhammad Zidan Arsyad · [group members 2–4]",
-                    "Sistem Pakar Lanjut · UGM · November 2026"], fonts={2: BOLD})
+                    "Sistem Pakar Lanjut · Magister Kecerdasan Artifisial",
+                    "Departemen Ilmu Komputer dan Elektronika · UGM · 2026"], fonts={2: BOLD})
     notes(d.cover, "Good morning. Our final project is DDX-ES, an expert system that takes a patient's answers to a "
                    "symptom questionnaire and returns a differential diagnosis, a triage level and recommended next "
                    "steps, and explains every one of these conclusions with the rules that fired, the facts they "
@@ -358,16 +359,16 @@ def build(kb):
                   "repository with its README are the deliverables.")
     cards = [("Ontology + knowledge graph",
               f"Hand-written OWL 2 ontology; {fmt(ASSERTED)} asserted triples in six Turtle files; the OWL 2 RL "
-              f"closure adds {fmt(KG['inferred'])}.", "Slides 10–12"),
+              f"closure adds {fmt(KG['inferred'])}.", "Slide 8"),
              ("IF–THEN rules with references",
               f"{len(RULES)} rules from {len(CITED)} published sources — guidelines, case definitions, criteria — "
-              "each with its DOI and mapping fidelity.", "Slides 7–9"),
+              "each with its DOI and mapping fidelity.", "Slides 5–7"),
              ("Reasoning that explains itself",
               "Forward chaining, abduction, certainty factors, safety-first triage and a consultation; HOW, WHY, "
-              "WHY NOT and PROV-O provenance.", "Slides 14–24"),
+              "WHY NOT and PROV-O provenance.", "Slides 9–17"),
              ("Machine learning (optional)",
               "A naive-Bayes classifier on the same counts as baseline, and a hybrid mode; evaluated on "
-              f"{fmt(MAIN['patients'])} test patients.", "Slides 26–30")]
+              f"{fmt(MAIN['patients'])} test patients.", "Slides 18–21")]
     cw = (X1 - X0 - 3 * 16) / 4
     for i, (head, body, ref) in enumerate(cards):
         x = X0 + i * (cw + 16)
@@ -384,12 +385,7 @@ def build(kb):
             "to run it — 111 tests, every result reproducible from the raw data", {})]],
          size=12, anchor=MSO_ANCHOR.MIDDLE)
 
-    # 3 ------------------------------------------------------------------- section 01
-    d.divider("01", "Problem and Domain",
-              "Symptom checkers must rank diseases and decide how urgently a patient needs care — and say why.",
-              "First the problem and the domain: why an expert system, and why the DDXPlus benchmark.")
-
-    # 4 ------------------------------------------------------------------- the problem
+    # 3 ------------------------------------------------------------------- the problem
     s = d.content("Why an expert system for symptom checking?",
                   "A symptom checker asks questions, ranks the possible diseases and says how urgently to seek care. "
                   "Learned models can be accurate, but they cannot say which facts and which guideline support a "
@@ -420,7 +416,7 @@ def build(kb):
         badge(s, 552, y, 22, str(i + 1), size=10)
         text(s, 584, y + 1, X1 - 600, 58, [o], size=12, after=0, spacing=1.0)
 
-    # 5 -------------------------------------------------------------------- DDXPlus
+    # 4 -------------------------------------------------------------------- DDXPlus
     s = d.content("The domain: DDXPlus (NeurIPS 2022)",
                   "DDXPlus is a benchmark for automatic diagnosis. It publishes an expert knowledge base of 49 "
                   "pathologies and 223 questions, and about 1.3 million synthetic patients generated from it by a "
@@ -450,14 +446,7 @@ def build(kb):
          ["Synthetic but clinically structured: the patients were generated from the same knowledge base, so their "
           "statistics describe that knowledge base, not real-world prevalence."], size=11.5, color=MUTED)
 
-    # 6 ------------------------------------------------------------------ section 02
-    d.divider("02", "Knowledge Acquisition and Representation",
-              f"Three knowledge sources, {len(RULES)} cited IF–THEN rules and an OWL 2 ontology — all in one "
-              "RDF knowledge graph.",
-              "Second part: where the knowledge comes from and how it is represented — components one and two of "
-              "the assignment.")
-
-    # 7 ------------------------------------------------------------ three sources
+    # 5 ------------------------------------------------------------ three sources
     s = d.content("Three sources of knowledge, one graph",
                   "The knowledge has three sources. First, the DDXPlus expert knowledge base: which symptoms and risk "
                   "factors each pathology can produce, with severity and ICD-10 chapter. Second, published clinical "
@@ -498,7 +487,7 @@ def build(kb):
            (f"build_kg.py writes six Turtle files — {fmt(ASSERTED)} asserted triples; OWL 2 RL entails "
             f"{fmt(KG['inferred'])} more", {"color": WHITE})]], size=13, anchor=MSO_ANCHOR.MIDDLE)
 
-    # 8 ------------------------------------------------------------- Wells mapping
+    # 6 ------------------------------------------------------------- Wells mapping
     s = d.content("From a guideline to rules: the Wells score",
                   "Each criterion was translated item by item into DDXPlus questions. The Wells score for pulmonary "
                   "embolism shows the typical situation: most items map to a question, some only approximately, and "
@@ -533,7 +522,7 @@ def build(kb):
           "0.2–0.4  supportive feature or risk factor", "< 0  evidence against (influenza without fever: −0.4)"],
          size=11.5, after=3)
 
-    # 9 ------------------------------------------------------------- rule base
+    # 7 ------------------------------------------------------------- rule base
     s = d.content(f"The rule base: {len(RULES)} rules in five categories",
                   "The rules come in five categories. Abstraction rules turn raw answers into clinical concepts, "
                   "scoring rules add points to clinical scores, diagnostic rules add belief to pathologies, triage "
@@ -560,117 +549,48 @@ def build(kb):
             "consequents · certainty factor · source with DOI · fidelity · note. Validated on load: references, "
             "strata, no dependency cycles.", {})]], size=12)
 
-    # 10 ------------------------------------------------------------- ontology
-    s = d.content("The ontology: an OWL 2 TBox written by hand",
-                  "The ontology has three parts. The domain: pathologies, evidences and answer values, patients and "
-                  "their answers. The rule vocabulary: rules are prov:Plan, with condition trees and consequents, "
-                  "certainty factors and sources. And the provenance model: a rule firing is a prov:Activity, an "
-                  "inference a prov:Entity. OWL 2 RL axioms give the reasoner real work: disease families, urgency "
-                  "classes and rule classes are all defined, not asserted.")
-    image(s, FIG / "ontology.png", X0, 104, w=530, h=372, border=True)
-    axioms = [("Defined disease classes: ", ":RespiratoryDisease ≡ ∃ :inChapter.{:ICD10_X}; :UrgentPathology "
-               "(severity 1–2); :LifeThreateningPathology (severity 1)"),
-              ("Rule classes from structure: ", "a rule concluding :Emergency is a :RedFlagRule; a rule citing a "
-               "guideline is a :GuidelineBasedRule"),
-              ("Cases: ", ":EmergencyCase ≡ ∃ :hasTriage.{:Emergency}; the chain :initialEvidence ∘ :symptomOf gives "
-               "the candidates of a chief complaint"),
-              ("Provenance: ", ":RuleFiring ⊑ prov:Activity, :Inference ⊑ prov:Entity, rules are prov:Plan")]
-    text(s, X0 + 540, 106, X1 - X0 - 540, 370, [[(a, {"font": BOLD, "color": BLUE}), (b, {})] for a, b in axioms],
-         size=12, after=10, bullets=True, spacing=1.0)
-
-    # 11 ------------------------------------------------------- rules in the graph
-    s = d.content("Rules are data: they live in the graph",
-                  "The rules are authored in YAML for convenience, but build_kg.py turns them into RDF, and the "
-                  "inference engine reads them back from the graph, not from the YAML. The build asserts that the "
-                  "round trip YAML to RDF to rules is lossless. Because rules are triples, SPARQL can ask which "
-                  "rules use an answer, which guideline contributes which rules, or which rules map their source "
-                  "only partially. The table lists the six files of the graph.")
-    code(s, X0, 106, 452, 370, """:Rule_D-PE-1 a :DiagnosticRule ;
-  :code "D-PE-1" ;
-  rdfs:label "Pulmonary embolism likely: ..."@en ;
-  :premise [ a :AllOf ; :operands (
-    [ a :ScoreComparison ;
-      :onScore :Score_WellsPE ;
-      :comparator "gt" ; :threshold 4.0 ]
-    [ a :AnyOf ; :operands (
-      [ a :ConceptHolds ;
-        :onConcept :C_PleuriticChestPain ]
-      [ a :EvidencePresent ; :onEvidence :E_66 ]
-      [ a :EvidencePresent ; :onEvidence :E_45 ]
-    ) ] ) ] ;
+    # 8 ------------------------------------------------------------------ the knowledge graph
+    s = d.content("The knowledge graph: ontology, rules, OWL 2 RL",
+                  "All the knowledge lives in one RDF graph with a hand-written OWL 2 ontology in three parts: the "
+                  "domain (pathologies, evidences, answer values, patients), the rule vocabulary (rules are prov:Plan, "
+                  "with condition trees, consequents, certainty factors and sources) and the provenance model. Rules "
+                  "are data: they are written in YAML, stored as RDF, and the engine reads them back from the graph; "
+                  "the build checks that the round trip is lossless. The OWL 2 RL closure matters: the red-flag rules, "
+                  "the disease families and the 888 disease profiles the engine uses are entailed, not asserted. Query "
+                  "q11 shows it: with the closure, pulmonary embolism is the only pathology that explains every "
+                  "symptom of patient T002456; without it, none is found.")
+    _, (_, iy, _, ih) = image(s, FIG / "ontology.png", X0, 104, w=420, border=True)
+    by = iy + ih + 12
+    text(s, X0, by, 420, 20, [[("Rules are data: ", {"font": BOLD, "color": BLUE}),
+                               ("YAML → RDF, read back by the engine; round trip checked", {})]], size=11.5, after=0)
+    code(s, X0, by + 24, 420, 476 - by - 24, """:Rule_D-PE-1 a :DiagnosticRule ;
+  :premise [ a :AllOf ; :operands ( … ) ] ;
   :asserts [ a :DiagnosisConsequent ;
-     :concludesPathology :PulmonaryEmbolism ] ;
-  :certaintyFactor 0.7 ;
-  :mappingFidelity "partial" ;
-  dct:source :Src_wells2000 .""", size=10.5)
+             :concludesPathology :PulmonaryEmbolism ] ;
+  :certaintyFactor 0.7 ; dct:source :Src_wells2000 .""", size=10)
+    rx = X0 + 440
     files = [["File", "Content", "Triples"],
              ["ontology.ttl", "TBox, written by hand", fmt(KG["ontology"])],
              ["kb.ttl", "49 pathologies, 223 questions, 888 links", fmt(KG["kb"])],
-             ["rules.ttl", f"{len(RULES)} rules, sources, concepts, scores", fmt(KG["rules"])],
-             ["stats.ttl", "calibration: one node per feature of a link", fmt(KG["stats"])],
+             ["rules.ttl", f"{len(RULES)} rules with their sources", fmt(KG["rules"])],
+             ["stats.ttl", "calibration counts", fmt(KG["stats"])],
              ["cases.ttl", "980 demo patients", fmt(KG["cases"])],
              ["inferred.ttl", "OWL 2 RL closure (owlrl)", fmt(KG["inferred"])]]
-    table(s, X0 + 470, 106, [96, 196, 66], files, size=11, row_h=34, fonts={0: CODE},
+    table(s, rx, 104, [96, 222, 70], files, size=11, row_h=26, fonts={0: CODE},
           aligns=[PP_ALIGN.LEFT, PP_ALIGN.LEFT, PP_ALIGN.RIGHT])
-    text(s, X0 + 470, 362, 358, 110,
-         [[("Round trip checked: ", {"font": BOLD, "color": BLUE}), ("YAML → RDF → rules gives back exactly the "
-           "same rules; the engine compiles them from the graph and caches the result.", {})]], size=12)
-
-    # 12 ------------------------------------------------------- what OWL 2 RL adds
-    s = d.content("What OWL 2 RL reasoning adds",
-                  "To show that the reasoner matters, every demonstration query was run with and without the OWL 2 RL "
-                  "closure. The engine itself depends on entailed triples: the disease profiles come from "
-                  "characterizedBy, which exists only by sub-property entailment, and the red-flag rules and urgency "
-                  "classes are entailed. Where OWL stops — closed-world negation, uncertainty, defaults — the rule "
-                  "engine takes over; query q11 shows the closed-world part, set covering with a double NOT EXISTS.")
-    why = {"q01-inventory": "entailed classes empty without closure",
-           "q02-rules-per-source": "rules typed with subclasses only",
-           "q05-red-flag-rules": ":RedFlagRule is only entailed",
-           "q06-entailed-pathology-classes": "families from owl:hasValue",
-           "q09-partial-fidelity": "needs the entailed type :Rule",
-           "q11-set-covering": ":characterizedBy is entailed"}
-    rows = [["Query", "With", "Without", "Why"]]
-    for q, reason in why.items():
+    text(s, rx, 298, X1 - rx, 22, ["What OWL 2 RL reasoning adds"], size=13.5, font=BOLD, color=BLUE)
+    rows = [["SPARQL query", "With", "Without"]]
+    for q, label in (("q05-red-flag-rules", "q05  rules entailed as :RedFlagRule"),
+                     ("q06-entailed-pathology-classes", "q06  diseases with entailed classes"),
+                     ("q11-set-covering", "q11  pathologies explaining all symptoms")):
         a, b = query_rows(q)
-        rows.append([q.split("-", 1)[0] + " " + q.split("-", 1)[1].replace("-", " "), a, b, reason])
-    table(s, X0, 106, [170, 50, 60, 190], rows, size=11, row_h=36, fonts={1: BOLD},
-          aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER, PP_ALIGN.LEFT])
-    code(s, X0 + 490, 106, X1 - X0 - 490, 260, """# q11: which pathologies explain every
-# symptom of patient T002456?
-SELECT ?pathology WHERE {
-  ?p a :Pathology ;
-     rdfs:label ?pathology .
-  FILTER NOT EXISTS {
-    :Patient_T002456 :hasEvidence ?e .
-    ?e a :Symptom .
-    FILTER NOT EXISTS {
-      ?p :characterizedBy ?e }
-  }
-}""", size=10.5)
-    text(s, X0 + 490, 376, X1 - X0 - 490, 100,
-         [[("Answer: ", {"font": BOLD, "color": BLUE}), ("pulmonary embolism only — with the closure. Without it, "
-           "no pathology: :characterizedBy is entailed from :hasSymptom and :hasAntecedent.", {})]], size=12)
-    text(s, X0, 372, 470, 100,
-         [[(f"{fmt(KG['inferred'])} entailed triples ", {"font": BOLD, "color": BLUE}),
-           ("(owlrl, about a minute), including 888 :characterizedBy links the engine reads as disease profiles.", {})]],
-         size=12)
+        rows.append([label, a, b])
+    table(s, rx, 324, [244, 72, 72], rows, size=11, row_h=26, fonts={1: BOLD},
+          aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER])
+    text(s, rx, 434, X1 - rx, 42, [f"{fmt(KG['inferred'])} entailed triples, among them the 888 :characterizedBy "
+                                   "links the engine reads as disease profiles."], size=11, color=MUTED, after=0)
 
-    # 13 ------------------------------------------------------------------ section 03
-    d.divider("03", "Reasoning",
-              "Forward chaining with certainty factors, abduction by set covering, safety-first triage and a "
-              "goal-driven consultation.",
-              "Third part: the inference engine — component three of the assignment.")
-
-    # 14 ------------------------------------------------------------------ architecture
-    s = d.content("Architecture",
-                  "The classic expert-system architecture on knowledge-graph technology. Three knowledge sources feed "
-                  "the graph through a build script. The inference engine compiles the knowledge base and the rules "
-                  "from the graph, reasons over a case held in working memory, and writes its conclusions back with "
-                  "provenance. A web interface and a command line expose it; a naive-Bayes classifier on "
-                  "the same counts serves as a baseline.")
-    image(s, FIG / "architecture.png", X0, 102, w=X1 - X0, h=380)
-
-    # 15 ------------------------------------------------------------------ four phases
+    # 9 ------------------------------------------------------------------ four phases
     s = d.content("One inference run in four phases",
                   "One run over a case has four phases. Forward chaining: abstraction, scoring and diagnostic rules "
                   "fire in strata, with conflict resolution and refraction, in three-valued logic so that the same "
@@ -693,7 +613,7 @@ SELECT ?pathology WHERE {
         x = X0 + i * (cw + 14)
         card(s, x, 318, cw, 158, head, body, size=11.5, head_size=13.5)
 
-    # 16 ------------------------------------------------------------- CF as LR
+    # 10 ------------------------------------------------------------- CF as LR
     s = d.content("Certainty factors as likelihood ratios",
                   "MYCIN combines certainty factors with a simple function. Heckerman showed in 1986 that a CF can be "
                   "read as a transformed likelihood ratio, and that combining CFs then equals multiplying likelihood "
@@ -727,7 +647,7 @@ SELECT ?pathology WHERE {
     text(s, rx, 420, X1 - rx, 54, ["Same calculus, no saturation: evidence keeps counting after belief is high."],
          size=12, font=BOLD, color=BLUE)
 
-    # 17 ------------------------------------------------------------- triage
+    # 11 ------------------------------------------------------------- triage
     s = d.content("Safety-first triage and recommendations",
                   "Triage combines two kinds of knowledge. Red-flag rules come from the guidelines and do not depend on "
                   "the diagnosis: anaphylaxis, suspected coronary syndrome, pulmonary embolism, Ebola after travel. "
@@ -767,7 +687,7 @@ SELECT ?pathology WHERE {
          + [[(f"{r.id}  ", {"font": BOLD, "color": BLUE}), (f"{r.name} — {kb.short_citation(r.source)}", {})]
             for r in r_ex], size=12, after=3)
 
-    # 18 ------------------------------------------------------------- consultation
+    # 12 ------------------------------------------------------------- consultation
     s = d.content("Interactive consultation by backward chaining",
                   "In a consultation the system starts, like the DDXPlus platform, from age, sex and the chief "
                   "complaint, and runs the whole inference after every answer. The next question is chosen by "
@@ -802,13 +722,7 @@ SELECT ?pathology WHERE {
          f"with it, for {C['questions_mean'] - C0['questions_mean']:.1f} extra questions", fill=GREENTINT,
          num_color=GREEN, num_size=28)
 
-    # 19 ------------------------------------------------------------------ section 04
-    d.divider("04", "Explanation and Demo",
-              "HOW, WHY and WHY NOT for every conclusion, and provenance written back to the graph.",
-              "Fourth part: the explanation facility and a demonstration of the system on one patient. If time "
-              "allows, we switch to the live web interface here.")
-
-    # 20 ------------------------------------------------------------------ HOW
+    # 13 ------------------------------------------------------------------ HOW
     s = d.content("HOW: a proof down to the patient's answers",
                   "This is the HOW explanation of patient T002456, drawn by the web interface from the proof tree. "
                   "Read it from left to right: the patient's answers, highlighted in yellow, feed abstraction and "
@@ -820,7 +734,7 @@ SELECT ?pathology WHERE {
     text(s, X0, 460, X1 - X0, 18, ["Same proof in the command line: ddxes explain --patient T002456 --how"],
          size=10.5, color=MUTED, font=CODE, align=PP_ALIGN.RIGHT)
 
-    # 21 ------------------------------------------------------------------ WHY
+    # 14 ------------------------------------------------------------------ WHY
     s = d.content("WHY: the goal behind every question",
                   "This is the consultation page during a consultation. Under the question, 'Why this question' gives "
                   "the WHY explanation: which hypothesis the system is trying to confirm or rule out, with its "
@@ -841,7 +755,7 @@ SELECT ?pathology WHERE {
           [("HOW and triage ", {"font": BOLD, "color": BLUE}), ("can be asked at any time (CLI: why, how, triage)",
                                                               {})]], size=12.5, after=10, spacing=1.0)
 
-    # 22 ------------------------------------------------------------------ WHY NOT
+    # 15 ------------------------------------------------------------------ WHY NOT
     s = d.content("WHY NOT: the conditions that failed",
                   "The WHY NOT explanation answers the question a clinician asks most often: why not this other "
                   "disease? For anaphylaxis in patient T002456, set covering first says which reported symptom the "
@@ -850,7 +764,7 @@ SELECT ?pathology WHERE {
                   "sees exactly which criterion of Sampson's definition is not met.")
     image(s, FIG / "ui-whynot.png", X0, 104, w=X1 - X0, h=372, crop=(250, 215, 2640, 1075), border=True)
 
-    # 23 ------------------------------------------------------------------ provenance
+    # 16 ------------------------------------------------------------------ provenance
     s = d.content("Provenance: the graph remembers why",
                   "After a consultation, the inferences are written back to the graph with the W3C PROV-O vocabulary: "
                   "each inference was generated by a rule firing, which used certain facts and beliefs and followed a "
@@ -898,7 +812,7 @@ WHERE {
     arrow(s, gx + bw, uy + bh / 2, ux, uy + bh / 2, color=BLUE, width=1.5)
     text(s, ux, uy - 20, X1 - ux, 18, ["prov:used"], size=10.5, font=CODE, color=BLUE)
 
-    # 24 ------------------------------------------------------------------ worked example
+    # 17 ------------------------------------------------------------------ worked example
     s = d.content("Worked example: patient T002456",
                   "A 40-year-old woman reports loss of consciousness, haemoptysis, dyspnoea, hormone use, active "
                   "cancer, recent surgery and swollen calves. Abstraction rules derive signs of DVT and recent surgery; "
@@ -919,37 +833,34 @@ WHERE {
              spacing=1.0)
     image(s, FIG / "ui-case.png", X0 + 412, 106, w=X1 - X0 - 412, h=368, crop=(1870, 830, 2640, 1520))
 
-    # 25 ------------------------------------------------------------------ section 05
-    d.divider("05", "Evaluation and Discussion",
-              f"{fmt(MAIN['patients'])} test patients, an ablation, triage safety, simulated consultations and "
-              "the validation of every rule.",
-              "Fifth part: the evaluation. All accuracy results are on the DDXPlus test split, which was used for "
-              "nothing else; the calibration counts come from the validation split.")
-
-    # 26 ------------------------------------------------------------------ accuracy
+    # 18 ----------------------------------------------------------------- results: accuracy and triage
     es, nb, hy = MAIN["es"], MAIN["nb"], MAIN["hybrid"]
-    s = d.content(f"Diagnostic accuracy on {fmt(MAIN['patients'])} test patients",
-                  f"On the full test split the expert system ranks the true pathology first for {pct(es['top1'], 2)} "
-                  f"of the patients, ahead of the naive-Bayes classifier built from the same counts at "
-                  f"{pct(nb['top1'], 2)}; the hybrid reaches {pct(hy['top1'], 2)}. The true pathology is in the top "
-                  "three for every patient. The differential metrics are low by design, because DDX-ES commits to a "
-                  f"diagnosis while the reference differential lists about ten. {pct(MAIN['explanation']['top1_supported_by_guideline_rule'])} "
-                  "of the leading diagnoses are supported by at least one cited guideline rule.")
-    tiles = [(pct(es["top1"], 2), "top-1, DDX-ES (expert system, no training)", TINT, BLUE),
-             (pct(nb["top1"], 2), "top-1, naive Bayes on the same counts (ML baseline)", CODEBG, MUTED),
-             (pct(hy["top1"], 2), "top-1, hybrid (log-linear pooling)", CODEBG, MUTED),
-             (pct(MAIN["explanation"]["top1_supported_by_guideline_rule"]),
-              "of leading diagnoses backed by a cited guideline rule", CREAM, AMBER)]
+    miss3 = round((1 - es["top3"]) * MAIN["patients"])
+    s = d.content("Results: accuracy and triage",
+                  f"On the full test split of {fmt(MAIN['patients'])} patients the expert system ranks the true "
+                  f"pathology first for {pct(es['top1'], 2)} of them, ahead of the naive-Bayes classifier built from the "
+                  f"same counts at {pct(nb['top1'], 2)}; the hybrid reaches {pct(hy['top1'], 2)}. The true pathology is "
+                  f"missing from the DDX-ES top three for only {'one patient' if miss3 == 1 else f'{fmt(miss3)} patients'}. "
+                  "The differential metrics are low by design, because DDX-ES "
+                  "commits to a diagnosis while the reference differential lists about ten. For triage, every emergency "
+                  f"is triaged as an emergency. Under-triage is {pct(T['under'], 2)}, and over-triage, about one patient "
+                  "in five, is the intended safety-first trade-off: guideline red flags such as suspected pulmonary "
+                  "embolism say Emergency where the DDXPlus severity scale says less.")
+    tiles = [(pct(es["top1"], 2), "top-1, DDX-ES (no training)", TINT, BLUE),
+             (pct(nb["top1"], 2), "top-1, naive Bayes on the same counts", CODEBG, MUTED),
+             (pct(hy["top1"], 2), "top-1, hybrid of the two", CODEBG, MUTED),
+             (pct(T["emergency_recall"]), "of emergencies triaged as Emergency", GREENTINT, GREEN)]
     tw = (X1 - X0 - 3 * 14) / 4
     for i, (num, lab, fill, col) in enumerate(tiles):
-        stat(s, X0 + i * (tw + 14), 104, tw, 104, num, lab, fill=fill, num_color=col, num_size=27)
-    image(s, FIG / "systems.png", X0, 220, w=X1 - X0, h=226)
+        stat(s, X0 + i * (tw + 14), 104, tw, 96, num, lab, fill=fill, num_color=col, num_size=26)
+    image(s, FIG / "systems.png", X0, 212, w=486, h=232)
+    image(s, FIG / "triage_matrix.png", X0 + 500, 212, w=X1 - X0 - 500, h=232)
     text(s, X0, 450, X1 - X0, 26,
-         [f"Top-3 100% for all three · DDF1 {pct(es['ddf1'])} / {pct(nb['ddf1'])} / {pct(hy['ddf1'])} · "
-          f"{MAIN['ms_per_patient']:.1f} ms per patient · {MAIN['explanation']['rules_fired_mean']:.1f} rules fire per "
-          "patient on average"], size=11.5, color=MUTED, align=PP_ALIGN.CENTER)
+         [f"Top-3 ≥ 99.99% for all three · DDF1 {pct(es['ddf1'])} by design (one committed diagnosis) · under-triage "
+          f"{pct(T['under'], 2)}, over-triage {pct(T['over'])} · {MAIN['ms_per_patient']:.1f} ms per patient"],
+         size=11.5, color=MUTED, align=PP_ALIGN.CENTER)
 
-    # 27 ------------------------------------------------------------------ ablation
+    # 19 ------------------------------------------------------------------ ablation
     s = d.content("Ablation: where the accuracy comes from",
                   "The ablation switches parts of the engine off on a stratified sample. The guideline rules alone "
                   "rank the true pathology first for only 30 percent of the patients: they describe syndromes that "
@@ -971,33 +882,7 @@ WHERE {
     text(s, X0, 478, 540, 16, [f"{fmt(ABL['patients'])} stratified test patients (up to 100 per pathology)"],
          size=9.5, color=MUTED)
 
-    # 28 ------------------------------------------------------------------ triage
-    s = d.content("Triage: no emergency missed",
-                  f"On the full test split every emergency case is triaged as an emergency and every emergency or "
-                  f"urgent case at least as urgent. Under-triage is {pct(T['under'], 2)}: acute rhinosinusitis taken "
-                  "for chronic rhinosinusitis and sent to self-care. Over-triage is about one in five, and most of it "
-                  "comes from guideline red flags that disagree with the DDXPlus severity scale: for the ESC and "
-                  "AHA/ACC guidelines a suspected pulmonary embolism or chest pain radiating to the arm is an "
-                  "emergency until proven otherwise. That is the intended safety-first trade-off.")
-    image(s, FIG / "triage_matrix.png", X0, 102, w=400, h=376)
-    rx = X0 + 420
-    tw = (X1 - rx - 12) / 2
-    for i, (num, lab, fill, col) in enumerate([
-            (pct(T["emergency_recall"]), "of emergencies triaged as Emergency", GREENTINT, GREEN),
-            (pct(T["urgent_recall"]), "of emergency + urgent at least Urgent", GREENTINT, GREEN),
-            (pct(T["under"], 2), "under-triage (unsafe error)", CREAM, AMBER),
-            (pct(T["over"]), "over-triage (safe side)", TINT, BLUE)]):
-        stat(s, rx + (i % 2) * (tw + 12), 104 + (i // 2) * 104, tw, 94, num, lab, fill=fill, num_color=col,
-             num_size=26)
-    text(s, rx, 320, X1 - rx, 156,
-         [[("Why over-triage: ", {"font": BOLD, "color": BLUE}),
-           ("red flags (PE, unstable angina, epiglottitis, chest pain radiating to the arm) say Emergency where "
-            "DDXPlus says severity 2 or less.", {})],
-          [("Without the severity schema ", {"font": BOLD, "color": BLUE}),
-           (f"the red-flag rules alone keep under-triage at {pct(OFF[True]['under'])}, against "
-            f"{pct(OFF[False]['under'])} with neither.", {})]], size=12, after=8, bullets=True)
-
-    # 29 ------------------------------------------------------------------ consultation
+    # 20 ------------------------------------------------------------------ consultation
     s = d.content("Interactive consultation: fewer questions, no training",
                   "We simulated the consultation on the 980 demo patients by answering every question from the "
                   "patient's record. With a stopping threshold of 0.95, DDX-ES asks 3.8 questions on average after "
@@ -1029,7 +914,7 @@ WHERE {
           "Red-flag rules made no difference here — their questions stay unasked; an explicit early red-flag screen "
           "is future work."], size=11.5, after=6, bullets=True)
 
-    # 30 ------------------------------------------------------------------ rule validation
+    # 21 ------------------------------------------------------------------ rule validation
     s = d.content("Validating every rule on held-out patients",
                   f"Every rule was run on a stratified sample of {fmt(RV['patients'])} validation patients. All "
                   f"{len(RULES)} rules fire at least once. For the {len(POS)} positive diagnostic rules the median "
@@ -1055,7 +940,7 @@ WHERE {
                                    "expected. Assigned CFs agree only moderately with measured precision."],
          size=11.5, color=MUTED)
 
-    # 31 ------------------------------------------------------------------ limitations
+    # 22 ------------------------------------------------------------------ limitations
     s = d.content("Limitations and ethics",
                   "The main limitation is that the data are synthetic: the patients were generated from the same "
                   "knowledge base we use, so set covering is exact here; on real patients, with comorbidities and "
@@ -1085,7 +970,7 @@ WHERE {
           "Transparency is built in: every conclusion can be traced to its rule, facts and source."],
          size=12, after=10)
 
-    # 32 ------------------------------------------------------------------ conclusions
+    # 23 ------------------------------------------------------------------ conclusions
     s = d.content("Conclusions and future work",
                   "To conclude. One RDF/OWL graph holds the DDXPlus knowledge and 192 cited rules as data, and the "
                   "OWL closure contributes facts the engine relies on. A production-rule engine on this graph ranks "
@@ -1116,14 +1001,17 @@ WHERE {
     text(s, 572, 118, X1 - 588, 350, [[("Future work", {"font": BOLD, "color": BLUE, "size": 15})]], after=8)
     text(s, 572, 150, X1 - 588, 320, fut, size=12, after=8, bullets=True, spacing=1.0)
 
-    # 33 ------------------------------------------------------------------ how to run
+    # 24 ------------------------------------------------------------------ how to run
     s = d.content("Try it: the repository",
-                  "Everything is in the repository ddx-expert-system. The README explains how to install and run "
+                  "Everything is in the public repository on GitHub, github.com/zidanarsyad/ddx-expert-system. The "
+                  "README explains how to install and run "
                   "it: a virtual environment, two pip commands, then the web interface (ddxes serve) or the "
                   "ddxes command line. The knowledge graph and the processed data are committed, so the system runs "
                   "immediately; the scripts rebuild everything from the raw DDXPlus files, including the figures, the "
                   "report and this deck. There are 111 automated tests.")
-    code(s, X0, 106, 470, 300, """python -m venv .venv          # then activate it
+    code(s, X0, 106, 470, 300, """git clone https://github.com/zidanarsyad/ddx-expert-system.git
+cd ddx-expert-system
+python -m venv .venv          # then activate it
 pip install -r requirements.txt
 pip install -e .
 
@@ -1141,7 +1029,9 @@ pytest                        # 111 tests""", size=11.5)
               ("queries/", "12 SPARQL queries, results with and without the closure"),
               ("scripts/", "data → graph → evaluation → figures, report, slides"),
               ("results/, docs/", "evaluation outputs; report and slides")]
-    text(s, X0 + 490, 106, X1 - X0 - 490, 370,
+    text(s, X0 + 490, 104, X1 - X0 - 490, 24, [[("github.com/zidanarsyad/ddx-expert-system", {"font": CODE, "color": BLUE})]],
+         size=12.5)
+    text(s, X0 + 490, 140, X1 - X0 - 490, 336,
          [[(a + "  ", {"font": CODE, "color": BLUE, "size": 11}), (b, {})] for a, b in layout],
          size=11.5, after=7, spacing=1.0)
     box(s, X0, 416, 470, 58, fill=CREAM)
@@ -1149,11 +1039,13 @@ pytest                        # 111 tests""", size=11.5)
                                     "make_figures.py → build_report.py → build_deck.py"], size=11.5,
          anchor=MSO_ANCHOR.MIDDLE)
 
-    # 34 --------------------------------------------------------------------- closing
+    # 25 --------------------------------------------------------------------- closing
     shapes = {sh.name: sh for sh in d.closing.shapes}
     set_lines(shapes["TextBox 380"], ["“Every conclusion with its rule,", "its facts and its source.”"])
     text(d.closing, 87, 400, 333, 36, ["Thank you · Terima kasih"], size=20, font=BOLD, color=BLUE)
-    notes(d.closing, "Thank you. The report, this deck and the repository with its README are submitted together. "
+    text(d.closing, 87, 438, 420, 22, ["github.com/zidanarsyad/ddx-expert-system"], size=12.5, font=CODE, color=BLUE)
+    notes(d.closing, "Thank you. The report, this deck and the repository with its README, on GitHub at "
+                     "github.com/zidanarsyad/ddx-expert-system, are submitted together. "
                      "We are happy to show the live system or answer questions.")
     return d
 

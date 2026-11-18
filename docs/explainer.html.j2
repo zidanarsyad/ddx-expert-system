@@ -1,0 +1,908 @@
+<!doctype html>
+{# DDX-ES, explained: built into docs/explainer.pdf by scripts/build_explainer.py; numbers come from results/*.json #}
+{% macro arr(cls="") %}<span class="arr {{ cls }}"><svg viewBox="0 0 20 12" width="20" height="12" aria-hidden="true"><path d="M1 6h15M12 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{% endmacro %}
+{% macro analogy(body) %}<div class="analogy"><span class="tag">Analogy</span>{{ body }}</div>{% endmacro %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DDX-ES, explained</title>
+<style>
+{{ fonts }}
+:root {
+  --blue: #01416B; --gold: #FDD402; --darkgold: #C99A00; --amber: #8A6100; --cream: #FFF4CC; --ink: #1F2D3A;
+  --muted: #5E6E7E; --tint: #E6EEF5; --line: #C9D6E3; --red: #B42318; --redtint: #FBE4E1; --green: #1E6E3E;
+  --greentint: #E3F2E8; --codebg: #F3F6F9; --lav: #EFE8F7; --purple: #5B3A8E;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; background: #fff; color: var(--ink); font: 9.8pt/1.5 'Work Sans', sans-serif; }
+h1, h2, h3 { font-family: 'IBM Plex Serif', serif; color: var(--blue); line-height: 1.2; margin: 0; }
+h2 { font-size: 16.5pt; margin: 22pt 0 4pt; break-after: avoid; display: flex; align-items: baseline; gap: 9pt; }
+h2 .n { font-family: 'Work Sans', sans-serif; font-size: 10pt; font-weight: 700; color: #fff; background: var(--blue);
+  border-radius: 50%; width: 19pt; height: 19pt; display: inline-flex; align-items: center; justify-content: center;
+  flex: none; position: relative; top: -2pt; }
+h3 { font-size: 11.5pt; margin: 12pt 0 3pt; break-after: avoid; }
+p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+ul { margin: 0 0 6pt; padding-left: 14pt; }
+li { margin-bottom: 3pt; }
+li::marker { color: var(--blue); }
+code, .mono { font-family: 'IBM Plex Mono', monospace; font-size: 8.6pt; }
+b, strong { font-weight: 700; }
+.g { color: var(--blue); font-weight: 700; }
+.lead { font-size: 11pt; line-height: 1.45; margin: 0 0 8pt; break-inside: avoid; break-after: avoid; }
+.intro { break-inside: avoid; }
+section.newpage { break-before: page; }
+section.newpage h2 { margin-top: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 8.6pt; }
+section { break-inside: auto; }
+.keep { break-inside: avoid; }
+
+/* title block */
+.title { display: grid; grid-template-columns: 1fr auto; gap: 14pt; align-items: start; border-bottom: 3pt solid var(--gold);
+  padding-bottom: 12pt; margin-bottom: 14pt; }
+.kicker { font-size: 8.6pt; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); font-weight: 700; }
+.title h1 { font-size: 30pt; margin: 4pt 0 6pt; }
+.title .sub { font-size: 12pt; line-height: 1.4; max-width: 125mm; }
+.title .meta { font-size: 8.4pt; color: var(--muted); margin-top: 8pt; line-height: 1.45; }
+.title img { width: 30mm; }
+.howto { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14pt; margin-bottom: 4pt; }
+.box { background: var(--tint); border-radius: 7pt; padding: 9pt 12pt; }
+.box h3 { margin-top: 0; }
+.toc { margin: 0; padding: 0; list-style: none; font-size: 9pt; line-height: 1.3; }
+.toc li { margin: 0 0 2pt; }
+.toc span { display: inline-block; width: 16pt; color: var(--amber); font-weight: 700; }
+
+/* analogy */
+.analogy { background: var(--cream); border-left: 4pt solid var(--darkgold); border-radius: 0 7pt 7pt 0; padding: 8pt 12pt;
+  margin: 2pt 0 10pt; font-size: 10.3pt; line-height: 1.45; break-inside: avoid; }
+.analogy .tag { display: block; font-size: 7.8pt; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+  color: var(--amber); margin-bottom: 1pt; }
+.analogies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8pt; margin-bottom: 10pt; }
+.analogies .analogy { margin: 0; font-size: 9.4pt; }
+
+/* diagrams */
+figure { margin: 4pt 0 12pt; break-inside: avoid; }
+figcaption { font-size: 8.2pt; color: var(--muted); margin-top: 5pt; line-height: 1.4; }
+figure img { width: 100%; display: block; }
+figure img.framed { border: .75pt solid var(--line); border-radius: 4pt; }
+.flow { display: flex; align-items: stretch; }
+.arr { flex: none; width: 20pt; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.arr.gold { color: var(--darkgold); }
+.arr.down { width: auto; height: 16pt; }
+.arr.down svg { transform: rotate(90deg); }
+.node { flex: 1; border-radius: 7pt; padding: 7pt 9pt; background: var(--tint); font-size: 8.6pt; line-height: 1.38; }
+.node > b:first-child { display: block; color: var(--blue); font-size: 9.6pt; margin-bottom: 1pt; }
+.node.blue { background: var(--blue); color: #fff; }
+.node.blue > b:first-child { color: #fff; }
+.node.cream { background: var(--cream); }
+.node.cream > b:first-child { color: var(--amber); }
+.node.green { background: var(--greentint); }
+.node.green > b:first-child { color: var(--green); }
+.node.white { background: #fff; border: .75pt solid var(--line); }
+.node.lav { background: var(--lav); }
+.node.lav > b:first-child { color: var(--purple); }
+.node.red { background: var(--redtint); }
+.node.red > b:first-child { color: var(--red); }
+.node.center { display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.stack { display: flex; flex-direction: column; gap: 6pt; flex: 1; }
+
+/* section 1 overview */
+.overview { display: grid; grid-template-columns: 1.15fr 20pt .9fr 20pt 1fr; align-items: center; }
+.overview .stack .node { flex: none; }
+
+/* dataset split bar */
+.split { display: flex; height: 26pt; border-radius: 5pt; overflow: hidden; font-size: 8.4pt; font-weight: 700; }
+.split div { display: flex; align-items: center; justify-content: center; color: #fff; }
+.split div:first-child { color: #fff; }
+.split-labels { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 12pt; font-size: 8.4pt; line-height: 1.38;
+  margin-top: 6pt; }
+.split-labels i { display: inline-block; width: 8pt; height: 8pt; border-radius: 2pt; margin-right: 4pt;
+  vertical-align: -0.5pt; }
+
+/* tiles */
+.tiles { display: grid; gap: 8pt; margin: 4pt 0 10pt; break-inside: avoid; }
+.tiles.t4 { grid-template-columns: repeat(4, 1fr); }
+.tiles.t3 { grid-template-columns: repeat(3, 1fr); }
+.tiles.t2 { grid-template-columns: repeat(2, 1fr); }
+.tile { background: var(--tint); border-radius: 7pt; padding: 7pt 10pt; }
+.tile .num { font-size: 18pt; font-weight: 700; color: var(--blue); line-height: 1.15; }
+.tile .lab { font-size: 8.2pt; color: var(--muted); line-height: 1.3; }
+.tile.green { background: var(--greentint); } .tile.green .num { color: var(--green); }
+.tile.red { background: var(--redtint); } .tile.red .num { color: var(--red); }
+.tile.cream { background: var(--cream); } .tile.cream .num { color: var(--amber); }
+.tile.grey { background: var(--codebg); } .tile.grey .num { color: var(--muted); }
+
+/* tables */
+table.t { border-collapse: collapse; width: 100%; font-size: 8.6pt; margin: 2pt 0 10pt; break-inside: avoid; }
+table.t th { background: var(--blue); color: #fff; text-align: left; font-weight: 700; padding: 4pt 7pt; }
+table.t td { padding: 3.5pt 7pt; border-bottom: .75pt solid var(--line); vertical-align: top; }
+table.t tr:nth-child(even) td { background: #F7F9FB; }
+table.t .r { text-align: right; } table.t .c { text-align: center; }
+
+/* relay chain */
+.relay { display: grid; grid-template-columns: repeat(5, 1fr); column-gap: 14pt; row-gap: 6pt; position: relative; }
+.relay .head { background: var(--blue); color: #fff; border-radius: 7pt; padding: 6pt 8pt; font-size: 8.4pt; line-height: 1.3;
+  position: relative; }
+.relay .head b { display: block; font-size: 9.6pt; }
+.relay .head .cnt { color: var(--gold); font-weight: 700; }
+.relay .head:not(:nth-child(5))::after { content: "▶"; position: absolute; right: -12pt; top: 50%; transform: translateY(-50%);
+  color: var(--darkgold); font-size: 8pt; }
+.relay .ex { background: var(--cream); border-radius: 7pt; padding: 6pt 8pt; font-size: 8.3pt; line-height: 1.35; }
+.relay .ex b { display: block; color: var(--amber); font-family: 'IBM Plex Mono', monospace; font-size: 8.4pt; }
+
+/* phases */
+.phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; }
+.phase { background: var(--tint); border-radius: 7pt; padding: 8pt 9pt; font-size: 8.5pt; line-height: 1.38; position: relative; }
+.phase .d { font-weight: 700; color: var(--amber); font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; }
+.phase b.t { display: block; font-size: 10pt; color: var(--blue); margin: 1pt 0 3pt; }
+.phase .stat { margin-top: 5pt; padding-top: 5pt; border-top: .75pt solid var(--line); color: var(--muted); font-size: 8.1pt; }
+
+/* odds scale */
+.scale { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3pt; text-align: center; font-size: 8.4pt; }
+.scale div { border-radius: 5pt; padding: 5pt 2pt; }
+.scale .cf { font-weight: 700; font-size: 10pt; }
+.scale .x { font-size: 8.4pt; }
+.formula { font-family: 'IBM Plex Serif', serif; font-size: 10pt; background: var(--codebg); border: .75pt solid var(--line);
+  border-radius: 6pt; padding: 6pt 10pt; margin: 4pt 0 8pt; break-inside: avoid; }
+
+/* triage levels */
+.lvl { display: inline-block; color: #fff; font-weight: 700; border-radius: 4pt; padding: 1pt 7pt; font-size: 8.4pt; }
+.lvl.e { background: var(--red); } .lvl.u { background: var(--amber); } .lvl.n { background: var(--blue); }
+.lvl.s { background: var(--green); }
+.sev { display: grid; grid-template-columns: auto 22pt auto; gap: 4pt 2pt; align-items: center; justify-content: start;
+  font-size: 8.4pt; margin-top: 4pt; }
+
+/* steps (worked example) */
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 7pt 26pt; margin: 0; break-inside: avoid; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 17pt; height: 17pt; border-radius: 50%;
+  background: var(--blue); color: #fff; font-weight: 700; font-size: 8.5pt; display: flex; align-items: center;
+  justify-content: center; }
+.steps li:last-child::before { background: var(--red); }
+.steps li b { color: var(--blue); }
+.two { display: grid; grid-template-columns: 1.25fr 1fr; gap: 14pt; align-items: start; }
+.two.even { grid-template-columns: 1fr 1fr; }
+
+/* code */
+pre { font-family: 'IBM Plex Mono', monospace; font-size: 8.4pt; line-height: 1.5; background: var(--codebg);
+  border: .75pt solid var(--line); border-radius: 6pt; padding: 8pt 10pt; margin: 4pt 0 10pt; white-space: pre-wrap;
+  break-inside: avoid; }
+pre .c { color: var(--muted); }
+
+/* ethics */
+.ethics { background: var(--redtint); border-radius: 7pt; padding: 9pt 12pt; break-inside: avoid; }
+.ethics b:first-child { color: var(--red); }
+
+/* glossary */
+.glossary { columns: 2; column-gap: 18pt; margin: 4pt 0 0; }
+.glossary div { break-inside: avoid; margin: 0 0 8pt; font-size: 9.6pt; line-height: 1.42; }
+.glossary dt { font-weight: 700; color: var(--blue); display: inline; }
+.glossary dd { display: inline; margin: 0; }
+.glossary .ref { color: var(--muted); font-size: 7.8pt; white-space: nowrap; }
+svg text { font-family: 'Work Sans', sans-serif; }
+</style>
+</head>
+<body>
+
+<header class="title">
+  <div>
+    <div class="kicker">Companion guide · Sistem Pakar Lanjut final project</div>
+    <h1>DDX-ES, explained</h1>
+    <div class="sub">A plain-language guide to an explainable knowledge-graph expert system for differential diagnosis
+      and triage, with an analogy and a diagram for every idea, and a glossary at the end.</div>
+    <div class="meta">Program Studi Magister Kecerdasan Artifisial · Departemen Ilmu Komputer dan Elektronika ·
+      FMIPA Universitas Gadjah Mada · November 2026<br>Code and data: github.com/zidanarsyad/ddx-expert-system</div>
+  </div>
+  <img src="{{ fig['ugm-logo'] }}" alt="Universitas Gadjah Mada">
+</header>
+
+<div class="howto">
+  <div class="box">
+    <h3>How to read this guide</h3>
+    <p>Each section explains one idea in three layers. The yellow <b>analogy</b> box gives the idea in everyday terms.
+      The <b>diagram</b> shows how it works. The text then says what DDX-ES actually does, with the real numbers from
+      the evaluation.</p>
+    <p style="margin:0">Words in <span class="g">blue bold</span> are defined in the glossary (section 16). The
+      report has the full method and the references; the slides are the talk. This guide is for understanding.</p>
+  </div>
+  <div class="box" style="background:#fff;border:.75pt solid var(--line)">
+    <h3>Contents</h3>
+    <ol class="toc">
+      <li><span>1</span>The project in one minute</li>
+      <li><span>2</span>The data: DDXPlus</li>
+      <li><span>3</span>Where the knowledge comes from</li>
+      <li><span>4</span>The knowledge graph</li>
+      <li><span>5</span>The rules</li>
+      <li><span>6</span>The inference engine</li>
+      <li><span>7</span>Certainty factors</li>
+      <li><span>8</span>Triage</li>
+      <li><span>9</span>The consultation</li>
+      <li><span>10</span>Explanations</li>
+      <li><span>11</span>Provenance</li>
+      <li><span>12</span>One patient, start to finish</li>
+      <li><span>13</span>How well it works</li>
+      <li><span>14</span>What it cannot do</li>
+      <li><span>15</span>Try it yourself</li>
+      <li><span>16</span>Glossary</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 1 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">1</span>The project in one minute</h2>
+<p class="lead">DDX-ES reads a patient's answers to a symptom questionnaire, proposes the most likely diseases, decides
+  how urgently the patient needs care, and can show the rule, the facts and the publication behind every one of
+  these conclusions.</p>
+{{ analogy("A careful junior doctor with a handbook in which every page cites its source. The doctor asks questions,
+  thinks of the diseases that could explain the answers, rules out those that cannot, and when you ask “why?”, opens
+  the handbook at the right page.") }}
+</div>
+<figure>
+  <div class="overview">
+    <div class="stack">
+      <div class="node cream"><b>Patient's answers</b>age, sex, symptoms, risk factors and history</div>
+      <div class="node"><b>Knowledge graph</b>49 diseases · 223 questions · {{ n_rules }} cited rules ·
+        calibration counts · OWL 2 RL reasoning</div>
+    </div>
+    {{ arr() }}
+    <div class="node blue center" style="align-self:center;padding:14pt 9pt"><b>Inference engine</b>four phases:
+      chain the rules, rule out, weigh the evidence, decide urgency</div>
+    {{ arr() }}
+    <div class="stack">
+      <div class="node white"><b>Ranked diseases</b>the differential diagnosis</div>
+      <div class="node white"><b>Triage level</b><span class="lvl e">Emergency</span> to <span class="lvl s">Self-care</span></div>
+      <div class="node white"><b>Next steps</b>tests and advice, each with its source</div>
+    </div>
+  </div>
+  <div class="node green" style="margin-top:8pt"><b>Explanation for every output</b>HOW was it concluded (a proof
+    down to the answers) · WHY is this question asked · WHY NOT another disease · a provenance record in the graph</div>
+  <figcaption>Figure 1. DDX-ES at a glance. Everything the system knows is in one knowledge graph; everything it
+    concludes can be explained.</figcaption>
+</figure>
+<ul>
+  <li><b>Input:</b> age, sex and answers to up to 223 questions (yes/no, scales from 0 to 10, multiple choice).</li>
+  <li><b>Output:</b> a <span class="g">differential diagnosis</span> over 49 diseases, one of four <span class="g">triage</span>
+    levels, and recommended next steps.</li>
+  <li><b>Headline result:</b> {{ es1 }} of {{ n_test }} test patients get the right disease ranked first, and every
+    emergency is triaged as an emergency.</li>
+</ul>
+<p><b>Why an expert system?</b> A machine-learning classifier can be accurate, but it cannot say which facts and which
+  guideline support its answer, so a clinician cannot check it. An expert system explains by construction: its
+  reasoning is a chain of rules a person can read. The assignment asks for exactly that: an ontology and knowledge
+  graph, IF–THEN rules with references, and reasoning that derives new conclusions and explains them.</p>
+</section>
+
+<!-- 2 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">2</span>The data: DDXPlus</h2>
+<p class="lead">DDXPlus (NeurIPS 2022) is a public benchmark for automatic diagnosis: a knowledge base of 49 diseases
+  reviewed by physicians, and about 1.3 million synthetic patients generated from it.</p>
+{{ analogy("A flight simulator for diagnosis. The patients are realistic and plentiful, so a system can be tested
+  safely and at scale, and every case comes with the right answer. But a simulator is not the sky: real patients are
+  the next test.") }}
+</div>
+<figure>
+  <div class="split">
+    <div style="flex:1025602;background:#9AAAB9">training split, about 1.0 million: not used, DDX-ES is not trained</div>
+    <div style="flex:132448;background:var(--blue)">validation</div>
+    <div style="flex:134529;background:var(--green)">test</div>
+  </div>
+  <div class="split-labels">
+    <div><i style="background:#9AAAB9"></i><b>Training, about 1.0 million:</b> not used. DDX-ES is not trained; its
+      knowledge comes from the expert knowledge base and the published guidelines.</div>
+    <div><i style="background:var(--blue)"></i><b>Validation, {{ n_val }}:</b> counted to calibrate how strongly each
+      finding points to each disease.</div>
+    <div><i style="background:var(--green)"></i><b>Test, {{ n_test }}:</b> kept sealed and used only for the
+      evaluation.</div>
+  </div>
+  <figcaption>Figure 2. How the 1.3 million DDXPlus patients are used (bar widths to scale). A further sample of
+    {{ sample }} test patients is stored in the graph for demonstrations and the simulated consultations.</figcaption>
+</figure>
+<p>Each patient record holds age, sex, the answers to the questionnaire, the true disease and a reference
+  differential. The questions are of three kinds: yes/no, scales from 0 to 10 (such as pain intensity) and multiple
+  choice (such as pain location). There are 110 symptom questions and 113 <span class="g">antecedent</span> questions
+  about risk factors and history.</p>
+<p>The test split was kept sealed while the system was built: only the validation split was used to count how often
+  each finding appears with each disease. One caution shapes the whole evaluation: the patients were generated by a
+  rule-based program from the same knowledge base, so their statistics describe that knowledge base, not real
+  clinical practice (section 14).</p>
+</section>
+
+<!-- 3 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">3</span>Where the knowledge comes from</h2>
+<p class="lead">DDX-ES combines three sources of knowledge. Each does a different job, and all three end up in the
+  same knowledge graph.</p>
+{{ analogy("A doctor's training has three parts: the textbook says what each disease looks like, the guidelines say
+  how to decide, and experience says how often a sign really means a disease. DDX-ES has one of each.") }}
+</div>
+<figure>
+  <div class="flow" style="gap:8pt">
+    <div class="node"><b>1 · The textbook</b>The DDXPlus expert knowledge base: which symptoms and risk factors each of
+      the 49 diseases can produce ({{ kb_links }} links), its severity from 1 to 5 and its ICD-10 chapter.</div>
+    <div class="node cream"><b>2 · The guidelines</b>{{ n_sources }} published sources ({{ mix }}) turned into
+      {{ n_rules }} IF–THEN rules, each citing its source.</div>
+    <div class="node green"><b>3 · Experience</b>Counts from {{ n_val }} validation patients: a likelihood ratio for
+      each of the {{ pairs }} (finding, disease) pairs of the knowledge base.</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;color:var(--darkgold)">{{ arr("down gold") }}{{ arr("down gold") }}{{ arr("down gold") }}</div>
+  <div class="node blue" style="text-align:center"><b>Knowledge graph</b>build_kg.py writes six Turtle files with
+    {{ asserted }} triples; the OWL 2 RL reasoner adds {{ inferred }} more</div>
+  <figcaption>Figure 3. Three sources, one graph.</figcaption>
+</figure>
+<p>The published sources include the Wells score for pulmonary embolism, the Sampson criteria for anaphylaxis, CRB-65
+  for pneumonia, Centor and IDSA for sore throat, WHO and CDC case definitions, NICE NG12 for suspected cancer,
+  DSM-5, ICHD-3, and the ESC, GOLD and GINA guidelines. Every DOI was checked against Crossref.</p>
+<p>A published criterion does not always fit the questionnaire. The <span class="g">mapping fidelity</span> of each rule
+  records how well it does: {{ fid['faithful'] }} rules are <b>faithful</b> (every item has a question),
+  {{ fid['partial'] }} are <b>partial</b> (some items cannot be asked, such as heart rate in the Wells score) and
+  {{ fid['proxy'] }} are <b>proxies</b> (an item is approximated by a related question).</p>
+</section>
+
+<!-- 4 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">4</span>The knowledge graph</h2>
+<p class="lead">Everything DDX-ES knows is stored as one graph of small facts, <span class="g">RDF triples</span>
+  (subject, predicate, object), described by a hand-written <span class="g">ontology</span> in OWL 2.</p>
+{{ analogy("A library catalogue. Every disease, question, rule and source has a card, and the cards point to each
+  other: this rule needs that symptom, concludes this disease and comes from that guideline. The OWL 2 RL reasoner is
+  the librarian who adds the cross-references nobody wrote by hand.") }}
+</div>
+<figure>
+  <svg viewBox="0 0 640 236" width="100%" role="img" aria-label="A small part of the knowledge graph">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 1L9 5L0 9z" fill="#5E6E7E"/></marker>
+      <marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 1L9 5L0 9z" fill="#C99A00"/></marker>
+    </defs>
+    <!-- edges -->
+    <path d="M180 112H248" stroke="#5E6E7E" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+    <text x="214" y="104" font-size="9.5" text-anchor="middle" fill="#5E6E7E">concludes</text>
+    <path d="M95 140V172" stroke="#5E6E7E" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+    <text x="103" y="161" font-size="9.5" fill="#5E6E7E">dct:source</text>
+    <path d="M95 86C95 30 300 22 540 22C574 22 570 50 570 82" stroke="#5E6E7E" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+    <text x="330" y="17" font-size="9.5" text-anchor="middle" fill="#5E6E7E">premise: … OR coughing up blood</text>
+    <path d="M420 100H508" stroke="#5E6E7E" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+    <text x="464" y="93" font-size="9.5" text-anchor="middle" fill="#5E6E7E">hasSymptom</text>
+    <path d="M420 126H508" stroke="#C99A00" stroke-width="1.6" stroke-dasharray="4 3" fill="none" marker-end="url(#ahg)"/>
+    <text x="464" y="141" font-size="9.5" text-anchor="middle" fill="#8A6100">characterizedBy</text>
+    <!-- nodes -->
+    <rect x="10" y="86" width="170" height="54" rx="8" fill="#FFF4CC" stroke="#C99A00"/>
+    <text x="95" y="107" font-size="11" font-weight="700" text-anchor="middle" fill="#8A6100">:Rule_D-PE-1</text>
+    <text x="95" y="124" font-size="9.5" text-anchor="middle" fill="#1F2D3A">diagnostic rule · CF 0.7</text>
+    <rect x="10" y="174" width="170" height="50" rx="8" fill="#EFE8F7" stroke="#5B3A8E"/>
+    <text x="95" y="195" font-size="11" font-weight="700" text-anchor="middle" fill="#5B3A8E">:Src_wells2000</text>
+    <text x="95" y="211" font-size="9.5" text-anchor="middle" fill="#1F2D3A">Wells et al. (2000), with DOI</text>
+    <rect x="250" y="86" width="170" height="54" rx="8" fill="#E6EEF5" stroke="#01416B"/>
+    <text x="335" y="107" font-size="11" font-weight="700" text-anchor="middle" fill="#01416B">:PulmonaryEmbolism</text>
+    <text x="335" y="124" font-size="9.5" text-anchor="middle" fill="#1F2D3A">pathology · severity · ICD-10</text>
+    <rect x="510" y="86" width="120" height="54" rx="8" fill="#E6EEF5" stroke="#01416B"/>
+    <text x="570" y="107" font-size="11" font-weight="700" text-anchor="middle" fill="#01416B">:E_45</text>
+    <text x="570" y="124" font-size="9.5" text-anchor="middle" fill="#1F2D3A">“Coughing up blood”</text>
+    <!-- legend -->
+    <path d="M300 200H330" stroke="#5E6E7E" stroke-width="1.4"/>
+    <text x="338" y="203" font-size="9.5" fill="#1F2D3A">asserted: written by the build</text>
+    <path d="M300 220H330" stroke="#C99A00" stroke-width="1.6" stroke-dasharray="4 3"/>
+    <text x="338" y="223" font-size="9.5" fill="#1F2D3A">entailed: added by the OWL 2 RL reasoner</text>
+  </svg>
+  <figcaption>Figure 4. A small part of the graph. The DDXPlus knowledge base says that pulmonary embolism
+    <i>has the symptom</i> coughing up blood; from the ontology axiom “hasSymptom is a sub-property of characterizedBy”
+    the reasoner adds the <i>characterizedBy</i> link, which is what the engine reads as the disease profile.</figcaption>
+</figure>
+<p>The graph is written in <span class="g">Turtle</span> files. The ontology has three parts: the domain (diseases,
+  findings, answer values, patients), the rule vocabulary (rules, conditions, conclusions, certainty factors, sources)
+  and the provenance model (section 11).</p>
+<table class="t" style="width:auto;min-width:62%">
+  <tr><th>File</th><th>What it holds</th><th class="r">Triples</th></tr>
+  {% set what = {"ontology": "classes and properties, written by hand", "kb": "49 diseases, 223 questions, 888 links",
+                 "rules": n_rules ~ " rules with their sources", "stats": "calibration counts",
+                 "cases": sample ~ " demonstration patients", "inferred": "added by the OWL 2 RL reasoner"} %}
+  {% for name, count in kg_files %}
+  <tr><td class="mono">{{ name }}.ttl</td><td>{{ what[name] }}</td><td class="r">{{ count }}</td></tr>
+  {% endfor %}
+</table>
+<p><b>Rules are data.</b> The rules are typed in a YAML file for convenience, but the build turns them into triples, and
+  the engine reads them back from the graph, not from the YAML. Because rules are triples,
+  <span class="g">SPARQL</span> queries can audit them: which rules use an answer, which guideline contributes which
+  rules, which rules map their source only partially.</p>
+<p><b>Why the reasoner matters.</b> {{ inferred }} triples exist only because of <span class="g">OWL 2 RL</span>
+  reasoning (about a minute with owlrl), among them the 888 disease profiles the engine uses. Run without them, the
+  demonstration queries come back empty. With the reasoner, {{ q['q05-red-flag-rules'][0] }} rules are classed as
+  red-flag rules (without it, {{ q['q05-red-flag-rules'][1] }}); {{ q['q06-entailed-pathology-classes'][0] }} diseases
+  fall into disease families and urgency classes (without it, {{ q['q06-entailed-pathology-classes'][1] }}); and query
+  q11, “which diseases explain every symptom of patient T002456?”, finds pulmonary embolism (without it, nothing).</p>
+</section>
+
+<!-- 5 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">5</span>The rules</h2>
+<p class="lead">DDX-ES has {{ n_rules }} IF–THEN rules of five kinds. Each carries a certainty factor, its source and
+  its mapping fidelity.</p>
+{{ analogy("A relay race. Each kind of rule runs one leg and hands the baton to the next: answers become clinical
+  concepts, concepts become score points, scores become belief in a disease, and beliefs become an urgency level and
+  a next step.") }}
+</div>
+<figure>
+  <div class="relay">
+    <div class="head"><b>Abstraction</b><span class="cnt">{{ cat['abstraction'] }} rules</span><br>answers → concepts</div>
+    <div class="head"><b>Scoring</b><span class="cnt">{{ cat['scoring'] }} rules</span><br>concepts → points</div>
+    <div class="head"><b>Diagnostic</b><span class="cnt">{{ cat['diagnostic'] }} rules</span><br>→ belief in a disease</div>
+    <div class="head"><b>Triage</b><span class="cnt">{{ cat['triage'] }} rules</span><br>beliefs → urgency</div>
+    <div class="head"><b>Recommendation</b><span class="cnt">{{ cat['recommendation'] }} rules</span><br>beliefs → next step</div>
+    <div class="ex"><b>A-DVT</b>swelling in a calf, the popliteal fossa or a thigh ⇒ signs of deep-vein thrombosis</div>
+    <div class="ex"><b>S-WELLS-*</b>signs of DVT +3, recent surgery +1.5, cancer +1, coughing up blood +1 ⇒ Wells
+      score 6.5</div>
+    <div class="ex"><b>D-PE-1</b>Wells &gt; 4 with shortness of breath, pleuritic pain or coughing up blood ⇒ pulmonary
+      embolism, CF 0.7</div>
+    <div class="ex"><b>T-PE</b>P(pulmonary embolism) ≥ 0.5 ⇒ Emergency, CF 0.9</div>
+    <div class="ex"><b>R-PE-HIGH</b>P(pulmonary embolism) ≥ 0.4 and Wells &gt; 4 ⇒ CT pulmonary angiography</div>
+  </div>
+  <figcaption>Figure 5. The five kinds of rule, with the baton carried for one patient (T002456, section 12): from
+    swollen calves to an emergency and a CT scan.</figcaption>
+</figure>
+<p>A rule's premise can combine conditions with AND, OR, “at least <i>n</i> of”, NOT, thresholds on 0–10 scales, age,
+  sex, concepts, scores and beliefs. Here is rule D-PE-1 as the engine prints it from the graph:</p>
+<pre>IF   Wells score for pulmonary embolism &gt; 4
+AND  (pleuritic chest pain OR shortness of breath OR coughing up blood)
+THEN pulmonary embolism (CF +0.70)
+<span class="c">source: Wells et al. (2000) · fidelity: partial (heart rate and “PE most likely” cannot be asked)</span></pre>
+<p>Rules fire in <span class="g">strata</span>: a rule runs only after the rules that produce the concepts and scores it
+  reads, which is exactly the relay order above. When the rule base is loaded it is validated: every reference must
+  exist, the strata must be consistent, and there must be no cycles.</p>
+</section>
+
+<!-- 6 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">6</span>The inference engine</h2>
+<p class="lead">One run of the engine over a patient has four phases.</p>
+{{ analogy("A detective. First collect the clues, then rule out the suspects who could not have done it, then weigh
+  the evidence against those who remain, and finally decide how urgently to act.") }}
+</div>
+<figure>
+  <div class="phases">
+    <div class="phase"><span class="d">1 · Collect the clues</span><b class="t">Forward chaining</b>The abstraction,
+      scoring and diagnostic rules fire in strata, adding concepts, scores and evidence for diseases.
+      <div class="stat">about {{ fired }} rules fire per patient</div></div>
+    <div class="phase"><span class="d">2 · Rule out suspects</span><b class="t">Abduction by set covering</b>A disease
+      stays a candidate only if its profile explains every reported symptom.
+      <div class="stat">{{ cands }} of 49 diseases remain on average; one for {{ single }} of patients</div></div>
+    <div class="phase"><span class="d">3 · Weigh the evidence</span><b class="t">Belief aggregation</b>Rule certainty
+      factors and the calibrated likelihood ratios are added up as log-odds with the prior, then normalised.
+      <div class="stat">a probability for every candidate</div></div>
+    <div class="phase"><span class="d">4 · Decide how urgent</span><b class="t">Triage and advice</b>Triage rules and the
+      severity of likely diseases propose levels; the most urgent wins. Recommendation rules add next steps.
+      <div class="stat">see section 8</div></div>
+  </div>
+  <figcaption>Figure 6. The four phases of one inference run.</figcaption>
+</figure>
+<p><span class="g">Forward chaining</span> works like a production system: rules whose conditions hold are put on an
+  agenda, ordered by salience, specificity and rule order, and fired once each. Every condition is <b>true</b>,
+  <b>false</b> or <b>unknown</b>. For a complete patient record an unasked question counts as “no”; in a live
+  consultation it stays unknown. That lets the same engine work on records and on interviews.</p>
+<p><span class="g">Set covering</span> (Reggia and colleagues, 1983) is a form of <span class="g">abduction</span>,
+  reasoning from effects back to causes. It is what makes the ranking sharp: for most patients only one or two
+  diseases can explain everything that was reported.</p>
+</section>
+
+<!-- 7 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">7</span>Certainty factors</h2>
+<p class="lead">A <span class="g">certainty factor</span> (CF), from −1 to +1, says how much a piece of evidence changes
+  belief. DDX-ES reads CFs as <span class="g">likelihood ratios</span>, which made it both more accurate and easier to
+  explain.</p>
+{{ analogy("Betting odds. A bookmaker updates the odds with every new clue: a CF of 0.5 doubles the odds of a
+  disease, a CF of 0.9 multiplies them by ten, and a CF of −0.5 halves them. Keeping score in log-odds is like keeping
+  points on a scoreboard: each clue adds or subtracts points, and there is no ceiling.") }}
+</div>
+<figure>
+  <div class="scale">
+    <div style="background:#F6D3CF"><div class="cf">−0.9</div><div class="x">odds ×0.1</div></div>
+    <div style="background:#FBE4E1"><div class="cf">−0.5</div><div class="x">odds ×0.5</div></div>
+    <div style="background:var(--codebg)"><div class="cf">0</div><div class="x">no change</div></div>
+    <div style="background:#E9F4EC"><div class="cf">+0.5</div><div class="x">odds ×2</div></div>
+    <div style="background:#D9EDDF"><div class="cf">+0.7</div><div class="x">odds ×3.3</div></div>
+    <div style="background:#C7E4CF"><div class="cf">+0.9</div><div class="x">odds ×10</div></div>
+    <div style="background:#B3DBBE"><div class="cf">+0.99</div><div class="x">odds ×100</div></div>
+  </div>
+  <div class="flow" style="margin-top:10pt">
+    <div class="node white"><b>Before</b>prior 2%<br>odds 1 : 49</div>{{ arr() }}
+    <div class="node green"><b>Clue A, CF 0.7</b>odds × 3.3</div>{{ arr() }}
+    <div class="node green"><b>Clue B, CF 0.5</b>odds × 2</div>{{ arr() }}
+    <div class="node blue"><b>After</b>12%<br>odds 1 : 7.4</div>
+  </div>
+  <figcaption>Figure 7. Top: what a certainty factor does to the odds of a disease. Bottom: a worked example with
+    made-up numbers; in log-odds the two clues simply add.</figcaption>
+</figure>
+<p>MYCIN combined two positive CFs with the formula below. Heckerman (1986) showed that a CF can be read as a
+  transformed likelihood ratio λ, and that this formula then multiplies the likelihood ratios:</p>
+<div class="formula">
+  <div><span class="muted small">MYCIN:</span> combine(a, b) = a + b (1 − a)</div>
+  <div><span class="muted small">Heckerman:</span> λ = 1 / (1 − CF) for CF ≥ 0, and λ = 1 + CF for CF &lt; 0</div>
+  <div><span class="muted small">DDX-ES:</span> log-odds after = log-odds before + Σ log λ</div>
+</div>
+<p><b>Why it mattered.</b> With a few dozen strong clues, the classic formula reaches CF 1.0 for several diseases at
+  once, and then nothing can separate them. Stable and unstable angina both reached 1.0; the prior decided, and every
+  stable-angina patient in the demonstration sample was called unstable angina. Doing the same calculation as a sum of
+  log likelihood ratios, the scoreboard of the analogy, removed the problem.</p>
+<div class="tiles t2" style="max-width:60%">
+  <div class="tile red"><div class="num">96.9%</div><div class="lab">top-1 with the classic combination (demonstration
+    patients)</div></div>
+  <div class="tile green"><div class="num">99.3%</div><div class="lab">top-1 with the sum of log likelihood ratios</div></div>
+</div>
+</section>
+
+<!-- 8 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">8</span>Triage: deciding how urgent</h2>
+<p class="lead"><span class="g">Triage</span> gives every patient one of four levels. DDX-ES is built so that the
+  dangerous error, telling an emergency to wait, does not happen.</p>
+{{ analogy("A smoke alarm. A false alarm is a nuisance; a missed fire is a disaster. So the alarm is set to go off a
+  little too often rather than too rarely.") }}
+</div>
+<figure>
+  <div class="flow" style="gap:0;align-items:center">
+    <div class="stack" style="flex:1.25">
+      <div class="node red"><b>Red-flag rules</b>from the guidelines, whatever the diagnosis: suspected pulmonary
+        embolism, acute coronary syndrome, anaphylaxis, Ebola after travel ⇒ <span class="lvl e">Emergency</span></div>
+      <div class="node"><b>Severity schema</b>every disease with P ≥ 0.2 proposes the level of its DDXPlus severity:
+        <div class="sev">
+          <span>severity 1</span>{{ arr() }}<span class="lvl e">Emergency</span>
+          <span>severity 2</span>{{ arr() }}<span class="lvl u">Urgent</span>
+          <span>severity 3–4</span>{{ arr() }}<span class="lvl n">Non-urgent</span>
+          <span>severity 5</span>{{ arr() }}<span class="lvl s">Self-care</span>
+        </div></div>
+    </div>
+    {{ arr() }}
+    <div class="node blue center" style="flex:.8"><b>Safety first</b>the most urgent level proposed with CF ≥ 0.5
+      wins</div>
+    {{ arr() }}
+    <div class="node white center" style="flex:.9"><b>Level + next steps</b>recommendation rules add tests and advice,
+      each with its source</div>
+  </div>
+  <figcaption>Figure 8. Two kinds of knowledge propose a triage level; the most urgent proposal wins.</figcaption>
+</figure>
+<div class="tiles t4">
+  <div class="tile green"><div class="num">{{ emerg }}</div><div class="lab">of emergencies triaged as Emergency</div></div>
+  <div class="tile green"><div class="num">{{ urgent }}</div><div class="lab">of emergency and urgent cases at least
+    Urgent</div></div>
+  <div class="tile cream"><div class="num">{{ under }}</div><div class="lab"><span class="g">under-triage</span>, the
+    unsafe error</div></div>
+  <div class="tile"><div class="num">{{ over }}</div><div class="lab">over-triage, the safe side</div></div>
+</div>
+<p>The few under-triaged patients are acute rhinosinusitis taken for chronic rhinosinusitis and sent to self-care.
+  Over-triage, about one patient in five, comes mostly from guideline <span class="g">red flags</span> that disagree
+  with the DDXPlus severity scale: for the ESC and AHA/ACC guidelines a suspected pulmonary embolism or chest pain
+  radiating to the arm is an emergency until proven otherwise. Without the severity schema, the red-flag rules alone
+  keep under-triage at {{ red_only_under }}, against {{ neither_under }} with neither.</p>
+</section>
+
+<!-- 9 ------------------------------------------------------------------------------------------------------------>
+<section>
+<div class="intro">
+<h2><span class="n">9</span>The consultation: choosing the next question</h2>
+<p class="lead">In a live consultation DDX-ES starts from age, sex and the <span class="g">chief complaint</span>, and
+  chooses every next question by <span class="g">backward chaining</span> from its goals.</p>
+{{ analogy("Twenty questions, played well. A good player asks the question that best splits the remaining suspects,
+  and before announcing the answer checks the dangerous possibilities one last time.") }}
+</div>
+<figure>
+  <svg viewBox="0 0 600 196" width="100%" role="img" aria-label="The consultation loop">
+    <defs><marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1L9 5L0 9z" fill="#5E6E7E"/></marker></defs>
+    <g font-size="10" text-anchor="middle">
+      <rect x="0" y="14" width="98" height="56" rx="8" fill="#FFF4CC"/>
+      <text x="49" y="36" font-weight="700" fill="#8A6100" font-size="11">Start</text>
+      <text x="49" y="51" fill="#1F2D3A">age, sex,</text><text x="49" y="63" fill="#1F2D3A">chief complaint</text>
+      <rect x="125" y="14" width="98" height="56" rx="8" fill="#E6EEF5"/>
+      <text x="174" y="36" font-weight="700" fill="#01416B" font-size="11">Goals</text>
+      <text x="174" y="51" fill="#1F2D3A">top-5 diseases +</text><text x="174" y="63" fill="#1F2D3A">severe ones</text>
+      <rect x="250" y="14" width="98" height="56" rx="8" fill="#E6EEF5"/>
+      <text x="299" y="36" font-weight="700" fill="#01416B" font-size="11">Candidates</text>
+      <text x="299" y="51" fill="#1F2D3A">questions their</text><text x="299" y="63" fill="#1F2D3A">rules still need</text>
+      <rect x="375" y="14" width="98" height="56" rx="8" fill="#E6EEF5"/>
+      <text x="424" y="36" font-weight="700" fill="#01416B" font-size="11">Choose</text>
+      <text x="424" y="51" fill="#1F2D3A">most expected</text><text x="424" y="63" fill="#1F2D3A">information gain</text>
+      <rect x="500" y="14" width="98" height="56" rx="8" fill="#01416B"/>
+      <text x="549" y="36" font-weight="700" fill="#fff" font-size="11">Ask + WHY</text>
+      <text x="549" y="51" fill="#fff">and say why</text><text x="549" y="63" fill="#fff">it is asked</text>
+      <rect x="500" y="122" width="98" height="56" rx="8" fill="#E6EEF5"/>
+      <text x="549" y="144" font-weight="700" fill="#01416B" font-size="11">Update</text>
+      <text x="549" y="159" fill="#1F2D3A">re-run the whole</text><text x="549" y="171" fill="#1F2D3A">inference</text>
+      <rect x="375" y="122" width="98" height="56" rx="8" fill="#fff" stroke="#C9D6E3"/>
+      <text x="424" y="144" font-weight="700" fill="#01416B" font-size="11">Sure enough?</text>
+      <text x="424" y="159" fill="#1F2D3A">leading disease</text><text x="424" y="171" fill="#1F2D3A">P ≥ 0.95</text>
+      <rect x="250" y="122" width="98" height="56" rx="8" fill="#FBE4E1"/>
+      <text x="299" y="144" font-weight="700" fill="#B42318" font-size="11">Rule out</text>
+      <text x="299" y="159" fill="#1F2D3A">check severe</text><text x="299" y="171" fill="#1F2D3A">diseases left</text>
+      <rect x="125" y="122" width="98" height="56" rx="8" fill="#E3F2E8"/>
+      <text x="174" y="144" font-weight="700" fill="#1E6E3E" font-size="11">Stop</text>
+      <text x="174" y="159" fill="#1F2D3A">diagnosis, triage</text><text x="174" y="171" fill="#1F2D3A">and advice</text>
+    </g>
+    <g stroke="#5E6E7E" stroke-width="1.4" fill="none">
+      <path d="M98 42H123" marker-end="url(#ac)"/><path d="M223 42H248" marker-end="url(#ac)"/>
+      <path d="M348 42H373" marker-end="url(#ac)"/><path d="M473 42H498" marker-end="url(#ac)"/>
+      <path d="M549 70V120" marker-end="url(#ac)"/><path d="M500 150H475" marker-end="url(#ac)"/>
+      <path d="M375 150H350" marker-end="url(#ac)"/><path d="M250 150H225" marker-end="url(#ac)"/>
+      <path d="M424 122V98H174V72" marker-end="url(#ac)" stroke-dasharray="4 3"/>
+    </g>
+    <text x="300" y="93" font-size="9.5" text-anchor="middle" fill="#5E6E7E">no: choose the next question</text>
+    <text x="362" y="143" font-size="9.5" text-anchor="middle" fill="#5E6E7E">yes</text>
+  </svg>
+  <figcaption>Figure 9. The consultation loop. The goals are the five leading diseases plus every severe one with
+    P ≥ 0.02; the rule-out step asks the most specific question of each severe disease that is still possible.</figcaption>
+</figure>
+<p>For each goal the engine collects the unknown conditions of its rules and the unasked questions of its profile, and
+  asks the one with the largest <span class="g">expected information gain</span>, weighted up for guideline rules and
+  severe goals. After every answer it runs the whole inference again.</p>
+<table class="t">
+  <tr><th>System</th><th class="c">Questions asked</th><th class="c">Top-1</th><th>Trained on patients?</th></tr>
+  <tr><td>AARLC, reinforcement learning (DDXPlus paper)</td><td class="c">6.73</td><td class="c">99.21%</td><td>yes, about a million</td></tr>
+  <tr><td>BASD, reinforcement learning (DDXPlus paper)</td><td class="c">17.99</td><td class="c">97.15%</td><td>yes, about a million</td></tr>
+  <tr><td><b>DDX-ES, stop at P ≥ 0.95</b></td><td class="c"><b>{{ cq }}</b></td><td class="c"><b>{{ c1 }}</b></td><td>no, counts only</td></tr>
+  <tr><td><b>DDX-ES, stop at P ≥ 0.99</b></td><td class="c"><b>{{ c99q }}</b></td><td class="c"><b>{{ c99_1 }}</b></td><td>no, counts only</td></tr>
+</table>
+<p>DDX-ES was simulated on the {{ sample }} demonstration patients, each answering from their own record; the published
+  agents report the whole test split, so the comparison is indicative. The <b>rule-out step</b> was added after the
+  evaluation showed it was needed: stopping at P ≥ 0.95 alone left {{ c0_missed }} of the urgent patients with a
+  non-urgent triage, because diseases such as Ebola or croup were improbable at the start, so travel to West Africa or
+  stridor was never asked. With the rule-out step, {{ c_missed }} are missed, for {{ extra_q }} extra questions.</p>
+</section>
+
+<!-- 10 ----------------------------------------------------------------------------------------------------------->
+<section>
+<div class="intro">
+<h2><span class="n">10</span>Explanations: HOW, WHY and WHY NOT</h2>
+<p class="lead">DDX-ES answers three questions about its own reasoning, in the web interface and on the command line.</p>
+<div class="analogies">
+  {{ analogy("HOW is showing your working in a maths exam: every step, with its rule and its source.") }}
+  {{ analogy("WHY is a good doctor who tells you why they are asking before you answer.") }}
+  {{ analogy("WHY NOT is a checklist with ticks and crosses: every criterion, met, failed or not asked yet.") }}
+</div>
+</div>
+<h3>HOW: a proof down to the patient's answers</h3>
+<figure>
+  <img class="framed" src="{{ fig['ui-proof-graph'] }}" alt="Proof tree for pulmonary embolism">
+  <figcaption>Figure 10. HOW for patient T002456: from the patient's answers (yellow) through abstraction and scoring
+    rules to the Wells score and the diagnostic rules D-PE-1 and D-PE-3. Every rule shows the certainty factor it adds
+    and its source.</figcaption>
+</figure>
+<h3>WHY: the goal behind every question</h3>
+<figure>
+  <img class="framed" src="{{ fig['why'] }}" alt="A consultation question with its explanation">
+  <figcaption>Figure 11. WHY during a consultation: the question names the goal (a dangerous disease still possible),
+    the evidence and its strength. HOW and the current triage can be asked at any time.</figcaption>
+</figure>
+<h3>WHY NOT: the conditions that failed</h3>
+<figure>
+  <img class="framed" src="{{ fig['whynot'] }}" alt="Why not anaphylaxis">
+  <figcaption>Figure 12. WHY NOT anaphylaxis: set covering excluded it because the knowledge base links anaphylaxis to no
+    such symptom as coughing up blood; the guideline rule did not fire because one of its conditions failed (✗) while
+    the other held (✓).</figcaption>
+</figure>
+</section>
+
+<!-- 11 ----------------------------------------------------------------------------------------------------------->
+<section>
+<div class="intro">
+<h2><span class="n">11</span>Provenance: the graph remembers why</h2>
+<p class="lead">Every conclusion is written back into the knowledge graph with the way it was derived, in the W3C
+  vocabulary <span class="g">PROV-O</span>.</p>
+{{ analogy("A receipt. It records what was concluded, by which rule, from which facts, and citing which guideline, so
+  anyone can check it later without running the system again.") }}
+</div>
+<figure>
+  <svg viewBox="0 0 600 262" width="100%" role="img" aria-label="Provenance chain">
+    <defs><marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1L9 5L0 9z" fill="#01416B"/></marker></defs>
+    <g font-size="10.5">
+      <rect x="0" y="0" width="330" height="48" rx="8" fill="#FFF4CC" stroke="#C99A00"/>
+      <text x="14" y="20" font-weight="700" fill="#8A6100" font-size="11.5">:Inference (a triage inference)</text>
+      <text x="14" y="37" fill="#1F2D3A">inferred triage: Emergency · about :Patient_T002456</text>
+      <rect x="0" y="72" width="330" height="48" rx="8" fill="#E6EEF5" stroke="#C9D6E3"/>
+      <text x="14" y="92" font-weight="700" fill="#01416B" font-size="11.5">:RuleFiring (a prov:Activity)</text>
+      <text x="14" y="109" fill="#1F2D3A">which rule fired, on which facts and beliefs, at which step</text>
+      <rect x="0" y="144" width="330" height="48" rx="8" fill="#E6EEF5" stroke="#C9D6E3"/>
+      <text x="14" y="164" font-weight="700" fill="#01416B" font-size="11.5">:Rule_T-PE (entailed: a :RedFlagRule)</text>
+      <text x="14" y="181" fill="#1F2D3A">IF P(pulmonary embolism) ≥ 0.5 THEN Emergency</text>
+      <rect x="0" y="214" width="330" height="48" rx="8" fill="#E3F2E8" stroke="#BFDCC8"/>
+      <text x="14" y="234" font-weight="700" fill="#1E6E3E" font-size="11.5">:Src_konstantinides2020</text>
+      <text x="14" y="251" fill="#1F2D3A">2019 ESC Guidelines on acute pulmonary embolism · DOI</text>
+      <rect x="410" y="66" width="190" height="60" rx="8" fill="#FFF4CC" stroke="#C99A00"/>
+      <text x="424" y="86" font-weight="700" fill="#8A6100" font-size="11.5">:Inference</text>
+      <text x="424" y="102" fill="#1F2D3A">belief: pulmonary embolism</text>
+      <text x="424" y="117" fill="#1F2D3A">P = 1.00</text>
+    </g>
+    <g stroke="#01416B" stroke-width="1.5" fill="none">
+      <path d="M40 48V70" marker-end="url(#ap)"/><path d="M40 120V142" marker-end="url(#ap)"/>
+      <path d="M40 192V212" marker-end="url(#ap)"/><path d="M330 96H408" marker-end="url(#ap)"/>
+    </g>
+    <g font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#01416B">
+      <text x="50" y="64">prov:wasGeneratedBy (the inference came from this firing)</text>
+      <text x="50" y="136">:firedRule</text>
+      <text x="50" y="207">dct:source</text>
+      <text x="340" y="90">prov:used</text>
+    </g>
+  </svg>
+  <figcaption>Figure 13. The provenance of one conclusion: patient T002456 is an emergency because rule T-PE fired on the
+    belief in pulmonary embolism, and T-PE encodes the 2019 ESC guidelines.</figcaption>
+</figure>
+<p>Because the record is in the graph, one SPARQL query (q08, “why is this case an emergency?”) returns the level, the
+  rule, what the rule used and the citation. The web interface and the command line can export the provenance of any
+  case as a Turtle file.</p>
+</section>
+
+<!-- 12 ----------------------------------------------------------------------------------------------------------->
+<section>
+<div class="intro">
+<h2><span class="n">12</span>One patient, start to finish</h2>
+<p class="lead">Patient T002456 is a pulmonary-embolism case from the test split. Here is every step, in the order the
+  engine takes them.</p>
+</div>
+<div class="two">
+  <ol class="steps">
+    <li><b>Answers.</b> Loss of consciousness, coughing up blood, shortness of breath, hormone use, active cancer,
+      surgery within the last month, swollen calves.</li>
+    <li><b>Abstraction.</b> Rules turn answers into concepts: signs of deep-vein thrombosis (A-DVT), recent surgery or
+      immobilisation, chest pain.</li>
+    <li><b>Scoring.</b> Wells score 6.5 = 3 (signs of DVT) + 1.5 (surgery) + 1 (cancer) + 1 (coughing up blood).</li>
+    <li><b>Diagnosis.</b> D-PE-1 fires (Wells &gt; 4 with shortness of breath or coughing up blood, CF 0.7), and D-PE-3
+      (hormone use, CF 0.2).</li>
+    <li><b>Abduction.</b> Set covering keeps 1 of the 49 diseases: pulmonary embolism explains all 12 reported symptoms.
+      Its probability is 1.00.</li>
+    <li><b>Triage and advice.</b> T-PE proposes Emergency and overrules T-SYNCOPE (loss of consciousness: Urgent). R-PE-HIGH
+      recommends CT pulmonary angiography.</li>
+  </ol>
+  <figure style="margin-top:0">
+    <img class="framed" src="{{ fig['triage'] }}" alt="Triage card: Emergency">
+    <figcaption>Figure 14. The triage card in the web interface, with the red flags that drove it.</figcaption>
+  </figure>
+</div>
+<p>Each of these steps is one node of the HOW proof in Figure 10, and the last one is the provenance record of
+  Figure 13. Try it with <code>ddxes diagnose --patient T002456 --trace</code>.</p>
+</section>
+
+<!-- 13 ----------------------------------------------------------------------------------------------------------->
+<section>
+<div class="intro">
+<h2><span class="n">13</span>How well it works</h2>
+<p class="lead">DDX-ES was tested on all {{ n_test }} patients of the DDXPlus test split, which was never used to build
+  it.</p>
+{{ analogy("An exam with an answer key. Every test patient comes with the true disease, so every answer can be marked
+  right or wrong, and the exam papers stayed sealed while the system was being built.") }}
+</div>
+<div class="tiles t4">
+  <div class="tile"><div class="num">{{ es1 }}</div><div class="lab">top-1, DDX-ES, no training</div></div>
+  <div class="tile grey"><div class="num">{{ nb1 }}</div><div class="lab">top-1, <span class="g">naive Bayes</span> on the
+    same counts</div></div>
+  <div class="tile grey"><div class="num">{{ hy1 }}</div><div class="lab">top-1, hybrid of the two</div></div>
+  <div class="tile green"><div class="num">{{ emerg }}</div><div class="lab">of emergencies triaged as Emergency</div></div>
+</div>
+<p><span class="g">Top-1 accuracy</span> (GTPA@1) is the share of patients whose true disease is ranked first. The true
+  disease is missing from the DDX-ES top three for only {{ miss3[0] }} of the {{ n_test }} patients (naive Bayes:
+  {{ miss3[1] }}; hybrid: {{ miss3[2] }}). The differential score DDF1 is low ({{ ddf1 }}) by design: DDX-ES commits to
+  a diagnosis, while the reference differential lists about ten diseases. A patient takes {{ ms }} ms, and
+  {{ supported }} of the leading diagnoses are supported by at least one cited guideline rule.</p>
+<h3>Where the accuracy comes from</h3>
+<p>The <span class="g">ablation</span> switches parts of the engine off. The guideline rules alone rank the true disease
+  first for only {{ ab['Guideline rules only'] }} of the patients: they describe syndromes that several diseases share
+  and were never written to tell them apart. Set covering alone reaches {{ ab['Set covering only'] }}, both together
+  {{ ab['Guideline rules + covering'] }}. The calibrated knowledge-base links carry the ranking:
+  {{ ab['KB evidence + covering'] }} with covering. So the guideline rules earn their place elsewhere: in concepts and
+  scores, triage, recommendations, and the explanations, which cite them.</p>
+<figure>
+  <img src="{{ fig['ablation'] }}" alt="Ablation chart" style="width:88%;margin:0 auto">
+  <figcaption>Figure 15. Ablation: top-1 accuracy with parts of the engine switched off ({{ abl_n }} stratified test
+    patients, up to 100 per disease).</figcaption>
+</figure>
+<h3>Triage safety</h3>
+<div class="two">
+  <figure style="margin-top:0">
+    <img src="{{ fig['triage_matrix'] }}" alt="Triage confusion matrix">
+    <figcaption>Figure 16. Triage on the full test split. Rows: the level implied by the true disease; columns: the level
+      DDX-ES gave. Right of the diagonal is under-triage.</figcaption>
+  </figure>
+  <div>
+    <p>Every emergency is triaged as an emergency, and every emergency or urgent case at least as urgent. Under-triage
+      is {{ under }}; over-triage is {{ over }}, the price of the smoke alarm in section 8.</p>
+    <p><b>Every rule checked.</b> All {{ n_rules }} rules were run on {{ rv_n }} held-out validation patients:
+      {{ rv_fire }} of them fire, and the median precision of the diagnostic rules is {{ rv_prec }} (median lift
+      {{ rv_lift }}). The weakest are broad screening criteria, such as the WHO influenza-like-illness definition, which
+      are written to catch every case rather than to be precise.</p>
+  </div>
+</div>
+</section>
+
+<!-- 14 ----------------------------------------------------------------------------------------------------------->
+<section>
+<div class="intro">
+<h2><span class="n">14</span>What it cannot do</h2>
+<p class="lead">The results are strong, and their limits matter just as much.</p>
+{{ analogy("A simulator licence is not a pilot's licence. Excellent scores on synthetic patients show that the
+  reasoning works as designed, not that it is safe for real patients.") }}
+</div>
+<ul>
+  <li><b>Synthetic data, circular by construction.</b> The patients were generated from the same knowledge base DDX-ES
+    uses, so set covering is exact here. Real patients have several diseases at once, forget symptoms and answer
+    inconsistently.</li>
+  <li><b>Independent evidence.</b> Summing log likelihood ratios assumes the findings are independent; they are not, so
+    the probabilities are overconfident.</li>
+  <li><b>Mapping fidelity.</b> {{ fid['partial'] + fid['proxy'] }} rules need vital signs, tests, an examination or a
+    duration that the questionnaire cannot ask.</li>
+  <li><b>Certainty factors.</b> They were assigned from the sources on a fixed scale and agree only moderately with the
+    precision measured on patients.</li>
+  <li><b>One disease at a time.</b> Set covering looks for one disease that explains everything.</li>
+</ul>
+<div class="ethics"><b>Ethics.</b> DDX-ES is an educational prototype on synthetic data. It is not a medical device, it
+  has not been validated with clinicians or real patients, and it must not be used for medical decisions; the
+  interface says so on every page. The rules paraphrase published criteria with citations, and the clinical documents
+  remain the authority.</div>
+</section>
+
+<!-- 15 ----------------------------------------------------------------------------------------------------------->
+<section class="keep">
+<h2><span class="n">15</span>Try it yourself</h2>
+<pre>git clone https://github.com/zidanarsyad/ddx-expert-system.git
+cd ddx-expert-system
+python -m venv .venv                          <span class="c"># then activate it</span>
+pip install -r requirements.txt &amp;&amp; pip install -e .
+
+ddxes serve                                   <span class="c"># web interface at http://127.0.0.1:8000</span>
+ddxes diagnose --patient T002456 --trace      <span class="c"># the worked example of section 12</span>
+ddxes explain --patient T002456 --why-not Pneumonia
+ddxes consult                                 <span class="c"># interactive; type why, how or triage</span>
+ddxes sparql queries/q08-provenance.rq        <span class="c"># the provenance query of section 11</span></pre>
+</section>
+
+<!-- 16 ----------------------------------------------------------------------------------------------------------->
+<section class="newpage">
+<h2><span class="n">16</span>Glossary</h2>
+{% set terms = [
+  ("Abduction", "reasoning from observed effects (symptoms) back to the causes (diseases) that would explain them", 6),
+  ("Ablation", "switching off one part of a system to measure what that part contributes", 13),
+  ("Antecedent", "a risk factor or piece of history, such as recent surgery or smoking", 2),
+  ("Backward chaining", "reasoning from a goal, such as a disease to confirm or rule out, back to the facts and questions it needs", 9),
+  ("Certainty factor (CF)", "a number from −1 to +1 on a rule: how much its evidence raises or lowers belief", 7),
+  ("Chief complaint", "the main symptom the patient comes with; the consultation starts from it", 9),
+  ("Differential diagnosis", "the ranked list of diseases that could explain the patient's findings", 1),
+  ("Expected information gain", "how much the answer to a question is expected to reduce the uncertainty about the diagnosis", 9),
+  ("Forward chaining", "firing every rule whose conditions hold and repeating until nothing new follows", 6),
+  ("Knowledge graph", "knowledge stored as a network of facts, each a subject–predicate–object triple", 4),
+  ("Likelihood ratio (LR)", "how much more often a finding occurs with a disease than without it", 7),
+  ("Log-odds", "the logarithm of the odds; in log-odds, evidence adds instead of multiplying", 7),
+  ("Mapping fidelity", "how completely a rule captures its published criterion: faithful, partial or proxy", 3),
+  ("Naive Bayes", "a simple machine-learning classifier that treats findings as independent; the baseline here", 13),
+  ("Ontology", "the vocabulary of the graph: classes such as Pathology or Rule, and the properties that link them", 4),
+  ("OWL 2 RL", "a rule-based profile of the Web Ontology Language; its reasoner adds the triples that follow from the ontology", 4),
+  ("Prior, posterior", "the probability of a disease before and after the patient's evidence is taken into account", 7),
+  ("PROV-O", "the W3C vocabulary for provenance: what produced a piece of data, and from what", 11),
+  ("RDF triple", "one fact of the graph: subject, predicate, object, such as :PulmonaryEmbolism :hasSymptom :E_45", 4),
+  ("Red flag", "a finding that calls for urgent care whatever the final diagnosis", 8),
+  ("Set covering", "keeping only the diseases whose profile explains every reported symptom", 6),
+  ("SPARQL", "the query language for RDF graphs, as SQL is for tables", 4),
+  ("Strata", "the layers in which rules fire; a rule runs only after the rules that produce what it reads", 5),
+  ("Top-1 accuracy (GTPA@1)", "the share of patients whose true disease is ranked first", 13),
+  ("Triage", "deciding how urgently a patient needs care: Emergency, Urgent, Non-urgent or Self-care", 8),
+  ("Turtle (.ttl)", "a plain-text file format for RDF triples", 4),
+  ("Under-, over-triage", "a level less, or more, urgent than the patient needs; under-triage is the unsafe error", 8),
+  ("Wells score", "a clinical score for the probability of pulmonary embolism (Wells et al., 2000)", 5),
+] %}
+<dl class="glossary">
+  {% for term, dfn, ref in terms %}
+  <div><dt>{{ term }}</dt> <dd>{{ dfn }} <span class="ref">§{{ ref }}</span></dd></div>
+  {% endfor %}
+</dl>
+</section>
+
+</body>
+</html>

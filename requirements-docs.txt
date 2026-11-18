@@ -1,4 +1,4 @@
-# Only needed to rebuild the figures, the report PDF and the slide deck
+# Only needed to rebuild the figures, the report PDF, the slide deck and the explainer PDF
 matplotlib>=3.8
 python-pptx>=1.0
 Pillow>=10.0
