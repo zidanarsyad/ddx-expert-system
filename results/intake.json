@@ -1,0 +1,1757 @@
+{
+ "description": "Free-text intake on one DDXPlus demo patient per pathology: a writer model describes the patient (main complaint + up to 5 findings), the intake reads it, the consultation continues from the reading and answers the rest from the record.",
+ "writer": [
+  "gemini (gemini-flash-latest)",
+  "openrouter (nvidia/nemotron-3.5-super-vl:free)"
+ ],
+ "reader": "groq (qwen/qwen3.8-27b)",
+ "patients": 15,
+ "languages": {
+  "en": {
+   "descriptions": 15,
+   "findings_mentioned": 112,
+   "findings_read": 109,
+   "precision_vs_record": 0.9908,
+   "recall_of_mentioned": 0.9464,
+   "f1": 0.9681,
+   "main_complaint": 0.8667,
+   "age": 1.0,
+   "sex": 0.8,
+   "seconds_per_reading": 2.634,
+   "dropped_per_reading": 0.1333,
+   "top1": 1.0,
+   "top3": 1.0,
+   "questions": 0.1333
+  },
+  "id": {
+   "descriptions": 15,
+   "findings_mentioned": 112,
+   "findings_read": 110,
+   "precision_vs_record": 0.9636,
+   "recall_of_mentioned": 0.9464,
+   "f1": 0.955,
+   "main_complaint": 0.7333,
+   "age": 1.0,
+   "sex": 0.8667,
+   "seconds_per_reading": 3.0193,
+   "dropped_per_reading": 0.1333,
+   "top1": 0.9333,
+   "top3": 0.9333,
+   "questions": 0.2667
+  }
+ },
+ "baseline": {
+  "top1": 0.9333,
+  "top3": 1.0,
+  "questions": 4.2
+ },
+ "oracle": {
+  "top1": 1.0,
+  "top3": 1.0,
+  "questions": 0.1333
+ },
+ "cases": [
+  {
+   "patient": "T006474",
+   "pathology": "Acute COPD exacerbation / infection",
+   "mentioned": [
+    "E_199",
+    "E_201",
+    "E_214",
+    "E_66",
+    "E_77",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I'm a 44-year-old man, and I've come in because I'm struggling with a bad cough that brings up a lot of colored phlegm. Every time I breathe out, there's a whistling noise in my chest, and it's gotten really hard for me to catch my breath. I smoke cigarettes and work on construction sites, which might be related, but the breathing trouble is really worrying me.",
+    "id": "Dok, saya pria 44 tahun dan belakangan ini batuk saya makin parah sampai mengeluarkan dahak berwarna yang cukup banyak. Dada saya juga bunyi 'ngik-ngik' tiap mengembuskan napas, dan sekarang rasanya sesak sekali untuk bernapas lega. Keseharian saya memang aktif merokok dan bekerja sebagai buruh bangunan di proyek, tapi kondisi napas saya ini sudah sangat mengganggu."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 7,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "correct": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "found": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.78,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "correct": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "found": [
+     "E_199",
+     "E_201",
+     "E_214",
+     "E_66",
+     "E_77",
+     "E_79"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.02,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000834",
+   "pathology": "Acute dystonic reactions",
+   "mentioned": [
+    "E_128",
+    "E_147",
+    "E_180",
+    "E_192",
+    "E_205",
+    "E_62"
+   ],
+   "texts": {
+    "en": "I'm 9 years old and I can't control where my eyes go. My neck muscles are sore and tight, so I can't turn my head to one side. I also have jaw pain and trouble opening my mouth, and I sometimes feel like I can't breathe or speak for a moment. I take stimulant drugs and recently got medicine through an IV in the hospital for feeling sick and agitated.",
+    "id": "Saya berusia 9 tahun dan tidak bisa mengontrol arah mataku. Otot leher saya kaku dan sakit, jadi saya tidak bisa memutar kepala ke satu sisi. Saya juga merasa sakit di rahang dan sulit membuka mulut, serta kadang-kadang merasa sesak napas dan tidak bisa bicara sejenak. Saya rutin minum obat stimulan dan baru-baru ini mendapat obat melalui suntikan di rumah sakit karena merasa mual dan gelisah."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_62"
+    ],
+    "correct": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_62"
+    ],
+    "found": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_62"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.13,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_38",
+     "E_62"
+    ],
+    "correct": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_62"
+    ],
+    "found": [
+     "E_128",
+     "E_147",
+     "E_180",
+     "E_192",
+     "E_205",
+     "E_62"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.81,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T008034",
+   "pathology": "Acute laryngitis",
+   "mentioned": [
+    "E_116",
+    "E_212",
+    "E_48",
+    "E_49",
+    "E_53",
+    "E_54=V_181",
+    "E_55=V_148",
+    "E_55=V_163",
+    "E_56=2",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I'm a 16-year-old girl, and my voice has turned really raspy and much deeper recently. My throat and the area right under my jaw have a slight burning ache, about a two out of ten, and I just had a cold sometime in the past two weeks. I also smoke cigarettes, work at a daycare, and live in a crowded house with at least four other people.",
+    "id": "Saya perempuan usia 16 tahun, dan suara saya belakangan ini terdengar serak serta jadi lebih berat dari biasanya. Tenggorokan dan area di bawah rahang saya terasa agak perih panas, meski ringankan saja sekitar skala dua, dan sekitar dua minggu terakhir ini saya memang sempat pilek. Sehari-hari saya merokok, mengajar di tempat penitipan anak, dan di rumah saya tinggal bersama empat orang lebih."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 4,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "correct": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "found": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.37,
+    "dropped": 2,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_148",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "correct": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_148",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "found": [
+     "E_116",
+     "E_212",
+     "E_48",
+     "E_49",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_148",
+     "E_55=V_163",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.42,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T012605",
+   "pathology": "Acute otitis media",
+   "mentioned": [
+    "E_114",
+    "E_201",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_129",
+    "E_55=V_130",
+    "E_56=6",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I'm a 28-year-old man, and I've come in because I'm running a fever and also have a cough. On top of that, I have a sharp pain in both of my ears that I'd rate around a 6 out of 10. Dealing with all of this has also made me feel unusually irritable and moody lately.",
+    "id": "Saya pria 28 tahun, ke sini karena badan saya panas dan saya juga batuk-batuk. Selain itu, kedua telinga saya rasanya sakit menusuk, kalau dinilai kira-kira di tingkat 6 dari 10. Sakit ini bikin emosi saya jadi gampang tersulut dan suasana hati saya belakangan ini tidak stabil."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "correct": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "found": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.74,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "correct": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "found": [
+     "E_114",
+     "E_201",
+     "E_53",
+     "E_55=V_129",
+     "E_55=V_130",
+     "E_56=6",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.81,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T006830",
+   "pathology": "Acute pulmonary edema",
+   "mentioned": [
+    "E_104",
+    "E_106",
+    "E_175",
+    "E_217",
+    "E_53",
+    "E_54=V_183",
+    "E_55=V_29",
+    "E_55=V_34",
+    "E_56=2",
+    "E_67"
+   ],
+   "texts": {
+    "en": "I'm a 37-year-old woman and I keep waking up in the middle of the night feeling like I'm choking and gasping for breath, which gets worse when I'm lying flat and only eases up if I sit up. On top of that, I feel completely drained, generally unwell, and have muscle aches all over. I also have a mild, heavy ache rated about a 2 out of 10 in my lower chest and right ankle, and I already manage heart failure and high blood pressure.",
+    "id": "Saya seorang perempuan berusia 37 tahun, dan akhir-akhir ini saya sering terbangun tengah malam karena tersedak dan sesak napas hebat yang terasa makin berat kalau berbaring tapi membaik begitu saya duduk. Seluruh tubuh saya juga mendadak terasa sangat lemas, pegal-pegal tidak jelas, dan badan rasanya tidak enak secara keseluruhan. Selain itu, ada rasa berat yang samar dengan skala 2 di dada bagian bawah serta pergelangan kaki kanan saya, padahal selama ini saya juga punya riwayat gagal jantung dan darah tinggi."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "correct": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "found": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.89,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "correct": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "found": [
+     "E_104",
+     "E_106",
+     "E_175",
+     "E_217",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_29",
+     "E_55=V_34",
+     "E_56=2",
+     "E_67"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.36,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T021632",
+   "pathology": "Acute rhinosinusitis",
+   "mentioned": [
+    "E_103",
+    "E_120",
+    "E_121",
+    "E_124",
+    "E_226",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_122",
+    "E_55=V_126",
+    "E_56=7"
+   ],
+   "texts": {
+    "en": "I am a 12-year-old girl and I cannot smell anything. I have sharp pain in my nose and left eye that is about a 7 out of 10. I have a deviated septum, nasal polyps, asthma, and I am prone to allergies.",
+    "id": "Saya seorang anak perempuan berusia 12 tahun dan tidak bisa mencium bau apa pun. Saya merasa rasa sakit yang tajam di hidung dan mata kiri, sekitar 7 dari 10. Saya punya selangit hidung yang runtuh, polip di hidung, asma, dan mudah mengalami alergi."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": false,
+    "top3": true,
+    "questions": 4,
+    "triage": "SelfCare"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_103",
+     "E_120",
+     "E_121",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "correct": [
+     "E_103",
+     "E_120",
+     "E_121",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "found": [
+     "E_103",
+     "E_120",
+     "E_121",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.19,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_103",
+     "E_120",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "correct": [
+     "E_103",
+     "E_120",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "found": [
+     "E_103",
+     "E_120",
+     "E_124",
+     "E_226",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_122",
+     "E_55=V_126",
+     "E_56=7"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.17,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T010698",
+   "pathology": "Allergic sinusitis",
+   "mentioned": [
+    "E_169",
+    "E_170",
+    "E_181",
+    "E_201",
+    "E_86"
+   ],
+   "texts": {
+    "en": "I'm a 19-year-old guy, and I've come in because the inside of my nose and the back of my throat are constantly tickling and itchy. My nose is also all stuffed up and dripping clear snot, I've developed a cough, and both of my eyes itch intensely. Several people in my immediate family deal with things like eczema, hay fever, and other allergies.",
+    "id": "Dok, saya laki-laki 19 tahun, tenggorokan dan hidung bagian dalam saya rasanya gatal banget sampai bikin tidak nyaman. Hidung saya juga mampet dan terus keluar ingus bening, ditambah saya batuk-batuk dan kedua mata saya gatalnya luar biasa. Di keluarga dekat saya memang ada riwayat yang punya alergi, biduran atau eksim, dan bersin-bersin karena debu."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "correct": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "found": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.06,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "correct": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "found": [
+     "E_169",
+     "E_170",
+     "E_181",
+     "E_201",
+     "E_86"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.08,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T001618",
+   "pathology": "Anaphylaxis",
+   "mentioned": [
+    "E_12",
+    "E_151",
+    "E_152=V_108",
+    "E_152=V_89",
+    "E_226",
+    "E_53",
+    "E_54=V_182",
+    "E_55=V_187",
+    "E_55=V_84",
+    "E_56=4",
+    "E_66",
+    "E_82"
+   ],
+   "texts": {
+    "en": "I'm a 30-year-old woman and I'm really struggling to catch my breath right now. My right cheek and forehead are puffing up, and I feel lightheaded like I might pass out. I also have crampy pain around my stomach and right side that's about a 4 out of 10, which worries me because I have severe food allergies and generally pick up allergies way easier than most people.",
+    "id": "Dok, saya wanita 30 tahun dan napas saya terasa sesak sekali sampai susah untuk bernapas lega. Kening dan pipi kanan saya mulai bengkak, kepala saya juga sangat pusing melayang seperti mau pingsan. Perut dan pinggang kanan saya juga kram dengan skala nyeri sekitar 4 dari 10, dan saya cemas karena memang punya riwayat alergi makanan yang parah serta dari dulu tubuh saya jauh lebih gampang alergi dibanding orang lain."
+   },
+   "writer": "gemini (gemini-flash-latest)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "correct": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "found": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.31,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "correct": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "found": [
+     "E_12",
+     "E_151",
+     "E_152=V_108",
+     "E_152=V_89",
+     "E_226",
+     "E_53",
+     "E_54=V_182",
+     "E_55=V_187",
+     "E_55=V_84",
+     "E_56=4",
+     "E_66",
+     "E_82"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 4.26,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000654",
+   "pathology": "Anemia",
+   "mentioned": [
+    "E_140",
+    "E_167",
+    "E_208",
+    "E_24",
+    "E_66",
+    "E_82"
+   ],
+   "texts": {
+    "en": "I am 48 years old and my stool has been black like coal lately. I feel dizzy and lightheaded, and I am having trouble breathing. I am underweight, I have had anemia before, and I am pregnant.",
+    "id": "Saya berusia 48 tahun dan buat air besar berwarna hitam seperti arang akhir-akhir ini. Saya merasa pusing dan pingsan, serta sesak napas. Saya berat badan kurang, pernah mengalami anemia, dan sedang hamil."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 1,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66",
+     "E_76"
+    ],
+    "correct": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66",
+     "E_76"
+    ],
+    "found": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 0.97,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66",
+     "E_82"
+    ],
+    "correct": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66",
+     "E_82"
+    ],
+    "found": [
+     "E_140",
+     "E_167",
+     "E_208",
+     "E_24",
+     "E_66",
+     "E_82"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.34,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000063",
+   "pathology": "Atrial fibrillation",
+   "mentioned": [
+    "E_105",
+    "E_155",
+    "E_22",
+    "E_66",
+    "E_70",
+    "E_76"
+   ],
+   "texts": {
+    "en": "I'm a 21-year-old man and I've been having a lot of trouble breathing lately. I have a heart valve problem, I'm overweight, and I've had chest pain from angina before. I also feel dizzy sometimes and my heart races or skips beats.",
+    "id": "Saya pria berusia 21 tahun dan terakhir ini saya sering sesak napas. Saya punya masalah pada katup jantung, berat badan saya berlebih, dan pernah merasakan nyeri dada karena angina. Kadang-kadang saya juga merasa pusing dan jantung saya berdebar kencang atau terasa lelet."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 12,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "correct": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "found": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.94,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 2,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "correct": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "found": [
+     "E_105",
+     "E_155",
+     "E_22",
+     "E_66",
+     "E_70",
+     "E_76"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.31,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 2,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T001876",
+   "pathology": "Boerhaave",
+   "mentioned": [
+    "E_148",
+    "E_210",
+    "E_211",
+    "E_53",
+    "E_54=V_179",
+    "E_55=V_103",
+    "E_55=V_187",
+    "E_56=9",
+    "E_78"
+   ],
+   "texts": {
+    "en": "I'm 26 and I've been vomiting several times. I feel nauseous and have thrown up blood that looks like coffee grounds. I have severe pain in my right upper belly and stomach that feels like a knife stab, about a 9 out of 10. I also drink alcohol excessively.",
+    "id": "Saya perempuan berusia 26 tahun dan sudah muntah beberapa kali. Saya merasa mual dan sudah muntah darah yang seperti kopi bubuk. Saya merasa sakit parah di perut kanan atas dan perut, seperti ditusuk pisang, sekitar 9 dari 10. Saya juga sering minum alkohol berlebihan."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_187",
+     "E_55=V_197",
+     "E_56=9",
+     "E_78"
+    ],
+    "correct": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_187",
+     "E_55=V_197",
+     "E_56=9",
+     "E_78"
+    ],
+    "found": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_187",
+     "E_56=9",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 20.21,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_103",
+     "E_55=V_187",
+     "E_56=9",
+     "E_78"
+    ],
+    "correct": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_103",
+     "E_55=V_187",
+     "E_56=9",
+     "E_78"
+    ],
+    "found": [
+     "E_148",
+     "E_210",
+     "E_211",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_103",
+     "E_55=V_187",
+     "E_56=9",
+     "E_78"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 21.87,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T007582",
+   "pathology": "Bronchiectasis",
+   "mentioned": [
+    "E_118",
+    "E_18",
+    "E_201",
+    "E_227",
+    "E_45",
+    "E_77"
+   ],
+   "texts": {
+    "en": "I'm a 30-year-old man and I've been coughing up colored mucus more than usual. I've coughed up blood before, and I've had pneumonia in the past. I also have cystic fibrosis and a weakened immune system.",
+    "id": "Saya pria berusia 30 tahun dan batuk saya mengeluarkan lendir berwarna lebih banyak dari biasanya. Sebelumnya saya pernah mengeluarkan darah saat batuk dan pernah terkena pneumonia. Saya juga menderita cystic fibrosis dan sistem kekebalan tubuh saya lemah."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 4,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "correct": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "found": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 0.94,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "correct": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "found": [
+     "E_118",
+     "E_18",
+     "E_227",
+     "E_45",
+     "E_77"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 0.99,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T003775",
+   "pathology": "Bronchiolitis",
+   "mentioned": [
+    "E_142",
+    "E_181",
+    "E_183",
+    "E_214",
+    "E_66",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I am a 1-year-old woman living in a rural area, and I have been hearing a wheezing sound when I breathe out. I am having significant trouble breathing, along with a fever and a clear runny nose. My mother also has asthma.",
+    "id": "Saya seorang wanita berusia 1 tahun yang tinggal di pedesaan, dan saya mendengar suara ngeeh saat menghembuskan napas. Saya merasa sesak napas yang cukup parah, demam, dan hidung berair jernih. Ibu saya juga asma."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 8,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "correct": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "found": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.19,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "correct": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "found": [
+     "E_142",
+     "E_181",
+     "E_183",
+     "E_214",
+     "E_66",
+     "E_91"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.52,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T007713",
+   "pathology": "Bronchitis",
+   "mentioned": [
+    "E_201",
+    "E_209",
+    "E_214",
+    "E_219",
+    "E_77",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I'm a 34-year-old man and my cough is worse at night. I hear a wheezing sound when I breathe out and I'm coughing up more colored mucus than usual. I smoke cigarettes, but my vaccinations are up to date.",
+    "id": "Saya pria berusia 34 tahun. Batuk saya semakin parah di malam hari, dan ada suara ngi-ngi saat saya menghela napas keluar. Saya juga batuk dengan lebih banyak balgam berwarna dari biasanya. Saya merokok, tapi imunisasi saya sudah lengkap."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "correct": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "found": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 0.8,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "correct": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "found": [
+     "E_201",
+     "E_209",
+     "E_214",
+     "E_219",
+     "E_77",
+     "E_79"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.34,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000604",
+   "pathology": "Bronchospasm / acute asthma exacerbation",
+   "mentioned": [
+    "E_116",
+    "E_124",
+    "E_201",
+    "E_226",
+    "E_66",
+    "E_87"
+   ],
+   "texts": {
+    "en": "I'm 76 years old, and I've been having a lot of trouble breathing lately. I also have a cough and I've had a cold for the past couple of weeks. I have asthma, and both my allergies and asthma run in my family.",
+    "id": "Saya berusia 76 tahun dan terakhir ini sering sesak napas. Saya juga batuk dan sudah pilek selama dua minggu terakhir. Saya asma, dan alergi serta asma juga ada di keluarga saya."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 13,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_116",
+     "E_124",
+     "E_201",
+     "E_66",
+     "E_86",
+     "E_87"
+    ],
+    "correct": [
+     "E_116",
+     "E_124",
+     "E_201",
+     "E_66",
+     "E_87"
+    ],
+    "found": [
+     "E_116",
+     "E_124",
+     "E_201",
+     "E_66",
+     "E_87"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 0.99,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_86",
+     "E_87"
+    ],
+    "correct": [
+     "E_124",
+     "E_201",
+     "E_66",
+     "E_87"
+    ],
+    "found": [
+     "E_124",
+     "E_201",
+     "E_66",
+     "E_87"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 0.99,
+    "dropped": 0,
+    "consultation": {
+     "top1": false,
+     "top3": false,
+     "questions": 2,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ ]
+}

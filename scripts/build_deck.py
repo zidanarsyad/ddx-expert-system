@@ -311,6 +311,12 @@ KG, SUMMARY = jload("kg/stats.json"), jload("data/processed/summary.json")
 MAIN, ABL, SENS = jload("results/main.json"), jload("results/ablation.json"), jload("results/triage_sensitivity.json")
 RV, CONS, CURVE = jload("results/rule_validation.json"), jload("results/consultation.json"), jload("results/consultation_curve.json")
 EARLY = jload("results/early_triage.json")
+INTAKE = jload("results/intake.json")          # the optional free-text intake (scripts/evaluate_intake.py)
+IL = INTAKE["languages"]
+N_PATH = len(jload("data/processed/pathologies.json"))
+INTAKE_SCOPE = ("one per pathology" if INTAKE["patients"] >= N_PATH else
+                f"one for each of the first {INTAKE['patients']} pathologies; the daily token limit of the free tier "
+                "ended the run there")
 ASSERTED = sum(KG[k] for k in ("ontology", "kb", "rules", "stats", "cases"))
 CAT, FID = Counter(r.category for r in RULES), Counter(r.fidelity for r in RULES)
 SRC_TYPES = Counter(SOURCES[s]["type"] for s in CITED)
@@ -349,26 +355,28 @@ def build(kb):
                    "symptom questionnaire and returns a differential diagnosis, a triage level and recommended next "
                    "steps, and explains every one of these conclusions with the rules that fired, the facts they "
                    "matched and the published guideline each rule encodes. The knowledge, the rules and the reasoning "
-                   "trail all live in one RDF/OWL knowledge graph.")
+                   "trail are all stored in one RDF/OWL knowledge graph.")
 
     # 2 ------------------------------------------------------------------------ agenda
-    s = d.content("What we built, mapped to the assignment",
+    s = d.content("Assignment components and deliverables",
                   "The assignment asks for four components and three deliverables. Each card maps one component to the "
-                  "slides that answer it. The fourth component, machine learning, is optional; we use it only as a "
-                  "baseline and a second opinion, so the expert system stays the core. The report, this deck and the "
-                  "repository with its README are the deliverables.")
+                  "slides that answer it. The fourth component, machine learning or a language model, is optional. We "
+                  "use a naive-Bayes classifier as a baseline and in a hybrid mode, and a language model only to read "
+                  "a free-text description into the questionnaire, so the expert system remains the core. The report, "
+                  "this deck and the repository with its README are the deliverables.")
     cards = [("Ontology + knowledge graph",
               f"Hand-written OWL 2 ontology; {fmt(ASSERTED)} asserted triples in six Turtle files; the OWL 2 RL "
               f"closure adds {fmt(KG['inferred'])}.", "Slide 8"),
              ("IF–THEN rules with references",
               f"{len(RULES)} rules from {len(CITED)} published sources — guidelines, case definitions, criteria — "
               "each with its DOI and mapping fidelity.", "Slides 5–7"),
-             ("Reasoning that explains itself",
+             ("Reasoning and explanations",
               "Forward chaining, abduction, certainty factors, safety-first triage and a consultation; HOW, WHY, "
               "WHY NOT and PROV-O provenance.", "Slides 9–17"),
-             ("Machine learning (optional)",
-              "A naive-Bayes classifier on the same counts as baseline, and a hybrid mode; evaluated on "
-              f"{fmt(MAIN['patients'])} test patients.", "Slides 18–21")]
+             ("Machine learning and LLM (optional)",
+              f"A naive-Bayes baseline and a hybrid mode on the same counts ({fmt(MAIN['patients'])} test "
+              "patients); a language-model intake that reads free text in English or Bahasa Indonesia.",
+              "Slides 12, 18–21")]
     cw = (X1 - X0 - 3 * 16) / 4
     for i, (head, body, ref) in enumerate(cards):
         x = X0 + i * (cw + 16)
@@ -382,22 +390,22 @@ def build(kb):
     text(s, X0 + 16, 430, X1 - X0 - 32, 42,
          [[("Deliverables: ", {"font": BOLD, "color": BLUE}),
            ("report (PDF, FMIPA UGM format) · this presentation · repository ddx-expert-system with a README on how "
-            "to run it — 111 tests, every result reproducible from the raw data", {})]],
+            "to run it — 120 tests, every result reproducible from the raw data", {})]],
          size=12, anchor=MSO_ANCHOR.MIDDLE)
 
     # 3 ------------------------------------------------------------------- the problem
-    s = d.content("Why an expert system for symptom checking?",
+    s = d.content("Problem statement and objectives",
                   "A symptom checker asks questions, ranks the possible diseases and says how urgently to seek care. "
                   "Learned models can be accurate, but they cannot say which facts and which guideline support a "
-                  "decision, and the dangerous error is under-triage: telling an emergency patient to wait. Classic "
-                  "expert systems such as MYCIN and INTERNIST-I explain by construction, but their knowledge was "
-                  "hand-coded and hard to audit. Our objectives combine the two worlds: auditable knowledge in a "
-                  "graph, rules with sources, reasoning that explains, evaluated on a large benchmark.")
+                  "decision, and the dangerous error is under-triage: assigning an emergency patient a lower urgency. "
+                  "Classic expert systems such as MYCIN and INTERNIST-I explain by construction, but their knowledge "
+                  "was hand-coded and hard to audit. Our objectives combine the two approaches: auditable knowledge in "
+                  "a graph, rules with sources, explainable reasoning, evaluated on a large benchmark.")
     probs = [("Ranking and urgency. ", "From a few answers, propose a differential diagnosis and a triage level "
               "(Emergency, Urgent, Non-urgent, Self-care)."),
-             ("Accuracy is not enough. ", "A learned model cannot say which facts and which guideline support its "
+             ("Limited explainability. ", "A learned model cannot say which facts and which guideline support its "
               "answer; clinicians cannot check it."),
-             ("Safety first. ", "Under-triage — an emergency told to wait — is the error that must not happen."),
+             ("Patient safety. ", "Under-triage — assigning an emergency a lower urgency — is the most serious error."),
              ("Classic expert systems explain ", "(MYCIN, INTERNIST-I), but hand-coded knowledge without sources is "
               "hard to audit and maintain.")]
     text(s, X0, 108, 440, 360, [[(a, {"font": BOLD, "color": BLUE}), (b, {})] for a, b in probs],
@@ -447,7 +455,7 @@ def build(kb):
           "statistics describe that knowledge base, not real-world prevalence."], size=11.5, color=MUTED)
 
     # 5 ------------------------------------------------------------ three sources
-    s = d.content("Three sources of knowledge, one graph",
+    s = d.content("Integration of the knowledge sources",
                   "The knowledge has three sources. First, the DDXPlus expert knowledge base: which symptoms and risk "
                   "factors each pathology can produce, with severity and ICD-10 chapter. Second, published clinical "
                   "criteria and guidelines, from which we wrote the IF-THEN rules; every DOI was resolved against "
@@ -492,7 +500,7 @@ def build(kb):
                   "Each criterion was translated item by item into DDXPlus questions. The Wells score for pulmonary "
                   "embolism shows the typical situation: most items map to a question, some only approximately, and "
                   "some cannot be asked at all, such as the heart rate. Every rule records this as its mapping "
-                  "fidelity, with a note on what is missing, so the knowledge base is honest about how closely it "
+                  "fidelity, with a note on what is missing, so the knowledge base documents how closely each rule "
                   "follows its source. Certainty factors follow a fixed scale tied to the strength of the source.")
     rows = [["Wells item", "Points", "DDXPlus question(s)", "Mapping"],
             ["Clinical signs of DVT", "3", "E_151 swelling, E_152 in calf, popliteal fossa or thigh", "proxy"],
@@ -551,17 +559,17 @@ def build(kb):
 
     # 8 ------------------------------------------------------------------ the knowledge graph
     s = d.content("The knowledge graph: ontology, rules, OWL 2 RL",
-                  "All the knowledge lives in one RDF graph with a hand-written OWL 2 ontology in three parts: the "
+                  "All the knowledge is stored in one RDF graph with a hand-written OWL 2 ontology in three parts: the "
                   "domain (pathologies, evidences, answer values, patients), the rule vocabulary (rules are prov:Plan, "
-                  "with condition trees, consequents, certainty factors and sources) and the provenance model. Rules "
-                  "are data: they are written in YAML, stored as RDF, and the engine reads them back from the graph; "
-                  "the build checks that the round trip is lossless. The OWL 2 RL closure matters: the red-flag rules, "
-                  "the disease families and the 888 disease profiles the engine uses are entailed, not asserted. Query "
-                  "q11 shows it: with the closure, pulmonary embolism is the only pathology that explains every "
-                  "symptom of patient T002456; without it, none is found.")
+                  "with condition trees, consequents, certainty factors and sources) and the provenance model. The "
+                  "rules are represented as data: they are written in YAML, stored as RDF, and the engine reads them "
+                  "back from the graph; the build checks that the round trip is lossless. The engine depends on the "
+                  "OWL 2 RL closure: the red-flag rules, the disease families and the 888 disease profiles it uses are "
+                  "entailed, not asserted. Query q11 illustrates this: with the closure, pulmonary embolism is the "
+                  "only pathology that explains every symptom of patient T002456; without it, none is found.")
     _, (_, iy, _, ih) = image(s, FIG / "ontology.png", X0, 104, w=420, border=True)
     by = iy + ih + 12
-    text(s, X0, by, 420, 20, [[("Rules are data: ", {"font": BOLD, "color": BLUE}),
+    text(s, X0, by, 420, 20, [[("Rule storage: ", {"font": BOLD, "color": BLUE}),
                                ("YAML → RDF, read back by the engine; round trip checked", {})]], size=11.5, after=0)
     code(s, X0, by + 24, 420, 476 - by - 24, """:Rule_D-PE-1 a :DiagnosticRule ;
   :premise [ a :AllOf ; :operands ( … ) ] ;
@@ -607,7 +615,7 @@ def build(kb):
               ("3  Aggregation", "Rule CFs and knowledge-base links (LR from counts, absent evidence too) summed as "
                "log likelihood ratios with the prior; softmax over candidates."),
               ("4  Triage, advice", "Red-flag rules and the severity schema propose levels; the most urgent with "
-               "CF ≥ 0.5 wins. Recommendation rules propose next steps.")]
+               "CF ≥ 0.5 is selected. Recommendation rules propose next steps.")]
     cw = (X1 - X0 - 3 * 14) / 4
     for i, (head, body) in enumerate(phases):
         x = X0 + i * (cw + 14)
@@ -617,13 +625,13 @@ def build(kb):
     s = d.content("Certainty factors as likelihood ratios",
                   "MYCIN combines certainty factors with a simple function. Heckerman showed in 1986 that a CF can be "
                   "read as a transformed likelihood ratio, and that combining CFs then equals multiplying likelihood "
-                  "ratios. This mattered in practice: with dozens of strong contributions, several hypotheses reached "
-                  "CF 1.0 within floating-point precision, and then the prior alone decided — every stable-angina "
-                  "patient of the demo sample was ranked as unstable angina. Computing the same calculus as a sum of "
-                  "log likelihood ratios removed the problem.")
+                  "ratios. This had practical consequences: with dozens of strong contributions, several hypotheses "
+                  "reached CF 1.0 within floating-point precision, and then the prior alone decided — every "
+                  "stable-angina patient of the demo sample was ranked as unstable angina. Computing the same calculus "
+                  "as a sum of log likelihood ratios removed the problem.")
     lw = 420
     box(s, X0, 106, lw, 370, fill=TINT)
-    text(s, X0 + 16, 116, lw - 32, 24, ["MYCIN, read probabilistically"], size=15, font=BOLD, color=BLUE)
+    text(s, X0 + 16, 116, lw - 32, 24, ["Probabilistic interpretation of CFs"], size=15, font=BOLD, color=BLUE)
     eqs = [("Parallel combination (Shortliffe & Buchanan, 1975)", "combine(a, b) = a + b (1 − a)   for a, b ≥ 0"),
            ("Heckerman (1986): a CF is a likelihood ratio λ", "CF = (λ − 1) / λ  if λ ≥ 1,   CF = λ − 1  if λ < 1"),
            ("so combining CFs multiplies likelihood ratios", "log odds(h | e₁…eₙ) = log odds(h) + Σᵢ log λᵢ")]
@@ -644,17 +652,17 @@ def build(kb):
          num_color=RED)
     stat(s, rx + (X1 - rx + 14) / 2, 300, (X1 - rx - 14) / 2, 110, "99.3%", "top-1, sum of log likelihood ratios",
          fill=GREENTINT, num_color=GREEN)
-    text(s, rx, 420, X1 - rx, 54, ["Same calculus, no saturation: evidence keeps counting after belief is high."],
+    text(s, rx, 420, X1 - rx, 54, ["In log space the calculus does not saturate: evidence still counts at high belief."],
          size=12, font=BOLD, color=BLUE)
 
     # 11 ------------------------------------------------------------- triage
-    s = d.content("Safety-first triage and recommendations",
+    s = d.content("Triage policy and recommendations",
                   "Triage combines two kinds of knowledge. Red-flag rules come from the guidelines and do not depend on "
                   "the diagnosis: anaphylaxis, suspected coronary syndrome, pulmonary embolism, Ebola after travel. "
                   "The severity schema is a rule over the graph: every hypothesis with probability at least 0.2 "
                   "proposes the level of its DDXPlus severity. The most urgent level proposed with CF at least 0.5 "
-                  "wins: we accept over-triage to avoid under-triage. Recommendation rules then propose next steps, "
-                  "each with its source.")
+                  "is selected: we accept over-triage to avoid under-triage. Recommendation rules then propose next "
+                  "steps, each with its source.")
     cw = (X1 - X0 - 2 * 16) / 3
     t_ex = [BY_ID[i] for i in ("T-ANA", "T-ACS", "T-PE", "T-EBOLA") if i in BY_ID]
     card(s, X0, 106, cw, 250, f"Red-flag rules ({CAT['triage']})",
@@ -675,9 +683,9 @@ def build(kb):
         text(s, sx + 116, y, cw - 130, 34, [lev], size=12, font=BOLD, color=WHITE, align=PP_ALIGN.CENTER,
              anchor=MSO_ANCHOR.MIDDLE, after=0)
     px = X0 + 2 * (cw + 16)
-    card(s, px, 106, cw, 250, "Policy: safety first",
-         ["The most urgent level proposed with CF ≥ 0.5 wins.",
-          "Over-triage is accepted to avoid under-triage — an emergency told to wait.",
+    card(s, px, 106, cw, 250, "Level selection policy",
+         ["The most urgent level proposed with CF ≥ 0.5 is selected.",
+          "Over-triage is accepted in order to avoid under-triaging emergencies.",
           "The explanation names the rule or the hypothesis behind the level."], size=11.5)
     r_ex = [BY_ID[i] for i in ("R-PE-HIGH", "R-ANA", "R-ACS") if i in BY_ID]
     box(s, X0, 370, X1 - X0, 104, fill=CODEBG, line=LINE)
@@ -694,13 +702,17 @@ def build(kb):
                   "backward chaining from goals: the leading hypotheses and any severe one still possible. For each "
                   "goal it collects the unknown conditions of its rules and the unasked questions of its profile, and "
                   "asks the question with the largest expected information gain. The WHY facility names the goal, "
-                  "the rule and the source. The rule-out phase was added after the evaluation showed it was needed.")
-    steps = [("Start", "age, sex and the chief complaint (open world: everything else unknown)"),
+                  "the rule and the source. The rule-out phase was added after the evaluation showed it was needed. "
+                  "A consultation can also start from a description in ordinary sentences, in English or Bahasa "
+                  "Indonesia: a language model maps it onto the questionnaire, every finding must quote the "
+                  "description, the user confirms the reading, and the consultation asks only what is still open.")
+    steps = [("Start", "age, sex and the chief complaint, or a free-text description read by a language model "
+                       "(open world: the rest is unknown)"),
              ("Goals", "the five leading hypotheses + every severe one with P ≥ 0.02"),
              ("Candidates", "unknown conditions of the goals' rules; unasked questions of their profiles"),
              ("Choose", "largest expected information gain, weighted up for guideline rules and severe goals"),
              ("Ask and explain", "WHY: goal, rule and source behind the question; HOW and triage at any time"),
-             ("Stop — or rule out", "at P ≥ 0.95, first ask the most specific question of each severe hypothesis still "
+             ("Stop or rule out", "at P ≥ 0.95, first ask the most specific question of each severe hypothesis still "
               "possible (P ≥ 10⁻⁴)")]
     for i, (head, body) in enumerate(steps):
         y = 106 + i * 62
@@ -711,7 +723,7 @@ def build(kb):
         text(s, X0 + 44, y, 420, 58, [[(head, {"font": BOLD, "color": RED if last else BLUE, "size": 13.5})], body],
              size=12, after=1, spacing=1.0)
     box(s, 548, 106, X1 - 548, 368, fill=TINT)
-    text(s, 564, 118, X1 - 580, 24, ["Why a rule-out phase?"], size=15, font=BOLD, color=BLUE)
+    text(s, 564, 118, X1 - 580, 24, ["Motivation for the rule-out phase"], size=15, font=BOLD, color=BLUE)
     text(s, 564, 150, X1 - 580, 150,
          [f"Stopping at P ≥ 0.95 alone left {pct(C0['urgent_missed'])} of the urgent patients with a non-urgent "
           "triage: Ebola and croup were improbable at the start, so travel to West Africa or stridor was never asked.",
@@ -725,7 +737,7 @@ def build(kb):
     # 13 ------------------------------------------------------------------ HOW
     s = d.content("HOW: a proof down to the patient's answers",
                   "This is the HOW explanation of patient T002456, drawn by the web interface from the proof tree. "
-                  "Read it from left to right: the patient's answers, highlighted in yellow, feed abstraction and "
+                  "It is read from left to right: the patient's answers, highlighted in yellow, feed abstraction and "
                   "scoring rules; every rule box shows the certainty factor it adds and its source. The derived facts, "
                   "in grey, include the signs of deep-vein thrombosis and the Wells score of 6.5, and the diagnostic "
                   "rules D-PE-1 and D-PE-3 conclude pulmonary embolism, so a clinician can check each step against "
@@ -757,15 +769,15 @@ def build(kb):
 
     # 15 ------------------------------------------------------------------ WHY NOT
     s = d.content("WHY NOT: the conditions that failed",
-                  "The WHY NOT explanation answers the question a clinician asks most often: why not this other "
-                  "disease? For anaphylaxis in patient T002456, set covering first says which reported symptom the "
+                  "The WHY NOT explanation addresses a frequent clinical question, namely why another disease was not "
+                  "concluded. For anaphylaxis in patient T002456, set covering first says which reported symptom the "
                   "pathology cannot explain — coughing up blood. Then every guideline rule for anaphylaxis is "
                   "evaluated condition by condition, each marked as holding, failing or not asked yet, so the user "
                   "sees exactly which criterion of Sampson's definition is not met.")
     image(s, FIG / "ui-whynot.png", X0, 104, w=X1 - X0, h=372, crop=(250, 215, 2640, 1075), border=True)
 
     # 16 ------------------------------------------------------------------ provenance
-    s = d.content("Provenance: the graph remembers why",
+    s = d.content("Provenance of inferences (W3C PROV-O)",
                   "After a consultation, the inferences are written back to the graph with the W3C PROV-O vocabulary: "
                   "each inference was generated by a rule firing, which used certain facts and beliefs and followed a "
                   "rule, which cites a source. So SPARQL can answer audit questions such as: why is this case an "
@@ -845,7 +857,7 @@ WHERE {
                   "commits to a diagnosis while the reference differential lists about ten. For triage, every emergency "
                   f"is triaged as an emergency. Under-triage is {pct(T['under'], 2)}, and over-triage, about one patient "
                   "in five, is the intended safety-first trade-off: guideline red flags such as suspected pulmonary "
-                  "embolism say Emergency where the DDXPlus severity scale says less.")
+                  "embolism assign Emergency where the DDXPlus severity scale assigns a lower level.")
     tiles = [(pct(es["top1"], 2), "top-1, DDX-ES (no training)", TINT, BLUE),
              (pct(nb["top1"], 2), "top-1, naive Bayes on the same counts", CODEBG, MUTED),
              (pct(hy["top1"], 2), "top-1, hybrid of the two", CODEBG, MUTED),
@@ -861,13 +873,13 @@ WHERE {
          size=11.5, color=MUTED, align=PP_ALIGN.CENTER)
 
     # 19 ------------------------------------------------------------------ ablation
-    s = d.content("Ablation: where the accuracy comes from",
+    s = d.content("Ablation study of the engine components",
                   "The ablation switches parts of the engine off on a stratified sample. The guideline rules alone "
                   "rank the true pathology first for only 30 percent of the patients: they describe syndromes that "
                   "several pathologies share and were never written to separate them. Set covering alone reaches 79 "
-                  "percent, both together 88. The calibrated knowledge-base links carry the ranking, 99 percent with "
-                  "covering. So the guideline rules earn their place elsewhere: concepts and scores, triage, "
-                  "recommendations and the explanations.")
+                  "percent, both together 88. The calibrated knowledge-base links account for the ranking accuracy, 99 "
+                  "percent with covering. The guideline rules therefore contribute elsewhere: concepts and scores, "
+                  "triage, recommendations and the explanations.")
     image(s, FIG / "ablation.png", X0, 104, w=540, h=372)
     rx = X0 + 556
     finds = [(pct(AB["Guideline rules only"]["top1"]), "guideline rules alone: syndromes shared by several pathologies",
@@ -877,19 +889,27 @@ WHERE {
     for i, (num, lab, fill, col) in enumerate(finds):
         stat(s, rx, 104 + i * 96, X1 - rx, 86, num, lab, fill=fill, num_color=col, num_size=24)
     text(s, rx, 396, X1 - rx, 80,
-         [[("The rules' value lies elsewhere: ", {"font": BOLD, "color": BLUE}),
-           ("concepts and scores, triage, recommendations — and the explanations cite them.", {})]], size=12)
+         [[("Role of the guideline rules: ", {"font": BOLD, "color": BLUE}),
+           ("concepts and scores, triage, recommendations; the explanations cite them.", {})]], size=12)
     text(s, X0, 478, 540, 16, [f"{fmt(ABL['patients'])} stratified test patients (up to 100 per pathology)"],
          size=9.5, color=MUTED)
 
     # 20 ------------------------------------------------------------------ consultation
-    s = d.content("Interactive consultation: fewer questions, no training",
+    s = d.content("Interactive consultation: evaluation",
                   "We simulated the consultation on the 980 demo patients by answering every question from the "
                   "patient's record. With a stopping threshold of 0.95, DDX-ES asks 3.8 questions on average after "
                   "the chief complaint and ranks the true pathology first for about 98 percent; at 0.99 it asks 4.2 "
                   "for 98.8 percent. The reinforcement-learning agents of the DDXPlus paper ask 6.7 and 18 questions "
                   "after training on a million patients; the comparison is indicative, because they report the whole "
-                  "test split. The rule-out phase makes the consultation safe for 0.7 extra questions.")
+                  "test split. The rule-out phase improves triage safety at the cost of 0.7 extra questions. Red-flag "
+                  "rules made no difference during the consultation, because their questions stay unasked; an early "
+                  "red-flag screen is future work. "
+                  f"The optional free-text intake was tested on {INTAKE['patients']} demo patients ({INTAKE_SCOPE}). "
+                  "A language model wrote each patient's description in English and in Indonesian; the intake read "
+                  f"them with {pct(IL['en']['precision_vs_record'])} and {pct(IL['id']['precision_vs_record'])} "
+                  "precision against the records, and the consultation then asked "
+                  f"{IL['en']['questions']:.1f} and {IL['id']['questions']:.1f} questions instead of "
+                  f"{INTAKE['baseline']['questions']:.1f}.")
     rows = [["System", "Questions", "Top-1", "Trained on patients"],
             ["AARLC (Fansi Tchango et al., 2022)", "6.73", "99.21%", "yes (RL)"],
             ["BASD (Fansi Tchango et al., 2022)", "17.99", "97.15%", "yes (RL)"],
@@ -900,7 +920,7 @@ WHERE {
     image(s, FIG / "consultation.png", X0, 288, w=472, h=188)
     rx = X0 + 492
     box(s, rx, 106, X1 - rx, 370, fill=TINT)
-    text(s, rx + 16, 116, X1 - rx - 32, 24, ["Rule-out phase: safety"], size=15, font=BOLD, color=BLUE)
+    text(s, rx + 16, 116, X1 - rx - 32, 24, ["Effect of the rule-out phase"], size=15, font=BOLD, color=BLUE)
     rows = [["", "without", "with"],
             ["questions", f"{C0['questions_mean']:.1f}", f"{C['questions_mean']:.1f}"],
             ["top-1", pct(C0["top1"]), pct(C["top1"])],
@@ -908,11 +928,17 @@ WHERE {
             ["urgent missed", pct(C0["urgent_missed"]), pct(C["urgent_missed"])]]
     table(s, rx + 16, 150, [118, 84, 84], rows, size=11.5, row_h=32, bold_rows=(4,),
           aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER])
-    text(s, rx + 16, 330, X1 - rx - 32, 140,
-         ["Early in the interview almost half of the urgent patients still have a non-urgent leading hypothesis: "
-          "safety comes from not stopping too early.",
-          "Red-flag rules made no difference here — their questions stay unasked; an explicit early red-flag screen "
-          "is future work."], size=11.5, after=6, bullets=True)
+    text(s, rx + 16, 318, X1 - rx - 32, 48,
+         ["Early in the interview almost half of the urgent patients still have a non-urgent leading hypothesis, "
+          "so stopping too early is unsafe."], size=11.5, after=0, bullets=True)
+    text(s, rx + 16, 368, X1 - rx - 32, 20, [f"Starting from free text ({INTAKE['patients']} patients)"], size=13,
+         font=BOLD, color=BLUE)
+    rows = [["Consultation starts from", "questions", "top-1"],
+            ["the main complaint", f"{INTAKE['baseline']['questions']:.1f}", pct(INTAKE["baseline"]["top1"])],
+            ["an English description", f"{IL['en']['questions']:.1f}", pct(IL["en"]["top1"])],
+            ["an Indonesian description", f"{IL['id']['questions']:.1f}", pct(IL["id"]["top1"])]]
+    table(s, rx + 16, 392, [168, 64, 64], rows, size=10.5, row_h=19,
+          aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER])
 
     # 21 ------------------------------------------------------------------ rule validation
     s = d.content("Validating every rule on held-out patients",
@@ -947,7 +973,7 @@ WHERE {
                   "noisy answers, accuracy would be lower and the soft covering mode would be needed. Summing log "
                   "likelihood ratios assumes independent evidence, and guideline rules partly re-count answers the "
                   "links already count, so posteriors are overconfident. Some rules only approximate their criteria. "
-                  "And DDX-ES is an educational prototype, not a medical device.")
+                  "Finally, DDX-ES is an educational prototype, not a medical device.")
     lims = [("Synthetic data, circularity", "patients come from the same knowledge base; covering is exact only "
              "here; the triage reference is synthetic too"),
             ("Independence", "summed log LRs assume independent evidence; rules re-count answers the links count — "
@@ -967,7 +993,7 @@ WHERE {
           "Educational prototype on synthetic data: not a medical device, not validated with clinicians or real "
           "patients, not for medical decisions — the interface says so on every page.",
           "The rules paraphrase published criteria with citations; the clinical documents remain the authority.",
-          "Transparency is built in: every conclusion can be traced to its rule, facts and source."],
+          "Transparency: every conclusion can be traced to its rule, facts and source."],
          size=12, after=10)
 
     # 23 ------------------------------------------------------------------ conclusions
@@ -977,38 +1003,44 @@ WHERE {
                   "the true pathology first for 99.4 percent of the test patients without any training, better than "
                   "a naive-Bayes model on the same counts, and misses no emergency. Every conclusion is explained. "
                   "Reading certainty factors as likelihood ratios fixed a saturation failure, and the rule-out phase "
-                  "made consultations safe. Next steps: clinicians and real data, calibrated rule CFs, an early "
-                  "red-flag screen, SHACL validation, a triple store and an Indonesian questionnaire.")
-    concl = [f"Knowledge as data: DDXPlus + {len(RULES)} rules from {len(CITED)} sources in one RDF/OWL 2 graph; "
-             "the OWL 2 RL closure adds facts the engine uses; SPARQL audits rules and provenance.",
-             f"Accuracy without training: {pct(es['top1'], 2)} top-1 on {fmt(MAIN['patients'])} test patients, above "
-             f"naive Bayes on the same counts ({pct(nb['top1'], 2)}); no emergency under-triaged.",
-             "Explanation by construction: HOW, WHY, WHY NOT and PROV-O provenance, with a source for every rule.",
-             f"Two lessons: CFs as likelihood ratios avoid saturation; a rule-out phase keeps consultations safe "
-             f"({pct(C0['urgent_missed'])} → {pct(C['urgent_missed'])} urgent missed)."]
+                  "improved consultation safety. An optional language-model intake reads free text in English or "
+                  "Indonesian; it only maps the words onto the questionnaire. Next steps: clinicians and real data, "
+                  "calibrated rule CFs, an early red-flag screen, SHACL validation, a triple store, an Indonesian "
+                  "questionnaire, and an evaluation of the intake on descriptions written by patients.")
+    concl = [f"Knowledge representation: DDXPlus + {len(RULES)} rules from {len(CITED)} sources in one RDF/OWL 2 "
+             "graph; the OWL 2 RL closure adds facts the engine uses; SPARQL audits rules and provenance.",
+             f"Accuracy: {pct(es['top1'], 2)} top-1 on {fmt(MAIN['patients'])} test patients without "
+             f"training, above naive Bayes on the same counts ({pct(nb['top1'], 2)}); no emergency under-triaged.",
+             "Explanation facilities: HOW, WHY, WHY NOT and PROV-O provenance, with a source for every rule.",
+             f"Lessons learned: CFs as likelihood ratios avoid saturation; a rule-out phase improves consultation "
+             f"safety ({pct(C0['urgent_missed'])} → {pct(C['urgent_missed'])} urgent missed).",
+             f"Optional language-model intake: free text in English or Bahasa Indonesia read with "
+             f"{pct(IL['en']['precision_vs_record'])} / {pct(IL['id']['precision_vs_record'])} precision; the rules "
+             "still make every conclusion."]
     text(s, X0, 108, 470, 24, [[("Conclusions", {"font": BOLD, "color": BLUE, "size": 15})]], after=0)
     for i, c in enumerate(concl):
-        y = 144 + i * 82
+        y = 144 + i * 66
         badge(s, X0, y + 2, 24, str(i + 1), size=10.5)
-        text(s, X0 + 34, y, 440, 80, [c], size=12.5, after=0, spacing=1.05)
+        text(s, X0 + 34, y, 440, 64, [c], size=12.5, after=0, spacing=1.05)
     box(s, 556, 106, X1 - 556, 368, fill=TINT)
     fut = ["Validate the rules with clinicians and on real, de-identified consultations",
            "Calibrate the rule CFs from data, keeping their structure",
            "An explicit red-flag screening step early in the consultation",
            "Validate the rule base inside the graph with SHACL; serve it from a triple store (GraphDB)",
-           "Questionnaire in Bahasa Indonesia; a language-model front end that maps free text to evidence codes — "
-           "the expert system stays the reasoning core"]
+           "Questionnaire and explanations in Bahasa Indonesia; evaluate the free-text intake on descriptions "
+           "written by patients"]
     text(s, 572, 118, X1 - 588, 350, [[("Future work", {"font": BOLD, "color": BLUE, "size": 15})]], after=8)
     text(s, 572, 150, X1 - 588, 320, fut, size=12, after=8, bullets=True, spacing=1.0)
 
     # 24 ------------------------------------------------------------------ how to run
-    s = d.content("Try it: the repository",
+    s = d.content("Repository and reproducibility",
                   "Everything is in the public repository on GitHub, github.com/zidanarsyad/ddx-expert-system. The "
                   "README explains how to install and run "
                   "it: a virtual environment, two pip commands, then the web interface (ddxes serve) or the "
                   "ddxes command line. The knowledge graph and the processed data are committed, so the system runs "
                   "immediately; the scripts rebuild everything from the raw DDXPlus files, including the figures, the "
-                  "report and this deck. There are 111 automated tests.")
+                  "report and this deck. There are 120 automated tests. The optional free-text intake needs an API key "
+                  "for Groq, Gemini or OpenRouter in a local .env file, which is never committed.")
     code(s, X0, 106, 470, 300, """git clone https://github.com/zidanarsyad/ddx-expert-system.git
 cd ddx-expert-system
 python -m venv .venv          # then activate it
@@ -1021,27 +1053,29 @@ ddxes diagnose --patient T002456 --trace
 ddxes explain --patient T002456 --why-not Pneumonia
 ddxes consult                 # why / how / triage
 ddxes sparql queries/q08-provenance.rq
-pytest                        # 111 tests""", size=11.5)
+ddxes intake "Bapak 39 tahun, sesak napas"   # key in .env
+pytest                        # 120 tests""", size=11.5)
     layout = [("knowledge/rules.yaml", "the rule base and its sources"),
               ("kg/*.ttl", "ontology, knowledge base, rules, statistics, cases, closure"),
               ("src/ddxes/", "engine, certainty factors, explanation, provenance, consultation"),
               ("src/ddxes/web/", "web interface (Starlette, SVG proof trees)"),
               ("queries/", "12 SPARQL queries, results with and without the closure"),
               ("scripts/", "data → graph → evaluation → figures, report, slides"),
-              ("results/, docs/", "evaluation outputs; report and slides")]
+              ("results/, docs/", "evaluation outputs; report and slides"),
+              (".env.example", "template for the optional language-model key")]
     text(s, X0 + 490, 104, X1 - X0 - 490, 24, [[("github.com/zidanarsyad/ddx-expert-system", {"font": CODE, "color": BLUE})]],
          size=12.5)
     text(s, X0 + 490, 140, X1 - X0 - 490, 336,
          [[(a + "  ", {"font": CODE, "color": BLUE, "size": 11}), (b, {})] for a, b in layout],
          size=11.5, after=7, spacing=1.0)
     box(s, X0, 416, 470, 58, fill=CREAM)
-    text(s, X0 + 14, 420, 442, 50, ["Rebuild from the raw data: prepare_data.py → build_kg.py → evaluate.py → "
+    text(s, X0 + 14, 420, 442, 50, ["Rebuild pipeline from the raw data: prepare_data.py → build_kg.py → evaluate.py → "
                                     "make_figures.py → build_report.py → build_deck.py"], size=11.5,
          anchor=MSO_ANCHOR.MIDDLE)
 
     # 25 --------------------------------------------------------------------- closing
     shapes = {sh.name: sh for sh in d.closing.shapes}
-    set_lines(shapes["TextBox 380"], ["“Every conclusion with its rule,", "its facts and its source.”"])
+    set_lines(shapes["TextBox 380"], ["Each conclusion is traced to its", "rule, facts and source."])
     text(d.closing, 87, 400, 333, 36, ["Thank you · Terima kasih"], size=20, font=BOLD, color=BLUE)
     text(d.closing, 87, 438, 420, 22, ["github.com/zidanarsyad/ddx-expert-system"], size=12.5, font=CODE, color=BLUE)
     notes(d.closing, "Thank you. The report, this deck and the repository with its README, on GitHub at "

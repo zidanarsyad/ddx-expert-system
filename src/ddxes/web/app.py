@@ -9,6 +9,7 @@ only swaps page regions in place and adds keyboard shortcuts.
 from __future__ import annotations
 
 import contextlib
+import hashlib
 import pathlib
 import random
 import re
@@ -48,7 +49,15 @@ def _pct(v, digits=1):
 
 templates.env.filters.update(signed=_signed, num=_num, pct=_pct, thousands=lambda n: f"{n:,}", ordinal=V.ordinal,
                              phrase=V.phrase, complaint=V.complaint)
-templates.env.globals.update(TRIAGE_LEVELS=V.TRIAGE_ORDER)
+def _asset_version() -> str:
+    """A short hash of the stylesheet and the script, so that browsers fetch them again after an update."""
+    h = hashlib.sha1()
+    for f in ("css/app.css", "js/app.js"):
+        h.update((HERE / "static" / f).read_bytes())
+    return h.hexdigest()[:10]
+
+
+templates.env.globals.update(TRIAGE_LEVELS=V.TRIAGE_ORDER, ASSET_VERSION=_asset_version())
 
 
 def render(request: Request, name: str, section: str, **ctx) -> Response:
@@ -63,8 +72,9 @@ def see_other(url: str) -> RedirectResponse:
 class ConsultState:
     """One consultation in progress: the engine's consultation plus what the page needs to show changes."""
 
-    def __init__(self, cons: Consultation):
+    def __init__(self, cons: Consultation, description: str = ""):
         self.cons = cons
+        self.description = description            # the free-text description the consultation started from, if any
         self.question = cons.next_question()      # computed once per answer: next_question() has side effects
         self.prev_triage = None
         self.prev_probs = None
@@ -79,11 +89,12 @@ class ConsultState:
     def undo(self, svc):
         """Replay every answer but the last on a fresh consultation (selection is deterministic)."""
         old = self.cons
-        cons = Consultation(svc.engine, age=old.age, sex=old.sex, chief_complaint=old.chief_complaint)
+        cons = Consultation(svc.engine, age=old.age, sex=old.sex, chief_complaint=old.chief_complaint,
+                            prefilled=old.prefilled)
         for e, v in old.asked[:-1]:
             cons.next_question()
             cons.answer(e, v)
-        self.__init__(cons)
+        self.__init__(cons, self.description)
 
 
 def _session(request: Request):
@@ -114,12 +125,52 @@ def _parse_answer(svc, q, form):
     return {v} if v in ev.values else None
 
 
+def _intake_ctx() -> dict:
+    """Whether the optional free-text intake can run (a language-model key in .env) and which model reads first."""
+    from .. import llm
+    pairs = llm.configured()
+    return {"intake_ready": bool(pairs), "intake_model": f"{pairs[0][0].name.title()} ({pairs[0][1]})" if pairs else ""}
+
+
+def _token(evidence: str, value) -> str:
+    """A finding as a form value: 'E_66=yes', 'E_56=7', 'E_152=V_29|V_30'."""
+    if isinstance(value, bool):
+        v = "yes" if value else "no"
+    elif isinstance(value, int):
+        v = str(value)
+    else:
+        v = "|".join(sorted(value))
+    return f"{evidence}={v}"
+
+
+def _parse_findings(kb, tokens, complaint: str) -> list:
+    """The findings ticked on the confirmation page, checked against the knowledge base, in the page's order."""
+    found = {}
+    for t in tokens:
+        e, _, v = str(t).partition("=")
+        ev = kb.evidences.get(e)
+        if ev is None or e == complaint:
+            continue
+        if ev.dtype == "B":
+            if v in ("yes", "no"):
+                found[e] = v == "yes"
+        elif ev.is_scale:
+            if v.isdigit() and 0 <= int(v) <= 10:
+                found[e] = int(v)
+        elif vals := {x for x in v.split("|") if x in ev.values}:
+            found[e] = vals
+    def kept(e):                                    # a follow-up answer needs its parent to be present
+        parent = kb.evidences[e].parent
+        return not parent or parent == complaint or found.get(parent) is True
+    return [(e, v) for e, v in found.items() if kept(e)]
+
+
 async def consult(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
     sid, state = _session(request)
     if state is None:
         return render(request, "consult_start.html", "consult", complaints=svc.complaints, default=DEFAULT_COMPLAINT,
-                      age=45, sex="F")
+                      age=45, sex="F", **_intake_ctx())
     cons, res = state.cons, state.cons.result
     qp = request.query_params
     done = state.question is None
@@ -128,6 +179,8 @@ async def consult(request: Request) -> Response:
         "q": V.question_view(svc, state.question), "number": len(cons.asked) + 1, "done": done,
         "vignette": V.vignette(cons.age, cons.sex, svc.kb.label("evidence", cons.chief_complaint)),
         "answers": [{"q": svc.kb.evidences[e].question, "a": V.answer_text(svc, e, v)} for e, v in cons.asked],
+        "prefilled": [{"q": svc.kb.evidences[e].question, "a": V.answer_text(svc, e, v)} for e, v in cons.prefilled],
+        "description": state.description,
         "result": V.result_view(svc, res, state.prev_triage, state.prev_probs),
         "explain": V.explanation(svc, res, qp.get("tab", "how"), qp.get("d")) if show else None,
         "show": show, "base": "/consult?explain=1&", "ttl": "/consult/provenance.ttl",
@@ -145,9 +198,33 @@ async def consult_start(request: Request) -> Response:
         age = 45
     sex = form.get("sex") if form.get("sex") in ("F", "M") else "F"
     cc = form.get("complaint") if form.get("complaint") in svc.kb.evidences else DEFAULT_COMPLAINT
+    prefilled = _parse_findings(svc.kb, form.getlist("finding"), cc)
+    description = " ".join(str(form.get("description") or "").split())[:1500]
     sid = request.cookies.get(COOKIE) or secrets.token_urlsafe(18)
-    svc.sessions.put(sid, ConsultState(Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc)))
+    cons = Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=prefilled)
+    svc.sessions.put(sid, ConsultState(cons, description if prefilled else ""))
     return _with_cookie(see_other("/consult"), sid)
+
+
+async def consult_intake(request: Request) -> Response:
+    """Free text -> findings for the patient to confirm (optional: needs a language-model key in .env)."""
+    from .. import intake, llm
+    svc = await run_in_threadpool(V.Services.get)
+    form = await request.form()
+    text = " ".join(str(form.get("text") or "").split())[:intake.MAX_CHARS]
+    if not text:
+        return see_other("/consult")
+    try:
+        res = await run_in_threadpool(intake.read, svc.kb, text)
+    except (llm.LLMError, ValueError) as e:
+        return render(request, "consult_start.html", "consult", complaints=svc.complaints, default=DEFAULT_COMPLAINT,
+                      age=45, sex="F", text=text, intake_error=str(e), **_intake_ctx())
+    findings = [{"token": _token(f.evidence, f.value), "question": f.question, "answer": f.answer, "quote": f.quote,
+                 "sub": bool(f.parent)} for f in res.findings]
+    unstated = [w for w, v in (("age", res.age), ("sex", res.sex), ("main complaint", res.chief_complaint)) if v is None]
+    return render(request, "consult_intake.html", "consult", res=res, findings=findings, unstated=unstated,
+                  complaints=svc.complaints, default=res.chief_complaint or DEFAULT_COMPLAINT,
+                  age=res.age if res.age is not None else 45, sex=res.sex or "F")
 
 
 async def consult_answer(request: Request) -> Response:
@@ -325,6 +402,7 @@ def create_app() -> Starlette:
         Route("/", home),
         Route("/consult", consult),
         Route("/consult/start", consult_start, methods=["POST"]),
+        Route("/consult/intake", consult_intake, methods=["POST"]),
         Route("/consult/answer", consult_answer, methods=["POST"]),
         Route("/consult/undo", consult_undo, methods=["POST"]),
         Route("/consult/reset", consult_reset, methods=["POST"]),

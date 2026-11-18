@@ -77,6 +77,16 @@
   </aside>
 </div>
 
+{% if prefilled %}
+<section class="history" aria-labelledby="intake-title">
+  <h2 class="section-title" id="intake-title">From the description</h2>
+  {% if description %}<blockquote class="intake-quote intake-quote--small">{{ description }}</blockquote>{% endif %}
+  <ol class="history__list">
+    {% for a in prefilled %}<li><span class="history__q">{{ a.q }}</span> <span class="history__a">{{ a.a }}</span></li>{% endfor %}
+  </ol>
+</section>
+{% endif %}
+
 {% if answers %}
 <section class="history" aria-labelledby="history-title">
   <h2 class="section-title" id="history-title">Answers so far</h2>

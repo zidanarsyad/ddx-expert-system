@@ -20,6 +20,11 @@ results/*.log
 Thumbs.db
 ~$*
 
+# API keys for the optional language-model intake: local only, never published (template: .env.example)
+.env
+.env.*
+!.env.example
+
 # the report holds the authors' student numbers (NIM): submitted separately, never published
 docs/report.md
 docs/report.pdf

@@ -212,6 +212,50 @@ def main():
                              [("all (end)" if k >= 30 else str(k), pct(er[(True, k)]["under"]), pct(er[(True, k)]["urgent_missed"]),
                                pct(er[(False, k)]["urgent_missed"])) for k in ks], ["l", "r", "r", "r"], [18, 12, 18, 28])
 
+    # free-text intake with a language model (scripts/evaluate_intake.py)
+    it = J("intake.json")
+    L = it["languages"]
+    n_path = len(json.loads((ROOT / "data" / "processed" / "pathologies.json").read_text(encoding="utf-8")))
+    V["in_scope"] = ("one demo patient per pathology" if it["patients"] >= n_path else
+                     f"one demo patient for each of the first {it['patients']} pathologies in alphabetical order")
+    V["in_limit"] = ("" if it["patients"] >= n_path else
+                     f" The run used the free tier of Groq, whose limit of 200,000 tokens per day ended it after "
+                     f"{it['patients']} of the {n_path} pathologies; the script resumes from its cache, so the remaining "
+                     f"pathologies can be added and the tables regenerated.")
+    writers = Counter(row["writer"].split(" (")[1].rstrip(")") for row in it["cases"]).most_common()
+    V.update(in_n=str(it["patients"]), in_reader=it["reader"].replace("groq (", "").rstrip(")"),
+             in_writer=writers[0][0] if len(writers) == 1 else
+             ", ".join(f"`{m}` for {n} patients" for m, n in writers[:-1]) + f" and `{writers[-1][0]}` for {writers[-1][1]}",
+             in_mentioned=f"{L['en']['findings_mentioned'] / L['en']['descriptions']:.1f}",
+             in_base_q=f"{it['baseline']['questions']:.1f}", in_base_top1=pct(it["baseline"]["top1"]),
+             in_oracle_q=f"{it['oracle']['questions']:.1f}", in_oracle_top1=pct(it["oracle"]["top1"]))
+    for lang in ("en", "id"):
+        s = L[lang]
+        V.update({f"in_{lang}_prec": pct(s["precision_vs_record"]), f"in_{lang}_rec": pct(s["recall_of_mentioned"]),
+                  f"in_{lang}_f1": pct(s["f1"]), f"in_{lang}_cc": pct(s["main_complaint"], 0),
+                  f"in_{lang}_age": pct(s["age"], 0), f"in_{lang}_sex": pct(s["sex"], 0),
+                  f"in_{lang}_sec": f"{s['seconds_per_reading']:.1f}", f"in_{lang}_q": f"{s['questions']:.1f}",
+                  f"in_{lang}_top1": pct(s["top1"]), f"in_{lang}_top3": pct(s["top3"])})
+    V["intake_table"] = table(
+        ["Measure", "English", "Bahasa Indonesia"],
+        [("Descriptions", L["en"]["descriptions"], L["id"]["descriptions"]),
+         ("Findings mentioned / read", f"{L['en']['findings_mentioned']} / {L['en']['findings_read']}",
+          f"{L['id']['findings_mentioned']} / {L['id']['findings_read']}"),
+         ("Precision against the patient record", V["in_en_prec"], V["in_id_prec"]),
+         ("Recall of the mentioned findings", V["in_en_rec"], V["in_id_rec"]),
+         ("F1", V["in_en_f1"], V["in_id_f1"]),
+         ("Main complaint as recorded", V["in_en_cc"], V["in_id_cc"]),
+         ("Age / sex read correctly", f"{V['in_en_age']} / {V['in_en_sex']}", f"{V['in_id_age']} / {V['in_id_sex']}"),
+         ("Seconds per reading", V["in_en_sec"], V["in_id_sec"])],
+        ["l", "r", "r"], [40, 16, 18])
+    V["intake_consult_table"] = table(
+        ["The consultation starts from", "Questions (mean)", "Top-1", "Top-3"],
+        [("The main complaint only (questionnaire)", V["in_base_q"], V["in_base_top1"], pct(it["baseline"]["top3"])),
+         ("The reading of the English description", V["in_en_q"], V["in_en_top1"], V["in_en_top3"]),
+         ("The reading of the Indonesian description", V["in_id_q"], V["in_id_top1"], V["in_id_top3"]),
+         ("The mentioned findings, read without error", V["in_oracle_q"], V["in_oracle_top1"], pct(it["oracle"]["top3"]))],
+        ["l", "r", "r", "r"], [42, 16, 8, 8])
+
     # confusions
     pn = {p["id"]: p["name_en"] for p in json.loads((ROOT / "data" / "processed" / "pathologies.json").read_text(encoding="utf-8"))}
     V["confusions"] = "; ".join(f"{pn[x['truth']]} taken for {pn[x['predicted']]} ({num(x['patients'])} patients)"

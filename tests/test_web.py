@@ -95,3 +95,23 @@ def test_consultation_runs_to_the_end(app):
     assert "Consultation complete" in page and 'id="explanation"' in page
     assert call(app, "POST", "/consult/undo", form={}, cookies=cookies)[0] == 303
     assert "Question" in call(app, "GET", "/consult", cookies=cookies)[2]
+
+
+def test_free_text_intake_flow(app, monkeypatch):
+    """Description -> reading to confirm -> consultation that starts from the confirmed answers (model stubbed)."""
+    from ddxes import intake, llm
+    from test_intake import READING, TEXT
+    monkeypatch.setattr(llm, "configured", lambda *a, **k: [(llm.PROVIDERS[0], "test-model", "not-a-key")])
+    assert "Or describe the patient in your own words" in call(app, "GET", "/consult")[2]
+    monkeypatch.setattr(intake, "read", lambda kb, text, **k: intake.parse(kb, TEXT, READING))
+    status, _, page = call(app, "POST", "/consult/intake", form={"text": TEXT})
+    assert status == 200 and "Check what the description says" in page and "really short of breath" in page
+    tokens = re.findall(r'name="finding" value="([^"]+)"', page)
+    assert {"E_66=yes", "E_151=yes", "E_196=yes", "E_91=no"} <= set(tokens)
+    form = {"age": "39", "sex": "M", "complaint": "E_66", "finding": [t for t in tokens if t != "E_196=yes"],
+            "description": TEXT}
+    status, headers, _ = call(app, "POST", "/consult/start", form=form)
+    sid = next(v for k, v in headers if k == "set-cookie").split(";")[0].split("=", 1)[1]
+    page = call(app, "GET", "/consult", cookies={"ddxes_session": sid})[2]
+    assert "From the description" in page and "Where is the swelling located?" in page
+    assert "Have you had surgery within the last month?</span>" not in page      # unticked: asked, not prefilled

@@ -2,6 +2,8 @@
 
   diagnose   run the expert system on a demo patient or on answers given on the command line
   consult    interactive consultation in the terminal (WHY / HOW commands)
+  intake     read a free-text description (English or Bahasa Indonesia) with a language model, then diagnose
+             or continue the consultation (optional: needs a key in .env, see .env.example)
   explain    HOW a pathology, the triage level or a concept was concluded; WHY NOT another pathology
   rules      list or show rules of the rule base, with their sources
   patients   list the demo patients (20 per pathology)
@@ -199,6 +201,11 @@ def cmd_consult(args):
         if pick.isdigit() and 1 <= int(pick) <= len(hits[:15]):
             complaint = hits[int(pick) - 1].code
     cons = Consultation(engine, age=age, sex=sex, chief_complaint=complaint, max_questions=args.max_questions)
+    _question_loop(cons, kb, ex)
+
+
+def _question_loop(cons, kb, ex):
+    """Ask the consultation's questions in the terminal until it stops, then print the report."""
     while (q := cons.next_question()) is not None:
         print(f"\nQ{len(cons.asked) + 1}. {q.text}")
         if q.dtype in ("C", "M"):
@@ -244,6 +251,37 @@ def cmd_consult(args):
     print("\n" + ex.report(cons.result))
 
 
+def cmd_intake(args):
+    from . import intake, llm
+    kb = KnowledgeBase.load()
+    engine = InferenceEngine(kb)
+    ex = Explainer(engine)
+    try:
+        res = intake.read(kb, " ".join(args.text))
+    except (llm.LLMError, ValueError) as e:
+        sys.exit(f"The description could not be read: {e}")
+    age = args.age if args.age is not None else res.age
+    sex = args.sex or res.sex
+    cc = res.chief_complaint
+    print(f"Read by {res.provider} ({res.model}) in {res.seconds:.1f} s. The language model only maps the words onto "
+          "the questionnaire; the rules make the conclusions.\n")
+    print(f"Patient: age {age if age is not None else 'not stated'}, sex {sex or 'not stated'}; main complaint: "
+          f"{kb.label('evidence', cc) if cc else 'not found'}")
+    for f in res.findings:
+        print(f"  {'    ' if f.parent else ''}{f.question} -> {f.answer}   (\"{f.quote}\")")
+    for d in res.dropped:
+        print(f"  not used: {d.what}{' (' + repr(d.quote) + ')' if d.quote else ''}: {d.reason}")
+    cons = Consultation(engine, age=age, sex=sex, chief_complaint=cc, prefilled=res.prefill(),
+                        max_questions=args.max_questions)
+    if args.consult:
+        print()
+        _question_loop(cons, kb, ex)
+    else:
+        print("\nOn the description alone (open world: what it does not say is unknown, not absent):\n")
+        print(ex.report(cons.result))
+        print("\nContinue with the questions it leaves open: add --consult.")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="ddxes", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -278,6 +316,14 @@ def main(argv=None):
     sp.add_argument("--complaint", metavar="E_xx", help="chief complaint evidence code")
     sp.add_argument("--max-questions", type=int, default=30)
     sp.set_defaults(func=cmd_consult)
+
+    sp = sub.add_parser("intake", help="read a free-text description with a language model (needs a key in .env)")
+    sp.add_argument("text", nargs="+", help="the description, in English or Bahasa Indonesia")
+    sp.add_argument("--consult", action="store_true", help="continue with the questions the description leaves open")
+    sp.add_argument("--age", type=int, help="if the description does not say it")
+    sp.add_argument("--sex", choices=["F", "M"], help="if the description does not say it")
+    sp.add_argument("--max-questions", type=int, default=30)
+    sp.set_defaults(func=cmd_intake)
 
     sp = sub.add_parser("rules", help="list rules")
     sp.add_argument("--id")

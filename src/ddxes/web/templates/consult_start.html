@@ -20,6 +20,21 @@
     <button class="btn btn--primary btn--lg" type="submit">Start consultation</button>
   </form>
 
+  {% if intake_ready %}
+  <form class="intake" method="post" action="/consult/intake">
+    <label class="intake__label" for="description">Or describe the patient in your own words</label>
+    <textarea class="intake__text" id="description" name="text" rows="3" maxlength="1500" required
+      placeholder="Saya laki-laki 39 tahun, sesak napas sejak pagi, betis kanan bengkak, dua minggu lalu operasi lutut.">{{ text or "" }}</textarea>
+    {% if intake_error %}<p class="callout callout--warn">The description could not be read: {{ intake_error }}</p>{% endif %}
+    <div class="intake__row">
+      <button class="btn btn--primary" type="submit">Read the description</button>
+      <p class="note">English or Bahasa Indonesia. A language model ({{ intake_model }}) maps the words onto the
+        questionnaire and you check its reading before the consultation starts; the rules still make every conclusion.
+        The text is sent to that provider, so use invented cases only.</p>
+    </div>
+  </form>
+  {% endif %}
+
   <ol class="steps">
     <li><h2>It asks</h2><p>One question at a time: the one that best separates the hypotheses it still holds, or the
       one that can rule out a dangerous diagnosis before it stops.</p></li>

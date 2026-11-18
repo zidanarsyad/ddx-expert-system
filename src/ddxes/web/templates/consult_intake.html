@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Check the reading | DDX-ES{% endblock %}
+{% block content %}
+<div class="start">
+  <h1 class="page-title">Check what the description says</h1>
+  <blockquote class="intake-quote">{{ res.text }}</blockquote>
+
+  <form class="start__form" method="post" action="/consult/start">
+    <input type="hidden" name="description" value="{{ res.text }}">
+    <p class="vignette vignette--form">
+      <span data-article>A</span>
+      <label class="sr" for="age">Age in years</label>
+      <input class="inline inline--age" id="age" name="age" type="number" min="0" max="110" value="{{ age }}" required>-year-old
+      <span class="seg" role="radiogroup" aria-label="Sex">
+        <input type="radio" id="sex-f" name="sex" value="F"{% if sex == "F" %} checked{% endif %}><label for="sex-f">woman</label>
+        <input type="radio" id="sex-m" name="sex" value="M"{% if sex == "M" %} checked{% endif %}><label for="sex-m">man</label>
+      </span>.
+      <label for="complaint">Main complaint:</label>
+      <select class="inline inline--select" id="complaint" name="complaint">
+        {% for e in complaints %}<option value="{{ e.code }}"{% if e.code == default %} selected{% endif %}>{{ e.label|complaint|phrase }}</option>{% endfor %}
+      </select>.
+    </p>
+    {% if unstated %}<p class="callout callout--warn">The description does not say the {{ unstated|join(", ") }}: check the sentence above.</p>{% endif %}
+
+    {% if findings %}
+    <fieldset class="readings">
+      <legend>Answers read from the description. Untick any that are wrong.</legend>
+      {% for f in findings %}
+      <label class="reading{% if f.sub %} reading--sub{% endif %}">
+        <input type="checkbox" name="finding" value="{{ f.token }}" checked>
+        <span class="reading__q">{{ f.question }}</span>
+        <span class="reading__a">{{ f.answer }}</span>
+        <span class="reading__quote">“{{ f.quote }}”</span>
+      </label>
+      {% endfor %}
+    </fieldset>
+    {% else %}
+    <p class="callout callout--warn">No answer of the questionnaire could be read from the description. The consultation can
+      still start from the main complaint above.</p>
+    {% endif %}
+
+    {% if res.dropped %}
+    <details class="dropped">
+      <summary>Not used ({{ res.dropped|length }})</summary>
+      <ul>{% for d in res.dropped %}<li><code>{{ d.what }}</code>{% if d.quote %} “{{ d.quote }}”{% endif %}: {{ d.reason }}</li>{% endfor %}</ul>
+    </details>
+    {% endif %}
+
+    <div class="intake__row">
+      <button class="btn btn--primary btn--lg" type="submit">Start the consultation</button>
+      <a class="btn btn--quiet" href="/consult">Back</a>
+    </div>
+    <p class="note">Read by {{ res.provider|title }} ({{ res.model }}) in {{ "%.1f"|format(res.seconds) }} s. The language model
+      only maps the words onto the questionnaire: every answer above quotes the words it comes from, and the
+      consultation asks whatever the description leaves open. The diagnosis, the triage and the explanation come from
+      the rules and the knowledge graph.</p>
+  </form>
+</div>
+{% endblock %}

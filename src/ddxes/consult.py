@@ -16,7 +16,8 @@ question at a time. The question is chosen by backward chaining from the current
   profile) before the consultation may end.
 
 After every answer the whole inference runs again (forward chaining), so beliefs, triage and red flags are
-always current. `simulate()` replays a DDXPlus patient by answering from his record.
+always current. `prefilled` takes answers known before the first question (the free-text intake of ddxes.intake);
+they are never asked again. `simulate()` replays a DDXPlus patient by answering from his record.
 """
 from __future__ import annotations
 
@@ -53,6 +54,7 @@ class Consultation:
     rule_out: bool = True             # run the rule-out phase for severe hypotheses before stopping
     rule_out_min: float = 1e-4        # a severe hypothesis below this probability counts as excluded
     rule_out_per_pathology: int = 2
+    prefilled: list = field(default_factory=list)   # [(evidence, value)] already known, e.g. from ddxes.intake
     case: Case = field(init=False)
     asked: list = field(default_factory=list)
     result: object = field(init=False)
@@ -63,6 +65,8 @@ class Consultation:
         self.case = Case(id="consultation", age=self.age, sex=self.sex, closed_world=False, initial=self.chief_complaint)
         if self.chief_complaint:
             self.case.answer(kb, self.chief_complaint, True)
+        for e, v in self.prefilled:                  # answers given before the first question: never asked again
+            self.case.answer(kb, e, v)
         self.result = self.engine.run(self.case)
 
     # ----------------------------------------------------------------------------- answering

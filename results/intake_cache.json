@@ -1,0 +1,1386 @@
+{
+ "T006474": {
+  "texts": {
+   "en": "I'm a 44-year-old man, and I've come in because I'm struggling with a bad cough that brings up a lot of colored phlegm. Every time I breathe out, there's a whistling noise in my chest, and it's gotten really hard for me to catch my breath. I smoke cigarettes and work on construction sites, which might be related, but the breathing trouble is really worrying me.",
+   "id": "Dok, saya pria 44 tahun dan belakangan ini batuk saya makin parah sampai mengeluarkan dahak berwarna yang cukup banyak. Dada saya juga bunyi 'ngik-ngik' tiap mengembuskan napas, dan sekarang rasanya sesak sekali untuk bernapas lega. Keseharian saya memang aktif merokok dan bekerja sebagai buruh bangunan di proyek, tapi kondisi napas saya ini sudah sangat mengganggu."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 44,
+    "sex": "M",
+    "cc": "E_201",
+    "seconds": 1.78,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_199",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 44,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.02,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_199",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000834": {
+  "texts": {
+   "en": "I'm 9 years old and I can't control where my eyes go. My neck muscles are sore and tight, so I can't turn my head to one side. I also have jaw pain and trouble opening my mouth, and I sometimes feel like I can't breathe or speak for a moment. I take stimulant drugs and recently got medicine through an IV in the hospital for feeling sick and agitated.",
+   "id": "Saya berusia 9 tahun dan tidak bisa mengontrol arah mataku. Otot leher saya kaku dan sakit, jadi saya tidak bisa memutar kepala ke satu sisi. Saya juga merasa sakit di rahang dan sulit membuka mulut, serta kadang-kadang merasa sesak napas dan tidak bisa bicara sejenak. Saya rutin minum obat stimulan dan baru-baru ini mendapat obat melalui suntikan di rumah sakit karena merasa mual dan gelisah."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 9,
+    "sex": null,
+    "cc": "E_180",
+    "seconds": 1.13,
+    "findings": [
+     [
+      "E_180",
+      true
+     ],
+     [
+      "E_192",
+      true
+     ],
+     [
+      "E_205",
+      true
+     ],
+     [
+      "E_128",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ],
+     [
+      "E_147",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 9,
+    "sex": null,
+    "cc": "E_180",
+    "seconds": 1.81,
+    "findings": [
+     [
+      "E_180",
+      true
+     ],
+     [
+      "E_192",
+      true
+     ],
+     [
+      "E_205",
+      true
+     ],
+     [
+      "E_38",
+      true
+     ],
+     [
+      "E_128",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ],
+     [
+      "E_147",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T008034": {
+  "texts": {
+   "en": "I'm a 16-year-old girl, and my voice has turned really raspy and much deeper recently. My throat and the area right under my jaw have a slight burning ache, about a two out of ten, and I just had a cold sometime in the past two weeks. I also smoke cigarettes, work at a daycare, and live in a crowded house with at least four other people.",
+   "id": "Saya perempuan usia 16 tahun, dan suara saya belakangan ini terdengar serak serta jadi lebih berat dari biasanya. Tenggorokan dan area di bawah rahang saya terasa agak perih panas, meski ringankan saja sekitar skala dua, dan sekitar dua minggu terakhir ini saya memang sempat pilek. Sehari-hari saya merokok, mengajar di tempat penitipan anak, dan di rumah saya tinggal bersama empat orang lebih."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 16,
+    "sex": "F",
+    "cc": "E_212",
+    "seconds": 1.37,
+    "findings": [
+     [
+      "E_212",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_163"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_181"
+      ]
+     ],
+     [
+      "E_116",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_49",
+      true
+     ],
+     [
+      "E_48",
+      true
+     ]
+    ],
+    "dropped": 2,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 16,
+    "sex": "F",
+    "cc": "E_212",
+    "seconds": 1.42,
+    "findings": [
+     [
+      "E_212",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_148",
+       "V_163"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_181"
+      ]
+     ],
+     [
+      "E_116",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_49",
+      true
+     ],
+     [
+      "E_48",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T012605": {
+  "texts": {
+   "en": "I'm a 28-year-old man, and I've come in because I'm running a fever and also have a cough. On top of that, I have a sharp pain in both of my ears that I'd rate around a 6 out of 10. Dealing with all of this has also made me feel unusually irritable and moody lately.",
+   "id": "Saya pria 28 tahun, ke sini karena badan saya panas dan saya juga batuk-batuk. Selain itu, kedua telinga saya rasanya sakit menusuk, kalau dinilai kira-kira di tingkat 6 dari 10. Sakit ini bikin emosi saya jadi gampang tersulut dan suasana hati saya belakangan ini tidak stabil."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 28,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 1.74,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_129",
+       "V_130"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_114",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 28,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 1.81,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_129",
+       "V_130"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_179"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_114",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T006830": {
+  "texts": {
+   "en": "I'm a 37-year-old woman and I keep waking up in the middle of the night feeling like I'm choking and gasping for breath, which gets worse when I'm lying flat and only eases up if I sit up. On top of that, I feel completely drained, generally unwell, and have muscle aches all over. I also have a mild, heavy ache rated about a 2 out of 10 in my lower chest and right ankle, and I already manage heart failure and high blood pressure.",
+   "id": "Saya seorang perempuan berusia 37 tahun, dan akhir-akhir ini saya sering terbangun tengah malam karena tersedak dan sesak napas hebat yang terasa makin berat kalau berbaring tapi membaik begitu saya duduk. Seluruh tubuh saya juga mendadak terasa sangat lemas, pegal-pegal tidak jelas, dan badan rasanya tidak enak secara keseluruhan. Selain itu, ada rasa berat yang samar dengan skala 2 di dada bagian bawah serta pergelangan kaki kanan saya, padahal selama ini saya juga punya riwayat gagal jantung dan darah tinggi."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 37,
+    "sex": "F",
+    "cc": "E_67",
+    "seconds": 2.89,
+    "findings": [
+     [
+      "E_67",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_175",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_29",
+       "V_34"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_183"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_106",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 37,
+    "sex": "F",
+    "cc": "E_67",
+    "seconds": 1.36,
+    "findings": [
+     [
+      "E_67",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_175",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_29",
+       "V_34"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_183"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_106",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T021632": {
+  "texts": {
+   "en": "I am a 12-year-old girl and I cannot smell anything. I have sharp pain in my nose and left eye that is about a 7 out of 10. I have a deviated septum, nasal polyps, asthma, and I am prone to allergies.",
+   "id": "Saya seorang anak perempuan berusia 12 tahun dan tidak bisa mencium bau apa pun. Saya merasa rasa sakit yang tajam di hidung dan mata kiri, sekitar 7 dari 10. Saya punya selangit hidung yang runtuh, polip di hidung, asma, dan mudah mengalami alergi."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 12,
+    "sex": "F",
+    "cc": "E_103",
+    "seconds": 1.19,
+    "findings": [
+     [
+      "E_103",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_122",
+       "V_126"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      7
+     ],
+     [
+      "E_121",
+      true
+     ],
+     [
+      "E_120",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_226",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 12,
+    "sex": "F",
+    "cc": "E_103",
+    "seconds": 1.17,
+    "findings": [
+     [
+      "E_103",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_122",
+       "V_126"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      7
+     ],
+     [
+      "E_120",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_226",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T010698": {
+  "texts": {
+   "en": "I'm a 19-year-old guy, and I've come in because the inside of my nose and the back of my throat are constantly tickling and itchy. My nose is also all stuffed up and dripping clear snot, I've developed a cough, and both of my eyes itch intensely. Several people in my immediate family deal with things like eczema, hay fever, and other allergies.",
+   "id": "Dok, saya laki-laki 19 tahun, tenggorokan dan hidung bagian dalam saya rasanya gatal banget sampai bikin tidak nyaman. Hidung saya juga mampet dan terus keluar ingus bening, ditambah saya batuk-batuk dan kedua mata saya gatalnya luar biasa. Di keluarga dekat saya memang ada riwayat yang punya alergi, biduran atau eksim, dan bersin-bersin karena debu."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 19,
+    "sex": "M",
+    "cc": "E_169",
+    "seconds": 1.06,
+    "findings": [
+     [
+      "E_169",
+      true
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_170",
+      true
+     ],
+     [
+      "E_86",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 19,
+    "sex": "M",
+    "cc": "E_169",
+    "seconds": 2.08,
+    "findings": [
+     [
+      "E_169",
+      true
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_170",
+      true
+     ],
+     [
+      "E_86",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T001618": {
+  "texts": {
+   "en": "I'm a 30-year-old woman and I'm really struggling to catch my breath right now. My right cheek and forehead are puffing up, and I feel lightheaded like I might pass out. I also have crampy pain around my stomach and right side that's about a 4 out of 10, which worries me because I have severe food allergies and generally pick up allergies way easier than most people.",
+   "id": "Dok, saya wanita 30 tahun dan napas saya terasa sesak sekali sampai susah untuk bernapas lega. Kening dan pipi kanan saya mulai bengkak, kepala saya juga sangat pusing melayang seperti mau pingsan. Perut dan pinggang kanan saya juga kram dengan skala nyeri sekitar 4 dari 10, dan saya cemas karena memang punya riwayat alergi makanan yang parah serta dari dulu tubuh saya jauh lebih gampang alergi dibanding orang lain."
+  },
+  "writer": "gemini (gemini-flash-latest)",
+  "readings": {
+   "en": {
+    "age": 30,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.31,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_108",
+       "V_89"
+      ]
+     ],
+     [
+      "E_82",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_187",
+       "V_84"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_182"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_12",
+      true
+     ],
+     [
+      "E_226",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 30,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 4.26,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_108",
+       "V_89"
+      ]
+     ],
+     [
+      "E_82",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_187",
+       "V_84"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_182"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_12",
+      true
+     ],
+     [
+      "E_226",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000654": {
+  "texts": {
+   "en": "I am 48 years old and my stool has been black like coal lately. I feel dizzy and lightheaded, and I am having trouble breathing. I am underweight, I have had anemia before, and I am pregnant.",
+   "id": "Saya berusia 48 tahun dan buat air besar berwarna hitam seperti arang akhir-akhir ini. Saya merasa pusing dan pingsan, serta sesak napas. Saya berat badan kurang, pernah mengalami anemia, dan sedang hamil."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 48,
+    "sex": "F",
+    "cc": "E_140",
+    "seconds": 0.97,
+    "findings": [
+     [
+      "E_140",
+      true
+     ],
+     [
+      "E_76",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_208",
+      true
+     ],
+     [
+      "E_24",
+      true
+     ],
+     [
+      "E_167",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 48,
+    "sex": "F",
+    "cc": "E_140",
+    "seconds": 2.34,
+    "findings": [
+     [
+      "E_140",
+      true
+     ],
+     [
+      "E_82",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_208",
+      true
+     ],
+     [
+      "E_24",
+      true
+     ],
+     [
+      "E_167",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000063": {
+  "texts": {
+   "en": "I'm a 21-year-old man and I've been having a lot of trouble breathing lately. I have a heart valve problem, I'm overweight, and I've had chest pain from angina before. I also feel dizzy sometimes and my heart races or skips beats.",
+   "id": "Saya pria berusia 21 tahun dan terakhir ini saya sering sesak napas. Saya punya masalah pada katup jantung, berat badan saya berlebih, dan pernah merasakan nyeri dada karena angina. Kadang-kadang saya juga merasa pusing dan jantung saya berdebar kencang atau terasa lelet."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 21,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.94,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_22",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_105",
+      true
+     ],
+     [
+      "E_76",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 21,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.31,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_22",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_105",
+      true
+     ],
+     [
+      "E_76",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T001876": {
+  "texts": {
+   "en": "I'm 26 and I've been vomiting several times. I feel nauseous and have thrown up blood that looks like coffee grounds. I have severe pain in my right upper belly and stomach that feels like a knife stab, about a 9 out of 10. I also drink alcohol excessively.",
+   "id": "Saya perempuan berusia 26 tahun dan sudah muntah beberapa kali. Saya merasa mual dan sudah muntah darah yang seperti kopi bubuk. Saya merasa sakit parah di perut kanan atas dan perut, seperti ditusuk pisang, sekitar 9 dari 10. Saya juga sering minum alkohol berlebihan."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 26,
+    "sex": null,
+    "cc": "E_211",
+    "seconds": 20.21,
+    "findings": [
+     [
+      "E_211",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_210",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_187",
+       "V_197"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_179"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 26,
+    "sex": "F",
+    "cc": "E_210",
+    "seconds": 21.87,
+    "findings": [
+     [
+      "E_211",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_210",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_103",
+       "V_187"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_179"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T007582": {
+  "texts": {
+   "en": "I'm a 30-year-old man and I've been coughing up colored mucus more than usual. I've coughed up blood before, and I've had pneumonia in the past. I also have cystic fibrosis and a weakened immune system.",
+   "id": "Saya pria berusia 30 tahun dan batuk saya mengeluarkan lendir berwarna lebih banyak dari biasanya. Sebelumnya saya pernah mengeluarkan darah saat batuk dan pernah terkena pneumonia. Saya juga menderita cystic fibrosis dan sistem kekebalan tubuh saya lemah."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 30,
+    "sex": "M",
+    "cc": "E_77",
+    "seconds": 0.94,
+    "findings": [
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_118",
+      true
+     ],
+     [
+      "E_18",
+      true
+     ],
+     [
+      "E_227",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 30,
+    "sex": "M",
+    "cc": "E_77",
+    "seconds": 0.99,
+    "findings": [
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_118",
+      true
+     ],
+     [
+      "E_18",
+      true
+     ],
+     [
+      "E_227",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T003775": {
+  "texts": {
+   "en": "I am a 1-year-old woman living in a rural area, and I have been hearing a wheezing sound when I breathe out. I am having significant trouble breathing, along with a fever and a clear runny nose. My mother also has asthma.",
+   "id": "Saya seorang wanita berusia 1 tahun yang tinggal di pedesaan, dan saya mendengar suara ngeeh saat menghembuskan napas. Saya merasa sesak napas yang cukup parah, demam, dan hidung berair jernih. Ibu saya juga asma."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 1,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.19,
+    "findings": [
+     [
+      "E_183",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_142",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 1,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.52,
+    "findings": [
+     [
+      "E_183",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_142",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T007713": {
+  "texts": {
+   "en": "I'm a 34-year-old man and my cough is worse at night. I hear a wheezing sound when I breathe out and I'm coughing up more colored mucus than usual. I smoke cigarettes, but my vaccinations are up to date.",
+   "id": "Saya pria berusia 34 tahun. Batuk saya semakin parah di malam hari, dan ada suara ngi-ngi saat saya menghela napas keluar. Saya juga batuk dengan lebih banyak balgam berwarna dari biasanya. Saya merokok, tapi imunisasi saya sudah lengkap."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 34,
+    "sex": "M",
+    "cc": "E_201",
+    "seconds": 0.8,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_219",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_209",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 34,
+    "sex": "M",
+    "cc": "E_201",
+    "seconds": 1.34,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_219",
+      true
+     ],
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_209",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000604": {
+  "texts": {
+   "en": "I'm 76 years old, and I've been having a lot of trouble breathing lately. I also have a cough and I've had a cold for the past couple of weeks. I have asthma, and both my allergies and asthma run in my family.",
+   "id": "Saya berusia 76 tahun dan terakhir ini sering sesak napas. Saya juga batuk dan sudah pilek selama dua minggu terakhir. Saya asma, dan alergi serta asma juga ada di keluarga saya."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 76,
+    "sex": null,
+    "cc": "E_66",
+    "seconds": 0.99,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_116",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_87",
+      true
+     ],
+     [
+      "E_86",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 76,
+    "sex": null,
+    "cc": "E_66",
+    "seconds": 0.99,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_87",
+      true
+     ],
+     [
+      "E_86",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T012363": {
+  "texts": {
+   "en": "I am a 59-year-old man and I have a fever. I have sharp pain at the top of my head and on my right flank that is an 8 out of 10. I also have diarrhea, feel nauseous, and feel very tired and achy all over.",
+   "id": "Saya pria berusia 59 tahun dan saya demam. Saya merasa rasa sakit tajam di bagian atas kepala dan pinggir kanan saya, skala 8 dari 10. Saya juga diare, mual, dan merasa sangat lelah serta nyeri di seluruh tubuh."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 59,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 2.35,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_62",
+       "V_84"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      8
+     ],
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_144",
+      true
+     ],
+     [
+      "E_89",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ }
+}

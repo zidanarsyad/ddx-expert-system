@@ -90,7 +90,22 @@ def values():
         return out
 
     off = {r["red_flag_rules"]: r for r in sens["rows"] if r["severity_threshold"] > 1}
+    it = jload("results/intake.json")                      # the optional free-text intake (scripts/evaluate_intake.py)
+    il = it["languages"]
+    writers = [w.split(" (")[1].rstrip(")") for w in it["writer"]]
+    n_path = len(jload("data/processed/pathologies.json"))
+    intake = dict(n=it["patients"],
+                  scope=("one demo patient per disease" if it["patients"] >= n_path else
+                         f"one demo patient for each of the first {it['patients']} diseases in alphabetical order "
+                         f"(the free tier's daily token limit ended the run there)"), reader=it["reader"].replace("groq (", "").rstrip(")") + " on Groq",
+                  writer=(f"Another language model ({writers[0]})" if len(writers) == 1 else
+                          f"Other language models ({' and '.join(writers)})"),
+                  en_prec=pct(il["en"]["precision_vs_record"]), id_prec=pct(il["id"]["precision_vs_record"]),
+                  en_rec=pct(il["en"]["recall_of_mentioned"]), id_rec=pct(il["id"]["recall_of_mentioned"]),
+                  base_q=f"{it['baseline']['questions']:.1f}", en_q=f"{il['en']['questions']:.1f}",
+                  en1=pct(il["en"]["top1"]), id1=pct(il["id"]["top1"]), base1=pct(it["baseline"]["top1"]))
     return dict(
+        intake=intake,
         n_rules=len(rules), n_sources=len(cited), cat=cat, fid=fid, mix=mix, kg=kg, asserted=fmt(asserted),
         inferred=fmt(kg["inferred"]), kg_files=[(k, fmt(kg[k])) for k in ("ontology", "kb", "rules", "stats", "cases",
                                                                            "inferred")],

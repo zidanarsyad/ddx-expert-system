@@ -16,7 +16,7 @@ encodes. The domain is the 49 respiratory, cardiac and emergency pathologies of 
 | Knowledge representation: ontology + knowledge graph (RDF/OWL) | `kg/ontology.ttl` (hand-written TBox, OWL 2 RL axioms) and the generated graph in `kg/*.ttl`: domain knowledge, rule base, calibration statistics, cases, OWL 2 RL closure |
 | IF-THEN rules from experts or other knowledge sources, with references | `knowledge/rules.yaml`: 192 rules citing 62 published sources (clinical guidelines, case definitions, diagnostic criteria, decision rules; DOIs checked against Crossref), stored as RDF in `kg/rules.ttl` |
 | Reasoning that derives new facts, with explanations | `src/ddxes/engine.py` (forward chaining with certainty factors, abductive set covering, triage) and `src/ddxes/explain.py` (HOW, WHY, WHY NOT, proof trees); conclusions are written back to the graph with W3C PROV-O provenance |
-| Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py` |
+| Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py`; an optional language-model front end, `src/ddxes/intake.py`, that reads a free-text description in English or Bahasa Indonesia and hands the findings to the rules |
 | README with how to run | this file |
 | Report and presentation | `docs/slides.pptx` (25 slides); `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
 
@@ -26,9 +26,12 @@ On the **full DDXPlus test split (134,529 patients)**, `results/main.json`:
 
 | System | Top-1 | Top-3 | Truth in differential | DDF1 |
 |---|---|---|---|---|
-| **DDX-ES (expert system)** | **99.42%** | 100% | 99.85% | 31.0% |
-| Naive Bayes (ML baseline) | 98.58% | 100% | 99.99% | 31.0% |
-| Hybrid (ES + NB) | 99.70% | 100% | 100% | 31.1% |
+| **DDX-ES (expert system)** | **99.42%** | 99.999% | 99.85% | 31.0% |
+| Naive Bayes (ML baseline) | 98.58% | 99.996% | 99.99% | 31.0% |
+| Hybrid (ES + NB) | 99.70% | 100% | 99.999% | 31.1% |
+
+The true pathology is missing from the top three for 1 patient with DDX-ES, 6 with naive Bayes and none with the
+hybrid.
 
 * **Triage:** 100% of emergency cases and 100% of urgent cases are triaged at least as urgent as their true
   pathology requires. Under-triage is 0.38%, all of it non-urgent cases sent to self-care; over-triage is 20.9%,
@@ -112,6 +115,71 @@ ddxes diagnose --patient T002456 --provenance case.ttl       # write the inferen
 
 (`python -m ddxes ...` works the same without the `pip install -e .` step.)
 
+### Free-text intake with a language model (optional)
+
+Instead of picking the main complaint from a list, the patient can be described in plain words, in English or
+Bahasa Indonesia: *"Bapak 39 tahun, sejak pagi sesak napas berat. Betis kanan bengkak sejak tiga hari, dan dua minggu
+lalu operasi lutut. Tidak demam, tidak batuk."* One call to a language model maps the description onto the
+questionnaire of the knowledge base. The reading is shown for confirmation, and the consultation then asks only what
+the description leaves open. In this example it asks 2 rule-out questions and concludes pulmonary embolism (Wells rule
+D-PE-1, Emergency), where the questionnaire alone needs 5 questions.
+
+The model translates words into evidence codes; it does not diagnose. `src/ddxes/intake.py` keeps it to that role:
+
+* the prompt lists only the codes, body parts and answer values of the knowledge base;
+* every finding must quote the words of the description it comes from, and a finding whose words are not in the
+  description is dropped;
+* a 0-10 answer is taken only if that number is in the description;
+* follow-up answers (pain location and character, swelling and rash location, travel region) are turned into codes in
+  Python, and only under a present parent;
+* the diagnosis, the triage and the explanation come from the rules and the knowledge graph, as before.
+
+To enable it, copy `.env.example` to `.env` and add at least one key. `.env` is in `.gitignore` and never committed.
+Providers are tried in this order:
+
+1. Groq: `qwen/qwen3.8-27b`, then `openai/gpt-oss-120b`.
+2. Google Gemini: `gemini-flash-latest`.
+3. OpenRouter: the models named in `.env`.
+
+```bash
+ddxes intake "Bapak 39 tahun, sejak pagi sesak napas berat. Betis kanan bengkak, dua minggu lalu operasi lutut."
+ddxes intake --consult "I'm 30, I ate peanuts and I'm allergic; my lips are swollen and I'm short of breath."
+```
+
+In the web interface, use the *Or describe the patient in your own words* box on the Consultation page. The client is
+`src/ddxes/llm.py`, built on the standard library, so the intake adds no dependency.
+
+* The prompt is about 3,900 tokens. Groq's free tier allows 8,000 tokens a minute, so about two descriptions a minute
+  are read; beyond that the client waits briefly or moves on to the next model.
+* The description is sent to the provider, so use invented cases only.
+* Without a key, DDX-ES works exactly as before.
+
+Evaluation (`scripts/evaluate_intake.py`, `results/intake.json`):
+
+* The run so far covers one demo patient for each of the first 15 pathologies. Groq's free-tier limit of 200,000
+  tokens per day ended it there; the script resumes from its cache.
+* Other language models wrote how each patient might describe the problem, in English and in Bahasa Indonesia.
+* The intake read those descriptions with 99.1% (English) and 96.4% (Indonesian) precision against the patient records,
+  and found 94.6% of the mentioned findings in both languages.
+* The consultation that continued from the reading asked 0.1 and 0.3 questions on average instead of 4.2, with top-1
+  accuracy of 100% and 93.3%, against 93.3% from the main complaint alone.
+
+### GraphDB (optional)
+
+The engine reads the graph with rdflib, so DDX-ES needs no triple store. To browse the same graph in GraphDB
+(tested with GraphDB Desktop 11.5, free edition), start GraphDB on <http://localhost:7200> and run:
+
+```bash
+python -I scripts/load_graphdb.py   # repository ddx-es, OWL 2 RL ruleset; run it again to reset the repository
+```
+
+The script creates the repository `ddx-es` (ruleset `owl2-rl-optimized`) and loads the ontology, the knowledge base,
+the rules, the statistics, the 980 demo patients and the provenance of patient T002456, each into its own named
+graph (about 30 s). `kg/inferred.ttl` is not loaded, because GraphDB derives the entailments itself. The script then
+runs the 12 queries of `queries/` with and without the inferred statements. Their answers equal the rdflib ones
+except for q01, q02 and q08: GraphDB reasons over every triple it holds, while `kg/inferred.ttl` is the closure of
+the ontology, the knowledge base and the rules only.
+
 ### Tests
 
 ```bash
@@ -119,9 +187,38 @@ pip install pytest
 pytest
 ```
 
-111 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
+120 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
 the YAML ⇄ RDF round trip, the OWL 2 RL entailments the engine relies on, the engine on hand-made and DDXPlus
-cases, explanations, provenance, the consultation and the web interface.
+cases, explanations, provenance, the consultation, the web interface, and the free-text intake (with a stand-in
+model, so the tests need no network and no key).
+
+## Live demo (about 5 minutes)
+
+Start `ddxes serve` and open <http://127.0.0.1:8000>.
+
+1. **Consultation.** A 39-year-old man, main complaint *shortness of breath or difficulty breathing*. Answer *Yes*
+   (swelling), *Calf (R)*, *Yes* (surgery within the last month), *No* (fluid in the lungs), *No* (dialysis): the
+   answers of demo patient T056557. Show *Why this question* (rule D-PE-2, Wells et al. 2000), the triage turning
+   to Emergency after the first answer, and the last two questions, which rule out acute pulmonary edema before the
+   system stops. It ends after 5 questions with pulmonary embolism (P = 1.00), Emergency and CT pulmonary
+   angiography. The HOW tab draws the proof: calf swelling and recent surgery → Wells score 4.5 → rule D-PE-1.
+2. **Case analysis.** Patient T002456 (pulmonary embolism): the red-flag rule T-PE behind the Emergency triage, the
+   differential against the DDXPlus ground truth, then WHY NOT *Pneumonia* (it cannot explain the swelling, and
+   without cough or fever its rules D-PNA-1 and D-PNA-2 fail), and the provenance as Turtle.
+3. **Knowledge base.** Filter the rules by kind or fidelity; every rule shows its source.
+4. **SPARQL.** Example q05: the 9 red-flag rules, none of them asserted, all entailed by OWL 2 RL.
+5. **GraphDB** (optional, after `load_graphdb.py`). Choose the repository `ddx-es`. Explore → Visual graph →
+   `http://example.org/ddx#Rule_D-PE-1` shows the rule with its source, the Wells score and the evidence it reads.
+   In SPARQL, paste `queries/q05-red-flag-rules.rq`: 9 rows; switch *Include inferred data in results* off and run
+   it again: 0 rows.
+
+With a language-model key in `.env`, step 1 can also start from free text. Type *Bapak 39 tahun, sejak pagi sesak
+napas berat. Betis kanan bengkak sejak tiga hari, dan dua minggu lalu operasi lutut. Tidak demam, tidak batuk.* into
+*Or describe the patient in your own words* and confirm the reading. Each answer quotes its Indonesian words. The
+consultation then needs only the two rule-out questions and reaches the same conclusion.
+
+Without a browser: `ddxes consult --age 39 --sex M --complaint E_66` with the answers `y`, `102` (calf (R)), `y`,
+`n`, `n`; then `ddxes diagnose --patient T002456 --trace` and `ddxes explain --patient T002456 --why-not Pneumonia`.
 
 ## Rebuilding everything from the raw data
 
@@ -130,6 +227,7 @@ python -I scripts/prepare_data.py    # DDXPlus raw files -> data/processed (abou
 python -I scripts/build_kg.py        # processed data + knowledge/rules.yaml -> kg/*.ttl, OWL 2 RL closure (about 70 s)
 python -I scripts/evaluate.py        # all experiments -> results/*.json (about 30 min; --quick for the 980 demo patients)
 python -I scripts/run_queries.py     # queries/*.rq -> queries/results*/ (with and without inference)
+python -I scripts/evaluate_intake.py # optional: free-text intake, one demo patient per pathology (keys in .env; resumes from its cache)
 pip install -r requirements-docs.txt # only for the documents below
 python -I scripts/make_figures.py    # docs/figures/*.png
 python -I scripts/capture_screenshots.py  # docs/figures/ui-*.png (Playwright with the installed Microsoft Edge)
@@ -191,12 +289,14 @@ inference written back to the graph with PROV-O, queryable with SPARQL (`queries
 
 | Path | Content |
 |---|---|
-| `src/ddxes/` | the package: `kb.py` (KB compiled from the graph), `rulebase.py` (rule model, YAML ⇄ RDF), `case.py`, `engine.py`, `certainty.py`, `explain.py`, `provenance.py`, `consult.py`, `bayes.py`, `evaluate.py`, `cli.py`; `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
+| `src/ddxes/` | the package: `kb.py` (KB compiled from the graph), `rulebase.py` (rule model, YAML ⇄ RDF), `case.py`, `engine.py`, `certainty.py`, `explain.py`, `provenance.py`, `consult.py`, `bayes.py`, `evaluate.py`, `cli.py`, and the optional free-text intake
+`intake.py` with its language-model client `llm.py`; `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
 | `knowledge/rules.yaml` | the rule base and its sources (authoring format; 62 sources cited by rules plus the method references) |
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
 | `queries/` | 12 SPARQL queries; results with and without the OWL closure in `results/` and `results-no-inference/` |
-| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py` |
+| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
+| `.env.example` | template for the language-model keys of the optional intake; the filled-in `.env` stays local |
 | `results/` | evaluation outputs (JSON) |
 | `tests/` | pytest suite |
 | `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), `figures/` |
