@@ -156,13 +156,18 @@ In the web interface, use the *Or describe the patient in your own words* box on
 
 Evaluation (`scripts/evaluate_intake.py`, `results/intake.json`):
 
-* The run so far covers one demo patient for each of the first 15 pathologies. Groq's free-tier limit of 200,000
-  tokens per day ended it there; the script resumes from its cache.
-* Other language models wrote how each patient might describe the problem, in English and in Bahasa Indonesia.
-* The intake read those descriptions with 99.1% (English) and 96.4% (Indonesian) precision against the patient records,
-  and found 94.6% of the mentioned findings in both languages.
-* The consultation that continued from the reading asked 0.1 and 0.3 questions on average instead of 4.2, with top-1
-  accuracy of 100% and 93.3%, against 93.3% from the main complaint alone.
+* One demo patient per pathology, 49 in all. Other language models (`nvidia/nemotron-3.5-super-vl:free` on OpenRouter
+  for 43 patients, `gemini-flash-latest` for 6) wrote how each patient might describe the problem, in English and in
+  Bahasa Indonesia.
+* Groq's free tier allows about 45 readings a day, so the 98 readings were spread over three days; the script resumes
+  from its cache.
+* The intake read those descriptions with 94.5% (English) and 93.4% (Indonesian) precision against the patient records,
+  and found 92.0% and 90.0% of the mentioned findings.
+* The consultation that continued from the reading asked 0.4 questions on average instead of 4.0, with top-1 accuracy
+  of 95.9% and 93.9%, against 98.0% from the main complaint alone.
+* Most misread findings are near-synonyms in the questionnaire, such as the pain locations "back of head" and
+  "occiput". Because the consultation then asks almost nothing, such a finding is rarely corrected: for three patients
+  it led to another pathology.
 
 ### GraphDB (optional)
 

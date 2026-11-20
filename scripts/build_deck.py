@@ -317,6 +317,7 @@ N_PATH = len(jload("data/processed/pathologies.json"))
 INTAKE_SCOPE = ("one per pathology" if INTAKE["patients"] >= N_PATH else
                 f"one for each of the first {INTAKE['patients']} pathologies; the daily token limit of the free tier "
                 "ended the run there")
+INTAKE_Q = " and ".join(dict.fromkeys(f"{IL[lang]['questions']:.1f}" for lang in ("en", "id")))  # one number if equal
 ASSERTED = sum(KG[k] for k in ("ontology", "kb", "rules", "stats", "cases"))
 CAT, FID = Counter(r.category for r in RULES), Counter(r.fidelity for r in RULES)
 SRC_TYPES = Counter(SOURCES[s]["type"] for s in CITED)
@@ -907,9 +908,10 @@ WHERE {
                   f"The optional free-text intake was tested on {INTAKE['patients']} demo patients ({INTAKE_SCOPE}). "
                   "A language model wrote each patient's description in English and in Indonesian; the intake read "
                   f"them with {pct(IL['en']['precision_vs_record'])} and {pct(IL['id']['precision_vs_record'])} "
-                  "precision against the records, and the consultation then asked "
-                  f"{IL['en']['questions']:.1f} and {IL['id']['questions']:.1f} questions instead of "
-                  f"{INTAKE['baseline']['questions']:.1f}.")
+                  f"precision against the records. The consultation then asked {INTAKE_Q} questions instead of "
+                  f"{INTAKE['baseline']['questions']:.1f}, with a top-1 accuracy of {pct(IL['en']['top1'])} and "
+                  f"{pct(IL['id']['top1'])} against {pct(INTAKE['baseline']['top1'])}: a misread finding is rarely "
+                  "corrected when almost no question is asked.")
     rows = [["System", "Questions", "Top-1", "Trained on patients"],
             ["AARLC (Fansi Tchango et al., 2022)", "6.73", "99.21%", "yes (RL)"],
             ["BASD (Fansi Tchango et al., 2022)", "17.99", "97.15%", "yes (RL)"],

@@ -1380,6 +1380,3149 @@
     ],
     "dropped": 0,
     "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 59,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 2.68,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      8
+     ],
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_88",
+      true
+     ],
+     [
+      "E_144",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T007472": {
+  "texts": {
+   "en": "I'm a 40-year-old woman and I've completely lost my sense of smell. I've been coughing up greenish-yellow mucus, I smoke cigarettes, and I have nasal polyps. I also have asthma and have had pneumonia before.",
+   "id": "Saya perempuan berusia 40 tahun dan kehilangan indera penciuman saya. Saya berakibat lendir hijau-kuning, merokok, dan ada polip di hidung. Saya juga asma dan pernah mengalami pneumonia."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 40,
+    "sex": "F",
+    "cc": "E_103",
+    "seconds": 1.2,
+    "findings": [
+     [
+      "E_103",
+      true
+     ],
+     [
+      "E_77",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_120",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_118",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 40,
+    "sex": "F",
+    "cc": "E_103",
+    "seconds": 1.31,
+    "findings": [
+     [
+      "E_103",
+      true
+     ],
+     [
+      "E_182",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_120",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_118",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T001404": {
+  "texts": {
+   "en": "I'm a 53-year-old man, and my eyes are watering way too much. I have severe pain in my right cheek and temple that's about a 9 out of 10. I also have a runny nose, and my father had cluster headaches. I take medication that opens up my blood vessels and I drink too much alcohol.",
+   "id": "Saya pria berusia 53 tahun, dan mataku terlalu banyak airnya. Saya merasakan sakit yang sangat parah di pipi kanan dan pelipis kanan, sekitar 9 dari 10. Hidung saya juga berair, dan ayah saya pernah menderita sakit kepala klaster. Saya minum obat yang melebarkan pembuluh darah dan saya terlalu sering minum alkohol."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 53,
+    "sex": "M",
+    "cc": "E_127",
+    "seconds": 1.43,
+    "findings": [
+     [
+      "E_127",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_108",
+       "V_166"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_25",
+      true
+     ],
+     [
+      "E_184",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 53,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.73,
+    "findings": [
+     [
+      "E_127",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_108",
+       "V_166"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_191"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_25",
+      true
+     ],
+     [
+      "E_184",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000714": {
+  "texts": {
+   "en": "I am a 0-year-old man, and my symptoms are worse at night. I have a high pitched sound when I breathe in, I have a fever, and I am producing more saliva than usual. My family has a history of croup.",
+   "id": "Saya seorang pria berusia 0 tahun, dan gejalanya semakin parah di malam hari. Saya mendengar suara tinggi saat bernapas masuk, ada demam, dan air liur saya lebih banyak dari biasanya. Keluarga saya pernah mengalami croup."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 0,
+    "sex": "M",
+    "cc": "E_194",
+    "seconds": 1.28,
+    "findings": [
+     [
+      "E_219",
+      true
+     ],
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_190",
+      true
+     ],
+     [
+      "E_4",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 0,
+    "sex": "M",
+    "cc": "E_194",
+    "seconds": 1.29,
+    "findings": [
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_190",
+      true
+     ],
+     [
+      "E_219",
+      true
+     ],
+     [
+      "E_4",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T002570": {
+  "texts": {
+   "en": "I am 14 years old, and my whole body aches. I also have a sore throat and a cough. I recently went to West Africa, and I have been around someone else who felt the same way. I have noticed some unusual bruising and bleeding too.",
+   "id": "Saya berusia 14 tahun, dan seluruh badan saya nyeri. Saya juga sakit tenggorokan dan batuk. Saya baru saja pergi ke Afrika Barat dan telah bertemu dengan orang lain yang mengalami hal yang sama. Saya juga melihat ada cedera dan perdarahan yang tidak biasa."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 14,
+    "sex": null,
+    "cc": "E_144",
+    "seconds": 1.6,
+    "findings": [
+     [
+      "E_144",
+      true
+     ],
+     [
+      "E_97",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_1"
+      ]
+     ],
+     [
+      "E_41",
+      true
+     ],
+     [
+      "E_178",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 14,
+    "sex": null,
+    "cc": "E_144",
+    "seconds": 1.31,
+    "findings": [
+     [
+      "E_144",
+      true
+     ],
+     [
+      "E_97",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_1"
+      ]
+     ],
+     [
+      "E_41",
+      true
+     ],
+     [
+      "E_178",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000768": {
+  "texts": {
+   "en": "I'm 31, and I've been making way more saliva than normal lately. I also have a fever, and I hear a high-pitched sound when I breathe in. I drink a lot of alcohol, use stimulants regularly, and I have diabetes.",
+   "id": "Saya pria berusia 31 tahun. Terakhir ini air liur saya keluar lebih banyak dari biasanya, dan saya juga demam. Saat menarik napas, ada suara dengking tinggi. Saya sering minum alkohol, menggunakan obat stimulan, dan saya menderita diabetes."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 31,
+    "sex": null,
+    "cc": "E_190",
+    "seconds": 1.23,
+    "findings": [
+     [
+      "E_190",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 31,
+    "sex": "M",
+    "cc": "E_190",
+    "seconds": 1.24,
+    "findings": [
+     [
+      "E_190",
+      true
+     ],
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T006652": {
+  "texts": {
+   "en": "I am a 55-year-old man and my stomach hurts after I eat. I feel a tugging pain in my upper belly and left side that is about a 6 out of 10. It gets worse when I lie down but feels better when I sit up, and I have noticed black stools like coal. I am overweight and have used a bronchodilator for asthma in the past.",
+   "id": "Saya pria berusia 55 tahun dan perut saya sakit setelah makan. Saya merasa rasa terik di perut atas dan sisi kiri, sekitar 6 dari 10. Nyeri ini memburuk saat berbaring dan membaik saat duduk, dan saya juga telah buang air besar hitam seperti arang. Saya berlebih berat badan dan pernah menggunakan obat pengganggu napas untuk asma."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 55,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.54,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_187",
+       "V_56"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_180"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_215",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_140",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 55,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.46,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_197",
+       "V_85"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_181"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_140",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T004917": {
+  "texts": {
+   "en": "I am a 55-year-old woman and I am having a lot of trouble breathing. I have weakness on one side of my face and around my eyes. I also feel tingling and numbness in my arms, legs, around my mouth, and in my feet.",
+   "id": "Saya perempuan berusia 55 tahun dan mengalami kesulitan bernapas yang cukup parah. Saya merasa lemah di satu sisi wajah dan di sekitar mata. Selain itu, saya merasa mati rasa dan kesemutan di tangan, kaki, sekitar mulut, dan di kaki."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 55,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.6,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_83",
+      true
+     ],
+     [
+      "E_157",
+      true
+     ],
+     [
+      "E_93",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 55,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 2.22,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_156",
+      true
+     ],
+     [
+      "E_157",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T003530": {
+  "texts": {
+   "en": "I'm 14 and I've had diarrhea with more frequent bowel movements. I also have a mild, sensitive pain at the top of my head and forehead, plus widespread muscle aches. I've had skin problems on my right outer labia, I've had an STI before, and I had sex with an HIV-positive partner in the last year.",
+   "id": "Saya berusia 14 tahun dan mengalami diare dengan buang air besar yang lebih sering. Saya juga merasa nyeri ringan dan sensitif di bagian atas kepala serta dahi, dengan nyeri otot di seluruh tubuh. Ada masalah kulit di bibir kemaluan kanan saya, saya pernah menderita infeksi seksual, dan dalam setahun terakhir saya berhubungan intim dengan pasangan yang positif HIV."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 14,
+    "sex": "F",
+    "cc": "E_51",
+    "seconds": 2.18,
+    "findings": [
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_62",
+       "V_89"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_144",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_95"
+      ]
+     ],
+     [
+      "E_27",
+      true
+     ],
+     [
+      "E_189",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 14,
+    "sex": null,
+    "cc": "E_51",
+    "seconds": 5.99,
+    "findings": [
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_62",
+       "V_89"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_144",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_95"
+      ]
+     ],
+     [
+      "E_27",
+      true
+     ],
+     [
+      "E_189",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T005049": {
+  "texts": {
+   "en": "I am a 69-year-old woman, and I have pain on the right side of my neck and the top of my head. It feels tender and is about a 4 out of 10. I have also been sweating more than usual and getting chills, and I have a skin problem on the right side of my neck. I have a weakened immune system and I smoke.",
+   "id": "Saya perempuan berusia 69 tahun, dan saya merasa nyeri di sisi kanan leher dan di bagian atas kepala. Rasa nyerinya seperti sensitif dan tingkatnya sekitar 4 dari 10. Saya juga berkeringat lebih banyak dan merasa menggigil, serta ada masalah kulit di sisi kanan leher saya. Saya memiliki sistem kekebalan tubuh yang lemah dan saya merokok."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 69,
+    "sex": "F",
+    "cc": "E_53",
+    "seconds": 1.58,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_53",
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_50",
+      true
+     ],
+     [
+      "E_94",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_53"
+      ]
+     ],
+     [
+      "E_227",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 69,
+    "sex": "F",
+    "cc": "E_53",
+    "seconds": 1.88,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_53",
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_50",
+      true
+     ],
+     [
+      "E_94",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_53"
+      ]
+     ],
+     [
+      "E_227",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000360": {
+  "texts": {
+   "en": "I'm 14 years old and I have a dull pain in my left hip and lower left belly that's about a 2 out of 10. I also have a red spot on my skin in that same area. The pain gets worse when I cough hard or strain.",
+   "id": "Saya berusia 14 tahun dan merasa nyeri ringan di pinggul kiri dan perut bawah kiri, sekitar 2 dari 10. Ada bekas merah di kulit di area yang sama. Nyerinya semakin parah saat batuk keras atau saat berusaha."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 14,
+    "sex": null,
+    "cc": "E_53",
+    "seconds": 1.27,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_100",
+       "V_187"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_183"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_100",
+       "V_187"
+      ]
+     ],
+     [
+      "E_130",
+      [
+       "V_157"
+      ]
+     ],
+     [
+      "E_221",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 14,
+    "sex": null,
+    "cc": "E_53",
+    "seconds": 2.36,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_100",
+       "V_187"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_100",
+       "V_187"
+      ]
+     ],
+     [
+      "E_130",
+      [
+       "V_157"
+      ]
+     ],
+     [
+      "E_221",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T020731": {
+  "texts": {
+   "en": "I'm 41 years old, and I've been hearing a high-pitched whistling sound when I breathe in. I have asthma and have used an inhaler before.",
+   "id": "Saya berusia 41 tahun, dan mendengar suara dengki tinggi saat bernapas masuk. Saya punya asma dan pernah menggunakan inhaler sebelumnya."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 41,
+    "sex": null,
+    "cc": "E_194",
+    "seconds": 1.21,
+    "findings": [
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 41,
+    "sex": null,
+    "cc": "E_194",
+    "seconds": 1.12,
+    "findings": [
+     [
+      "E_194",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000039": {
+  "texts": {
+   "en": "I am an 87-year-old man and I have sharp pain in my left ankle and the top of my right foot, about a 6 out of 10. I also have swelling in my left thigh and the top of my left foot. I take anti-inflammatory medicine, have had lymph nodes removed, and I have liver cirrhosis and heart failure.",
+   "id": "Saya laki-laki berusia 87 tahun dan merasakan nyeri tajam di pergelangan kaki kiri dan bagian atas kaki kanan, sekitar 6 dari 10. Saya juga mengalami bengkak di paha kiri dan bagian atas kaki kiri. Saya sedang mengonsumsi obat antiinflamasi, pernah dioperasi untuk mengeluarkan kelenjar limfatik, dan saya menderaki sirosis hati serta gagal jantung."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 87,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.46,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_35",
+       "V_72"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_52",
+       "V_73"
+      ]
+     ],
+     [
+      "E_10",
+      true
+     ],
+     [
+      "E_137",
+      true
+     ],
+     [
+      "E_126",
+      true
+     ],
+     [
+      "E_106",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 87,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.61,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_35",
+       "V_72"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_52",
+       "V_73"
+      ]
+     ],
+     [
+      "E_10",
+      true
+     ],
+     [
+      "E_137",
+      true
+     ],
+     [
+      "E_126",
+      true
+     ],
+     [
+      "E_106",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T005940": {
+  "texts": {
+   "en": "I am a 41-year-old man and I am having trouble speaking clearly. I feel weakness in both my arms and legs, my jaw hurts and feels weak, and I am seeing double. I am also having significant trouble breathing, and my father has myasthenia gravis.",
+   "id": "Saya pria berusia 41 tahun dan kesulitan berbicara dengan jelas. Saya merasa lemah di kedua lengan dan kaki, rahang saya sakit dan lemah, serta saya melihat ganda. Saya juga mengalami kesulitan bernapas yang cukup parah, dan ayah saya menderita myasthenia gravis."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 41,
+    "sex": "M",
+    "cc": "E_63",
+    "seconds": 1.15,
+    "findings": [
+     [
+      "E_63",
+      true
+     ],
+     [
+      "E_84",
+      true
+     ],
+     [
+      "E_38",
+      true
+     ],
+     [
+      "E_52",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_28",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 41,
+    "sex": "M",
+    "cc": "E_63",
+    "seconds": 1.68,
+    "findings": [
+     [
+      "E_63",
+      true
+     ],
+     [
+      "E_84",
+      true
+     ],
+     [
+      "E_38",
+      true
+     ],
+     [
+      "E_52",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_28",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000549": {
+  "texts": {
+   "en": "I am a 67-year-old man and I get out of breath even with very little effort. I have a sharp, knife-like pain in my right breast and right side of my chest that is about a 7 out of 10. The pain and shortness of breath get worse when I move but feel better when I rest, and they also ease when I sit up instead of lying down. I also feel like my heart is racing, and I recently traveled to North America.",
+   "id": "Saya pria usia 67 tahun dan mudah sesak napas meski hanya beraktivitas ringan. Saya merasa rasa sakit tajam seperti ditusuk pisau di payudara kanan dan sisi dada kanan, sekitar skala 7 dari 10. Sakitnya dan sesak napasnya memburuk saat bergerak tetapi mereda saat istirahat, dan juga lebih nyaman duduk daripada berbaring. Saya juga merasa jantung berdebar kencang dan baru saja kembali dari Amerika Utara."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 67,
+    "sex": "M",
+    "cc": "E_64",
+    "seconds": 1.49,
+    "findings": [
+     [
+      "E_64",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_55"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_179",
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      7
+     ],
+     [
+      "E_216",
+      true
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_4"
+      ]
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 67,
+    "sex": "M",
+    "cc": "E_64",
+    "seconds": 3.35,
+    "findings": [
+     [
+      "E_64",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_55"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_179",
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      7
+     ],
+     [
+      "E_216",
+      true
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_4"
+      ]
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T035345": {
+  "texts": {
+   "en": "I'm a 43-year-old woman and I've been feeling lightheaded and dizzy, like I'm about to faint. I also feel anxious and short of breath. I have a nagging pain in my left temple and the top of my head that's about a 3 out of 10. I've been taking decongestants and regularly use stimulant drugs.",
+   "id": "Saya perempuan berusia 43 tahun dan merasa pusing serta pusing pingsan. Saya juga merasa cemas dan sesak napas. Ada rasa sakit yang mengganggu di kening kiri dan pucuk kepala saya, sekitar 3 dari 10. Saya sedang mengonsumsi obat pengencang hidung dan rutin menggunakan obat stimulan."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 43,
+    "sex": "F",
+    "cc": "E_82",
+    "seconds": 5.49,
+    "findings": [
+     [
+      "E_82",
+      true
+     ],
+     [
+      "E_16",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_167",
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_154"
+      ]
+     ],
+     [
+      "E_56",
+      3
+     ],
+     [
+      "E_213",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 43,
+    "sex": "F",
+    "cc": "E_76",
+    "seconds": 7.37,
+    "findings": [
+     [
+      "E_76",
+      true
+     ],
+     [
+      "E_82",
+      true
+     ],
+     [
+      "E_16",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_62",
+       "V_89"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_112"
+      ]
+     ],
+     [
+      "E_56",
+      3
+     ],
+     [
+      "E_213",
+      true
+     ],
+     [
+      "E_62",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T015322": {
+  "texts": {
+   "en": "I'm a 26-year-old man and I've lost weight without trying over the last three months. My stools are pale and my urine is dark. I have a sensitive pain in my left side and flank that's about a 6 out of 10. I have diabetes, I feel tired all the time, and I've had diarrhea.",
+   "id": "Saya pria berusia 26 tahun dan berat badan saya turun tanpa sengaja selama tiga bulan terakhir. Tinjanya pucat dan urin saya gelap. Saya merasa nyeri yang sensitif di sisi kiri dan pinggang saya, sekitar 6 dari 10. Saya diabetes, selalu merasa lelah, dan mengalami diare."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 26,
+    "sex": "M",
+    "cc": "E_162",
+    "seconds": 9.33,
+    "findings": [
+     [
+      "E_162",
+      true
+     ],
+     [
+      "E_188",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_85"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_51",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 26,
+    "sex": "M",
+    "cc": "E_188",
+    "seconds": 11.31,
+    "findings": [
+     [
+      "E_162",
+      true
+     ],
+     [
+      "E_188",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_40",
+       "V_54"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_51",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000700": {
+  "texts": {
+   "en": "I'm a 19-year-old guy and my heart has been racing and skipping beats. I've also felt numbness and tingling in both my arms and legs and around my mouth. I've had a head injury before, I feel anxious, and I drink too much alcohol.",
+   "id": "Saya pria berusia 19 tahun. Jantung saya berdebar kencang dan kadang terasa terlewat. Saya merasa mati rasa dan kesemutan di kedua kaki dan tangan saya, serta di sekitar mulut. Saya pernah mengalami kecelakaan kepala, sering merasa cemas, dan terlalu sering minum alkohol."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 19,
+    "sex": "M",
+    "cc": "E_155",
+    "seconds": 12.11,
+    "findings": [
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_157",
+      true
+     ],
+     [
+      "E_185",
+      true
+     ],
+     [
+      "E_16",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 19,
+    "sex": "M",
+    "cc": "E_155",
+    "seconds": 14.03,
+    "findings": [
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_157",
+      true
+     ],
+     [
+      "E_185",
+      true
+     ],
+     [
+      "E_81",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T005253": {
+  "texts": {
+   "en": "I'm 31 and my left upper chest hurts sharply, especially when I take a deep breath. It's a 9 out of 10 and gets worse when I lie down, but sitting up helps. My heart also races and skips beats, and I've had pericarditis before.",
+   "id": "Saya berusia 31 tahun. Dada bagian atas kiri saya rasa tajam, terutama saat bernapas dalam, dan sakitnya 9 dari 10. Nyeri memburuk saat baring, tapi membaik duduk. Jantung saya juga berdebar kencang dan kadang lewat, dan saya pernah mengalami perikarditis."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 31,
+    "sex": null,
+    "cc": "E_53",
+    "seconds": 16.93,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_101"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_220",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_3",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 31,
+    "sex": null,
+    "cc": "E_53",
+    "seconds": 18.21,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_101"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_220",
+      true
+     ],
+     [
+      "E_217",
+      true
+     ],
+     [
+      "E_155",
+      true
+     ],
+     [
+      "E_3",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T004408": {
+  "texts": {
+   "en": "I'm a 56-year-old man with a runny nose and a cough. I've been feeling short of breath and had chills. I have asthma and Parkinson's disease.",
+   "id": "Saya pria usia 56 tahun, hidung saya berair dan ada batuk. Saya merasa sesak napas dan mengalami menggigil. Saya asma dan Parkinson."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 56,
+    "sex": "M",
+    "cc": "E_181",
+    "seconds": 1.19,
+    "findings": [
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_94",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_95",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 56,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.3,
+    "findings": [
+     [
+      "E_181",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_94",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_95",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T003636": {
+  "texts": {
+   "en": "I'm a 26-year-old woman and I've lost my appetite lately. I also feel full much faster than usual. I used to smoke, and I have high blood pressure, diabetes, high cholesterol, and poor circulation.",
+   "id": "Saya perempuan berusia 26 tahun. Akhir ini saya tidak selera makan dan cepat kenyang meski hanya sedikit. Saya pernah merokok dan menderita tekanan darah tinggi, diabetes, kolesterol tinggi, serta masalah sirkulasi darah."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 26,
+    "sex": "F",
+    "cc": "E_161",
+    "seconds": 1.29,
+    "findings": [
+     [
+      "E_161",
+      true
+     ],
+     [
+      "E_191",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_71",
+      true
+     ],
+     [
+      "E_108",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 26,
+    "sex": "F",
+    "cc": "E_161",
+    "seconds": 1.23,
+    "findings": [
+     [
+      "E_161",
+      true
+     ],
+     [
+      "E_191",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_71",
+      true
+     ],
+     [
+      "E_108",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T002456": {
+  "texts": {
+   "en": "I am 40 years old and I passed out. I am having trouble breathing and my left calf and ankle are swollen. I feel a sharp pain in my right shoulder blade and chest, about a 5 out of 10. I take hormones and had surgery last month.",
+   "id": "Saya perempuan berusia 40 tahun dan tadi pingsan. Saya sesak napas dan kaki kiri saya bengkak di bagian pantat kaki dan pergelangan kaki. Saya merasa nyeri tajam seperti tusukan pisang di pundak kanan dan dada kanan, skala 5 dari 10. Saya sedang mengonsumsi hormon dan baru saja dioperasi bulan lalu."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 40,
+    "sex": null,
+    "cc": "E_159",
+    "seconds": 1.58,
+    "findings": [
+     [
+      "E_159",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_120",
+       "V_35"
+      ]
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_127"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      5
+     ],
+     [
+      "E_100",
+      true
+     ],
+     [
+      "E_196",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 40,
+    "sex": "F",
+    "cc": "E_159",
+    "seconds": 2.57,
+    "findings": [
+     [
+      "E_159",
+      true
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_151",
+      true
+     ],
+     [
+      "E_152",
+      [
+       "V_150",
+       "V_35"
+      ]
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_101",
+       "V_194"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      5
+     ],
+     [
+      "E_100",
+      true
+     ],
+     [
+      "E_196",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T004140": {
+  "texts": {
+   "en": "I am a 52-year-old woman and I have been coughing up blood. I still smoke cigarettes and I used to smoke in the past. I have lost my appetite, feel tired all the time, and my mother had lung cancer.",
+   "id": "Saya perempuan berusia 52 tahun dan batuk darah. Saya masih merokok dan dulu juga pernah merokok. Saya tidak selera makan, selalu lelah, dan ibunya pernah kanker paru-paru."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 52,
+    "sex": "F",
+    "cc": "E_45",
+    "seconds": 1.28,
+    "findings": [
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_191",
+      true
+     ],
+     [
+      "E_32",
+      true
+     ],
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_224",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 52,
+    "sex": "F",
+    "cc": "E_45",
+    "seconds": 1.73,
+    "findings": [
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_191",
+      true
+     ],
+     [
+      "E_32",
+      true
+     ],
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_224",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T007024": {
+  "texts": {
+   "en": "I am a 32-year-old woman and I have been feeling short of breath lately. I also have high blood pressure and a skin problem on my left cheek, plus painful sores in my mouth. My right shoulder and left wrist hurt a bit, about a 2 out of 10, and I smoke cigarettes.",
+   "id": "Saya perempuan berusia 32 tahun dan terakhir ini sering sesak napas. Saya juga memiliki tekanan darah tinggi, masalah kulit di pipi kiri, serta luka mulut yang sakit. Bahu kanan dan pergelangan kiri saya terasa nyeri ringan, sekitar 2 dari 10, dan saya merokok."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 32,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.54,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_109"
+      ]
+     ],
+     [
+      "E_206",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_194",
+       "V_75"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_79",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 32,
+    "sex": "F",
+    "cc": "E_66",
+    "seconds": 1.47,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_104",
+      true
+     ],
+     [
+      "E_129",
+      true
+     ],
+     [
+      "E_133",
+      [
+       "V_109"
+      ]
+     ],
+     [
+      "E_206",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_194",
+       "V_75"
+      ]
+     ],
+     [
+      "E_56",
+      2
+     ],
+     [
+      "E_79",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T002530": {
+  "texts": {
+   "en": "I am a 26-year-old man and I have swollen, painful lymph nodes. I also have sharp pain in my left little finger and right middle finger that is about a 5 out of 10. My eyes look red all over, and I have passed out with shaking before. I work in agriculture and I am heavier than most people my height.",
+   "id": "Saya pria berusia 26 tahun dan mengalami kelenjar getah bening yang bengkak dan nyeri. Saya juga merasakan rasa tajam di jari kelingking tangan kiri dan jari tengah tangan kanan, sekitar 5 dari 10. Mataku merah menyeluruh, dan saya pernah pingsan dengan kejang. Saya bekerja di pertanian dan berat badan saya lebih banyak dibandingkan orang lain dengan tinggi badan yang sama."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 26,
+    "sex": "M",
+    "cc": "E_9",
+    "seconds": 1.51,
+    "findings": [
+     [
+      "E_9",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_66",
+       "V_69"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      5
+     ],
+     [
+      "E_74",
+      true
+     ],
+     [
+      "E_159",
+      true
+     ],
+     [
+      "E_198",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 26,
+    "sex": "M",
+    "cc": "E_9",
+    "seconds": 2.01,
+    "findings": [
+     [
+      "E_9",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_66",
+       "V_69"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      5
+     ],
+     [
+      "E_74",
+      true
+     ],
+     [
+      "E_43",
+      true
+     ],
+     [
+      "E_198",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T006751": {
+  "texts": {
+   "en": "I am a 66-year-old man and I hear a wheezing sound when I breathe out. I also feel nauseous and my cheeks suddenly turned red. I have had diarrhea and I ate tuna before this happened. I recently traveled to North America.",
+   "id": "Saya pria berusia 66 tahun. Saya mendengar suara mengi saat menghela napas keluar. Saya merasa mual dan pipi saya tiba-tiba merah. Saya juga mengalami diare setelah makan tuna. Saya baru saja kembali dari perjalanan ke Amerika Utara."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 66,
+    "sex": "M",
+    "cc": "E_214",
+    "seconds": 1.33,
+    "findings": [
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_92",
+      true
+     ],
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_187",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_4"
+      ]
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 66,
+    "sex": "M",
+    "cc": "E_214",
+    "seconds": 1.45,
+    "findings": [
+     [
+      "E_214",
+      true
+     ],
+     [
+      "E_148",
+      true
+     ],
+     [
+      "E_92",
+      true
+     ],
+     [
+      "E_51",
+      true
+     ],
+     [
+      "E_187",
+      true
+     ],
+     [
+      "E_204",
+      [
+       "V_4"
+      ]
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T002095": {
+  "texts": {
+   "en": "I'm 39 and I have sharp chest pain that gets worse when I move around but feels better when I rest. It also hurts when I take a deep breath, and sometimes I feel it even when I'm just sitting still. The pain is in my upper and lower chest, and it's about a 9 out of 10. I have COPD, and my family has a history of pneumothorax.",
+   "id": "Saya perempuan berusia 39 tahun. Saya merasa rasa sakit tajam di dada yang semakin parah saat beraktivitas tetapi membaik saat istirahat. Nyeri juga muncul saat saya bernapas dalam dan kadang terasa meski saya sedang diam. Lokasinya di dada atas dan bawah dengan intensitas 9 dari 10. Saya menderita COPD, dan ada anggota keluarga yang pernah mengalami pneumotoraks."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 39,
+    "sex": null,
+    "cc": "E_53",
+    "seconds": 1.81,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_101",
+       "V_29"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_216",
+      true
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_220",
+      true
+     ],
+     [
+      "E_14",
+      true
+     ],
+     [
+      "E_123",
+      true
+     ],
+     [
+      "E_165",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 39,
+    "sex": "F",
+    "cc": "E_53",
+    "seconds": 1.39,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_101",
+       "V_29"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_220",
+      true
+     ],
+     [
+      "E_14",
+      true
+     ],
+     [
+      "E_123",
+      true
+     ],
+     [
+      "E_165",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T014953": {
+  "texts": {
+   "en": "I am a 68-year-old man and I have been feeling very short of breath. I have sharp pain in my right breast and the back of my right chest that is an 8 out of 10, and it gets worse when I take a deep breath. I have metastatic cancer, I drink too much alcohol, and I have a cough.",
+   "id": "Saya pria usia 68 tahun dan mengalami kesulitan bernapas yang cukup parah. Saya merasakan rasa tajam yang sangat pedih, nilai 8 dari 10, di payudara kanan dan dinding dada belakang kanan, yang semakin sakit saat napas dalam. Saya memiliki kanker yang sudah menyebar, sering mengonsumsi alkohol berlebihan, dan juga batuk."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 68,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.37,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_170"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_192"
+      ]
+     ],
+     [
+      "E_56",
+      8
+     ],
+     [
+      "E_220",
+      true
+     ],
+     [
+      "E_37",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 68,
+    "sex": "M",
+    "cc": "E_66",
+    "seconds": 1.2,
+    "findings": [
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_170"
+      ]
+     ],
+     [
+      "E_37",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ]
+    ],
+    "dropped": 1,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T021630": {
+  "texts": {
+   "en": "I'm a 46-year-old man and I have pain in my right breast and upper stomach that feels exhausting, about a 6 out of 10. I also get short of breath, and it gets worse when I move around but better when I rest. I have diabetes, a past heart attack, and a family history of heart problems before age 50.",
+   "id": "Saya pria berusia 46 tahun. Saya merasa rasa sakit yang sangat melelahkan di payudara kanan dan perut bagian atas, sekitar 6 dari 10. Saya juga sesak napas, yang semakin parah saat beraktivitas dan membaik saat istirahat. Saya diabetes, pernah mengalami serangan jantung, dan ada anggota keluarga yang mengalami masalah jantung sebelum usia 50 tahun."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 46,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.32,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_197"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_198"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_105",
+      true
+     ],
+     [
+      "E_225",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 46,
+    "sex": "M",
+    "cc": "E_53",
+    "seconds": 1.43,
+    "findings": [
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_159",
+       "V_197"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_198"
+      ]
+     ],
+     [
+      "E_56",
+      6
+     ],
+     [
+      "E_66",
+      true
+     ],
+     [
+      "E_218",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_105",
+      true
+     ],
+     [
+      "E_225",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T004230": {
+  "texts": {
+   "en": "I am 11 years old and I have had a fever. I have been coughing and lost some weight without trying over the last three months. I am underweight, and I use intravenous drugs and drink too much alcohol.",
+   "id": "Saya berusia 11 tahun dan sedang demam. Saya juga batuh dan berat badan saya turun tanpa sengaja selama tiga bulan terakhir. Saya kurus, menggunakan suntikan narkoba, dan terlalu sering minum alkohol."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 11,
+    "sex": null,
+    "cc": "E_91",
+    "seconds": 1.11,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_162",
+      true
+     ],
+     [
+      "E_208",
+      true
+     ],
+     [
+      "E_61",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 11,
+    "sex": null,
+    "cc": "E_91",
+    "seconds": 1.08,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_162",
+      true
+     ],
+     [
+      "E_208",
+      true
+     ],
+     [
+      "E_61",
+      true
+     ],
+     [
+      "E_78",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T013489": {
+  "texts": {
+   "en": "I am a 1-year-old man and I have a fever. My head feels heavy and sore at the back and top, about a 4 out of 10. I've also been sweating a lot, have a sore throat, and a cough. I was around someone with similar symptoms two weeks ago.",
+   "id": "Saya pria berusia 1 tahun dan saya demam. Kepala saya terasa berat dan nyeri di bagian belakang dan atas, sekitar 4 dari 10. Saya juga berkeringat banyak, sakit tenggorokan, dan batuk. Dua minggu lalu saya kontak dengan orang yang memiliki gejala serupa."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 1,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 1.23,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_25",
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_183"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_50",
+      true
+     ],
+     [
+      "E_97",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_41",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 1,
+    "sex": "M",
+    "cc": "E_91",
+    "seconds": 1.38,
+    "findings": [
+     [
+      "E_91",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_25",
+       "V_62"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_183"
+      ]
+     ],
+     [
+      "E_56",
+      4
+     ],
+     [
+      "E_50",
+      true
+     ],
+     [
+      "E_97",
+      true
+     ],
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_41",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T012278": {
+  "texts": {
+   "en": "I am a 53-year-old man and I am constantly tired even though I sleep. I exercise four times a week, but I am overweight and have diabetes and high cholesterol. I also get chest pain even when I am resting.",
+   "id": "Saya pria usia 53 tahun dan selalu merasa lelah meski sudah tidur. Saya olahraga empat kali seminggu, tapi saya berlebih badan dan menderita diabetes serta kolesterol tinggi. Saya juga merasakan nyeri dada bahkan saat istirahat."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 53,
+    "sex": "M",
+    "cc": "E_89",
+    "seconds": 4.9,
+    "findings": [
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_143",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_71",
+      true
+     ],
+     [
+      "E_14",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 53,
+    "sex": "M",
+    "cc": "E_14",
+    "seconds": 1.46,
+    "findings": [
+     [
+      "E_89",
+      true
+     ],
+     [
+      "E_143",
+      true
+     ],
+     [
+      "E_70",
+      true
+     ],
+     [
+      "E_69",
+      true
+     ],
+     [
+      "E_71",
+      true
+     ],
+     [
+      "E_14",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T000697": {
+  "texts": {
+   "en": "I am a 42-year-old man and I have been coughing. I have been coughing up blood and I smoke cigarettes. My right tonsil area is very sensitive and hurts at a 9 out of 10. I live with four or more people.",
+   "id": "Saya pria berusia 42 tahun dan sudah batuk. Saya juga batuk darah dan merokok. Tonsil kanan saya sangat sensitif dan nyeri dengan intensitas 9 dari 10. Saya tinggal bersama lebih dari empat orang."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 42,
+    "sex": "M",
+    "cc": "E_201",
+    "seconds": 2.22,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_20"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_48",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 42,
+    "sex": "M",
+    "cc": "E_201",
+    "seconds": 2.11,
+    "findings": [
+     [
+      "E_201",
+      true
+     ],
+     [
+      "E_45",
+      true
+     ],
+     [
+      "E_79",
+      true
+     ],
+     [
+      "E_53",
+      true
+     ],
+     [
+      "E_55",
+      [
+       "V_20"
+      ]
+     ],
+     [
+      "E_54",
+      [
+       "V_161"
+      ]
+     ],
+     [
+      "E_56",
+      9
+     ],
+     [
+      "E_48",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  }
+ },
+ "T009928": {
+  "texts": {
+   "en": "I am a 30-year-old woman and I have been vomiting after I cough. My breathing gets noisy and I wheeze when I inhale after coughing spells. I have asthma and have used a bronchodilator before, and my vaccinations are up to date.",
+   "id": "Saya perempuan berusia 30 tahun dan sering muntah setelah batuk. Nafas saya menjadi berisio dan dengkur saat menarik napas setelah serangan batuk. Saya asma dan pernah menggunakan obat pengganggu napas, serta vaksinasi saya sudah lengkap."
+  },
+  "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+  "readings": {
+   "en": {
+    "age": 30,
+    "sex": "F",
+    "cc": "E_166",
+    "seconds": 0.91,
+    "findings": [
+     [
+      "E_166",
+      true
+     ],
+     [
+      "E_112",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_209",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "age": 30,
+    "sex": "F",
+    "cc": "E_166",
+    "seconds": 0.81,
+    "findings": [
+     [
+      "E_166",
+      true
+     ],
+     [
+      "E_112",
+      true
+     ],
+     [
+      "E_124",
+      true
+     ],
+     [
+      "E_209",
+      true
+     ]
+    ],
+    "dropped": 0,
+    "reader": "groq (qwen/qwen3.8-27b)"
    }
   }
  }

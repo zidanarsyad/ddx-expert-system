@@ -878,8 +878,10 @@ THEN pulmonary embolism (CF +0.70)
   wrote how each patient might describe the problem, once in English and once in Indonesian, mentioning the main
   complaint and up to five other findings of the record; the intake ({{ intake.reader }}) then read every description.
   Continuing from the reading, the consultation ranked the true disease first for {{ intake.en1 }} of the patients
-  (Indonesian: {{ intake.id1 }}), against {{ intake.base1 }} when it started from the main complaint alone. The
-  descriptions were written by a model rather than by patients, so real descriptions will be harder to read.</p>
+  (Indonesian: {{ intake.id1 }}), against {{ intake.base1 }} when it started from the main complaint alone. Starting
+  from a description saves almost every question, but a finding that was read wrongly is then rarely corrected by a
+  later question. The descriptions were written by a model rather than by patients, so real descriptions will be harder
+  to read.</p>
 <p class="small muted">The description is sent to the model's provider (Groq first, then Gemini or OpenRouter), so only
   invented cases should be entered. Without an API key the front end does not appear and DDX-ES works as before.</p>
 </section>

@@ -5,50 +5,50 @@
   "openrouter (nvidia/nemotron-3.5-super-vl:free)"
  ],
  "reader": "groq (qwen/qwen3.8-27b)",
- "patients": 15,
+ "patients": 49,
  "languages": {
   "en": {
-   "descriptions": 15,
-   "findings_mentioned": 112,
-   "findings_read": 109,
-   "precision_vs_record": 0.9908,
-   "recall_of_mentioned": 0.9464,
-   "f1": 0.9681,
-   "main_complaint": 0.8667,
+   "descriptions": 49,
+   "findings_mentioned": 388,
+   "findings_read": 380,
+   "precision_vs_record": 0.9447,
+   "recall_of_mentioned": 0.9201,
+   "f1": 0.9323,
+   "main_complaint": 0.8776,
    "age": 1.0,
-   "sex": 0.8,
-   "seconds_per_reading": 2.634,
-   "dropped_per_reading": 0.1333,
-   "top1": 1.0,
-   "top3": 1.0,
-   "questions": 0.1333
+   "sex": 0.7755,
+   "seconds_per_reading": 2.6639,
+   "dropped_per_reading": 0.0816,
+   "top1": 0.9592,
+   "top3": 0.9796,
+   "questions": 0.3673
   },
   "id": {
-   "descriptions": 15,
-   "findings_mentioned": 112,
-   "findings_read": 110,
-   "precision_vs_record": 0.9636,
-   "recall_of_mentioned": 0.9464,
-   "f1": 0.955,
-   "main_complaint": 0.7333,
+   "descriptions": 49,
+   "findings_mentioned": 388,
+   "findings_read": 377,
+   "precision_vs_record": 0.9337,
+   "recall_of_mentioned": 0.8995,
+   "f1": 0.9163,
+   "main_complaint": 0.7347,
    "age": 1.0,
-   "sex": 0.8667,
-   "seconds_per_reading": 3.0193,
-   "dropped_per_reading": 0.1333,
-   "top1": 0.9333,
-   "top3": 0.9333,
-   "questions": 0.2667
+   "sex": 0.8367,
+   "seconds_per_reading": 3.0624,
+   "dropped_per_reading": 0.0816,
+   "top1": 0.9388,
+   "top3": 0.9592,
+   "questions": 0.3878
   }
  },
  "baseline": {
-  "top1": 0.9333,
+  "top1": 0.9796,
   "top3": 1.0,
-  "questions": 4.2
+  "questions": 4.0408
  },
  "oracle": {
   "top1": 1.0,
   "top3": 1.0,
-  "questions": 0.1333
+  "questions": 0.3469
  },
  "cases": [
   {
@@ -1748,6 +1748,3953 @@
      "top1": false,
      "top3": false,
      "questions": 2,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T012363",
+   "pathology": "Chagas",
+   "mentioned": [
+    "E_148",
+    "E_175",
+    "E_51",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_62",
+    "E_55=V_84",
+    "E_56=8",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I am a 59-year-old man and I have a fever. I have sharp pain at the top of my head and on my right flank that is an 8 out of 10. I also have diarrhea, feel nauseous, and feel very tired and achy all over.",
+    "id": "Saya pria berusia 59 tahun dan saya demam. Saya merasa rasa sakit tajam di bagian atas kepala dan pinggir kanan saya, skala 8 dari 10. Saya juga diare, mual, dan merasa sangat lelah serta nyeri di seluruh tubuh."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_144",
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_55=V_84",
+     "E_56=8",
+     "E_89",
+     "E_91"
+    ],
+    "correct": [
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_55=V_84",
+     "E_56=8",
+     "E_91"
+    ],
+    "found": [
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_55=V_84",
+     "E_56=8",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.35,
+    "dropped": 0,
+    "consultation": {
+     "top1": false,
+     "top3": false,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_144",
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_56=8",
+     "E_88",
+     "E_91"
+    ],
+    "correct": [
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_56=8",
+     "E_91"
+    ],
+    "found": [
+     "E_148",
+     "E_51",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_62",
+     "E_56=8",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.68,
+    "dropped": 0,
+    "consultation": {
+     "top1": false,
+     "top3": false,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T007472",
+   "pathology": "Chronic rhinosinusitis",
+   "mentioned": [
+    "E_103",
+    "E_118",
+    "E_120",
+    "E_124",
+    "E_182",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I'm a 40-year-old woman and I've completely lost my sense of smell. I've been coughing up greenish-yellow mucus, I smoke cigarettes, and I have nasal polyps. I also have asthma and have had pneumonia before.",
+    "id": "Saya perempuan berusia 40 tahun dan kehilangan indera penciuman saya. Saya berakibat lendir hijau-kuning, merokok, dan ada polip di hidung. Saya juga asma dan pernah mengalami pneumonia."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "SelfCare"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "SelfCare"
+   },
+   "en": {
+    "read": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_77",
+     "E_79"
+    ],
+    "correct": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_79"
+    ],
+    "found": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.2,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 3,
+     "triage": "SelfCare"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_182",
+     "E_79"
+    ],
+    "correct": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_182",
+     "E_79"
+    ],
+    "found": [
+     "E_103",
+     "E_118",
+     "E_120",
+     "E_124",
+     "E_182",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.31,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 2,
+     "triage": "SelfCare"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T001404",
+   "pathology": "Cluster headache",
+   "mentioned": [
+    "E_127",
+    "E_181",
+    "E_184",
+    "E_25",
+    "E_53",
+    "E_54=V_191",
+    "E_55=V_108",
+    "E_55=V_166",
+    "E_56=9",
+    "E_78"
+   ],
+   "texts": {
+    "en": "I'm a 53-year-old man, and my eyes are watering way too much. I have severe pain in my right cheek and temple that's about a 9 out of 10. I also have a runny nose, and my father had cluster headaches. I take medication that opens up my blood vessels and I drink too much alcohol.",
+    "id": "Saya pria berusia 53 tahun, dan mataku terlalu banyak airnya. Saya merasakan sakit yang sangat parah di pipi kanan dan pelipis kanan, sekitar 9 dari 10. Hidung saya juga berair, dan ayah saya pernah menderita sakit kepala klaster. Saya minum obat yang melebarkan pembuluh darah dan saya terlalu sering minum alkohol."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "correct": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "found": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.43,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_54=V_191",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "correct": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_54=V_191",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "found": [
+     "E_127",
+     "E_181",
+     "E_184",
+     "E_25",
+     "E_53",
+     "E_54=V_191",
+     "E_55=V_108",
+     "E_55=V_166",
+     "E_56=9",
+     "E_78"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.73,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000714",
+   "pathology": "Croup",
+   "mentioned": [
+    "E_190",
+    "E_194",
+    "E_219",
+    "E_4",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I am a 0-year-old man, and my symptoms are worse at night. I have a high pitched sound when I breathe in, I have a fever, and I am producing more saliva than usual. My family has a history of croup.",
+    "id": "Saya seorang pria berusia 0 tahun, dan gejalanya semakin parah di malam hari. Saya mendengar suara tinggi saat bernapas masuk, ada demam, dan air liur saya lebih banyak dari biasanya. Keluarga saya pernah mengalami croup."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "correct": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "found": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.28,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "correct": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "found": [
+     "E_190",
+     "E_194",
+     "E_219",
+     "E_4",
+     "E_91"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.29,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T002570",
+   "pathology": "Ebola",
+   "mentioned": [
+    "E_144",
+    "E_178",
+    "E_201",
+    "E_204=V_1",
+    "E_41",
+    "E_97"
+   ],
+   "texts": {
+    "en": "I am 14 years old, and my whole body aches. I also have a sore throat and a cough. I recently went to West Africa, and I have been around someone else who felt the same way. I have noticed some unusual bruising and bleeding too.",
+    "id": "Saya berusia 14 tahun, dan seluruh badan saya nyeri. Saya juga sakit tenggorokan dan batuk. Saya baru saja pergi ke Afrika Barat dan telah bertemu dengan orang lain yang mengalami hal yang sama. Saya juga melihat ada cedera dan perdarahan yang tidak biasa."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "correct": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "found": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.6,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "correct": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "found": [
+     "E_144",
+     "E_178",
+     "E_201",
+     "E_204=V_1",
+     "E_41",
+     "E_97"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.31,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000768",
+   "pathology": "Epiglottitis",
+   "mentioned": [
+    "E_190",
+    "E_194",
+    "E_62",
+    "E_69",
+    "E_78",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I'm 31, and I've been making way more saliva than normal lately. I also have a fever, and I hear a high-pitched sound when I breathe in. I drink a lot of alcohol, use stimulants regularly, and I have diabetes.",
+    "id": "Saya pria berusia 31 tahun. Terakhir ini air liur saya keluar lebih banyak dari biasanya, dan saya juga demam. Saat menarik napas, ada suara dengking tinggi. Saya sering minum alkohol, menggunakan obat stimulan, dan saya menderita diabetes."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "correct": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "found": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.23,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "correct": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "found": [
+     "E_190",
+     "E_194",
+     "E_62",
+     "E_69",
+     "E_78",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.24,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T006652",
+   "pathology": "GERD",
+   "mentioned": [
+    "E_124",
+    "E_140",
+    "E_215",
+    "E_217",
+    "E_53",
+    "E_54=V_180",
+    "E_55=V_104",
+    "E_55=V_197",
+    "E_56=6",
+    "E_70"
+   ],
+   "texts": {
+    "en": "I am a 55-year-old man and my stomach hurts after I eat. I feel a tugging pain in my upper belly and left side that is about a 6 out of 10. It gets worse when I lie down but feels better when I sit up, and I have noticed black stools like coal. I am overweight and have used a bronchodilator for asthma in the past.",
+    "id": "Saya pria berusia 55 tahun dan perut saya sakit setelah makan. Saya merasa rasa terik di perut atas dan sisi kiri, sekitar 6 dari 10. Nyeri ini memburuk saat berbaring dan membaik saat duduk, dan saya juga telah buang air besar hitam seperti arang. Saya berlebih berat badan dan pernah menggunakan obat pengganggu napas untuk asma."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_124",
+     "E_140",
+     "E_215",
+     "E_217",
+     "E_53",
+     "E_54=V_180",
+     "E_55=V_187",
+     "E_55=V_56",
+     "E_56=6",
+     "E_70"
+    ],
+    "correct": [
+     "E_124",
+     "E_140",
+     "E_215",
+     "E_217",
+     "E_53",
+     "E_54=V_180",
+     "E_56=6",
+     "E_70"
+    ],
+    "found": [
+     "E_124",
+     "E_140",
+     "E_215",
+     "E_217",
+     "E_53",
+     "E_54=V_180",
+     "E_56=6",
+     "E_70"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.54,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_124",
+     "E_140",
+     "E_217",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_197",
+     "E_55=V_85",
+     "E_56=6",
+     "E_70"
+    ],
+    "correct": [
+     "E_124",
+     "E_140",
+     "E_217",
+     "E_53",
+     "E_54=V_181",
+     "E_55=V_197",
+     "E_56=6",
+     "E_70"
+    ],
+    "found": [
+     "E_124",
+     "E_140",
+     "E_217",
+     "E_53",
+     "E_55=V_197",
+     "E_56=6",
+     "E_70"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.46,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T004917",
+   "pathology": "Guillain-Barré syndrome",
+   "mentioned": [
+    "E_156",
+    "E_157",
+    "E_177",
+    "E_66",
+    "E_83",
+    "E_93"
+   ],
+   "texts": {
+    "en": "I am a 55-year-old woman and I am having a lot of trouble breathing. I have weakness on one side of my face and around my eyes. I also feel tingling and numbness in my arms, legs, around my mouth, and in my feet.",
+    "id": "Saya perempuan berusia 55 tahun dan mengalami kesulitan bernapas yang cukup parah. Saya merasa lemah di satu sisi wajah dan di sekitar mata. Selain itu, saya merasa mati rasa dan kesemutan di tangan, kaki, sekitar mulut, dan di kaki."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 13,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_157",
+     "E_66",
+     "E_83",
+     "E_93"
+    ],
+    "correct": [
+     "E_157",
+     "E_66",
+     "E_83",
+     "E_93"
+    ],
+    "found": [
+     "E_157",
+     "E_66",
+     "E_83",
+     "E_93"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.6,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_156",
+     "E_157",
+     "E_66"
+    ],
+    "correct": [
+     "E_156",
+     "E_157",
+     "E_66"
+    ],
+    "found": [
+     "E_156",
+     "E_157",
+     "E_66"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.22,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T003530",
+   "pathology": "HIV (initial infection)",
+   "mentioned": [
+    "E_129",
+    "E_133=V_95",
+    "E_144",
+    "E_189",
+    "E_27",
+    "E_51",
+    "E_53",
+    "E_54=V_161",
+    "E_55=V_62",
+    "E_55=V_89",
+    "E_56=3"
+   ],
+   "texts": {
+    "en": "I'm 14 and I've had diarrhea with more frequent bowel movements. I also have a mild, sensitive pain at the top of my head and forehead, plus widespread muscle aches. I've had skin problems on my right outer labia, I've had an STI before, and I had sex with an HIV-positive partner in the last year.",
+    "id": "Saya berusia 14 tahun dan mengalami diare dengan buang air besar yang lebih sering. Saya juga merasa nyeri ringan dan sensitif di bagian atas kepala serta dahi, dengan nyeri otot di seluruh tubuh. Ada masalah kulit di bibir kemaluan kanan saya, saya pernah menderita infeksi seksual, dan dalam setahun terakhir saya berhubungan intim dengan pasangan yang positif HIV."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 4,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.18,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_95",
+     "E_144",
+     "E_189",
+     "E_27",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_62",
+     "E_55=V_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 5.99,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T005049",
+   "pathology": "Influenza",
+   "mentioned": [
+    "E_129",
+    "E_133=V_53",
+    "E_227",
+    "E_50",
+    "E_53",
+    "E_54=V_161",
+    "E_55=V_53",
+    "E_55=V_62",
+    "E_56=4",
+    "E_79",
+    "E_94"
+   ],
+   "texts": {
+    "en": "I am a 69-year-old woman, and I have pain on the right side of my neck and the top of my head. It feels tender and is about a 4 out of 10. I have also been sweating more than usual and getting chills, and I have a skin problem on the right side of my neck. I have a weakened immune system and I smoke.",
+    "id": "Saya perempuan berusia 69 tahun, dan saya merasa nyeri di sisi kanan leher dan di bagian atas kepala. Rasa nyerinya seperti sensitif dan tingkatnya sekitar 4 dari 10. Saya juga berkeringat lebih banyak dan merasa menggigil, serta ada masalah kulit di sisi kanan leher saya. Saya memiliki sistem kekebalan tubuh yang lemah dan saya merokok."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 1,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.58,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_53",
+     "E_227",
+     "E_50",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_53",
+     "E_55=V_62",
+     "E_56=4",
+     "E_79",
+     "E_94"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.88,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000360",
+   "pathology": "Inguinal hernia",
+   "mentioned": [
+    "E_129",
+    "E_133=V_88",
+    "E_203",
+    "E_221",
+    "E_53",
+    "E_54=V_183",
+    "E_55=V_100",
+    "E_55=V_88",
+    "E_56=2"
+   ],
+   "texts": {
+    "en": "I'm 14 years old and I have a dull pain in my left hip and lower left belly that's about a 2 out of 10. I also have a red spot on my skin in that same area. The pain gets worse when I cough hard or strain.",
+    "id": "Saya berusia 14 tahun dan merasa nyeri ringan di pinggul kiri dan perut bawah kiri, sekitar 2 dari 10. Ada bekas merah di kulit di area yang sama. Nyerinya semakin parah saat batuk keras atau saat berusaha."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 1,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_129",
+     "E_130=V_157",
+     "E_133=V_100",
+     "E_133=V_187",
+     "E_221",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_100",
+     "E_55=V_187",
+     "E_56=2"
+    ],
+    "correct": [
+     "E_129",
+     "E_221",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_100",
+     "E_56=2"
+    ],
+    "found": [
+     "E_129",
+     "E_221",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_100",
+     "E_56=2"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.27,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_129",
+     "E_130=V_157",
+     "E_133=V_100",
+     "E_133=V_187",
+     "E_221",
+     "E_53",
+     "E_55=V_100",
+     "E_55=V_187",
+     "E_56=2"
+    ],
+    "correct": [
+     "E_129",
+     "E_221",
+     "E_53",
+     "E_55=V_100",
+     "E_56=2"
+    ],
+    "found": [
+     "E_129",
+     "E_221",
+     "E_53",
+     "E_55=V_100",
+     "E_56=2"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 2.36,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T020731",
+   "pathology": "Larygospasm",
+   "mentioned": [
+    "E_124",
+    "E_194"
+   ],
+   "texts": {
+    "en": "I'm 41 years old, and I've been hearing a high-pitched whistling sound when I breathe in. I have asthma and have used an inhaler before.",
+    "id": "Saya berusia 41 tahun, dan mendengar suara dengki tinggi saat bernapas masuk. Saya punya asma dan pernah menggunakan inhaler sebelumnya."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 9,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 7,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_124",
+     "E_194"
+    ],
+    "correct": [
+     "E_124",
+     "E_194"
+    ],
+    "found": [
+     "E_124",
+     "E_194"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.21,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 7,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_124",
+     "E_194"
+    ],
+    "correct": [
+     "E_124",
+     "E_194"
+    ],
+    "found": [
+     "E_124",
+     "E_194"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.12,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 7,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000039",
+   "pathology": "Localized edema",
+   "mentioned": [
+    "E_10",
+    "E_106",
+    "E_126",
+    "E_137",
+    "E_151",
+    "E_152=V_52",
+    "E_152=V_73",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_35",
+    "E_55=V_72",
+    "E_56=6"
+   ],
+   "texts": {
+    "en": "I am an 87-year-old man and I have sharp pain in my left ankle and the top of my right foot, about a 6 out of 10. I also have swelling in my left thigh and the top of my left foot. I take anti-inflammatory medicine, have had lymph nodes removed, and I have liver cirrhosis and heart failure.",
+    "id": "Saya laki-laki berusia 87 tahun dan merasakan nyeri tajam di pergelangan kaki kiri dan bagian atas kaki kanan, sekitar 6 dari 10. Saya juga mengalami bengkak di paha kiri dan bagian atas kaki kiri. Saya sedang mengonsumsi obat antiinflamasi, pernah dioperasi untuk mengeluarkan kelenjar limfatik, dan saya menderaki sirosis hati serta gagal jantung."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 1,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "correct": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "found": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.46,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "correct": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "found": [
+     "E_10",
+     "E_106",
+     "E_126",
+     "E_137",
+     "E_151",
+     "E_152=V_52",
+     "E_152=V_73",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_35",
+     "E_55=V_72",
+     "E_56=6"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.61,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T005940",
+   "pathology": "Myasthenia gravis",
+   "mentioned": [
+    "E_28",
+    "E_38",
+    "E_52",
+    "E_63",
+    "E_66",
+    "E_84"
+   ],
+   "texts": {
+    "en": "I am a 41-year-old man and I am having trouble speaking clearly. I feel weakness in both my arms and legs, my jaw hurts and feels weak, and I am seeing double. I am also having significant trouble breathing, and my father has myasthenia gravis.",
+    "id": "Saya pria berusia 41 tahun dan kesulitan berbicara dengan jelas. Saya merasa lemah di kedua lengan dan kaki, rahang saya sakit dan lemah, serta saya melihat ganda. Saya juga mengalami kesulitan bernapas yang cukup parah, dan ayah saya menderita myasthenia gravis."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "correct": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "found": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.15,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "correct": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "found": [
+     "E_28",
+     "E_38",
+     "E_52",
+     "E_63",
+     "E_66",
+     "E_84"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.68,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000549",
+   "pathology": "Myocarditis",
+   "mentioned": [
+    "E_155",
+    "E_204=V_4",
+    "E_217",
+    "E_218",
+    "E_53",
+    "E_54=V_179",
+    "E_55=V_159",
+    "E_55=V_55",
+    "E_56=7",
+    "E_64"
+   ],
+   "texts": {
+    "en": "I am a 67-year-old man and I get out of breath even with very little effort. I have a sharp, knife-like pain in my right breast and right side of my chest that is about a 7 out of 10. The pain and shortness of breath get worse when I move but feel better when I rest, and they also ease when I sit up instead of lying down. I also feel like my heart is racing, and I recently traveled to North America.",
+    "id": "Saya pria usia 67 tahun dan mudah sesak napas meski hanya beraktivitas ringan. Saya merasa rasa sakit tajam seperti ditusuk pisau di payudara kanan dan sisi dada kanan, sekitar skala 7 dari 10. Sakitnya dan sesak napasnya memburuk saat bergerak tetapi mereda saat istirahat, dan juga lebih nyaman duduk daripada berbaring. Saya juga merasa jantung berdebar kencang dan baru saja kembali dari Amerika Utara."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_155",
+     "E_204=V_4",
+     "E_216",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_54=V_192",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "correct": [
+     "E_155",
+     "E_204=V_4",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "found": [
+     "E_155",
+     "E_204=V_4",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.49,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_155",
+     "E_204=V_4",
+     "E_216",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_54=V_192",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "correct": [
+     "E_155",
+     "E_204=V_4",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "found": [
+     "E_155",
+     "E_204=V_4",
+     "E_217",
+     "E_218",
+     "E_53",
+     "E_54=V_179",
+     "E_55=V_159",
+     "E_55=V_55",
+     "E_56=7",
+     "E_64"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 3.35,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T035345",
+   "pathology": "PSVT",
+   "mentioned": [
+    "E_16",
+    "E_213",
+    "E_53",
+    "E_54=V_112",
+    "E_55=V_167",
+    "E_55=V_62",
+    "E_56=3",
+    "E_62",
+    "E_66",
+    "E_82"
+   ],
+   "texts": {
+    "en": "I'm a 43-year-old woman and I've been feeling lightheaded and dizzy, like I'm about to faint. I also feel anxious and short of breath. I have a nagging pain in my left temple and the top of my head that's about a 3 out of 10. I've been taking decongestants and regularly use stimulant drugs.",
+    "id": "Saya perempuan berusia 43 tahun dan merasa pusing serta pusing pingsan. Saya juga merasa cemas dan sesak napas. Ada rasa sakit yang mengganggu di kening kiri dan pucuk kepala saya, sekitar 3 dari 10. Saya sedang mengonsumsi obat pengencang hidung dan rutin menggunakan obat stimulan."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_54=V_154",
+     "E_55=V_167",
+     "E_55=V_62",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_82"
+    ],
+    "correct": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_55=V_167",
+     "E_55=V_62",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_82"
+    ],
+    "found": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_55=V_167",
+     "E_55=V_62",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_82"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 5.49,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_54=V_112",
+     "E_55=V_62",
+     "E_55=V_89",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_76",
+     "E_82"
+    ],
+    "correct": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_54=V_112",
+     "E_55=V_62",
+     "E_55=V_89",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_76",
+     "E_82"
+    ],
+    "found": [
+     "E_16",
+     "E_213",
+     "E_53",
+     "E_54=V_112",
+     "E_55=V_62",
+     "E_56=3",
+     "E_62",
+     "E_66",
+     "E_82"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 7.37,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T015322",
+   "pathology": "Pancreatic neoplasm",
+   "mentioned": [
+    "E_162",
+    "E_188",
+    "E_51",
+    "E_53",
+    "E_54=V_161",
+    "E_55=V_104",
+    "E_55=V_85",
+    "E_56=6",
+    "E_69",
+    "E_89"
+   ],
+   "texts": {
+    "en": "I'm a 26-year-old man and I've lost weight without trying over the last three months. My stools are pale and my urine is dark. I have a sensitive pain in my left side and flank that's about a 6 out of 10. I have diabetes, I feel tired all the time, and I've had diarrhea.",
+    "id": "Saya pria berusia 26 tahun dan berat badan saya turun tanpa sengaja selama tiga bulan terakhir. Tinjanya pucat dan urin saya gelap. Saya merasa nyeri yang sensitif di sisi kiri dan pinggang saya, sekitar 6 dari 10. Saya diabetes, selalu merasa lelah, dan mengalami diare."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_85",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "correct": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_85",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "found": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_85",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 9.33,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_40",
+     "E_55=V_54",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "correct": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "found": [
+     "E_162",
+     "E_188",
+     "E_51",
+     "E_53",
+     "E_54=V_161",
+     "E_56=6",
+     "E_69",
+     "E_89"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 11.31,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000700",
+   "pathology": "Panic attack",
+   "mentioned": [
+    "E_155",
+    "E_157",
+    "E_16",
+    "E_177",
+    "E_185",
+    "E_78"
+   ],
+   "texts": {
+    "en": "I'm a 19-year-old guy and my heart has been racing and skipping beats. I've also felt numbness and tingling in both my arms and legs and around my mouth. I've had a head injury before, I feel anxious, and I drink too much alcohol.",
+    "id": "Saya pria berusia 19 tahun. Jantung saya berdebar kencang dan kadang terasa terlewat. Saya merasa mati rasa dan kesemutan di kedua kaki dan tangan saya, serta di sekitar mulut. Saya pernah mengalami kecelakaan kepala, sering merasa cemas, dan terlalu sering minum alkohol."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "SelfCare"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "SelfCare"
+   },
+   "en": {
+    "read": [
+     "E_155",
+     "E_157",
+     "E_16",
+     "E_185",
+     "E_78"
+    ],
+    "correct": [
+     "E_155",
+     "E_157",
+     "E_16",
+     "E_185",
+     "E_78"
+    ],
+    "found": [
+     "E_155",
+     "E_157",
+     "E_16",
+     "E_185",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 12.11,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "SelfCare"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_155",
+     "E_157",
+     "E_185",
+     "E_78",
+     "E_81"
+    ],
+    "correct": [
+     "E_155",
+     "E_157",
+     "E_185",
+     "E_78"
+    ],
+    "found": [
+     "E_155",
+     "E_157",
+     "E_185",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 14.03,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "SelfCare"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T005253",
+   "pathology": "Pericarditis",
+   "mentioned": [
+    "E_155",
+    "E_217",
+    "E_220",
+    "E_3",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_101",
+    "E_55=V_160",
+    "E_56=9"
+   ],
+   "texts": {
+    "en": "I'm 31 and my left upper chest hurts sharply, especially when I take a deep breath. It's a 9 out of 10 and gets worse when I lie down, but sitting up helps. My heart also races and skips beats, and I've had pericarditis before.",
+    "id": "Saya berusia 31 tahun. Dada bagian atas kiri saya rasa tajam, terutama saat bernapas dalam, dan sakitnya 9 dari 10. Nyeri memburuk saat baring, tapi membaik duduk. Jantung saya juga berdebar kencang dan kadang lewat, dan saya pernah mengalami perikarditis."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "correct": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "found": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": false,
+    "seconds": 16.93,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "correct": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "found": [
+     "E_155",
+     "E_217",
+     "E_220",
+     "E_3",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_56=9"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": false,
+    "seconds": 18.21,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T004408",
+   "pathology": "Pneumonia",
+   "mentioned": [
+    "E_124",
+    "E_181",
+    "E_201",
+    "E_66",
+    "E_94",
+    "E_95"
+   ],
+   "texts": {
+    "en": "I'm a 56-year-old man with a runny nose and a cough. I've been feeling short of breath and had chills. I have asthma and Parkinson's disease.",
+    "id": "Saya pria usia 56 tahun, hidung saya berair dan ada batuk. Saya merasa sesak napas dan mengalami menggigil. Saya asma dan Parkinson."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "correct": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "found": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.19,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "correct": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "found": [
+     "E_124",
+     "E_181",
+     "E_201",
+     "E_66",
+     "E_94",
+     "E_95"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.3,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T003636",
+   "pathology": "Possible NSTEMI / STEMI",
+   "mentioned": [
+    "E_104",
+    "E_108",
+    "E_161",
+    "E_191",
+    "E_69",
+    "E_71"
+   ],
+   "texts": {
+    "en": "I'm a 26-year-old woman and I've lost my appetite lately. I also feel full much faster than usual. I used to smoke, and I have high blood pressure, diabetes, high cholesterol, and poor circulation.",
+    "id": "Saya perempuan berusia 26 tahun. Akhir ini saya tidak selera makan dan cepat kenyang meski hanya sedikit. Saya pernah merokok dan menderita tekanan darah tinggi, diabetes, kolesterol tinggi, serta masalah sirkulasi darah."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 4,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "correct": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "found": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.29,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "correct": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "found": [
+     "E_104",
+     "E_108",
+     "E_161",
+     "E_191",
+     "E_69",
+     "E_71"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.23,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T002456",
+   "pathology": "Pulmonary embolism",
+   "mentioned": [
+    "E_100",
+    "E_151",
+    "E_152=V_120",
+    "E_152=V_24",
+    "E_159",
+    "E_196",
+    "E_53",
+    "E_54=V_179",
+    "E_55=V_127",
+    "E_55=V_170",
+    "E_56=5",
+    "E_66"
+   ],
+   "texts": {
+    "en": "I am 40 years old and I passed out. I am having trouble breathing and my left calf and ankle are swollen. I feel a sharp pain in my right shoulder blade and chest, about a 5 out of 10. I take hormones and had surgery last month.",
+    "id": "Saya perempuan berusia 40 tahun dan tadi pingsan. Saya sesak napas dan kaki kiri saya bengkak di bagian pantat kaki dan pergelangan kaki. Saya merasa nyeri tajam seperti tusukan pisang di pundak kanan dan dada kanan, skala 5 dari 10. Saya sedang mengonsumsi hormon dan baru saja dioperasi bulan lalu."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_100",
+     "E_151",
+     "E_152=V_120",
+     "E_152=V_35",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_127",
+     "E_56=5",
+     "E_66"
+    ],
+    "correct": [
+     "E_100",
+     "E_151",
+     "E_152=V_120",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_55=V_127",
+     "E_56=5",
+     "E_66"
+    ],
+    "found": [
+     "E_100",
+     "E_151",
+     "E_152=V_120",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_55=V_127",
+     "E_56=5",
+     "E_66"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.58,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_100",
+     "E_151",
+     "E_152=V_150",
+     "E_152=V_35",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_55=V_194",
+     "E_56=5",
+     "E_66"
+    ],
+    "correct": [
+     "E_100",
+     "E_151",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_56=5",
+     "E_66"
+    ],
+    "found": [
+     "E_100",
+     "E_151",
+     "E_159",
+     "E_196",
+     "E_53",
+     "E_56=5",
+     "E_66"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.57,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T004140",
+   "pathology": "Pulmonary neoplasm",
+   "mentioned": [
+    "E_161",
+    "E_191",
+    "E_224",
+    "E_45",
+    "E_79",
+    "E_89"
+   ],
+   "texts": {
+    "en": "I am a 52-year-old woman and I have been coughing up blood. I still smoke cigarettes and I used to smoke in the past. I have lost my appetite, feel tired all the time, and my mother had lung cancer.",
+    "id": "Saya perempuan berusia 52 tahun dan batuk darah. Saya masih merokok dan dulu juga pernah merokok. Saya tidak selera makan, selalu lelah, dan ibunya pernah kanker paru-paru."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_191",
+     "E_224",
+     "E_32",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "correct": [
+     "E_191",
+     "E_224",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "found": [
+     "E_191",
+     "E_224",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.28,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_191",
+     "E_224",
+     "E_32",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "correct": [
+     "E_191",
+     "E_224",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "found": [
+     "E_191",
+     "E_224",
+     "E_45",
+     "E_79",
+     "E_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.73,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T007024",
+   "pathology": "SLE",
+   "mentioned": [
+    "E_102",
+    "E_129",
+    "E_133=V_109",
+    "E_206",
+    "E_53",
+    "E_54=V_161",
+    "E_55=V_194",
+    "E_55=V_75",
+    "E_56=2",
+    "E_66",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I am a 32-year-old woman and I have been feeling short of breath lately. I also have high blood pressure and a skin problem on my left cheek, plus painful sores in my mouth. My right shoulder and left wrist hurt a bit, about a 2 out of 10, and I smoke cigarettes.",
+    "id": "Saya perempuan berusia 32 tahun dan terakhir ini sering sesak napas. Saya juga memiliki tekanan darah tinggi, masalah kulit di pipi kiri, serta luka mulut yang sakit. Bahu kanan dan pergelangan kiri saya terasa nyeri ringan, sekitar 2 dari 10, dan saya merokok."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_104",
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.54,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_104",
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "correct": [
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "found": [
+     "E_129",
+     "E_133=V_109",
+     "E_206",
+     "E_53",
+     "E_55=V_194",
+     "E_55=V_75",
+     "E_56=2",
+     "E_66",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.47,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T002530",
+   "pathology": "Sarcoidosis",
+   "mentioned": [
+    "E_198",
+    "E_43",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_66",
+    "E_55=V_69",
+    "E_56=5",
+    "E_70",
+    "E_74",
+    "E_9"
+   ],
+   "texts": {
+    "en": "I am a 26-year-old man and I have swollen, painful lymph nodes. I also have sharp pain in my left little finger and right middle finger that is about a 5 out of 10. My eyes look red all over, and I have passed out with shaking before. I work in agriculture and I am heavier than most people my height.",
+    "id": "Saya pria berusia 26 tahun dan mengalami kelenjar getah bening yang bengkak dan nyeri. Saya juga merasakan rasa tajam di jari kelingking tangan kiri dan jari tengah tangan kanan, sekitar 5 dari 10. Mataku merah menyeluruh, dan saya pernah pingsan dengan kejang. Saya bekerja di pertanian dan berat badan saya lebih banyak dibandingkan orang lain dengan tinggi badan yang sama."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 3,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_159",
+     "E_198",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "correct": [
+     "E_198",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "found": [
+     "E_198",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.51,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_198",
+     "E_43",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "correct": [
+     "E_198",
+     "E_43",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "found": [
+     "E_198",
+     "E_43",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_66",
+     "E_55=V_69",
+     "E_56=5",
+     "E_70",
+     "E_74",
+     "E_9"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.01,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T006751",
+   "pathology": "Scombroid food poisoning",
+   "mentioned": [
+    "E_148",
+    "E_187",
+    "E_204=V_4",
+    "E_214",
+    "E_51",
+    "E_92"
+   ],
+   "texts": {
+    "en": "I am a 66-year-old man and I hear a wheezing sound when I breathe out. I also feel nauseous and my cheeks suddenly turned red. I have had diarrhea and I ate tuna before this happened. I recently traveled to North America.",
+    "id": "Saya pria berusia 66 tahun. Saya mendengar suara mengi saat menghela napas keluar. Saya merasa mual dan pipi saya tiba-tiba merah. Saya juga mengalami diare setelah makan tuna. Saya baru saja kembali dari perjalanan ke Amerika Utara."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 4,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Urgent"
+   },
+   "en": {
+    "read": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "correct": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "found": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.33,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "correct": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "found": [
+     "E_148",
+     "E_187",
+     "E_204=V_4",
+     "E_214",
+     "E_51",
+     "E_92"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.45,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Urgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T002095",
+   "pathology": "Spontaneous pneumothorax",
+   "mentioned": [
+    "E_123",
+    "E_14",
+    "E_165",
+    "E_218",
+    "E_220",
+    "E_53",
+    "E_54=V_179",
+    "E_55=V_101",
+    "E_55=V_29",
+    "E_56=9"
+   ],
+   "texts": {
+    "en": "I'm 39 and I have sharp chest pain that gets worse when I move around but feels better when I rest. It also hurts when I take a deep breath, and sometimes I feel it even when I'm just sitting still. The pain is in my upper and lower chest, and it's about a 9 out of 10. I have COPD, and my family has a history of pneumothorax.",
+    "id": "Saya perempuan berusia 39 tahun. Saya merasa rasa sakit tajam di dada yang semakin parah saat beraktivitas tetapi membaik saat istirahat. Nyeri juga muncul saat saya bernapas dalam dan kadang terasa meski saya sedang diam. Lokasinya di dada atas dan bawah dengan intensitas 9 dari 10. Saya menderita COPD, dan ada anggota keluarga yang pernah mengalami pneumotoraks."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 10,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_216",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "correct": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "found": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": false,
+    "seconds": 1.81,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "correct": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "found": [
+     "E_123",
+     "E_14",
+     "E_165",
+     "E_218",
+     "E_220",
+     "E_53",
+     "E_55=V_101",
+     "E_55=V_29",
+     "E_56=9"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.39,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T014953",
+   "pathology": "Spontaneous rib fracture",
+   "mentioned": [
+    "E_201",
+    "E_220",
+    "E_37",
+    "E_53",
+    "E_54=V_192",
+    "E_55=V_159",
+    "E_55=V_170",
+    "E_56=8",
+    "E_66",
+    "E_78"
+   ],
+   "texts": {
+    "en": "I am a 68-year-old man and I have been feeling very short of breath. I have sharp pain in my right breast and the back of my right chest that is an 8 out of 10, and it gets worse when I take a deep breath. I have metastatic cancer, I drink too much alcohol, and I have a cough.",
+    "id": "Saya pria usia 68 tahun dan mengalami kesulitan bernapas yang cukup parah. Saya merasakan rasa tajam yang sangat pedih, nilai 8 dari 10, di payudara kanan dan dinding dada belakang kanan, yang semakin sakit saat napas dalam. Saya memiliki kanker yang sudah menyebar, sering mengonsumsi alkohol berlebihan, dan juga batuk."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 7,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_201",
+     "E_220",
+     "E_37",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_56=8",
+     "E_66",
+     "E_78"
+    ],
+    "correct": [
+     "E_201",
+     "E_220",
+     "E_37",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_56=8",
+     "E_66",
+     "E_78"
+    ],
+    "found": [
+     "E_201",
+     "E_220",
+     "E_37",
+     "E_53",
+     "E_54=V_192",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_56=8",
+     "E_66",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.37,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_201",
+     "E_37",
+     "E_53",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_66",
+     "E_78"
+    ],
+    "correct": [
+     "E_201",
+     "E_37",
+     "E_53",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_66",
+     "E_78"
+    ],
+    "found": [
+     "E_201",
+     "E_37",
+     "E_53",
+     "E_55=V_159",
+     "E_55=V_170",
+     "E_66",
+     "E_78"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.2,
+    "dropped": 1,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T021630",
+   "pathology": "Stable angina",
+   "mentioned": [
+    "E_105",
+    "E_218",
+    "E_225",
+    "E_53",
+    "E_54=V_198",
+    "E_55=V_159",
+    "E_55=V_197",
+    "E_56=6",
+    "E_66",
+    "E_69"
+   ],
+   "texts": {
+    "en": "I'm a 46-year-old man and I have pain in my right breast and upper stomach that feels exhausting, about a 6 out of 10. I also get short of breath, and it gets worse when I move around but better when I rest. I have diabetes, a past heart attack, and a family history of heart problems before age 50.",
+    "id": "Saya pria berusia 46 tahun. Saya merasa rasa sakit yang sangat melelahkan di payudara kanan dan perut bagian atas, sekitar 6 dari 10. Saya juga sesak napas, yang semakin parah saat beraktivitas dan membaik saat istirahat. Saya diabetes, pernah mengalami serangan jantung, dan ada anggota keluarga yang mengalami masalah jantung sebelum usia 50 tahun."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 10,
+    "triage": "Urgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 6,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "correct": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "found": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.32,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 6,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "correct": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "found": [
+     "E_105",
+     "E_218",
+     "E_225",
+     "E_53",
+     "E_54=V_198",
+     "E_55=V_159",
+     "E_55=V_197",
+     "E_56=6",
+     "E_66",
+     "E_69"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.43,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 6,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T004230",
+   "pathology": "Tuberculosis",
+   "mentioned": [
+    "E_162",
+    "E_201",
+    "E_208",
+    "E_61",
+    "E_78",
+    "E_91"
+   ],
+   "texts": {
+    "en": "I am 11 years old and I have had a fever. I have been coughing and lost some weight without trying over the last three months. I am underweight, and I use intravenous drugs and drink too much alcohol.",
+    "id": "Saya berusia 11 tahun dan sedang demam. Saya juga batuh dan berat badan saya turun tanpa sengaja selama tiga bulan terakhir. Saya kurus, menggunakan suntikan narkoba, dan terlalu sering minum alkohol."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 8,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "correct": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "found": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.11,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "correct": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "found": [
+     "E_162",
+     "E_201",
+     "E_208",
+     "E_61",
+     "E_78",
+     "E_91"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": false,
+    "seconds": 1.08,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T013489",
+   "pathology": "URTI",
+   "mentioned": [
+    "E_201",
+    "E_41",
+    "E_50",
+    "E_53",
+    "E_54=V_183",
+    "E_55=V_124",
+    "E_55=V_62",
+    "E_56=4",
+    "E_91",
+    "E_97"
+   ],
+   "texts": {
+    "en": "I am a 1-year-old man and I have a fever. My head feels heavy and sore at the back and top, about a 4 out of 10. I've also been sweating a lot, have a sore throat, and a cough. I was around someone with similar symptoms two weeks ago.",
+    "id": "Saya pria berusia 1 tahun dan saya demam. Kepala saya terasa berat dan nyeri di bagian belakang dan atas, sekitar 4 dari 10. Saya juga berkeringat banyak, sakit tenggorokan, dan batuk. Dua minggu lalu saya kontak dengan orang yang memiliki gejala serupa."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 5,
+    "triage": "SelfCare"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "SelfCare"
+   },
+   "en": {
+    "read": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_25",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "correct": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "found": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.23,
+    "dropped": 0,
+    "consultation": {
+     "top1": false,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_25",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "correct": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "found": [
+     "E_201",
+     "E_41",
+     "E_50",
+     "E_53",
+     "E_54=V_183",
+     "E_55=V_62",
+     "E_56=4",
+     "E_91",
+     "E_97"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 1.38,
+    "dropped": 0,
+    "consultation": {
+     "top1": false,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T012278",
+   "pathology": "Unstable angina",
+   "mentioned": [
+    "E_14",
+    "E_143",
+    "E_69",
+    "E_70",
+    "E_71",
+    "E_89"
+   ],
+   "texts": {
+    "en": "I am a 53-year-old man and I am constantly tired even though I sleep. I exercise four times a week, but I am overweight and have diabetes and high cholesterol. I also get chest pain even when I am resting.",
+    "id": "Saya pria usia 53 tahun dan selalu merasa lelah meski sudah tidur. Saya olahraga empat kali seminggu, tapi saya berlebih badan dan menderita diabetes serta kolesterol tinggi. Saya juga merasakan nyeri dada bahkan saat istirahat."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 8,
+    "triage": "Emergency"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "Emergency"
+   },
+   "en": {
+    "read": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "correct": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "found": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 4.9,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "correct": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "found": [
+     "E_14",
+     "E_143",
+     "E_69",
+     "E_70",
+     "E_71",
+     "E_89"
+    ],
+    "cc": false,
+    "age": true,
+    "sex": true,
+    "seconds": 1.46,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "Emergency"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T000697",
+   "pathology": "Viral pharyngitis",
+   "mentioned": [
+    "E_201",
+    "E_45",
+    "E_48",
+    "E_53",
+    "E_54=V_161",
+    "E_55=V_137",
+    "E_55=V_20",
+    "E_56=9",
+    "E_79"
+   ],
+   "texts": {
+    "en": "I am a 42-year-old man and I have been coughing. I have been coughing up blood and I smoke cigarettes. My right tonsil area is very sensitive and hurts at a 9 out of 10. I live with four or more people.",
+    "id": "Saya pria berusia 42 tahun dan sudah batuk. Saya juga batuk darah dan merokok. Tonsil kanan saya sangat sensitif dan nyeri dengan intensitas 9 dari 10. Saya tinggal bersama lebih dari empat orang."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 2,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "correct": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "found": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.22,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "correct": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "found": [
+     "E_201",
+     "E_45",
+     "E_48",
+     "E_53",
+     "E_54=V_161",
+     "E_55=V_20",
+     "E_56=9",
+     "E_79"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 2.11,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   }
+  },
+  {
+   "patient": "T009928",
+   "pathology": "Whooping cough",
+   "mentioned": [
+    "E_112",
+    "E_124",
+    "E_166",
+    "E_209"
+   ],
+   "texts": {
+    "en": "I am a 30-year-old woman and I have been vomiting after I cough. My breathing gets noisy and I wheeze when I inhale after coughing spells. I have asthma and have used a bronchodilator before, and my vaccinations are up to date.",
+    "id": "Saya perempuan berusia 30 tahun dan sering muntah setelah batuk. Nafas saya menjadi berisio dan dengkur saat menarik napas setelah serangan batuk. Saya asma dan pernah menggunakan obat pengganggu napas, serta vaksinasi saya sudah lengkap."
+   },
+   "writer": "openrouter (nvidia/nemotron-3.5-super-vl:free)",
+   "baseline": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "oracle": {
+    "top1": true,
+    "top3": true,
+    "questions": 0,
+    "triage": "NonUrgent"
+   },
+   "en": {
+    "read": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "correct": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "found": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 0.91,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
+     "triage": "NonUrgent"
+    },
+    "reader": "groq (qwen/qwen3.8-27b)"
+   },
+   "id": {
+    "read": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "correct": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "found": [
+     "E_112",
+     "E_124",
+     "E_166",
+     "E_209"
+    ],
+    "cc": true,
+    "age": true,
+    "sex": true,
+    "seconds": 0.81,
+    "dropped": 0,
+    "consultation": {
+     "top1": true,
+     "top3": true,
+     "questions": 0,
      "triage": "NonUrgent"
     },
     "reader": "groq (qwen/qwen3.8-27b)"
