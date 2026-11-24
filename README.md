@@ -18,7 +18,7 @@ encodes. The domain is the 49 respiratory, cardiac and emergency pathologies of 
 | Reasoning that derives new facts, with explanations | `src/ddxes/engine.py` (forward chaining with certainty factors, abductive set covering, triage) and `src/ddxes/explain.py` (HOW, WHY, WHY NOT, proof trees); conclusions are written back to the graph with W3C PROV-O provenance |
 | Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py`; an optional language-model front end, `src/ddxes/intake.py`, that reads a free-text description in English or Bahasa Indonesia and hands the findings to the rules |
 | README with how to run | this file |
-| Report and presentation | `docs/slides.pptx` (25 slides); `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
+| Report and presentation | `docs/slides.pptx` (25 slides); `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; `docs/demo_script.pdf`, the live demo on one page; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
 
 ## Results
 
@@ -199,11 +199,12 @@ model, so the tests need no network and no key).
 
 ## Live demo (about 5 minutes)
 
-Start `ddxes serve` and open <http://127.0.0.1:8000>.
+Start `ddxes serve` and open <http://127.0.0.1:8000>. `docs/demo_script.pdf` has a longer version of this demo on
+one printable page, with the exact inputs and what each step should show.
 
 1. **Consultation.** A 39-year-old man, main complaint *shortness of breath or difficulty breathing*. Answer *Yes*
    (swelling), *Calf (R)*, *Yes* (surgery within the last month), *No* (fluid in the lungs), *No* (dialysis): the
-   answers of demo patient T056557. Show *Why this question* (rule D-PE-2, Wells et al. 2000), the triage turning
+   answers of demo patient T056557. Show *Why this question* (rule D-PE-1, Wells et al. 2000), the triage turning
    to Emergency after the first answer, and the last two questions, which rule out acute pulmonary edema before the
    system stops. It ends after 5 questions with pulmonary embolism (P = 1.00), Emergency and CT pulmonary
    angiography. The HOW tab draws the proof: calf swelling and recent surgery → Wells score 4.5 → rule D-PE-1.
@@ -239,6 +240,7 @@ python -I scripts/capture_screenshots.py  # docs/figures/ui-*.png (Playwright wi
 python -I scripts/build_report.py    # docs/report.pdf from docs/report.md, which is not in the repository (needs pandoc >= 3 and XeLaTeX)
 python -I scripts/build_deck.py      # docs/slides.pptx
 python -I scripts/build_explainer.py # docs/explainer.pdf from docs/explainer.html.j2 (Playwright with Microsoft Edge)
+python -I scripts/build_demo_script.py # docs/demo_script.pdf, the live demo on one page, read off the web interface
 ```
 
 Every number in the report is filled in from `results/*.json`, `kg/stats.json` and the rule base when the report is
@@ -300,11 +302,11 @@ inference written back to the graph with PROV-O, queryable with SPARQL (`queries
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
 | `queries/` | 12 SPARQL queries; results with and without the OWL closure in `results/` and `results-no-inference/` |
-| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
+| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py`, `build_demo_script.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
 | `.env.example` | template for the language-model keys of the optional intake; the filled-in `.env` stays local |
 | `results/` | evaluation outputs (JSON) |
 | `tests/` | pytest suite |
-| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), `figures/` |
+| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), the demo script (`demo_script.html.j2` → `demo_script.pdf`), `figures/` |
 
 ## References
 

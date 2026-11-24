@@ -12,7 +12,7 @@
  },
  "summary": {
   "patients": 980,
-  "questions_mean": 3.7928571428571427,
+  "questions_mean": 3.7918367346938777,
   "questions_median": 3.0,
   "top1": 0.9775510204081632,
   "top3": 0.996938775510204,
@@ -6253,23 +6253,19 @@
    "truth": "Ebola",
    "questions": 3,
    "ranking": [
-    "Ebola",
-    "URTI",
-    "Influenza",
-    "Pneumonia",
-    "HIVInitialInfection"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9984257891217659,
+   "probability_top": 1.0,
    "evidence_recall": 0.2222222222222222
   },
   {
    "id": "T003479",
    "truth": "Ebola",
-   "questions": 6,
+   "questions": 5,
    "ranking": [
     "Ebola"
    ],
@@ -6303,17 +6299,13 @@
    "truth": "Ebola",
    "questions": 4,
    "ranking": [
-    "Ebola",
-    "URTI",
-    "Bronchitis",
-    "Influenza",
-    "HIVInitialInfection"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9977764074288775,
+   "probability_top": 1.0,
    "evidence_recall": 0.2222222222222222
   },
   {
@@ -6321,15 +6313,13 @@
    "truth": "Ebola",
    "questions": 5,
    "ranking": [
-    "Ebola",
-    "Chagas",
-    "HIVInitialInfection"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9999822053295101,
+   "probability_top": 1.0,
    "evidence_recall": 0.3
   },
   {
@@ -6373,17 +6363,13 @@
    "truth": "Ebola",
    "questions": 3,
    "ranking": [
-    "Ebola",
-    "URTI",
-    "Influenza",
-    "Pneumonia",
-    "HIVInitialInfection"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9984257891217659,
+   "probability_top": 1.0,
    "evidence_recall": 0.2
   },
   {
@@ -6421,17 +6407,13 @@
    "truth": "Ebola",
    "questions": 6,
    "ranking": [
-    "Ebola",
-    "Anemia",
-    "PulmonaryNeoplasm",
-    "PancreaticNeoplasm",
-    "SLE"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9987281027450408,
+   "probability_top": 1.0,
    "evidence_recall": 0.2222222222222222
   },
   {
@@ -6503,17 +6485,13 @@
    "truth": "Ebola",
    "questions": 8,
    "ranking": [
-    "Ebola",
-    "Tuberculosis",
-    "URTI",
-    "AcuteOtitisMedia",
-    "Pneumonia"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.99995173583356,
+   "probability_top": 1.0,
    "evidence_recall": 0.2727272727272727
   },
   {
@@ -6521,17 +6499,13 @@
    "truth": "Ebola",
    "questions": 4,
    "ranking": [
-    "Ebola",
-    "URTI",
-    "Bronchitis",
-    "Influenza",
-    "HIVInitialInfection"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9977764074288775,
+   "probability_top": 1.0,
    "evidence_recall": 0.25
   },
   {
@@ -6539,17 +6513,13 @@
    "truth": "Ebola",
    "questions": 7,
    "ranking": [
-    "Ebola",
-    "Tuberculosis",
-    "Bronchitis",
-    "URTI",
-    "AcuteOtitisMedia"
+    "Ebola"
    ],
    "top1": true,
    "top3": true,
    "top5": true,
    "triage": "Emergency",
-   "probability_top": 0.9998811887071255,
+   "probability_top": 1.0,
    "evidence_recall": 0.375
   },
   {

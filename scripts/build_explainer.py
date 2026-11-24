@@ -129,9 +129,9 @@ def values():
     )
 
 
-def fonts_css():
+def fonts_css(faces=FONT_FACES):
     rules = []
-    for family, stem, weight, style in FONT_FACES:
+    for family, stem, weight, style in faces:
         data = base64.b64encode((FONTS / f"{stem}.ttf").read_bytes()).decode("ascii")
         rules.append(f"@font-face{{font-family:'{family}';font-weight:{weight};font-style:{style};"
                      f"src:url(data:font/ttf;base64,{data}) format('truetype')}}")

@@ -1,0 +1,279 @@
+<!doctype html>
+{# The live demo on one A4 page: built into docs/demo_script.pdf by scripts/build_demo_script.py, which reads every
+   question, label and number below off the web interface #}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DDX-ES demo script</title>
+<style>
+{{ fonts }}
+:root {
+  --blue: #01416B; --gold: #FDD402; --amber: #8A6100; --ink: #1F2D3A; --muted: #5E6E7E; --tint: #E6EEF5;
+  --line: #C9D6E3; --red: #B42318; --green: #1E6E3E; --codebg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; background: #fff; color: var(--ink); font: 7.7pt/1.31 'Work Sans', sans-serif; }
+h1, h2 { font-family: 'IBM Plex Serif', serif; color: var(--blue); margin: 0; line-height: 1.15; }
+p { margin: 0 0 2.2pt; }
+ul { margin: 0 0 1pt; padding-left: 9pt; }
+li { margin: 0 0 1.6pt; }
+li::marker { color: var(--blue); }
+b { font-weight: 700; }
+code { font-family: 'IBM Plex Mono', monospace; font-size: 7.1pt; }
+.muted { color: var(--muted); }
+.nw { white-space: nowrap; }                  /* rule ids: never "D-" at the end of a line and "PE-1" on the next */
+
+/* the marks: type or choose this, click this, this should appear, say this */
+.in { font-family: 'IBM Plex Mono', monospace; font-size: 7.1pt; font-weight: 700; background: var(--codebg);
+  border-radius: 2pt; padding: .2pt 2.2pt; }
+.btn { font-weight: 700; font-size: 7.2pt; color: var(--blue); border: .8pt solid var(--blue); border-radius: 3pt;
+  padding: 0 2.4pt; white-space: nowrap; }
+.ok { position: relative; padding-left: 10pt; }
+.ok::before { content: ""; position: absolute; left: 1pt; top: 2pt; width: 5.4pt; height: 2.7pt;
+  border-left: 1.5pt solid var(--green); border-bottom: 1.5pt solid var(--green); transform: rotate(-45deg); }
+.say { font-family: 'IBM Plex Serif', serif; font-style: italic; border-left: 2pt solid var(--gold); padding-left: 5pt; }
+kbd { font-family: 'IBM Plex Mono', monospace; font-size: 6.3pt; color: var(--muted); border: .6pt solid var(--muted);
+  border-bottom-width: 1.2pt; border-radius: 2pt; padding: 0 1.6pt; }
+.lab { font-size: 6.2pt; letter-spacing: .13em; text-transform: uppercase; font-weight: 700; color: var(--amber);
+  margin: 0 0 1.4pt; }
+
+/* header */
+.top { display: grid; grid-template-columns: 1fr auto; gap: 14pt; align-items: end; padding-bottom: 4.5pt; }
+.kicker { font-size: 6.6pt; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); font-weight: 700;
+  margin: 0; }
+h1 { font-size: 17pt; margin: 0 0 1pt; }
+.sub { font-size: 8.2pt; margin: 0; }
+.legend { display: grid; grid-template-columns: auto auto auto auto; gap: 3pt 6pt; align-items: baseline;
+  font-size: 7.1pt; margin: 0 0 1pt; }
+.legend > span:nth-child(odd) { justify-self: end; }
+.pre { background: var(--tint); border-top: 2.5pt solid var(--gold); padding: 4pt 9pt 2.5pt; }
+.checks { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 16pt; }
+.checks li { position: relative; padding-left: 11pt; margin-bottom: 2pt; break-inside: avoid; }
+.checks li::before { content: ""; position: absolute; left: 0; top: 1.3pt; width: 6.4pt; height: 6.4pt;
+  border: .9pt solid var(--ink); border-radius: 1.5pt; background: #fff; }
+
+/* steps */
+.step { border-bottom: .75pt solid var(--line); padding: 4pt 0 2.6pt; break-inside: avoid; }
+.step__head { display: flex; align-items: baseline; gap: 6pt; margin-bottom: 2pt; }
+.n { font: 700 7.4pt 'Work Sans', sans-serif; color: #fff; background: var(--blue); border-radius: 50%; width: 12pt;
+  height: 12pt; display: inline-flex; align-items: center; justify-content: center; flex: none; position: relative;
+  top: -1pt; }
+.step__head h2 { font-size: 9.8pt; }
+.where { color: var(--muted); font-size: 7pt; }
+.time { margin-left: auto; font-weight: 700; color: var(--blue); white-space: nowrap; font-size: 7.4pt; }
+.time span { font-weight: 400; color: var(--muted); }
+.body { padding-left: 18pt; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 13pt; }
+
+table { border-collapse: collapse; width: 100%; }
+.qa { margin: .5pt 0 2pt; }
+.qa th, .qa td { text-align: left; vertical-align: top; padding: .9pt 0; border-bottom: .5pt dotted var(--line); }
+.qa thead th { border-bottom: .6pt solid var(--line); padding-bottom: .4pt; }
+.qa thead .lab { margin: 0; }
+.qa tbody th { color: var(--blue); width: 14pt; font-weight: 700; }
+.qa tr:last-child td, .qa tr:last-child th { border-bottom: 0; }
+.qa .a { white-space: nowrap; padding: .9pt 10pt .9pt 6pt; }
+.qa .note { width: 42%; }
+.ro { font-size: 5.9pt; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--red); }
+.paste { font-family: 'IBM Plex Mono', monospace; font-size: 7.1pt; font-weight: 700; line-height: 1.4;
+  background: var(--codebg); border-left: 2pt solid var(--blue); border-radius: 0 3pt 3pt 0; padding: 2.4pt 6pt;
+  margin: 1.2pt 0; }
+.gloss { font-family: 'IBM Plex Serif', serif; font-style: italic; color: var(--muted); font-size: 7.1pt; }
+.rd { margin: 0 0 2pt; }
+.rd td { padding: .2pt 0; vertical-align: top; }
+.rd td.q { font-family: 'IBM Plex Serif', serif; font-style: italic; white-space: nowrap; padding-right: 3pt; }
+.rd td.arr { color: var(--muted); padding-right: 3pt; }
+
+/* steps 4 to 6, side by side */
+.trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12pt; padding: 4pt 0 2.6pt;
+  border-bottom: .75pt solid var(--line); }
+.trio .lab { margin-top: 1.6pt; }
+
+/* the two boxes at the end */
+.end { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin-top: 4.5pt; }
+.box { background: var(--tint); border-radius: 5pt; padding: 4.5pt 8pt 2.5pt; }
+.box h2 { font-size: 9pt; margin-bottom: 2pt; }
+.box p { margin-bottom: 2.4pt; }
+.cmd { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 6.9pt; background: #fff; border-radius: 2.5pt;
+  padding: .8pt 5pt; margin: 1.2pt 0; white-space: nowrap; }
+.colophon { font-size: 6.2pt; color: var(--muted); margin: 3.5pt 0 0; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <p class="kicker">DDX-ES · live demo</p>
+    <h1>Demo script</h1>
+    <p class="sub">Six steps, about seven minutes, at <code>http://127.0.0.1:8000</code>.</p>
+  </div>
+  <p class="legend">
+    <span class="in">39</span><span>type or choose this</span>
+    <span class="ok">&nbsp;</span><span>this should appear</span>
+    <span class="btn">Start</span><span>click this</span>
+    <span class="say">Say</span><span>a point to make aloud</span>
+  </p>
+</header>
+
+<section class="pre">
+  <p class="lab">Before you present</p>
+  <ul class="checks">
+    <li>In the <code>ddx-expert-system</code> folder run <code>.venv\Scripts\ddxes serve</code>; open the address
+      above.</li>
+    <li>The consultation page shows <i>Or describe the patient in your own words</i>. If not, there is no key in
+      <code>.env</code>: skip step 2.</li>
+    <li>GraphDB Desktop runs with the repository <code>ddx-es</code>. If it is missing:
+      <code>.venv\Scripts\python.exe -I scripts\load_graphdb.py</code> (30 s).</li>
+    <li>Do not run <code>scripts\evaluate_intake.py</code> on the day: Groq allows about 45 readings a day, and each
+      rehearsal of step 2 uses one.</li>
+  </ul>
+</section>
+
+<section class="step">
+  <div class="step__head"><span class="n">1</span><h2>Consultation from the questionnaire</h2>
+    <span class="where">Consultation page · the recorded answers of test patient T056557</span>
+    <span class="time">2 min <span>· by 2:00</span></span></div>
+  <div class="body">
+    <p>A <span class="in">39</span>-year-old <span class="in">man</span>. Main complaint:
+      <span class="in">{{ a.complaint }}</span>. Then <span class="btn">Start consultation</span>.</p>
+    <table class="qa">
+      <thead><tr><th></th><th><p class="lab">Question</p></th><th class="a"><p class="lab">Answer</p></th>
+        <th class="note"><p class="lab">Point out</p></th></tr></thead>
+      <tbody>
+      {% for q in a.asked %}{% set p = q.purpose %}
+      <tr><th>Q{{ q.n }}</th>
+        <td>{{ q.text }}{% if q.option_number %} <span class="muted">Filter:</span> <span class="in">calf</span>, tick,
+          <span class="btn">Answer</span>{% endif %}</td>
+        <td class="a"><b>{{ q.answer }}</b>{% if q.key %} <kbd>{{ q.key }}</kbd>{% endif %}</td>
+        <td class="note">{% if q.rule_out %}<span class="ro">Rule-out</span> {{ p.dx|lower }}, severity {{ p.severity }}
+          {%- else %}{% if loop.first %}<i>Why this question</i>: {{ p.dx|lower }}, P = {{ p.p }}, rule
+          <span class="nw">{{ p.rule }}</span> ({{ p.cite }}), {{ p.bits }} bits{% else %}P = {{ p.p }}, rule
+          <span class="nw">{{ p.rule }}</span>{% endif %}{% endif %}
+          {%- if q.n == a.emergency_at %}. Triage turns <b>{{ a.emergency }}</b>{% endif %}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="ok"><i>{{ a.end.done }}</i> {{ a.end.label }}, P = {{ a.end.p }}, triage {{ a.end.triage }}; next step
+      {{ a.end.rec.split(" (")[0] }} ({{ a.end.rec_src }}).</p>
+    <p class="ok">Explanation, <span class="btn">How</span>: the proof tree runs from the answers through the Wells score
+      ({{ a.end.wells }}) to rule <span class="nw">{{ a.end.rule }}</span>.</p>
+  </div>
+</section>
+
+<section class="step">
+  <div class="step__head"><span class="n">2</span><h2>The same patient from free text</h2>
+    <span class="where">Consultation page · needs the Groq key</span>
+    <span class="time">1.5 min <span>· by 3:30</span></span></div>
+  <div class="body cols">
+    <div>
+      <p><span class="btn">Start over</span> → paste into <i>Or describe the patient in your own words</i>:</p>
+      <p class="paste">{{ b.text }}</p>
+      <p class="gloss">A 39-year-old man, severely short of breath since this morning; right calf swollen for three days;
+        knee surgery two weeks ago; no fever, no cough.</p>
+      <p><span class="btn">Read the description</span> (about {{ "%.0f"|format(b.seconds) }} s) →
+        <span class="btn">Start the consultation</span> →
+        {% for q in b.asked %}Q{{ q.n }} <b>{{ q.answer }}</b>{{ ", " if not loop.last }}{% endfor %}.</p>
+    </div>
+    <div>
+      <p><i>Check what the description says</i>: {{ b.n_readings }} answers, each with its words.</p>
+      <table class="rd">
+        {% for r in b.rows %}<tr><td class="q">“{{ r.quote }}”</td><td class="arr">→</td><td>{{ r.text }}</td></tr>
+        {% endfor %}
+      </table>
+      <p class="say">The model only maps words onto the questionnaire; a wrong reading can be unticked, and the rules
+        make every conclusion.</p>
+      <p class="ok">Then the {{ b.asked|length }} rule-out questions; same conclusion (<span class="nw">{{ b.end.rule }}</span>).</p>
+    </div>
+  </div>
+</section>
+
+<section class="step">
+  <div class="step__head"><span class="n">3</span><h2>Case analysis: patient {{ c.id }}</h2>
+    <span class="where">Cases page · a recorded DDXPlus test patient</span>
+    <span class="time">1.5 min <span>· by 5:00</span></span></div>
+  <div class="body cols">
+    <div>
+      <p><span class="btn">Cases</span> → Pathology <span class="in">{{ c.pathology }}</span> → Patient
+        <span class="in">{{ c.patient }}</span> (or open <code>127.0.0.1:8000/cases?patient={{ c.id }}</code>).
+        Under Explanation: <span class="btn">Why not</span> → <span class="in">{{ c.whynot }}</span>, then
+        <span class="btn">Provenance</span>.</p>
+      <p class="ok"><i>{{ c.vignette }}</i> Recorded diagnosis {{ c.truth|lower }}: <i>{{ c.rank }}</i>.</p>
+    </div>
+    <div>
+      <ul>
+        <li>Triage {{ c.triage }}, <i>Why this level</i>: rule <span class="nw">{{ c.t_rule }}</span> ({{ c.t_src }}, CF
+          {{ c.t_cf }}).</li>
+        <li>Why not pneumonia: it cannot explain the swelling or the loss of consciousness (set covering), and
+          <span class="nw">D-PNA-1</span> and <span class="nw">D-PNA-2</span> both need fever.</li>
+        <li>Provenance: {{ c.triples }} PROV-O triples, with a Turtle download.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="trio">
+  <section>
+    <div class="step__head"><span class="n">4</span><h2>Knowledge base</h2>
+      <span class="time">30 s <span>· by 5:30</span></span></div>
+    <p><span class="btn">Knowledge base</span> → Search rules <span class="in">D-PE-1</span> → click
+      <span class="btn">D-PE-1</span>.</p>
+    <ul>
+      <li>{{ k.rules }} rules from {{ k.sources }} sources; OWL 2 RL entails {{ k.inferred }} more triples.</li>
+      <li>D-PE-1: CF {{ k.cf }}, fidelity {{ k.fidelity|lower }} (DDXPlus has no heart rate or clinician judgement, so the
+        Wells score is a lower bound); {{ k.precision }} precision on {{ k.fires }} validation patients.</li>
+    </ul>
+  </section>
+  <section>
+    <div class="step__head"><span class="n">5</span><h2>SPARQL</h2>
+      <span class="time">30 s <span>· by 6:00</span></span></div>
+    <p><span class="btn">SPARQL</span> → example {{ s.index }}, <i>{{ s.title.split(":")[0] }}</i> →
+      <span class="btn">Run query</span> (<kbd>Ctrl</kbd> <kbd>Enter</kbd>); a few seconds the first time.</p>
+    <p class="ok">{{ s.count }} rows: {{ s.first|join(", ") }}, …</p>
+    <p class="say">No rule is marked as a red flag by hand: OWL 2 RL classifies these {{ s.count }}. Without inference
+      the query returns {{ s.plain }} rows.</p>
+  </section>
+  <section>
+    <div class="step__head"><span class="n">6</span><h2>GraphDB, optional</h2>
+      <span class="time">1 min <span>· by 7:00</span></span></div>
+    <p><code>localhost:7200</code>, repository <span class="in">ddx-es</span> → Explore → Visual graph →
+      <span class="in">{{ s.iri }}</span>. SPARQL: paste <code>queries\q05-red-flag-rules.rq</code> →
+      {{ s.count }} rows; switch off <i>Include inferred data in results</i> → {{ s.plain }} rows.</p>
+    <p class="say">A standard triple store gives the same result: the red flags exist only through inference.</p>
+  </section>
+</div>
+
+<div class="end">
+  <div class="box">
+    <h2>If someone asks</h2>
+    <p><b>Does the language model diagnose?</b> No. It maps the description onto questionnaire answers that quote the
+      words, and the rules make every conclusion.</p>
+    <p><b>How well does it read?</b> {{ x.n }} test patients{% if x.per_disease %}, one per disease{% endif %}, English
+      / Indonesian: precision {{ x.en_prec }} / {{ x.id_prec }}, recall {{ x.en_rec }} / {{ x.id_rec }}. Questions
+      {{ x.base_q }} → {{ x.en_q }}{% if x.id_q != x.en_q %} / {{ x.id_q }}{% endif %}, but top-1 {{ x.en1 }} /
+      {{ x.id1 }} against {{ x.base1 }} from the main complaint alone: with so few questions, a misread (often a
+      near-synonym) is rarely corrected; hence the check page.</p>
+    <p><b>Overall accuracy?</b> <span class="btn">Evaluation</span>: true disease first for {{ x.top1 }} of
+      {{ x.patients }} test patients, {{ x.ms }} ms each{% if x.emergency_recall == 1 %}; no emergency triaged too
+      low{% endif %}.</p>
+  </div>
+  <div class="box">
+    <h2>If something fails</h2>
+    <p><b>No free-text box:</b> no key in <code>.env</code>; skip step 2. <b>Slow or failed reading:</b> the app falls
+      back to Gemini, then OpenRouter (up to about 20 s), or skip step 2. <b>Wrong click:</b>
+      <span class="btn">Undo last answer</span>. <b>GraphDB down:</b> skip step 6.</p>
+    <p><b>Browser or server problem:</b> the same cases in a terminal, from the repository folder:</p>
+    <code class="cmd">.venv\Scripts\ddxes consult --age 39 --sex M --complaint E_66</code>
+    {% set opt = a.cli|selectattr("label")|first %}
+    <p class="muted">Answers {% for t in a.cli %}<b>{{ t.text }}</b>{{ ", " if not loop.last }}{% endfor %}
+      ({{ opt.text }} is {{ opt.label }}); <b>why</b> shows a question's reason.</p>
+    <code class="cmd">.venv\Scripts\ddxes explain --patient {{ c.id }} --why-not Pneumonia</code>
+    <code class="cmd">.venv\Scripts\ddxes diagnose --patient {{ c.id }} --trace</code>
+  </div>
+</div>
+
+<p class="colophon">Built on {{ built }} from the app by scripts/build_demo_script.py. Step 2 shows the recorded
+  {{ b.provider }} reading ({{ b.model }}); a live one may differ slightly.</p>
+
+</body>
+</html>

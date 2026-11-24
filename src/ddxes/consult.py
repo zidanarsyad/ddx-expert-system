@@ -18,6 +18,10 @@ question at a time. The question is chosen by backward chaining from the current
 After every answer the whole inference runs again (forward chaining), so beliefs, triage and red flags are
 always current. `prefilled` takes answers known before the first question (the free-text intake of ddxes.intake);
 they are never asked again. `simulate()` replays a DDXPlus patient by answering from his record.
+
+The consultation is deterministic: the knowledge base keeps evidences and profiles in sets, so every choice here
+walks them in sorted order and breaks ties explicitly. The same answers therefore give the same questions, and the
+same WHY text, in every run (Python randomises the iteration order of string sets from one process to the next).
 """
 from __future__ import annotations
 
@@ -107,7 +111,7 @@ class Consultation:
             if self._rule_out_asked.get(h.pathology, 0) >= self.rule_out_per_pathology:
                 continue
             best = None
-            for e in p.profile:
+            for e in sorted(p.profile):                       # sorted: equal powers resolve the same way every run
                 if case.asked(e) or case.status(kb, e) is not None:
                     continue
                 ask = kb.evidences[e].parent if kb.evidences[e].parent and not case.asked(kb.evidences[e].parent) else e
@@ -138,7 +142,11 @@ class Consultation:
         return goals
 
     def _candidates(self, goals) -> dict:
-        """evidence -> {"goals": set, "rules": set}: backward chaining from the goals to askable evidences."""
+        """evidence -> {"goals": set, "rules": set}: backward chaining from the goals to askable evidences.
+
+        The evidences are added in a fixed order (rules in rule-base order, then each goal's profile, both sorted),
+        and the first of equally good candidates wins in _discriminating_question.
+        """
         kb, case, res = self.engine.kb, self.case, self.result
         out = {}
 
@@ -160,18 +168,19 @@ class Consultation:
                 slot["rules"].add(rule)
                 slot["pairs"].add((rule, goal))
 
-        goal_ids = {h.pathology for h in goals}
+        order = [h.pathology for h in goals]                 # most probable first
         for r in kb.rules:
             ev = res.rule_evals.get(r.id)
             if ev is None or ev.status is not None:
                 continue
             targets = {c.target for c in r.consequents if c.kind == "diagnosis" and r.consequent_cf(c) > 0}
             red_flag = r.category == "triage" and not any(isinstance(a, rb.BeliefAtLeast) for a in rb.atoms(r.premise))
-            if targets & goal_ids or red_flag:
-                for e in ev.missing:
-                    add(e, goal=next(iter(targets & goal_ids), None), rule=r.id)
+            goal = next((d for d in order if d in targets), None)   # a rule with several targets serves the likeliest
+            if goal or red_flag:
+                for e in sorted(ev.missing):
+                    add(e, goal=goal, rule=r.id)
         for h in goals:
-            for e in kb.pathologies[h.pathology].profile:
+            for e in sorted(kb.pathologies[h.pathology].profile):
                 add(e, goal=h.pathology)
         return out
 
@@ -239,9 +248,16 @@ class Consultation:
         dtype = "scale" if ev.is_scale else ev.dtype
         options = [] if dtype in ("B", "scale") else [(v, kb.label("value", v)) for v in ev.values]
         prob = {h.pathology: h.probability for h in self.result.hypotheses if not h.excluded}
-        goals = sorted(slot["goals"], key=lambda d: -prob.get(d, 0))
+        goals = sorted(slot["goals"], key=lambda d: (-prob.get(d, 0), d))
+
+        def strength(rid, goal):                    # the certainty factor the rule gives the goal
+            r = kb.rule_by_id[rid]
+            return max((r.consequent_cf(c) for c in r.consequents if c.target == goal), default=0.0)
+
         parts = []
-        pairs = sorted(slot["pairs"], key=lambda rg: -prob.get(rg[1], -1) if rg[1] else 1)
+        # the rule named is the one serving the most probable goal; among rules for the same goal (D-PE-1 and D-PE-2
+        # both read the Wells score), the one with the larger certainty factor, then the lower identifier
+        pairs = sorted(slot["pairs"], key=lambda rg: (-prob.get(rg[1], -1) if rg[1] else 1, -strength(*rg), rg[0]))
         if pairs:                                   # a guideline rule needs the answer
             rid, goal = pairs[0]
             r = kb.rule_by_id[rid]
