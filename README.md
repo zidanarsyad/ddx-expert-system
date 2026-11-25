@@ -428,9 +428,7 @@ inference written back to the graph with PROV-O, queryable with SPARQL (`queries
 
 | Path | Content |
 |---|---|
-| `src/ddxes/` | the package: `kb.py` (KB compiled from the graph), `rulebase.py` (rule model, YAML ⇄ RDF), `case.py`, `engine.py`, `certainty.py`, `explain.py`, `provenance.py`, `consult.py`, `bayes.py`, `evaluate.py`, `cli.py`, and the optional free-text intake
-`intake.py` with its language-model client `llm.py`; `kgstats.py` (what each Turtle file holds, for the
-report and the deck); `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
+| `src/ddxes/` | the package: `kb.py` (KB compiled from the graph), `rulebase.py` (rule model, YAML ⇄ RDF), `case.py`, `engine.py`, `certainty.py`, `explain.py`, `provenance.py`, `consult.py`, `bayes.py`, `evaluate.py`, `cli.py`; `graphdb.py` (writing a run into GraphDB); the optional free-text intake `intake.py` with its language-model client `llm.py`; `kgstats.py` (what each Turtle file holds, for the report and the deck); `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
 | `knowledge/rules.yaml` | the rule base and its sources (authoring format; 62 sources cited by rules plus the method references) |
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
@@ -440,7 +438,7 @@ report and the deck); `web/`: the web interface (`app.py` routes, `views.py` vie
 | `index.py`, `vercel.json`, `.vercelignore`, `.python-version` | optional Vercel deployment: entry point, region, the files left out of the upload, Python version |
 | `results/` | evaluation outputs (JSON) |
 | `tests/` | pytest suite |
-| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), the demo script (`demo_script.html.j2` → `demo_script.pdf`), `figures/` |
+| `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), the paper (`paper.md` → `paper.pdf`, with `paper-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), the demo script (`demo_script.html.j2` → `demo_script.pdf`), `figures/` |
 
 ## References
 
