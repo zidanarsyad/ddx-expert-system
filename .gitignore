@@ -28,3 +28,4 @@ Thumbs.db
 # the report holds the authors' student numbers (NIM): submitted separately, never published
 docs/report.md
 docs/report.pdf
+.vercel

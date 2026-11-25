@@ -8,6 +8,9 @@ comes with an explanation: the rules that fired, the facts they matched and the 
 encodes. The domain is the 49 respiratory, cardiac and emergency pathologies of the **DDXPlus** dataset
 (Fansi Tchango et al., NeurIPS 2022).
 
+**Try it online:** <https://ddx-expert-system.vercel.app>, the web interface deployed on Vercel. Its free-text intake needs a language-model key,
+entered in the *Language model* sidebar; everything else works without one.
+
 > ⚠️ Educational prototype built on synthetic data. It is not a medical device and must not be used for clinical
 > decisions.
 
@@ -223,7 +226,8 @@ serves its query tools to MCP clients at <http://localhost:7200/mcp>.
 
 ### Deploying to Vercel (optional)
 
-The web interface also runs as a Vercel Function. `index.py` exposes the Starlette application, `vercel.json` places
+The web interface also runs as a Vercel Function; the deployed version is at <https://ddx-expert-system.vercel.app>. `index.py` exposes the
+Starlette application, `vercel.json` places
 the function in Singapore (`sin1`), and `.vercelignore` keeps the API keys (`.env`), the documents (the report holds
 the authors' student numbers) and the raw data out of the upload. A consultation lives in the browser's cookie and
 is rebuilt by replaying its answers, so it continues whichever instance serves the next request. With the Vercel
@@ -253,8 +257,9 @@ and the free-text intake (with a stand-in model, so the tests need no network an
 
 ## Live demo (about 5 minutes)
 
-Start `ddxes serve` and open <http://127.0.0.1:8000>. `docs/demo_script.pdf` has a longer version of this demo on
-one printable page, with the exact inputs and what each step should show.
+Start `ddxes serve` and open <http://127.0.0.1:8000>, or use the deployed version at <https://ddx-expert-system.vercel.app>.
+`docs/demo_script.pdf` has a longer version of this demo on one printable page, with the exact inputs and what each
+step should show.
 
 1. **Consultation.** A 39-year-old man, main complaint *shortness of breath or difficulty breathing*. Answer *Yes*
    (swelling), *Calf (R)*, *Yes* (surgery within the last month), *No* (fluid in the lungs), *No* (dialysis): the
