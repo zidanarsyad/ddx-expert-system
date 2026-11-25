@@ -80,3 +80,21 @@
 \usepackage{enumitem}
 \setlist{itemsep=0.1em,topsep=0.3em}
 \renewcommand{\arraystretch}{1.1}
+% algorithms (Algorithm 4.1): a ruled float numbered per chapter, title above, with numbered pseudocode lines;
+% \algio{Input:}{...} for the inputs and outputs, \algline{depth}{...} for a numbered line indented by depth
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\floatname{algorithm}{Algorithm}
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
+\floatstyle{plain}
+\captionsetup[algorithm]{justification=raggedright,singlelinecheck=off}
+\newlength{\algindent}
+\setlength{\algindent}{1.3em}
+\newcounter{algline}
+\newenvironment{algo}{\par\setcounter{algline}{0}\small\singlespacing\setlength{\parindent}{0pt}%
+  \setlength{\parskip}{1.2pt}\vspace{3pt}}{\par\vspace{3pt}}
+\newcommand{\algio}[2]{\par\noindent\hangindent=4.4em\hangafter=1\makebox[4.4em][l]{\textbf{#1}}#2}
+\newcommand{\algnote}[1]{\par\noindent\hspace*{2.6em}{\itshape #1}}
+\newcommand{\algline}[2]{\par\stepcounter{algline}\noindent
+  \hangindent=\dimexpr 2.6em+#1\algindent+1.3em\relax\hangafter=1%
+  \makebox[1.8em][r]{\footnotesize\thealgline}\hspace{0.8em}\hspace*{#1\algindent}#2}

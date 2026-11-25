@@ -29,6 +29,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 from ddxes import rulebase as rb  # noqa: E402
 from ddxes.kb import KnowledgeBase  # noqa: E402
+from ddxes.kgstats import file_counts  # noqa: E402
 
 TEMPLATE = (pathlib.Path(sys.argv[sys.argv.index("--template") + 1]) if "--template" in sys.argv
             else ROOT.parent / "(NEW) Template Presentasi UGM 5.pptx")
@@ -250,6 +251,7 @@ class Deck:
         layouts = {lay.name: lay for lay in self.prs.slide_layouts}
         self.title_only, self.section = layouts["Title Only"], layouts["Section Header"]
         self.cover, *self.examples, self.closing = list(self.prs.slides)
+        self.part = None        # the part of the talk, shown above the title of each content slide
 
     def _sld_id(self, slide):
         return next(i for i in self.prs.slides._sldIdLst if self.prs.part.related_part(i.rId) is slide.part)
@@ -263,6 +265,8 @@ class Deck:
         t.text_frame.word_wrap = True
         for r in t.text_frame.paragraphs[0].runs:
             r.font.size, r.font.name, r.font.color.rgb = Pt(28), BOLD, BLUE
+        if self.part:
+            text(s, X0, 9, 600, 16, [self.part], size=9.5, font=BOLD, color=AMBER, after=0)
         notes(s, note)
         return s
 
@@ -319,8 +323,8 @@ INTAKE_SCOPE = ("one per pathology" if INTAKE["patients"] >= N_PATH else
                 "ended the run there")
 INTAKE_Q = " and ".join(dict.fromkeys(f"{IL[lang]['questions']:.1f}" for lang in ("en", "id")))  # one number if equal
 ASSERTED = sum(KG[k] for k in ("ontology", "kb", "rules", "stats", "cases"))
+FC = file_counts()                                   # what each Turtle file contains (slide 8)
 CAT, FID = Counter(r.category for r in RULES), Counter(r.fidelity for r in RULES)
-SRC_TYPES = Counter(SOURCES[s]["type"] for s in CITED)
 AB = {r["name"]: r for r in ABL["rows"]}
 C, C0 = CONS["summary"], CONS["without_rule_out"]
 C99 = next(r for r in CURVE["rows"] if abs(r["confidence"] - 0.99) < 1e-9)
@@ -361,15 +365,30 @@ def build(kb):
                    "trail are all stored in one RDF/OWL knowledge graph.")
 
     # 2 ------------------------------------------------------------------------ agenda
-    s = d.content("Assignment components and deliverables",
-                  "The assignment asks for four components and three deliverables. Each card maps one component to the "
+    s = d.content("Structure and assignment components",
+                  "The presentation has four parts. The description states the problem, the objectives and the domain. "
+                  "The second part explains how the system works: the concepts (the knowledge graph, IF-THEN rules, "
+                  "certainty factors and set covering), the workflow from the DDXPlus files to an explained conclusion, "
+                  "and the algorithms of an inference run and of the consultation. The third part gives the results "
+                  "and the fourth the conclusions. Below, each card maps one component of the assignment to the "
                   "slides that answer it. The fourth component, machine learning or a language model, is optional. We "
                   "use a naive-Bayes classifier as a baseline and in a hybrid mode, and a language model only to read "
                   "a free-text description into the questionnaire, so the expert system remains the core. The report, "
                   "this deck and the repository with its README are the deliverables.")
+    parts = [("1", "Description", "Slides 3–4 · problem, objectives, input and output, domain"),
+             ("2", "How it works", "Slides 5–17 · concepts, workflow, algorithms, explanations"),
+             ("3", "Results", "Slides 18–21 · accuracy, triage, ablation, consultation, rules"),
+             ("4", "Conclusion", "Slides 22–24 · limitations, conclusions, reproducibility")]
+    pw = (X1 - X0 - 3 * 12) / 4
+    for i, (num, head, sub_) in enumerate(parts):
+        x = X0 + i * (pw + 12)
+        box(s, x, 102, pw, 56, fill=CODEBG, line=LINE, radius=0.12)
+        badge(s, x + 10, 117, 26, num, fill=DARKGOLD, size=11)
+        text(s, x + 44, 108, pw - 52, 46, [[(head, {"font": BOLD, "color": BLUE, "size": 13})],
+                                           [(sub_, {"size": 9.5, "color": MUTED})]], after=0, spacing=1.0)
     cards = [("Ontology + knowledge graph",
               f"Hand-written OWL 2 ontology; {fmt(ASSERTED)} asserted triples in six Turtle files; the OWL 2 RL "
-              f"closure adds {fmt(KG['inferred'])}.", "Slide 8"),
+              f"closure adds {fmt(KG['inferred'])}.", "Slides 5, 8"),
              ("IF–THEN rules with references",
               f"{len(RULES)} rules from {len(CITED)} published sources — guidelines, case definitions, criteria — "
               "each with its DOI and mapping fidelity.", "Slides 5–7"),
@@ -383,27 +402,32 @@ def build(kb):
     cw = (X1 - X0 - 3 * 16) / 4
     for i, (head, body, ref) in enumerate(cards):
         x = X0 + i * (cw + 16)
-        box(s, x, 108, cw, 304)
-        badge(s, x + 16, 124, 34, str(i + 1))
-        text(s, x + 60, 133, cw - 76, 18, [f"COMPONENT {i + 1}"], size=10.5, font=BOLD, color=MUTED)
-        text(s, x + 16, 172, cw - 32, 54, [head], size=15.5, font=BOLD, color=BLUE, after=0)
-        text(s, x + 16, 232, cw - 32, 140, [body], size=12.5, after=0, spacing=1.05)
-        text(s, x + 16, 382, cw - 32, 18, [ref], size=11.5, font=BOLD, color=AMBER)
-    box(s, X0, 426, X1 - X0, 50, fill=CODEBG, line=LINE, radius=0.08)
-    text(s, X0 + 16, 430, X1 - X0 - 32, 42,
+        box(s, x, 168, cw, 246)
+        badge(s, x + 14, 180, 30, str(i + 1))
+        text(s, x + 54, 187, cw - 68, 18, [f"COMPONENT {i + 1}"], size=10, font=BOLD, color=MUTED)
+        text(s, x + 14, 220, cw - 28, 46, [head], size=14, font=BOLD, color=BLUE, after=0)
+        text(s, x + 14, 268, cw - 28, 116, [body], size=11.5, after=0, spacing=1.0)
+        text(s, x + 14, 388, cw - 28, 18, [ref], size=11, font=BOLD, color=AMBER)
+    box(s, X0, 424, X1 - X0, 50, fill=CODEBG, line=LINE, radius=0.08)
+    text(s, X0 + 16, 428, X1 - X0 - 32, 42,
          [[("Deliverables: ", {"font": BOLD, "color": BLUE}),
            ("report (PDF, FMIPA UGM format) · this presentation · repository ddx-expert-system with a README on how "
-            "to run it — 120 tests, every result reproducible from the raw data", {})]],
+            "to run it — 124 tests, every result reproducible from the raw data", {})]],
          size=12, anchor=MSO_ANCHOR.MIDDLE)
 
     # 3 ------------------------------------------------------------------- the problem
+    d.part = "PART 1 · DESCRIPTION"
     s = d.content("Problem statement and objectives",
                   "A symptom checker asks questions, ranks the possible diseases and says how urgently to seek care. "
                   "Learned models can be accurate, but they cannot say which facts and which guideline support a "
                   "decision, and the dangerous error is under-triage: assigning an emergency patient a lower urgency. "
                   "Classic expert systems such as MYCIN and INTERNIST-I explain by construction, but their knowledge "
                   "was hand-coded and hard to audit. Our objectives combine the two approaches: auditable knowledge in "
-                  "a graph, rules with sources, explainable reasoning, evaluated on a large benchmark.")
+                  "a graph, rules with sources, explainable reasoning, evaluated on a large benchmark. The box at the "
+                  "bottom left describes DDX-ES in brief: its input is the age, sex and main complaint of a patient and "
+                  "the answers to the questionnaire, or a description in plain words; its output is a differential "
+                  "diagnosis with probabilities, a triage level, recommended next steps and the explanation of each "
+                  "conclusion. The workflow in the same box is what the second part of the talk explains.")
     probs = [("Ranking and urgency. ", "From a few answers, propose a differential diagnosis and a triage level "
               "(Emergency, Urgent, Non-urgent, Self-care)."),
              ("Limited explainability. ", "A learned model cannot say which facts and which guideline support its "
@@ -411,8 +435,19 @@ def build(kb):
              ("Patient safety. ", "Under-triage — assigning an emergency a lower urgency — is the most serious error."),
              ("Classic expert systems explain ", "(MYCIN, INTERNIST-I), but hand-coded knowledge without sources is "
               "hard to audit and maintain.")]
-    text(s, X0, 108, 440, 360, [[(a, {"font": BOLD, "color": BLUE}), (b, {})] for a, b in probs],
-         size=14, after=12, bullets=True, spacing=1.05)
+    text(s, X0, 108, 440, 196, [[(a, {"font": BOLD, "color": BLUE}), (b, {})] for a, b in probs],
+         size=14, after=10, bullets=True, spacing=1.0)
+    box(s, X0, 312, 446, 156, fill=CODEBG, line=LINE, radius=0.06)
+    text(s, X0 + 14, 320, 418, 144,
+         [[("DDX-ES in brief", {"font": BOLD, "color": BLUE, "size": 13})],
+          [("Input  ", {"font": BOLD, "color": AMBER}), ("age, sex, main complaint and the answers to the DDXPlus "
+                                                         "questions, or a description in plain words", {})],
+          [("Output  ", {"font": BOLD, "color": AMBER}), ("differential diagnosis with probabilities, triage level, "
+                                                          "next steps, and the explanation of each conclusion", {})],
+          [("Workflow  ", {"font": BOLD, "color": AMBER}), ("DDXPlus files → Turtle knowledge graph → rule engine "
+                                                            "(4 phases) → consultation → HOW, WHY, WHY NOT → "
+                                                            "provenance in the graph", {})]],
+         size=11, after=5, spacing=1.0)
     box(s, 536, 108, X1 - 536, 360, fill=TINT)
     text(s, 552, 120, X1 - 568, 24, ["Objectives of DDX-ES"], size=15, font=BOLD, color=BLUE)
     objs = ["Represent the domain, the rules (as data, each with its source), the cases and the provenance in one "
@@ -457,46 +492,82 @@ def build(kb):
          ["Synthetic but clinically structured: the patients were generated from the same knowledge base, so their "
           "statistics describe that knowledge base, not real-world prevalence."], size=11.5, color=MUTED)
 
-    # 5 ------------------------------------------------------------ three sources
-    s = d.content("Integration of the knowledge sources",
-                  "The knowledge has three sources. First, the DDXPlus expert knowledge base: which symptoms and risk "
-                  "factors each pathology can produce, with severity and ICD-10 chapter. Second, published clinical "
-                  "criteria and guidelines, from which we wrote the IF-THEN rules; every DOI was resolved against "
-                  "Crossref, and the sources without DOI were checked on the publisher's page. Third, counts from the "
-                  "validation split, which give a likelihood ratio for every link of the knowledge base. A build "
-                  "script turns all three into Turtle files.")
-    names = {"ClinicalGuideline": "guidelines", "ReviewArticle": "reviews", "DiagnosticCriteria": "criteria",
-             "ClinicalStudy": "clinical studies", "ClinicalDecisionRule": "decision rules",
-             "CaseDefinition": "case definitions"}
-    mix = ", ".join(f"{n} {names[k]}" for k, n in SRC_TYPES.most_common() if k in names)
-    if SRC_TYPES.get("ExpertKnowledgeBase"):
-        mix += " and the DDXPlus paper"
-    cols = [("1", "Expert knowledge base", "DDXPlus, physician-reviewed",
-             [f"49 pathologies · 223 questions · {SUMMARY['kb_links']} profile links",
-              "Severity 1–5 and ICD-10 chapter of every pathology",
-              "→ disease profiles, set covering, severity schema"]),
-            ("2", "Published criteria", f"{len(CITED)} sources, DOIs checked",
-             [f"{len(RULES)} IF–THEN rules: {mix}",
-              "Wells, Sampson, CRB-65, Centor/IDSA, WHO, CDC, NICE NG12, DSM-5, ICHD-3, ESC, GOLD, GINA",
-              "→ concepts, scores, diagnoses, triage, advice"]),
-            ("3", "Calibration counts", f"{fmt(SUMMARY['validation_patients'])} validation patients",
-             [f"{fmt(SUMMARY['feature_pairs'])} (feature, pathology) pairs counted",
-              "Likelihood ratio and CF for every knowledge-base link (Laplace smoothing)",
-              "→ belief aggregation, absent-evidence rules"])]
-    cw = (X1 - X0 - 2 * 18) / 3
-    for i, (num, head, sub_, lines) in enumerate(cols):
-        x = X0 + i * (cw + 18)
-        box(s, x, 106, cw, 286)
-        badge(s, x + 14, 118, 28, num, size=12)
-        text(s, x + 50, 116, cw - 62, 40, [[(head, {"font": BOLD, "color": BLUE, "size": 15})],
-                                           [(sub_, {"font": LIGHT_IT, "color": AMBER, "size": 11.5})]], after=1)
-        text(s, x + 14, 168, cw - 28, 220, lines, size=12, after=8, bullets=True, spacing=1.0)
-        arrow(s, x + cw / 2, 394, x + cw / 2, 420, color=DARKGOLD, width=2)
-    box(s, X0, 422, X1 - X0, 52, fill=BLUE)
-    text(s, X0 + 16, 426, X1 - X0 - 32, 44,
-         [[("Knowledge graph (RDF / OWL 2): ", {"font": BOLD, "color": GOLD}),
-           (f"build_kg.py writes six Turtle files — {fmt(ASSERTED)} asserted triples; OWL 2 RL entails "
-            f"{fmt(KG['inferred'])} more", {"color": WHITE})]], size=13, anchor=MSO_ANCHOR.MIDDLE)
+    # 5 ------------------------------------------------------------ from the data to Turtle
+    d.part = "PART 2 · HOW IT WORKS: CONCEPTS, WORKFLOW, ALGORITHMS"
+    s = d.content("From the DDXPlus files to Turtle",
+                  "The knowledge graph is built from three inputs: the files of the DDXPlus knowledge base, the rule "
+                  "base we wrote from the published criteria, and the patient files of the validation and test splits. "
+                  "The first script, prepare_data.py, aligns the French codes of the conditions file with the English "
+                  "question codes through the shared French question text, builds the records of the pathologies and "
+                  "the questions, parses the answer tokens of every patient, counts how often each feature occurs with "
+                  "each pathology in the validation split, draws twenty test patients per pathology and runs nine "
+                  "checks. The second script, build_kg.py, gives every record an IRI and converts it into RDF triples, "
+                  "turns the counts into likelihood ratios and certainty factors, converts the rules from YAML into RDF "
+                  "and checks that this conversion is lossless, and computes the OWL 2 RL closure with owlrl. The "
+                  "result is six Turtle files, which the engine reads back at start-up. The bottom line shows two "
+                  "examples: an answer token of a patient and the count behind one likelihood ratio.")
+    colw = [176, 210, 214, 158]                    # source files, step 1, step 2, Turtle files
+    gap = (X1 - X0 - sum(colw)) / 3
+    xs = [X0]
+    for w in colw[:-1]:
+        xs.append(xs[-1] + w + gap)
+    top, bottom = 104, 398
+    srcs = [("DDXPlus knowledge base", ["release_evidences.json", "release_conditions.json"],
+             f"223 questions · 49 pathologies · {SUMMARY['kb_links']} profile links"),
+            ("Published criteria", ["knowledge/rules.yaml"], f"{len(RULES)} rules written from {len(CITED)} sources"),
+            ("DDXPlus patients", ["release_validate_patients", "release_test_patients"],
+             f"{fmt(SUMMARY['validation_patients'])} and {fmt(SUMMARY['test_patients'])} patients (CSV)")]
+    text(s, xs[0], top, colw[0], 20, ["Source files"], size=12.5, font=BOLD, color=BLUE)
+    bh = (bottom - top - 26 - 2 * 8) / 3
+    for i, (head, files, desc) in enumerate(srcs):
+        y = top + 26 + i * (bh + 8)
+        box(s, xs[0], y, colw[0], bh, fill=TINT)
+        text(s, xs[0] + 10, y + 7, colw[0] - 20, bh - 10,
+             [[(head, {"font": BOLD, "color": BLUE, "size": 11.5})]] + [[(f, {"font": CODE, "size": 9.5})] for f in files]
+             + [[(desc, {"size": 10, "color": MUTED})]], after=2, spacing=1.0)
+    steps = [("1", "prepare_data.py", "raw files → checked records",
+              ["Align the French codes of the conditions file with the E_xx question codes (223 of 223)",
+               "Pathologies: identifier, ICD-10 chapter, severity, profile links",
+               f"Questions: short label, type, parent; {SUMMARY['values']} answer values",
+               "Patient tokens: E_45 = yes; E_55_@_V_127 = value V_127",
+               f"Count {fmt(SUMMARY['feature_pairs'])} (feature, pathology) pairs on the validation split",
+               "Draw 20 test patients per pathology (980); run 9 checks"]),
+             ("2", "build_kg.py", "records and rules → RDF triples",
+              ["Each record → an IRI from its code, with its classes and English and French labels",
+               "Profile links → :hasSymptom, :hasAntecedent",
+               "Counts → :EvidenceStrength with P(f|d), P(f|¬d), λ and CF",
+               "rules.yaml → RDF condition trees; references and round trip checked",
+               "Demo patients → :Patient with :Answer nodes",
+               "owlrl: OWL 2 RL closure of ontology, kb and rules"])]
+    for k, (num, name, sub_, items) in enumerate(steps):
+        x, w = xs[1 + k], colw[1 + k]
+        box(s, x, top, w, bottom - top, fill=CODEBG, line=LINE)
+        badge(s, x + 10, top + 10, 24, num, size=11)
+        text(s, x + 42, top + 8, w - 50, 40, [[(name, {"font": CODE, "color": BLUE, "size": 12})],
+                                             [(sub_, {"font": LIGHT_IT, "color": AMBER, "size": 10.5})]], after=1)
+        text(s, x + 10, top + 50, w - 20, bottom - top - 56, items, size=10, after=4, bullets=True, spacing=1.0)
+    x, w = xs[3], colw[3]
+    text(s, x, top, w, 20, ["Turtle files (triples)"], size=12.5, font=BOLD, color=BLUE)
+    files = [["ontology.ttl", fmt(KG["ontology"])], ["kb.ttl", fmt(KG["kb"])], ["rules.ttl", fmt(KG["rules"])],
+             ["stats.ttl", fmt(KG["stats"])], ["cases.ttl", fmt(KG["cases"])], ["inferred.ttl", fmt(KG["inferred"])]]
+    table(s, x, top + 26, [94, 64], [["File", "Triples"]] + files, size=10, row_h=24, fonts={0: CODE},
+          aligns=[PP_ALIGN.LEFT, PP_ALIGN.RIGHT])
+    text(s, x, top + 26 + 7 * 24 + 10, w, bottom - top - 26 - 7 * 24 - 10,
+         ["ontology.ttl is written by hand; the other five are generated.",
+          f"{fmt(ASSERTED)} asserted triples; OWL 2 RL entails {fmt(KG['inferred'])} more."],
+         size=10, color=MUTED, after=4, spacing=1.0)
+    ym = (top + bottom) / 2 + 8
+    for k in range(3):
+        arrow(s, xs[k] + colw[k] + 3, ym, xs[k + 1] - 3, ym, color=DARKGOLD, width=2)
+    box(s, X0, 410, X1 - X0, 64, fill=CODEBG, line=LINE, radius=0.08)
+    text(s, X0 + 14, 414, X1 - X0 - 28, 56,
+         [[("Patient answer  ", {"font": BOLD, "color": BLUE, "size": 11}),
+           ("T002456, token E_55_@_V_127  →  ", {"size": 10.5}),
+           (":Answer_T002456_E_55_V_127 :ofEvidence :E_55 ; :answerValue :V_127 .", {"font": CODE, "size": 9.5})],
+          [("Calibration  ", {"font": BOLD, "color": BLUE, "size": 11}),
+           ("2,345 of 3,725 PE patients cough up blood  →  ", {"size": 10.5}),
+           (":S_PulmonaryEmbolism_E_45 :likelihoodRatio 7.44 ; :certaintyFactor 0.87 .", {"font": CODE, "size": 9.5})]],
+         after=6, anchor=MSO_ANCHOR.MIDDLE)
 
     # 6 ------------------------------------------------------------- Wells mapping
     s = d.content("From a guideline to rules: the Wells score",
@@ -569,7 +640,13 @@ def build(kb):
                   "back from the graph; the build checks that the round trip is lossless. The engine depends on the "
                   "OWL 2 RL closure: the red-flag rules, the disease families and the 888 disease profiles it uses are "
                   "entailed, not asserted. Query q11 illustrates this: with the closure, pulmonary embolism is the "
-                  "only pathology that explains every symptom of patient T002456; without it, none is found.")
+                  "only pathology that explains every symptom of patient T002456; without it, none is found. The table "
+                  "says what each Turtle file contains. The ontology is the only file written by hand. kb.ttl holds the "
+                  "DDXPlus knowledge base: pathologies, questions, answer values and the profile links. rules.ttl holds "
+                  "the rules with their condition trees, and the concepts, scores, value sets and sources they refer "
+                  "to. stats.ttl holds one evidence-strength node per pathology and feature, with the count, the two "
+                  "conditional probabilities, the likelihood ratio and the certainty factor. cases.ttl holds the demo "
+                  "patients and their answers, and inferred.ttl the entailments of the OWL 2 RL closure.")
     _, (_, iy, _, ih) = image(s, FIG / "ontology.png", X0, 104, w=420, border=True)
     by = iy + ih + 12
     text(s, X0, by, 420, 20, [[("Rule storage: ", {"font": BOLD, "color": BLUE}),
@@ -580,49 +657,71 @@ def build(kb):
              :concludesPathology :PulmonaryEmbolism ] ;
   :certaintyFactor 0.7 ; dct:source :Src_wells2000 .""", size=10)
     rx = X0 + 440
-    files = [["File", "Content", "Triples"],
-             ["ontology.ttl", "TBox, written by hand", fmt(KG["ontology"])],
-             ["kb.ttl", "49 pathologies, 223 questions, 888 links", fmt(KG["kb"])],
-             ["rules.ttl", f"{len(RULES)} rules with their sources", fmt(KG["rules"])],
-             ["stats.ttl", "calibration counts", fmt(KG["stats"])],
-             ["cases.ttl", "980 demo patients", fmt(KG["cases"])],
-             ["inferred.ttl", "OWL 2 RL closure (owlrl)", fmt(KG["inferred"])]]
-    table(s, rx, 104, [96, 222, 70], files, size=11, row_h=26, fonts={0: CODE},
+    on, kbf, ru, st, ca, inf = (FC[f] for f in ("ontology", "kb", "rules", "stats", "cases", "inferred"))
+    files = [["File", "What it contains", "Triples"],
+             ["ontology.ttl", f"Written by hand: {on['types']['Class']} classes, "
+              f"{on['types']['ObjectProperty'] + on['types']['DatatypeProperty']} properties, "
+              f"{on['blank_types']['Restriction']} OWL restrictions, triage levels", fmt(on["triples"])],
+             ["kb.ttl", f"49 pathologies, 223 questions, {kbf['types']['AnswerValue']} answer values, "
+              f"{kbf['predicates']['hasSymptom'] + kbf['predicates']['hasAntecedent']} profile links", fmt(kbf["triples"])],
+             ["rules.ttl", f"{len(RULES)} rules as condition trees; "
+              f"{ru['types']['ClinicalConcept'] + ru['types']['RedFlag']} concepts, {ru['types']['ValueSet']} value sets, "
+              f"{inf['types']['Source']} sources", fmt(ru["triples"])],
+             ["stats.ttl", f"{fmt(st['types']['EvidenceStrength'])} nodes: count, P(f|d), P(f|¬d), λ and CF of a "
+              "(pathology, feature) pair", fmt(st["triples"])],
+             ["cases.ttl", f"{ca['types']['Patient']} demo patients: {fmt(ca['predicates']['hasEvidence'])} yes answers, "
+              f"{fmt(ca['types']['Answer'])} other answers", fmt(ca["triples"])],
+             ["inferred.ttl", f"OWL 2 RL entailments: {inf['predicates']['characterizedBy']} profile links, inverses, "
+              f"{inf['predicates']['type']} types", fmt(inf["triples"])]]
+    table(s, rx, 104, [92, 248, 48], files, size=10, row_h=34, fonts={0: CODE},
           aligns=[PP_ALIGN.LEFT, PP_ALIGN.LEFT, PP_ALIGN.RIGHT])
-    text(s, rx, 298, X1 - rx, 22, ["What OWL 2 RL reasoning adds"], size=13.5, font=BOLD, color=BLUE)
+    text(s, rx, 350, X1 - rx, 22, ["What OWL 2 RL reasoning adds"], size=13.5, font=BOLD, color=BLUE)
     rows = [["SPARQL query", "With", "Without"]]
     for q, label in (("q05-red-flag-rules", "q05  rules entailed as :RedFlagRule"),
                      ("q06-entailed-pathology-classes", "q06  diseases with entailed classes"),
                      ("q11-set-covering", "q11  pathologies explaining all symptoms")):
         a, b = query_rows(q)
         rows.append([label, a, b])
-    table(s, rx, 324, [244, 72, 72], rows, size=11, row_h=26, fonts={1: BOLD},
+    table(s, rx, 376, [244, 72, 72], rows, size=10.5, row_h=24, fonts={1: BOLD},
           aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER])
-    text(s, rx, 434, X1 - rx, 42, [f"{fmt(KG['inferred'])} entailed triples, among them the 888 :characterizedBy "
-                                   "links the engine reads as disease profiles."], size=11, color=MUTED, after=0)
 
-    # 9 ------------------------------------------------------------------ four phases
-    s = d.content("One inference run in four phases",
-                  "One run over a case has four phases. Forward chaining: abstraction, scoring and diagnostic rules "
-                  "fire in strata, with conflict resolution and refraction, in three-valued logic so that the same "
-                  "engine handles complete records and live consultations. Abduction: set covering keeps only the "
-                  "pathologies whose profile explains every reported symptom. Aggregation: rule CFs and knowledge-base "
-                  "links are combined as a sum of log likelihood ratios with the prior. Finally triage and "
-                  "recommendation rules read the resulting beliefs.")
-    image(s, FIG / "pipeline.png", X0, 102, w=X1 - X0)
-    phases = [("1  Forward chaining", "Recognise–act cycle over strata; agenda ordered by salience, specificity, "
-               "rule order; refraction. True / false / unknown: closed world for records, open world for "
-               "consultations."),
-              ("2  Abduction", "Parsimonious set covering (Reggia et al., 1983): a pathology stays a candidate only if "
-               "its profile explains every reported symptom."),
-              ("3  Aggregation", "Rule CFs and knowledge-base links (LR from counts, absent evidence too) summed as "
-               "log likelihood ratios with the prior; softmax over candidates."),
-              ("4  Triage, advice", "Red-flag rules and the severity schema propose levels; the most urgent with "
-               "CF ≥ 0.5 is selected. Recommendation rules propose next steps.")]
-    cw = (X1 - X0 - 3 * 14) / 4
-    for i, (head, body) in enumerate(phases):
-        x = X0 + i * (cw + 14)
-        card(s, x, 318, cw, 158, head, body, size=11.5, head_size=13.5)
+    # 9 ------------------------------------------------------------------ how each inference is processed
+    s = d.content("How each inference is processed",
+                  "Each kind of inference is produced by its own mechanism. The OWL 2 RL entailments are computed once, "
+                  "when the graph is built: the disease profiles, for example, exist only as entailed characterizedBy "
+                  "links, and T-PE is classified as a red-flag rule because it concludes Emergency. All the other "
+                  "inferences are made for each case, in four phases. In phase one, forward chaining over strata, "
+                  "abstraction rules derive clinical concepts, scoring rules add points and diagnostic rules contribute "
+                  "certainty factors; for patient T002456 the Wells score reaches 6.5, and D-PE-1 and D-PE-3 fire. In "
+                  "phase two, set covering excludes 48 of the 49 pathologies, pulmonary neoplasm among them, although "
+                  "two rules for it fired. In phase three, the rule CFs and 29 knowledge-base links are summed as log "
+                  "likelihood ratios with the prior, which gives a probability of 1.00. In phase four, T-PE proposes "
+                  "Emergency, which overrides the Urgent level proposed for the loss of consciousness, and R-PE-HIGH "
+                  "recommends CT pulmonary angiography. Finally the run is written back to the graph as provenance: "
+                  "793 triples with 19 rule firings and 59 inferences.")
+    rows = [["Phase", "Inference", "How it is processed", "Patient T002456"],
+            ["Build time", "Entailed triples", "owlrl applies the OWL 2 RL rules (sub-property, inverse, class "
+             "restrictions, sub-class) to ontology, kb and rules until nothing new follows",
+             ":PulmonaryEmbolism :characterizedBy :E_45 ·\n:Rule_T-PE a :RedFlagRule"],
+            ["1  Forward chaining", "Clinical concept", "abstraction rule whose premise is true: "
+             "CF = CF(rule) × CF(premise); concepts from several rules are combined (MYCIN)",
+             "A-DVT: swelling in the calves → signs of DVT (1.00)"],
+            ["", "Score", "scoring rule adds its points; the next stratum reads the total",
+             "Wells score 1 + 1 + 3 + 1.5 = 6.5"],
+            ["", "Diagnostic belief", "diagnostic rule: CF(rule) × CF(premise), kept per pathology for phase 3",
+             "D-PE-1 +0.70 · D-PE-3 +0.20"],
+            ["2  Abduction", "Exclusion", "set covering: a pathology is excluded when its profile lacks a reported "
+             "symptom", "48 of 49 excluded, pulmonary neoplasm too (D-LCA-1, D-LCA-2 fired)"],
+            ["3  Aggregation", "Probability", "log prior odds + Σ log λ of the fired rules and of the profile features "
+             "present or absent; normalised over the candidates", "prior 0.028 · rules 0.76 · 29 links → P = 1.00"],
+            ["4  Triage", "Triage level", "red-flag rules read beliefs or findings; severity schema; the most urgent "
+             "level with CF ≥ 0.5 is selected", "T-PE Emergency (0.90) over T-SYNCOPE Urgent (0.70)"],
+            ["4  Advice", "Recommendation", "recommendation rules read beliefs and scores after aggregation",
+             "R-PE-HIGH: CT pulmonary angiography"],
+            ["After the run", "Provenance", "each firing → :RuleFiring (prov:Activity); each conclusion → "
+             ":Inference (prov:Entity), linked by prov:wasGeneratedBy", "793 triples: 19 firings, 59 inferences"]]
+    table(s, X0, 102, [112, 112, 336, 268], rows, size=10, row_h=37, fonts={0: BOLD, 1: BOLD},
+          colors={0: BLUE, 1: INK})
 
     # 10 ------------------------------------------------------------- CF as LR
     s = d.content("Certainty factors as likelihood ratios",
@@ -699,7 +798,7 @@ def build(kb):
             for r in r_ex], size=12, after=3)
 
     # 12 ------------------------------------------------------------- consultation
-    s = d.content("Interactive consultation by backward chaining",
+    s = d.content("Consultation algorithm: backward chaining",
                   "In a consultation the system starts, like the DDXPlus platform, from age, sex and the chief "
                   "complaint, and runs the whole inference after every answer. The next question is chosen by "
                   "backward chaining from goals: the leading hypotheses and any severe one still possible. For each "
@@ -708,7 +807,9 @@ def build(kb):
                   "the rule and the source. The rule-out phase was added after the evaluation showed it was needed. "
                   "A consultation can also start from a description in ordinary sentences, in English or Bahasa "
                   "Indonesia: a language model maps it onto the questionnaire, every finding must quote the "
-                  "description, the user confirms the reading, and the consultation asks only what is still open.")
+                  "description, the user confirms the reading, and the consultation asks only what is still open. "
+                  "The six steps on the left are the consultation algorithm; the report gives it as pseudocode "
+                  "(Algorithm 4.2).")
     steps = [("Start", "age, sex and the chief complaint, or a free-text description read by a language model "
                        "(open world: the rest is unknown)"),
              ("Goals", "the five leading hypotheses + every severe one with P ≥ 0.02"),
@@ -828,8 +929,10 @@ WHERE {
     text(s, ux, uy - 20, X1 - ux, 18, ["prov:used"], size=10.5, font=CODE, color=BLUE)
 
     # 17 ------------------------------------------------------------------ worked example
-    s = d.content("Worked example: patient T002456",
-                  "A 40-year-old woman reports loss of consciousness, haemoptysis, dyspnoea, hormone use, active "
+    s = d.content("Inference algorithm and worked example",
+                  "On the right is one inference run as pseudocode, the algorithm behind every result; the report "
+                  "gives it in full as Algorithm 4.1. On the left is what each step produces for patient T002456. A "
+                  "40-year-old woman reports loss of consciousness, haemoptysis, dyspnoea, hormone use, active "
                   "cancer, recent surgery and swollen calves. Abstraction rules derive signs of DVT and recent surgery; "
                   "scoring rules give a Wells score of 6.5; D-PE-1 and D-PE-3 fire. Set covering keeps one candidate "
                   "of 49, pulmonary embolism, whose profile explains all twelve symptoms; the posterior is 1.00. T-PE "
@@ -841,14 +944,37 @@ WHERE {
              ("Diagnosis", "D-PE-1 (Wells > 4 with dyspnoea or haemoptysis, CF 0.7) and D-PE-3 (hormones, CF 0.2)"),
              ("Abduction", "set covering keeps 1 of 49 pathologies: 12 of 12 symptoms explained, P = 1.00"),
              ("Triage, advice", "T-PE → Emergency (overrules T-SYNCOPE: urgent) · R-PE-HIGH → CT pulmonary angiography")]
+    text(s, X0, 100, 380, 18, ["Patient T002456"], size=12, font=BOLD, color=BLUE)
     for i, (head, body) in enumerate(steps):
-        y = 106 + i * 62
-        badge(s, X0, y + 2, 26, str(i + 1), size=11, fill=RED if i == 5 else BLUE)
-        text(s, X0 + 36, y, 360, 60, [[(head, {"font": BOLD, "color": BLUE, "size": 13})], body], size=11.5, after=1,
-             spacing=1.0)
-    image(s, FIG / "ui-case.png", X0 + 412, 106, w=X1 - X0 - 412, h=368, crop=(1870, 830, 2640, 1520))
+        y = 124 + i * 58
+        badge(s, X0, y + 2, 24, str(i + 1), size=10.5, fill=RED if i == 5 else BLUE)
+        text(s, X0 + 34, y, 336, 56, [[(head, {"font": BOLD, "color": BLUE, "size": 12.5})], body], size=11,
+             after=1, spacing=1.0)
+    code(s, X0 + 386, 100, X1 - X0 - 386, 376, """input:  facts F of a case; rules in strata S0..Sm
+output: P (differential), t (triage), A (advice)
+# 1  forward chaining
+for each stratum Si:
+  C ← rules of Si with premise true, CF ≥ 0.2
+  sort C by salience, specificity, order
+  for r in C:                   # fires once
+    c ← CF(r) · CF(premise)
+    concept k: F[k] ← combine(F[k], c)
+    score s:   F[s] ← F[s] + points(r)
+    diagnosis d: keep c for d
+# 2  abduction by set covering
+D ← pathologies whose profile covers
+    every reported symptom
+# 3  aggregation
+for d in D:
+  ℓ(d) ← log prior odds + Σ log λ
+P ← normalise exp(ℓ) over D
+# 4  triage and advice
+t ← most urgent level proposed
+A ← recommendation rules that fire
+write the run to the graph as PROV-O""", size=10.5, label="Algorithm: one inference run (engine.py)")
 
     # 18 ----------------------------------------------------------------- results: accuracy and triage
+    d.part = "PART 3 · RESULTS"
     es, nb, hy = MAIN["es"], MAIN["nb"], MAIN["hybrid"]
     miss3 = round((1 - es["top3"]) * MAIN["patients"])
     s = d.content("Results: accuracy and triage",
@@ -971,6 +1097,7 @@ WHERE {
          size=11.5, color=MUTED)
 
     # 22 ------------------------------------------------------------------ limitations
+    d.part = "PART 4 · CONCLUSION"
     s = d.content("Limitations and ethics",
                   "The main limitation is that the data are synthetic: the patients were generated from the same "
                   "knowledge base we use, so set covering is exact here; on real patients, with comorbidities and "
@@ -1043,7 +1170,7 @@ WHERE {
                   "it: a virtual environment, two pip commands, then the web interface (ddxes serve) or the "
                   "ddxes command line. The knowledge graph and the processed data are committed, so the system runs "
                   "immediately; the scripts rebuild everything from the raw DDXPlus files, including the figures, the "
-                  "report and this deck. There are 120 automated tests. The optional free-text intake needs an API key "
+                  "report and this deck. There are 124 automated tests. The optional free-text intake needs an API key "
                   "for Groq, Gemini or OpenRouter in a local .env file, which is never committed.")
     code(s, X0, 106, 470, 300, """git clone https://github.com/zidanarsyad/ddx-expert-system.git
 cd ddx-expert-system
@@ -1058,7 +1185,7 @@ ddxes explain --patient T002456 --why-not Pneumonia
 ddxes consult                 # why / how / triage
 ddxes sparql queries/q08-provenance.rq
 ddxes intake "Bapak 39 tahun, sesak napas"   # key in .env
-pytest                        # 120 tests""", size=11.5)
+pytest                        # 124 tests""", size=11.5)
     layout = [("knowledge/rules.yaml", "the rule base and its sources"),
               ("kg/*.ttl", "ontology, knowledge base, rules, statistics, cases, closure"),
               ("src/ddxes/", "engine, certainty factors, explanation, provenance, consultation"),
