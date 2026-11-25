@@ -20,7 +20,7 @@ from ..case import Case
 from ..engine import InferenceEngine
 from ..explain import Explainer, fmt_lr
 from ..kb import KnowledgeBase
-from ..paths import KG, PROCESSED, QUERIES, RESULTS
+from ..paths import DDX, KG, PROCESSED, QUERIES, RESULTS
 from ..provenance import result_to_graph
 from . import svg
 
@@ -34,7 +34,7 @@ TRIAGE_ORDER = list(rb.TRIAGE_LEVELS)
 CATEGORIES = ["abstraction", "scoring", "diagnostic", "triage", "recommendation"]
 FIDELITY = ["faithful", "partial", "proxy"]
 TABS = [("how", "How"), ("whynot", "Why not"), ("concepts", "Concepts and scores"), ("trace", "Rule trace"),
-        ("provenance", "Provenance")]
+        ("provenance", "Provenance"), ("sparql", "SPARQL")]
 
 
 class LRU(OrderedDict):
@@ -287,9 +287,102 @@ def explanation(svc: Services, result, tab: str, d: str | None) -> dict:
         out.update(concepts_view(svc, result))
     elif tab == "trace":
         out.update(trace=trace_view(svc, result))
+    elif tab == "sparql":
+        out.update(sparql=result_queries(svc, result))
     else:
         out.update(provenance=provenance_view(svc, result))
     return out
+
+
+# SPARQL queries that read a result back from the knowledge graph, once the run has been written into it as PROV-O.
+# {case} is the case's IRI. They are run over the graph plus this case's provenance, exactly as on the SPARQL page.
+_PREFIXES = """PREFIX : <http://example.org/ddx#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX dct: <http://purl.org/dc/terms/>
+"""
+RESULT_QUERIES = [
+    ("differential", "The differential diagnosis",
+     "Which pathologies remain, in which order, with what probability and certainty factor?",
+     """SELECT ?rank ?pathology ?probability ?certainty WHERE {
+  ?inf a :DiagnosisInference ;
+       :aboutCase {case} ;
+       :inferredPathology ?d ;
+       :rank ?rank ; :probability ?probability ; :certainty ?certainty .
+  ?d rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
+}
+ORDER BY ?rank"""),
+    ("triage", "The triage level",
+     "Which rule or schema set the triage level, on which facts, and which source does it encode?",
+     """SELECT ?level (COALESCE(?code, "none: the default level") AS ?rule) ?usedFact ?source WHERE {
+  ?t a :TriageInference ; :aboutCase {case} ; :inferredTriage ?lvl .
+  ?lvl rdfs:label ?level .
+  OPTIONAL {
+    { ?t prov:wasGeneratedBy ?firing . ?firing :firedRule ?r ; prov:used ?u . }
+    UNION
+    { ?t prov:wasDerivedFrom ?r , ?u . ?r a :RuleSchema . ?u a :DiagnosisInference . }
+    ?r :code ?code ; dct:source/dct:bibliographicCitation ?source .
+    OPTIONAL { ?u :inferredPathology/rdfs:label ?up . FILTER(lang(?up) = "en") }
+    OPTIONAL { ?u :inferredConcept/rdfs:label ?uc }
+    OPTIONAL { ?u :ofEvidence/rdfs:label ?ue }
+    OPTIONAL { ?u rdfs:label ?ul . FILTER(lang(?ul) = "en") }
+  }
+  BIND(COALESCE(?up, ?uc, ?ue, ?ul, "") AS ?usedFact)
+}"""),
+    ("firings", "The rule firings",
+     "Which rules fired, in which order, with what certainty of their premise, and from which source?",
+     """SELECT ?step ?rule ?name ?premiseCF ?source WHERE {
+  ?run prov:used {case} .
+  ?f a :RuleFiring ; prov:wasInformedBy ?run ;
+     :step ?step ; :firedRule ?r ; :premiseCertainty ?premiseCF .
+  ?r :code ?rule ; rdfs:label ?name ; dct:source/:citationKey ?source .
+}
+ORDER BY ?step"""),
+    ("exclusions", "The exclusions by set covering",
+     "Which pathologies were excluded, and which reported symptoms can their profile not explain?",
+     """SELECT ?pathology (GROUP_CONCAT(?symptom; separator="; ") AS ?unexplained) WHERE {
+  ?x a :ExclusionInference ; :aboutCase {case} ;
+     :inferredPathology ?d ; :unexplainedEvidence ?e .
+  ?d rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
+  ?e rdfs:label ?symptom .
+}
+GROUP BY ?pathology
+ORDER BY ?pathology"""),
+]
+
+
+def result_queries(svc: Services, result) -> dict:
+    """Run the RESULT_QUERIES for one result: each query's text, its rows and its time."""
+    t0 = time.perf_counter()
+    prov = result_to_graph(result, svc.kb)
+    g = svc.kb.graph + prov
+    case = f":Patient_{result.case.id.replace(' ', '_')}"
+    prefix = str(DDX)
+    out = []
+    for key, title, question, body in RESULT_QUERIES:
+        text = _PREFIXES + body.replace("{case}", case)
+        t = time.perf_counter()
+        try:
+            res = g.query(text)
+            rows = [[("" if x is None else _fmt_cell(x, prefix)) for x in row] for row in res]
+            entry = {"columns": [str(v) for v in res.vars], "rows": rows, "count": len(rows)}
+        except Exception as e:  # noqa: BLE001 - shown on the page rather than failing it
+            entry = {"error": f"{type(e).__name__}: {e}"}
+        out.append({"key": key, "title": title, "question": question, "query": text,
+                    "ms": (time.perf_counter() - t) * 1000, **entry})
+    return {"queries": out, "case": case, "provenance_triples": len(prov), "triples": len(g),
+            "ms": (time.perf_counter() - t0) * 1000}
+
+
+def _fmt_cell(x, prefix: str) -> str:
+    """A result cell: IRIs shortened to the : prefix, decimals to at most four places."""
+    s = str(x).replace(prefix, ":")
+    if getattr(x, "datatype", None) is not None and str(x.datatype).endswith("#decimal"):
+        try:
+            return f"{float(s):.4f}".rstrip("0").rstrip(".") or "0"
+        except ValueError:
+            return s
+    return s
 
 
 def result_view(svc: Services, result, previous_triage=None, previous_probs=None) -> dict:

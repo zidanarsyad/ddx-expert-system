@@ -110,10 +110,13 @@ class KnowledgeBase:
     def load(cls, kg_dir=KG, use_cache=True) -> "KnowledgeBase":
         cache = kg_dir / ".cache" / f"kb-{cls._fingerprint(kg_dir)}.pkl"
         if use_cache and cache.exists():
-            with open(cache, "rb") as f:
-                kb = pickle.load(f)
-            kb._kg_dir = kg_dir
-            return kb
+            try:
+                with open(cache, "rb") as f:
+                    kb = pickle.load(f)
+                kb._kg_dir = kg_dir
+                return kb
+            except Exception:  # noqa: BLE001 - an unreadable or outdated cache is simply rebuilt
+                pass
         graph = Graph()
         for name in KG_FILES:
             p = kg_dir / name
@@ -124,11 +127,14 @@ class KnowledgeBase:
         kb = cls.from_graph(graph)
         kb._kg_dir = kg_dir
         if use_cache:
-            cache.parent.mkdir(exist_ok=True)
-            for old in cache.parent.glob("kb-*.pkl"):
-                old.unlink()
-            with open(cache, "wb") as f:
-                pickle.dump(kb, f)
+            try:
+                cache.parent.mkdir(exist_ok=True)
+                for old in cache.parent.glob("kb-*.pkl"):
+                    old.unlink()
+                with open(cache, "wb") as f:
+                    pickle.dump(kb, f)
+            except OSError:   # a read-only file system, as on a serverless host: work without the cache
+                pass
         kb.__dict__["graph"] = graph
         return kb
 

@@ -25,6 +25,46 @@
         {% endfor %}
       </nav>
       <p class="topbar__note">Synthetic data. Not for clinical use.</p>
+      {% set here = request.url.path ~ ("?" ~ request.url.query if request.url.query else "") %}
+      <details class="keys" data-keys{% if llm.error %} open{% endif %}>
+        <summary class="keys__toggle">
+          <svg class="keys__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14.5 8.5l2.5 2.5"/></svg>
+          <span>Language model</span>{% if llm.mine %}<span class="keys__dot" title="Your key is in use"></span>{% endif %}
+        </summary>
+        <aside class="keys__panel" aria-labelledby="keys-title">
+          <h2 class="keys__title" id="keys-title">Language-model key</h2>
+          <p class="keys__lede">The free-text intake on the Consultation page sends the description to a hosted
+            language model. Enter your own API key to use it with your account.</p>
+          <p class="keys__status"><span class="keys__label">In use</span>{{ llm.status }}</p>
+          {% if llm.error %}<p class="callout callout--warn" role="alert">{{ llm.error }}</p>{% endif %}
+          <form class="keys__form" method="post" action="/settings/llm">
+            <input type="hidden" name="next" value="{{ here }}">
+            <div class="field"><label for="llm-provider">Provider</label>
+              <select id="llm-provider" name="provider">
+                {% for key, label in llm.providers %}<option value="{{ key }}"{% if key == llm.provider %} selected{% endif %}>{{ label }}</option>{% endfor %}
+              </select></div>
+            <div class="field"><label for="llm-key">API key</label>
+              <input id="llm-key" name="key" type="password" autocomplete="off" spellcheck="false" required
+                     minlength="10" maxlength="300" placeholder="{{ 'Replace the key ending in …' ~ llm.tail if llm.mine else 'Paste your key' }}"></div>
+            <div class="field"><label for="llm-model">Model <span class="muted">(optional except for OpenRouter)</span></label>
+              <input id="llm-model" name="model" type="text" maxlength="100" spellcheck="false"
+                     placeholder="the provider's default" value="{{ llm.model }}"></div>
+            <div class="keys__actions"><button class="btn btn--primary" type="submit">Save key</button></div>
+          </form>
+          {% if llm.mine %}
+          <form class="keys__actions" method="post" action="/settings/llm/clear">
+            <input type="hidden" name="next" value="{{ here }}">
+            <button class="btn btn--quiet" type="submit">Remove my key</button>
+          </form>
+          {% endif %}
+          <p class="note keys__note">The key stays in this browser. It is kept in a cookie that page scripts cannot
+            read, sent to this server with each request and passed on to the provider only when a description is read;
+            it is not stored on the server. Keys are issued by
+            <a href="https://console.groq.com/keys" rel="noopener" target="_blank">Groq</a>,
+            <a href="https://aistudio.google.com/apikey" rel="noopener" target="_blank">Google AI Studio</a> and
+            <a href="https://openrouter.ai/keys" rel="noopener" target="_blank">OpenRouter</a>.</p>
+        </aside>
+      </details>
     </div>
   </header>
   <main id="main" class="page">

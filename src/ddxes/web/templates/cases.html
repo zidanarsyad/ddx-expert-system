@@ -44,8 +44,8 @@
         <p class="muted">Produced by the commercial rule-based system that generated the dataset.</p>
         <div class="table-wrap reference__table">
         <table class="table table--compact">
-          <thead><tr><th scope="col">Pathology</th><th scope="col" class="num">P</th></tr></thead>
-          <tbody>{% for name, p in reference %}<tr><td>{{ name }}</td><td class="num">{{ p|num(3) }}</td></tr>{% endfor %}</tbody>
+          <thead><tr><th scope="col">Pathology</th><th scope="col">Probability</th></tr></thead>
+          <tbody>{% for name, p in reference %}<tr><td>{{ name }}</td><td><span class="pbar pbar--sm"><span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(p * 100) }}%"></span></span><span class="pbar__val">{{ p|num(3) }}</span></span></td></tr>{% endfor %}</tbody>
         </table>
         </div>
       </details>

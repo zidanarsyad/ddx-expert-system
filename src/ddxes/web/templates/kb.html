@@ -41,14 +41,14 @@
       <caption class="sr">{{ rows|length }} rules</caption>
       <thead><tr><th scope="col">Rule</th><th scope="col" class="num">CF</th><th scope="col">Fidelity</th><th scope="col">Source</th>
         <th scope="col" class="num" title="Validation patients on whom the rule fires">Fires</th>
-        <th scope="col" class="num" title="Share of firings where the concluded pathology is the true one (diagnostic rules)">Precision</th></tr></thead>
+        <th scope="col" title="Share of firings where the concluded pathology is the true one (diagnostic rules)">Precision</th></tr></thead>
       <tbody>
         {% for r in rows %}
         <tr{% if r.id == rid %} class="is-current"{% endif %}>
           <td><a href="/kb?{{ params|urlencode }}&rule={{ r.id }}" data-swap="#rule-detail"><b>{{ r.id }}</b></a> {{ r.name }}</td>
           <td class="num">{{ r.cf|num(2) }}</td><td>{{ r.fidelity }}</td><td class="nowrap">{{ r.source }}</td>
           <td class="num">{{ r.fires|thousands if r.fires is not none else "" }}</td>
-          <td class="num">{{ r.precision|pct(0) if r.precision is not none else "" }}</td>
+          <td>{% if r.precision is not none %}<span class="pbar pbar--sm"><span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(r.precision * 100) }}%"></span></span><span class="pbar__val">{{ r.precision|pct(0) }}</span></span>{% endif %}</td>
         </tr>
         {% else %}
         <tr><td colspan="6" class="muted">No rule matches these filters. Tick at least one kind and one fidelity level.</td></tr>
@@ -93,7 +93,7 @@
   <h2 class="pathology__name">{{ p.name }}</h2>
   <dl class="facts">
     <div><dt>ICD-10</dt><dd>{{ p.icd10 }}</dd></div>
-    <div><dt>Severity</dt><dd>{{ p.severity }} of 5</dd></div>
+    <div><dt>Severity</dt><dd title="1 is the most severe, 5 the least"><span class="sev" role="img" aria-label="Severity {{ p.severity }} of 5, where 1 is the most severe">{% for i in range(1, 6) %}<span class="sev__dot{% if i <= 6 - p.severity %} is-on{% endif %}"></span>{% endfor %}</span>{{ p.severity }} of 5</dd></div>
     <div><dt>Prior</dt><dd>{{ p.prior|num(4) }}</dd></div>
     <div><dt>Training patients</dt><dd>{{ p.patients|thousands }}</dd></div>
   </dl>

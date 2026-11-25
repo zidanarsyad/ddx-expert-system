@@ -66,18 +66,27 @@
       <h3 class="sub-title">{{ title }}</h3>
       {% if items %}
       <div class="table-wrap">
-      <table class="table table--compact">
-        <thead><tr><th scope="col">Feature</th><th scope="col" class="num" title="P(feature | pathology)">P(f | d)</th>
-          <th scope="col" class="num" title="P(feature | other pathologies)">P(f | others)</th><th scope="col" class="num">LR</th>
-          <th scope="col" class="num">CF</th></tr></thead>
-        <tbody>{% for x in items %}<tr><td>{{ x.feature }}</td><td class="num">{{ x.p_d|num(3) }}</td>
-          <td class="num">{{ x.p_other|num(4) }}</td><td class="num">{{ x.lr }}</td><td class="num">{{ x.cf|signed(3) }}</td></tr>{% endfor %}</tbody>
+      <table class="table table--compact evidence">
+        <thead><tr><th scope="col">Feature</th>
+          <th scope="col" title="Share of validation patients with this feature: with this pathology (dark), with the others (grey)">How often: this pathology, others</th>
+          <th scope="col" title="Certainty factor of the link, from its likelihood ratio">Weight (CF)</th></tr></thead>
+        <tbody>{% for x in items %}<tr><td>{{ x.feature }}</td>
+          <td><span class="freq" title="P(f | d) = {{ x.p_d|num(3) }}, P(f | others) = {{ x.p_other|num(4) }}">
+            <span class="freq__row"><span class="freq__track"><span class="freq__fill" style="width: {{ '%.1f'|format(x.p_d * 100) }}%"></span></span><span class="freq__val">{{ x.p_d|pct(0) }}</span></span>
+            <span class="freq__row freq__row--other"><span class="freq__track"><span class="freq__fill" style="width: {{ '%.1f'|format(x.p_other * 100) }}%"></span></span><span class="freq__val">{{ x.p_other|pct(1) }}</span></span>
+          </span></td>
+          <td><span class="cfbar" title="CF {{ x.cf|signed(3) }}, likelihood ratio {{ x.lr }}"><span class="cfbar__track">
+            <span class="cfbar__fill cfbar__fill--{{ 'neg' if x.cf < 0 else 'pos' }}" style="{{ 'right' if x.cf < 0 else 'left' }}: 50%; width: {{ '%.1f'|format((x.cf|abs) * 50) }}%"></span></span>
+            <span class="cfbar__val">{{ x.cf|signed(2) }}</span></span></td></tr>{% endfor %}</tbody>
       </table>
       </div>
       {% else %}<p class="muted">None.</p>{% endif %}
     </section>
     {% endfor %}
   </div>
+  <p class="note">The paired bars show how often a feature occurs with this pathology (dark) and with the other
+    pathologies (grey) on the validation patients; the weight is the certainty factor of the link, centred on zero,
+    from its likelihood ratio (shown on hover).</p>
   {% else %}
   <p class="callout">No pathology has a probability above 0.01 yet.</p>
   {% endif %}
@@ -155,6 +164,30 @@
     {% endfor %}
   </table>
   </div>
+
+{% elif explain.tab == "sparql" %}
+  {% set sq = explain.sparql %}
+  <p class="prose">The engine does not reason with SPARQL: it reads the knowledge graph into memory once and runs its
+    rules there. After every run it writes its conclusions back into the graph as PROV-O (the Provenance tab). The
+    queries below read the result shown above back from the graph, {{ sq.triples|thousands }} triples, of which
+    {{ sq.provenance_triples|thousands }} describe this case as <code>{{ sq.case }}</code>.</p>
+  {% for q in sq.queries %}
+  <h3 class="sub-title">{{ q.title }}</h3>
+  <p class="note">{{ q.question }}</p>
+  <pre class="code code--block">{{ q.query }}</pre>
+  {% if q.error %}
+  <pre class="callout callout--warn code">{{ q.error }}</pre>
+  {% else %}
+  <p class="note">{{ q.count }} row{{ "s" if q.count != 1 }} in {{ "%.0f"|format(q.ms) }} ms{% if sparql_patient %} ·
+    <a href="/sparql?patient={{ sparql_patient }}&amp;query={{ q.query|urlencode }}">Open on the SPARQL page</a>{% endif %}</p>
+  <div class="table-wrap">
+  <table class="table table--compact">
+    <thead><tr>{% for c in q.columns %}<th scope="col">{{ c }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for row in q.rows[:200] %}<tr>{% for x in row %}<td>{{ x }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+  </table>
+  </div>
+  {% endif %}
+  {% endfor %}
 
 {% else %}
   {% set pv = explain.provenance %}

@@ -11,6 +11,22 @@
 
 <section class="block" aria-labelledby="acc-title">
   <h2 class="section-title" id="acc-title">Diagnostic accuracy</h2>
+  <div class="metricbars">
+    {% for row in ev.table %}
+    <div class="metricbars__group">
+      <h3 class="metricbars__metric">{{ row.label }}</h3>
+      <ol class="hbars hbars--tight">
+        {% for s in ev.systems %}{% set v = row["values"][loop.index0] %}
+        <li class="hbars__row{% if loop.first %} is-focus{% endif %}" title="{{ s }}: {{ v|pct(2) }}"><span class="hbars__label">{{ s }}</span>
+          <span class="hbars__bar"><span style="width: {{ '%.2f'|format(v * 100) }}%"></span></span>
+          <span class="hbars__val{% if v|pct(2) == row.best|pct(2) %} is-best{% endif %}">{{ v|pct(2) }}</span></li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endfor %}
+  </div>
+  <details class="table-toggle">
+  <summary>The same numbers as a table</summary>
   <div class="table-wrap">
   <table class="table metrics">
     <thead><tr><th scope="col">Metric</th>{% for s in ev.systems %}<th scope="col" class="num">{{ s }}</th>{% endfor %}</tr></thead>
@@ -22,20 +38,23 @@
     </tbody>
   </table>
   </div>
+  </details>
   <p class="note">Naive Bayes is the machine-learning baseline built from the same counts; the hybrid pools both. The
     differential metrics are low by design: DDX-ES commits to a diagnosis, while the reference differential lists about
-    ten pathologies. The best value in each row is in bold.</p>
+    ten pathologies. The best value of each measure is in bold.</p>
 </section>
 
 <section class="block" aria-labelledby="tri-title">
   <h2 class="section-title" id="tri-title">Triage</h2>
-  <dl class="facts facts--wide">
-    <div><dt>Exact level</dt><dd>{{ t.exact|pct(1) }}</dd></div>
-    <div><dt>Under-triage (unsafe)</dt><dd>{{ t.under|pct(2) }}</dd></div>
-    <div><dt>Over-triage</dt><dd>{{ t.over|pct(1) }}</dd></div>
-    <div><dt>Emergencies recognised</dt><dd>{{ t.emergency_recall|pct(1) }}</dd></div>
-    <div><dt>Urgent or worse recognised</dt><dd>{{ t.urgent_recall|pct(1) }}</dd></div>
-  </dl>
+  <ol class="hbars triage-bars">
+    {% for label, v, cls in [("Emergencies recognised", t.emergency_recall, ""), ("Urgent or worse recognised", t.urgent_recall, ""),
+                             ("Exact level", t.exact, ""), ("Over-triage", t.over, "is-warn"),
+                             ("Under-triage (unsafe)", t.under, "is-danger")] %}
+    <li class="hbars__row {{ cls }}"><span class="hbars__label">{{ label }}</span>
+      <span class="hbars__bar"><span style="width: {{ '%.2f'|format(v * 100) }}%"></span></span>
+      <span class="hbars__val">{{ v|pct(2 if v < 0.01 else 1) }}</span></li>
+    {% endfor %}
+  </ol>
   <div class="table-wrap">
   <table class="matrix" aria-describedby="matrix-note">
     <thead>
@@ -97,13 +116,13 @@
   <div class="table-wrap">
   <table class="table table--compact per">
     <thead><tr><th scope="col">Pathology</th><th scope="col" class="num">Patients</th><th scope="col" class="per__bar">Top-1</th>
-      <th scope="col" class="num">Guideline support</th></tr></thead>
+      <th scope="col" class="per__bar">Guideline support</th></tr></thead>
     <tbody>
       {% for r in ev.per %}
       <tr><td>{{ r.name }}</td><td class="num">{{ r.n|thousands }}</td>
         <td><span class="pbar"><span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(r.top1 * 100) }}%"></span></span>
           <span class="pbar__val">{{ r.top1|pct(1) }}</span></span></td>
-        <td class="num">{{ r.support|pct(1) }}</td></tr>
+        <td><span class="pbar pbar--support"><span class="pbar__track"><span class="pbar__fill" style="width: {{ '%.1f'|format(r.support * 100) }}%"></span></span><span class="pbar__val">{{ r.support|pct(1) }}</span></span></td></tr>
       {% endfor %}
     </tbody>
   </table>

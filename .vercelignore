@@ -1,0 +1,29 @@
+# Files not uploaded to Vercel: the web interface needs only index.py, src/, kg/*.ttl, data/processed/, results/*.json,
+# queries/, knowledge/ and the dependency files.
+
+# secrets and personal data: API keys stay local; the report holds the authors' student numbers
+.env
+.env.*
+docs/
+
+# local tooling and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+kg/.cache/
+.claude/
+.vscode/
+.idea/
+
+# not needed at run time
+data/raw/
+scripts/
+tests/
+results/*.log
+results/intake_cache.json
+requirements-docs.txt

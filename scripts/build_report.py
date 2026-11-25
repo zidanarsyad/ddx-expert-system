@@ -21,6 +21,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DOCS, RES = ROOT / "docs", ROOT / "results"
 sys.path.insert(0, str(ROOT / "src"))
 from ddxes import rulebase as rb  # noqa: E402
+from ddxes.kgstats import file_counts  # noqa: E402
 
 J = lambda name: json.loads((RES / name).read_text(encoding="utf-8"))  # noqa: E731
 pct = lambda x, d=1: f"{100 * x:.{d}f}%"  # noqa: E731
@@ -122,6 +123,18 @@ def main():
     V.update(kg_ontology=num(kg["ontology"]), kg_kb=num(kg["kb"]), kg_rules=num(kg["rules"]), kg_stats=num(kg["stats"]),
              kg_cases=num(kg["cases"]), kg_inferred=num(kg["inferred"]), kg_reason_s=f"{kg['reasoning_seconds']:.0f}",
              kg_total=num(sum(kg[k] for k in ("ontology", "kb", "rules", "stats", "cases"))))
+    inf = kg["inferred_by_predicate"]
+    V.update(n_pairs=num(summary["feature_pairs"]), n_values=num(summary["values"]), n_kb_links=num(summary["kb_links"]),
+             inf_charby=num(inf["characterizedBy"]), inf_indicates=num(inf["indicates"]), inf_symptomof=num(inf["symptomOf"]))
+    # what each Turtle file holds: <<kb_t_Symptom>> (named resources of a class), <<rules_b_AllOf>> (blank nodes of a
+    # class), <<cases_p_hasEvidence>> (triples of a predicate)
+    fc = file_counts()
+    for f, c in fc.items():
+        for kind, key in (("t", "types"), ("b", "blank_types"), ("p", "predicates")):
+            for k, n in c[key].items():
+                V[f"{f}_{kind}_{k}"] = num(n)
+    V.update(st_absent=num(fc["stats"]["types"]["EvidenceStrength"] - summary["feature_pairs"]),
+             ru_concepts=num(fc["rules"]["types"]["ClinicalConcept"] + fc["rules"]["types"]["RedFlag"]))
     rc = Counter(r.category for r in rules)
     for c in ("abstraction", "scoring", "diagnostic", "triage", "recommendation"):
         V[f"rc_{c}"] = str(rc[c])

@@ -88,15 +88,29 @@ connection, since its fonts are bundled. Pages:
   source it serves. A triage tag, the red flags and the differential update after every answer, showing what
   changed. You can undo the last answer.
 * **Case analysis**: any of the 980 demo patients against its ground truth. It shows the triage with its reasons,
-  the differential (probability, CF, weight of evidence, set covering), the recommended next steps, and five
+  the differential (probability, CF, weight of evidence, set covering), the recommended next steps, and six
   explanation tabs: HOW (a proof tree from the patient's answers through the rules to the conclusion), WHY NOT
   (each guideline rule with its conditions marked as holding, failing or not asked), concepts and scores, the rule
-  trace, and the PROV-O provenance as Turtle.
+  trace, the PROV-O provenance as Turtle, and SPARQL: the queries that read this result back from the graph (the
+  differential, the triage with its rule and source, the rule firings, the exclusions), with their rows and a link
+  that opens each on the SPARQL page. A finished consultation has the same tabs.
 * **Knowledge base**: rules filtered by kind and fidelity, with their text, source and validation; pathologies;
   sources.
 * **SPARQL**: an editor with the 12 example queries. It can add the demo patients and a patient's consultation to
   the graph.
-* **Evaluation**: accuracy, triage, ablation and the simulated consultations.
+* **Evaluation**: accuracy, triage, ablation, the simulated consultations and the accuracy per pathology, drawn as
+  bar and line charts, with the numbers of the accuracy chart one click away as a table.
+
+Figures are shown as charts where a chart reads better than a number: probability bars in the differentials (also
+the reference differential of DDXPlus), paired bars for how often a feature occurs with a pathology and with the
+others, a bar centred on zero for the weight of each piece of evidence, precision bars in the rule list and a
+five-step meter for severity.
+
+A **Language model** button at the top right opens a sidebar where a user can enter an API key for the free-text
+intake (Groq, Google Gemini or OpenRouter, with an optional model). The key stays in that browser: it is kept in an
+HttpOnly cookie, sent to the server with each request and passed to the provider only when a description is read.
+It is not stored on the server, and the page shows only its last four characters. Without one, the server's key
+from `.env`, if any, is used.
 
 ### Command line
 
@@ -185,6 +199,45 @@ runs the 12 queries of `queries/` with and without the inferred statements. Thei
 except for q01, q02 and q08: GraphDB reasons over every triple it holds, while `kg/inferred.ttl` is the closure of
 the ontology, the knowledge base and the rules only.
 
+GraphDB runs on your own computer and is never needed by the web interface, also not when it is deployed: the
+deployed interface reads the Turtle files with rdflib, and a hosted site cannot reach `localhost` anyway.
+
+*Talk to Your Graph*, GraphDB's chat agent (Lab → Talk to Your Graph), answers questions about the graph by writing
+SPARQL itself. It needs a language model configured in GraphDB's `conf/graphdb.properties` (for GraphDB Desktop on
+Windows, in `%APPDATA%\GraphDB\conf`), and GraphDB must be restarted after a change. A free Gemini key works in
+GraphDB's own Gemini mode:
+
+```properties
+graphdb.llm.api = gemini
+graphdb.llm.url = https://generativelanguage.googleapis.com/v1beta
+graphdb.llm.api-key = <your Gemini key>
+graphdb.llm.model = gemini-flash-lite-latest
+graphdb.ttyg.timeout = 180
+```
+
+The OpenAI-compatible mode (`openai-completions`) fails with Gemini 3 models, which need their *thought signatures*
+sent back with every tool call, and Groq's free tier allows fewer tokens a minute than one prompt of the agent, which
+includes the whole ontology. Give the agent the repository `ddx-es`, the SPARQL method with the ontology graph
+`http://example.org/ddx/graph/ontology`, and the autocomplete index of the repository for finding IRIs. GraphDB also
+serves its query tools to MCP clients at <http://localhost:7200/mcp>.
+
+### Deploying to Vercel (optional)
+
+The web interface also runs as a Vercel Function. `index.py` exposes the Starlette application, `vercel.json` places
+the function in Singapore (`sin1`), and `.vercelignore` keeps the API keys (`.env`), the documents (the report holds
+the authors' student numbers) and the raw data out of the upload. A consultation lives in the browser's cookie and
+is rebuilt by replaying its answers, so it continues whichever instance serves the next request. With the Vercel
+CLI, from the repository folder:
+
+```bash
+vercel deploy --prod
+```
+
+The optional free-text intake reads its key from an environment variable of the Vercel project, for example
+`vercel env add GROQ_API_KEY production` followed by a new deployment; without a key the intake box is not shown.
+On a public deployment every visitor's description is read with that key and counts against its quota. Visitors
+can instead enter their own key in the sidebar, which needs no key on the server at all.
+
 ### Tests
 
 ```bash
@@ -192,10 +245,11 @@ pip install pytest
 pytest
 ```
 
-120 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
+124 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
 the YAML ⇄ RDF round trip, the OWL 2 RL entailments the engine relies on, the engine on hand-made and DDXPlus
-cases, explanations, provenance, the consultation, the web interface, and the free-text intake (with a stand-in
-model, so the tests need no network and no key).
+cases, explanations, provenance, the consultation (including its independence of the hash seed), the web interface
+(including a consultation continued by a fresh process from its cookie, and the language-model key sidebar),
+and the free-text intake (with a stand-in model, so the tests need no network and no key).
 
 ## Live demo (about 5 minutes)
 
@@ -210,7 +264,8 @@ one printable page, with the exact inputs and what each step should show.
    angiography. The HOW tab draws the proof: calf swelling and recent surgery → Wells score 4.5 → rule D-PE-1.
 2. **Case analysis.** Patient T002456 (pulmonary embolism): the red-flag rule T-PE behind the Emergency triage, the
    differential against the DDXPlus ground truth, then WHY NOT *Pneumonia* (it cannot explain the swelling, and
-   without cough or fever its rules D-PNA-1 and D-PNA-2 fail), and the provenance as Turtle.
+   without cough or fever its rules D-PNA-1 and D-PNA-2 fail), the provenance as Turtle, and the SPARQL tab: the
+   queries that read the triage, the differential, the 19 rule firings and the 48 exclusions back from the graph.
 3. **Knowledge base.** Filter the rules by kind or fidelity; every rule shows its source.
 4. **SPARQL.** Example q05: the 9 red-flag rules, none of them asserted, all entailed by OWL 2 RL.
 5. **GraphDB** (optional, after `load_graphdb.py`). Choose the repository `ddx-es`. Explore → Visual graph →
@@ -243,8 +298,8 @@ python -I scripts/build_explainer.py # docs/explainer.pdf from docs/explainer.ht
 python -I scripts/build_demo_script.py # docs/demo_script.pdf, the live demo on one page, read off the web interface
 ```
 
-Every number in the report is filled in from `results/*.json`, `kg/stats.json` and the rule base when the report is
-built, so the text cannot drift from the results.
+Every number in the report is filled in from `results/*.json`, `kg/stats.json`, the Turtle files and the rule base
+when the report is built, so the text cannot drift from the results.
 
 `data/raw/` holds the DDXPlus files used (CC BY 4.0, figshare doi:10.6084/m9.figshare.20043374): the English
 knowledge files, the French evidence file needed to align codes, and the validation and test splits.
@@ -260,6 +315,20 @@ classes such as `:LifeThreateningPathology` (severity 1), the disease families (
 `:RedFlagRule` (a rule that concludes Emergency) and `:EmergencyCase`. `scripts/build_kg.py` materialises the
 closure with owlrl; the engine reads entailed triples — the disease profiles come from `:characterizedBy`, which
 exists only by sub-property entailment.
+
+`scripts/prepare_data.py` turns the DDXPlus files into checked records (it aligns the French condition codes with the
+English question codes, parses each patient's answer tokens such as `E_55_@_V_127`, and counts how often each feature
+occurs with each pathology in the validation split), and `scripts/build_kg.py` turns those records and
+`knowledge/rules.yaml` into Turtle:
+
+| File | Triples | What it holds |
+|---|---:|---|
+| `ontology.ttl` | 682 | written by hand: 78 classes, 84 properties, 20 OWL restrictions, the triage levels |
+| `kb.ttl` | 4,727 | the DDXPlus knowledge base: 49 pathologies (ICD-10, severity, prior), 223 questions, 199 answer values, 888 profile links |
+| `rules.ttl` | 7,127 | the 192 rules as condition trees with certainty factor, fidelity and source; 55 concepts, 2 scores, 22 value sets, 69 sources |
+| `stats.ttl` | 27,047 | 2,816 evidence-strength nodes: count, P(f\|d), P(f\|¬d), likelihood ratio and CF of each (pathology, feature) pair |
+| `cases.ttl` | 55,847 | the 980 demo patients with their answers and true pathology |
+| `inferred.ttl` | 3,921 | the OWL 2 RL entailments: profile links, their inverses, rule and disease classes |
 
 **Knowledge sources.** (1) The DDXPlus knowledge base: which symptoms and risk factors each pathology can
 produce, compiled from the medical literature and reviewed by physicians. (2) 192 IF-THEN rules written from
@@ -280,8 +349,19 @@ DDXPlus questions (`fidelity: faithful | partial | proxy`).
    ratios from the validation split, mapped to CFs as in Heckerman, 1986) are combined with MYCIN's function,
    evaluated as a sum of log likelihood ratios so that strongly supported hypotheses do not saturate at CF = 1;
    with the prior this gives the probability of each candidate.
-4. *Triage and recommendations*: red-flag rules and the DDXPlus severity of every plausible hypothesis propose
-   triage levels; the most urgent one wins (safety first).
+4. *Triage and recommendations*: two sources propose a level, and the most urgent proposal wins (safety first).
+   * 16 triage rules taken from guidelines, read after the probabilities are known: 9 red-flag rules propose
+     Emergency (for example T-PE: P(pulmonary embolism) ≥ 0.5; T-CHEST-RED: chest pain radiating to the arm or jaw,
+     with sweating or at rest) and 7 propose Urgent (loss of consciousness, gastrointestinal bleeding, pneumonia with
+     CRB-65 ≥ 1, pneumothorax, Guillain-Barré syndrome, acute dystonic reaction, myasthenia with breathing or
+     swallowing trouble). A proposal counts when its certainty factor is at least 0.5.
+   * The severity schema: every pathology still in the differential with P ≥ 0.2 proposes the level of its DDXPlus
+     severity: 1 → Emergency, 2 → Urgent, 3 or 4 → Non-urgent, 5 → Self-care.
+
+   With no proposal the level is Non-urgent. HIV (initial infection), for example, has DDXPlus severity 3 and no
+   triage rule, so its patients are Non-urgent (a primary-care appointment within a few days); *Why this level*
+   under the triage tag shows the deciding rule or schema. The evaluation takes each patient's reference level from
+   the severity of the true pathology with the same table. Recommendation rules then propose next steps.
 
 **Consultation** (`src/ddxes/consult.py`): backward chaining from the leading and the dangerous hypotheses to the
 questions their rules still need; the question with the largest expected information gain is asked, and the WHY
@@ -297,13 +377,15 @@ inference written back to the graph with PROV-O, queryable with SPARQL (`queries
 | Path | Content |
 |---|---|
 | `src/ddxes/` | the package: `kb.py` (KB compiled from the graph), `rulebase.py` (rule model, YAML ⇄ RDF), `case.py`, `engine.py`, `certainty.py`, `explain.py`, `provenance.py`, `consult.py`, `bayes.py`, `evaluate.py`, `cli.py`, and the optional free-text intake
-`intake.py` with its language-model client `llm.py`; `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
+`intake.py` with its language-model client `llm.py`; `kgstats.py` (what each Turtle file holds, for the
+report and the deck); `web/`: the web interface (`app.py` routes, `views.py` view models, `svg.py` proof trees and charts, Jinja2 `templates/`, `static/` CSS, JavaScript and the bundled OFL fonts) |
 | `knowledge/rules.yaml` | the rule base and its sources (authoring format; 62 sources cited by rules plus the method references) |
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
 | `queries/` | 12 SPARQL queries; results with and without the OWL closure in `results/` and `results-no-inference/` |
 | `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py`, `build_demo_script.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
 | `.env.example` | template for the language-model keys of the optional intake; the filled-in `.env` stays local |
+| `index.py`, `vercel.json`, `.vercelignore`, `.python-version` | optional Vercel deployment: entry point, region, the files left out of the upload, Python version |
 | `results/` | evaluation outputs (JSON) |
 | `tests/` | pytest suite |
 | `docs/` | the report's bibliography and styles (`references.json`, the Harvard style of the FMIPA UGM writing guide, `report-header.tex`), `slides.pptx`, the explainer (`explainer.html.j2` → `explainer.pdf`), the demo script (`demo_script.html.j2` → `demo_script.pdf`), `figures/` |

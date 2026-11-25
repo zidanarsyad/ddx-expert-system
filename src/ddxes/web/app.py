@@ -8,12 +8,15 @@ only swaps page regions in place and adds keyboard shortcuts.
 """
 from __future__ import annotations
 
+import base64
 import contextlib
 import hashlib
+import json
 import pathlib
 import random
 import re
-import secrets
+import urllib.parse
+import zlib
 
 from starlette.applications import Starlette
 from starlette.concurrency import run_in_threadpool
@@ -61,7 +64,106 @@ templates.env.globals.update(TRIAGE_LEVELS=V.TRIAGE_ORDER, ASSET_VERSION=_asset_
 
 
 def render(request: Request, name: str, section: str, **ctx) -> Response:
-    return templates.TemplateResponse(request, name, {"section": section, **ctx})
+    return templates.TemplateResponse(request, name, {"section": section, "llm": _llm_status(request), **ctx})
+
+
+# ------------------------------------------------------------------------------------------------ language-model key
+# The sidebar lets a user enter an API key for the free-text intake. The key stays in that browser: it is kept in an
+# HttpOnly cookie (scripts cannot read it), sent back with each request, and passed to the provider only when a
+# description is read. Nothing is stored on the server, and the page shows only its last four characters.
+LLM_COOKIE = "ddxes_llm"
+LLM_PROVIDERS = [("groq", "Groq"), ("gemini", "Google Gemini"), ("openrouter", "OpenRouter")]
+_KEY = re.compile(r"[\x21-\x7e]{10,300}")              # printable ASCII without spaces: safe in an HTTP header
+_MODEL = re.compile(r"[A-Za-z0-9._/:@+-]{1,100}")
+
+
+def _llm_choice(request: Request) -> dict | None:
+    """The key this browser entered: {"p": provider, "k": key, "m": model}, or None."""
+    raw = request.cookies.get(LLM_COOKIE)
+    if not raw:
+        return None
+    try:
+        data = json.loads(base64.urlsafe_b64decode(raw + "=" * (-len(raw) % 4)))
+        p, k, m = data["p"], data["k"], data.get("m") or ""
+    except (ValueError, TypeError, KeyError):
+        return None
+    if p not in dict(LLM_PROVIDERS) or not isinstance(k, str) or not _KEY.fullmatch(k) \
+            or not isinstance(m, str) or (m and not _MODEL.fullmatch(m)):
+        return None
+    return {"p": p, "k": k, "m": m}
+
+
+def _llm_env(choice: dict) -> tuple[list, dict]:
+    """(providers, env) for llm.chat_json from the browser's key: that provider only, with its model if given."""
+    from .. import llm
+    prov = next(x for x in llm.PROVIDERS if x.name == choice["p"])
+    env = {prov.key_var: choice["k"]}
+    if choice["m"]:
+        env[prov.model_vars[0]] = choice["m"]
+    return [prov.name], env
+
+
+def _llm_status(request: Request) -> dict:
+    """What the sidebar shows: whose key the intake uses, never the key itself."""
+    from .. import llm
+    choice = _llm_choice(request)
+    labels = dict(LLM_PROVIDERS)
+    out = {"providers": LLM_PROVIDERS, "mine": choice is not None, "provider": "groq", "model": "", "tail": "",
+           "error": request.query_params.get("llm_error", "")}
+    if choice:
+        providers, env = _llm_env(choice)
+        model = next((m for _p, m, _k in llm.configured(providers, env)), "")
+        out.update(provider=choice["p"], model=choice["m"], tail=choice["k"][-4:],
+                   status=f"Your {labels[choice['p']]} key ending in …{choice['k'][-4:]}, model {model or 'none'}")
+    else:
+        server = llm.configured()
+        out["status"] = (f"The server's key: {labels[server[0][0].name]}, model {server[0][1]}" if server
+                         else "None: the free-text intake is off until a key is entered")
+    return out
+
+
+def _back(request: Request, form, **params) -> RedirectResponse:
+    """Back to the page the sidebar was opened on (a local path only), optionally with a query parameter."""
+    nxt = str(form.get("next") or "/consult")
+    if not nxt.startswith("/") or nxt.startswith("//") or "\\" in nxt:
+        nxt = "/consult"
+    u = urllib.parse.urlsplit(nxt)
+    q = [(k, v) for k, v in urllib.parse.parse_qsl(u.query) if k != "llm_error"] + list(params.items())
+    return see_other(urllib.parse.urlunsplit(("", "", u.path, urllib.parse.urlencode(q), "")))
+
+
+def _same_origin(request: Request) -> bool:
+    origin = request.headers.get("origin") or request.headers.get("referer")
+    return not origin or urllib.parse.urlsplit(origin).netloc == request.url.netloc
+
+
+async def llm_save(request: Request) -> Response:
+    form = await request.form()
+    if not _same_origin(request):
+        return Response("Forbidden", status_code=403)
+    p, k, m = str(form.get("provider") or ""), str(form.get("key") or "").strip(), str(form.get("model") or "").strip()
+    if p not in dict(LLM_PROVIDERS):
+        return _back(request, form, llm_error="Choose a provider.")
+    if not _KEY.fullmatch(k):
+        return _back(request, form, llm_error="That does not look like an API key (10 to 300 characters, no spaces).")
+    if m and not _MODEL.fullmatch(m):
+        return _back(request, form, llm_error="A model name has letters, digits and . _ / : @ + - only.")
+    if p == "openrouter" and not m:
+        return _back(request, form, llm_error="OpenRouter needs a model name, for example nvidia/nemotron-3.5-super-vl:free.")
+    value = base64.urlsafe_b64encode(json.dumps({"p": p, "k": k, "m": m}).encode()).decode().rstrip("=")
+    resp = _back(request, form)
+    secure = request.url.scheme == "https" or request.headers.get("x-forwarded-proto") == "https"
+    resp.set_cookie(LLM_COOKIE, value, max_age=60 * 60 * 24 * 7, httponly=True, samesite="strict", secure=secure)
+    return resp
+
+
+async def llm_clear(request: Request) -> Response:
+    form = await request.form()
+    if not _same_origin(request):
+        return Response("Forbidden", status_code=403)
+    resp = _back(request, form)
+    resp.delete_cookie(LLM_COOKIE)
+    return resp
 
 
 def see_other(url: str) -> RedirectResponse:
@@ -97,14 +199,94 @@ class ConsultState:
         self.__init__(cons, self.description)
 
 
+# The consultation lives in the browser's cookie, not in this process: the cookie holds the inputs (age, sex, complaint,
+# prefilled findings, the answers so far), and the server rebuilds the consultation by replaying them, which the
+# deterministic question selection makes exact. Any process can therefore continue any consultation, as on a
+# serverless host that runs several short-lived instances. The rebuilt states are cached per cookie value.
+MAX_ANSWERS = 150
+MAX_COOKIE = 3800
+
+
+def _encode_value(v):
+    return v if isinstance(v, (bool, int)) else sorted(v)
+
+
+def _decode_value(kb, evidence: str, v):
+    ev = kb.evidences.get(evidence)
+    if ev is None:
+        raise ValueError(evidence)
+    if ev.dtype == "B":
+        if not isinstance(v, bool):
+            raise ValueError(v)
+        return v
+    if ev.is_scale:
+        if isinstance(v, bool) or not isinstance(v, int) or not 0 <= v <= 10:
+            raise ValueError(v)
+        return v
+    if not isinstance(v, list) or not v or not all(isinstance(x, str) and x in ev.values for x in v):
+        raise ValueError(v)
+    return set(v)
+
+
+def _encode_state(state: ConsultState) -> str:
+    c = state.cons
+    data = {"v": 1, "age": c.age, "sex": c.sex, "cc": c.chief_complaint, "desc": state.description,
+            "pre": [[e, _encode_value(v)] for e, v in c.prefilled], "asked": [[e, _encode_value(v)] for e, v in c.asked]}
+    while True:
+        raw = json.dumps(data, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+        token = base64.urlsafe_b64encode(zlib.compress(raw, 9)).decode("ascii").rstrip("=")
+        if len(token) <= MAX_COOKIE or not data["desc"]:
+            return token
+        data["desc"] = data["desc"][: len(data["desc"]) // 2]       # keep the cookie under the browsers' limit
+
+
+def _decode_state(svc, token: str) -> ConsultState | None:
+    """Rebuild a consultation from its cookie; anything malformed or inconsistent gives None (a fresh start)."""
+    try:
+        packed = base64.urlsafe_b64decode(token + "=" * (-len(token) % 4))
+        z = zlib.decompressobj()
+        raw = z.decompress(packed, 64_000)
+        if z.unconsumed_tail:
+            return None
+        data = json.loads(raw)
+        kb = svc.kb
+        age, sex, cc, desc = data["age"], data["sex"], data["cc"], data.get("desc") or ""
+        if (data.get("v") != 1 or isinstance(age, bool) or not isinstance(age, int) or not 0 <= age <= 110
+                or sex not in ("F", "M") or cc not in kb.evidences or not isinstance(desc, str)):
+            return None
+        pre = [(e, _decode_value(kb, e, v)) for e, v in data["pre"][:MAX_ANSWERS]]
+        asked = [(e, _decode_value(kb, e, v)) for e, v in data["asked"][:MAX_ANSWERS]]
+    except (ValueError, TypeError, KeyError, zlib.error, json.JSONDecodeError):
+        return None
+    state = ConsultState(Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=pre), desc[:1500])
+    for e, v in asked:
+        if state.question is None or state.question.evidence != e:
+            break                                   # the stored answers no longer match the questions: stop here
+        state.answer(e, v)
+    return state
+
+
 def _session(request: Request):
-    sid = request.cookies.get(COOKIE)
+    """(cookie value, consultation state or None)."""
+    token = request.cookies.get(COOKIE)
+    if not token:
+        return None, None
     svc = V.Services.get()
-    return sid, (svc.sessions.touch(sid) if sid else None)
+    state = svc.sessions.touch(token)
+    if state is None:
+        state = _decode_state(svc, token)
+        if state is not None:
+            svc.sessions.put(token, state)
+    return token, state
 
 
-def _with_cookie(resp: Response, sid: str) -> Response:
-    resp.set_cookie(COOKIE, sid, httponly=True, samesite="lax", max_age=60 * 60 * 12)
+def _save(svc, resp: Response, old_token: str | None, state: ConsultState) -> Response:
+    """Store a changed consultation: a new cookie value, and the cache entry under it."""
+    if old_token:
+        svc.sessions.pop(old_token, None)
+    token = _encode_state(state)
+    svc.sessions.put(token, state)
+    resp.set_cookie(COOKIE, token, httponly=True, samesite="lax", max_age=60 * 60 * 12)
     return resp
 
 
@@ -125,10 +307,11 @@ def _parse_answer(svc, q, form):
     return {v} if v in ev.values else None
 
 
-def _intake_ctx() -> dict:
-    """Whether the optional free-text intake can run (a language-model key in .env) and which model reads first."""
+def _intake_ctx(request: Request) -> dict:
+    """Whether the optional free-text intake can run (a key from the sidebar or the server) and which model reads."""
     from .. import llm
-    pairs = llm.configured()
+    choice = _llm_choice(request)
+    pairs = llm.configured(*_llm_env(choice)) if choice else llm.configured()
     return {"intake_ready": bool(pairs), "intake_model": f"{pairs[0][0].name.title()} ({pairs[0][1]})" if pairs else ""}
 
 
@@ -167,10 +350,10 @@ def _parse_findings(kb, tokens, complaint: str) -> list:
 
 async def consult(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
-    sid, state = _session(request)
+    _token, state = await run_in_threadpool(_session, request)
     if state is None:
         return render(request, "consult_start.html", "consult", complaints=svc.complaints, default=DEFAULT_COMPLAINT,
-                      age=45, sex="F", **_intake_ctx())
+                      age=45, sex="F", **_intake_ctx(request))
     cons, res = state.cons, state.cons.result
     qp = request.query_params
     done = state.question is None
@@ -200,10 +383,9 @@ async def consult_start(request: Request) -> Response:
     cc = form.get("complaint") if form.get("complaint") in svc.kb.evidences else DEFAULT_COMPLAINT
     prefilled = _parse_findings(svc.kb, form.getlist("finding"), cc)
     description = " ".join(str(form.get("description") or "").split())[:1500]
-    sid = request.cookies.get(COOKIE) or secrets.token_urlsafe(18)
     cons = Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=prefilled)
-    svc.sessions.put(sid, ConsultState(cons, description if prefilled else ""))
-    return _with_cookie(see_other("/consult"), sid)
+    state = ConsultState(cons, description if prefilled else "")
+    return _save(svc, see_other("/consult"), request.cookies.get(COOKIE), state)
 
 
 async def consult_intake(request: Request) -> Response:
@@ -215,10 +397,15 @@ async def consult_intake(request: Request) -> Response:
     if not text:
         return see_other("/consult")
     try:
-        res = await run_in_threadpool(intake.read, svc.kb, text)
+        choice = _llm_choice(request)
+        if choice:
+            providers, env = _llm_env(choice)
+            res = await run_in_threadpool(lambda: intake.read(svc.kb, text, providers=providers, env=env))
+        else:
+            res = await run_in_threadpool(intake.read, svc.kb, text)
     except (llm.LLMError, ValueError) as e:
         return render(request, "consult_start.html", "consult", complaints=svc.complaints, default=DEFAULT_COMPLAINT,
-                      age=45, sex="F", text=text, intake_error=str(e), **_intake_ctx())
+                      age=45, sex="F", text=text, intake_error=str(e), **_intake_ctx(request))
     findings = [{"token": _token(f.evidence, f.value), "question": f.question, "answer": f.answer, "quote": f.quote,
                  "sub": bool(f.parent)} for f in res.findings]
     unstated = [w for w, v in (("age", res.age), ("sex", res.sex), ("main complaint", res.chief_complaint)) if v is None]
@@ -229,7 +416,7 @@ async def consult_intake(request: Request) -> Response:
 
 async def consult_answer(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
-    sid, state = _session(request)
+    token, state = await run_in_threadpool(_session, request)
     if state is None or state.question is None:
         return see_other("/consult")
     form = await request.form()
@@ -237,24 +424,28 @@ async def consult_answer(request: Request) -> Response:
     if form.get("evidence") == q.evidence:
         value = _parse_answer(svc, q, form)
         if value is not None:
-            state.answer(q.evidence, value)
+            await run_in_threadpool(state.answer, q.evidence, value)
+            return _save(svc, see_other("/consult"), token, state)
     return see_other("/consult")
 
 
 async def consult_undo(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
-    _sid, state = _session(request)
+    token, state = await run_in_threadpool(_session, request)
     if state is not None and state.cons.asked:
-        state.undo(svc)
+        await run_in_threadpool(state.undo, svc)
+        return _save(svc, see_other("/consult"), token, state)
     return see_other("/consult")
 
 
 async def consult_reset(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
-    sid, _state = _session(request)
-    if sid:
-        svc.sessions.pop(sid, None)
-    return see_other("/consult")
+    token = request.cookies.get(COOKIE)
+    if token:
+        svc.sessions.pop(token, None)
+    resp = see_other("/consult")
+    resp.delete_cookie(COOKIE)
+    return resp
 
 
 def _turtle(result, svc, name: str) -> Response:
@@ -266,7 +457,7 @@ def _turtle(result, svc, name: str) -> Response:
 
 async def consult_ttl(request: Request) -> Response:
     svc = await run_in_threadpool(V.Services.get)
-    _sid, state = _session(request)
+    _token, state = await run_in_threadpool(_session, request)
     if state is None:
         return see_other("/consult")
     return _turtle(state.cons.result, svc, "consultation")
@@ -304,7 +495,7 @@ async def cases(request: Request) -> Response:
         "result": V.result_view(svc, result),
         "explain": V.explanation(svc, result, qp.get("tab", "how"), qp.get("d")),
         "base": f"/cases?patient={pid}&", "ttl": f"/cases/{pid}/provenance.ttl",
-        "path": "/cases", "keep": {"patient": pid},
+        "path": "/cases", "keep": {"patient": pid}, "sparql_patient": pid,
     }
     return render(request, "cases.html", "cases", **ctx)
 
@@ -366,6 +557,10 @@ async def sparql(request: Request) -> Response:
         example = form.get("example") if form.get("example") in by_key else None
         result = await run_in_threadpool(V.run_sparql, svc, query, with_cases, patient) if query.strip() else \
             {"error": "Write a query first, or pick one of the examples."}
+    elif request.query_params.get("query"):            # a query handed over by a result page (SPARQL tab)
+        qp = request.query_params
+        query, example, with_cases = qp["query"][:20000], None, False
+        patient = qp.get("patient", "") if qp.get("patient", "") in svc.patient else ""
     else:
         example = request.query_params.get("example")
         example = example if example in by_key else examples[0]["key"]
@@ -403,6 +598,8 @@ def create_app() -> Starlette:
         Route("/consult", consult),
         Route("/consult/start", consult_start, methods=["POST"]),
         Route("/consult/intake", consult_intake, methods=["POST"]),
+        Route("/settings/llm", llm_save, methods=["POST"]),
+        Route("/settings/llm/clear", llm_clear, methods=["POST"]),
         Route("/consult/answer", consult_answer, methods=["POST"]),
         Route("/consult/undo", consult_undo, methods=["POST"]),
         Route("/consult/reset", consult_reset, methods=["POST"]),

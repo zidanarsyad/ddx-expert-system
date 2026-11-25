@@ -355,8 +355,10 @@ def parse(kb, text: str, data: dict) -> Intake:
     return out
 
 
-def read(kb, text: str, *, providers=None, models=None, chat=None) -> Intake:
-    """Ask the language model to read a description; raises llm.LLMError when no provider answers."""
+def read(kb, text: str, *, providers=None, models=None, chat=None, env: dict | None = None) -> Intake:
+    """Ask the language model to read a description; raises llm.LLMError when no provider answers.
+
+    `env` replaces the keys of .env and the environment, e.g. a key the user entered in the web interface."""
     text = " ".join(str(text or "").split())[:MAX_CHARS]
     if not text:
         raise ValueError("the description is empty")
@@ -364,6 +366,8 @@ def read(kb, text: str, *, providers=None, models=None, chat=None) -> Intake:
     kw = {"providers": providers, "max_tokens": 1000}
     if models:
         kw["models"] = models
+    if env is not None:
+        kw["env"] = env
     reply = (chat or llm.chat_json)(messages(kb, text), **kw)
     out = parse(kb, text, reply.data)
     out.provider, out.model, out.seconds = reply.provider, reply.model, time.perf_counter() - t0

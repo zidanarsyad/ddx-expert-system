@@ -139,4 +139,19 @@
       if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); editor.form.requestSubmit(); }
     });
   }
+
+  // The language-model key sidebar is a <details>: it opens and closes without this file. Here it also closes on
+  // Escape and on a click outside it, and puts the cursor in the key field when it opens.
+  const keys = document.querySelector("[data-keys]");
+  if (keys) {
+    keys.addEventListener("toggle", () => {
+      if (keys.open) keys.querySelector("#llm-key")?.focus({ preventScroll: true });
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && keys.open) { keys.open = false; keys.querySelector("summary").focus(); }
+    });
+    document.addEventListener("click", (e) => {
+      if (keys.open && !keys.contains(e.target)) keys.open = false;
+    });
+  }
 })();
