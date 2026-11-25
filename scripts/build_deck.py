@@ -349,9 +349,11 @@ def build(kb):
     sub.width = Pt(380)
     set_lines(sub, ["Differential diagnosis and triage on DDXPlus with",
                     "cited IF–THEN rules, OWL 2 RL and PROV-O",
-                    "Muhammad Zidan Arsyad · [group members 2–4]",
+                    "Muhammad Zidan Arsyad",
+                    "Muhammad Fikry Rizal",
+                    "Aditya Wahyu Wijanarko",
                     "Sistem Pakar Lanjut · Magister Kecerdasan Artifisial",
-                    "Departemen Ilmu Komputer dan Elektronika · UGM · 2026"], fonts={2: BOLD})
+                    "Departemen Ilmu Komputer dan Elektronika · UGM · 2026"], fonts={2: BOLD, 3: BOLD, 4: BOLD})
     notes(d.cover, "Good morning. Our final project is DDX-ES, an expert system that takes a patient's answers to a "
                    "symptom questionnaire and returns a differential diagnosis, a triage level and recommended next "
                    "steps, and explains every one of these conclusions with the rules that fired, the facts they "
