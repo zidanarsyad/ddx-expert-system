@@ -171,6 +171,27 @@
     rules there. After every run it writes its conclusions back into the graph as PROV-O (the Provenance tab). The
     queries below read the result shown above back from the graph, {{ sq.triples|thousands }} triples, of which
     {{ sq.provenance_triples|thousands }} describe this case as <code>{{ sq.case }}</code>.</p>
+  {% if graphdb %}
+  {% set here = request.url.path ~ ("?" ~ request.url.query if request.url.query else "") %}
+  <div class="gdb">
+    {% if graphdb.enabled %}
+    <form method="post" action="/graphdb/push">
+      <input type="hidden" name="target" value="{{ graphdb.target }}">
+      <input type="hidden" name="next" value="{{ here }}#explanation">
+      <button class="btn btn--quiet" type="submit">{{ icon("database", "btn__icon") }}Add this case to GraphDB</button>
+    </form>
+    <p class="note">GraphDB Desktop gives the same rows once the case is in it. The button writes this run into the
+      repository <code>{{ graphdb.repo }}</code> at {{ graphdb.url }} as the named graph <code>&lt;{{ sq.graph }}&gt;</code>,
+      replacing an earlier copy; <b>Open in GraphDB</b> under each query then opens the query in the Workbench.</p>
+    {% else %}
+    <p class="note">GraphDB runs on your own computer, which this server cannot reach. To get the same rows in GraphDB
+      Desktop, download the Turtle file on the Provenance tab, load it with
+      <code>python -I scripts/load_graphdb.py --add-file FILE.ttl</code> and run the queries below in the Workbench.</p>
+    {% endif %}
+    {% if graphdb.added %}<p class="callout callout--ok" role="status">Added to GraphDB: {{ graphdb.added }}.</p>{% endif %}
+    {% if graphdb.error %}<p class="callout callout--warn" role="alert">{{ graphdb.error }}</p>{% endif %}
+  </div>
+  {% endif %}
   {% for q in sq.queries %}
   <h3 class="sub-title">{{ q.title }}</h3>
   <p class="note">{{ q.question }}</p>
@@ -179,7 +200,9 @@
   <pre class="callout callout--warn code">{{ q.error }}</pre>
   {% else %}
   <p class="note">{{ q.count }} row{{ "s" if q.count != 1 }} in {{ "%.0f"|format(q.ms) }} ms{% if sparql_patient %} ·
-    <a href="/sparql?patient={{ sparql_patient }}&amp;query={{ q.query|urlencode }}">Open on the SPARQL page</a>{% endif %}</p>
+    <a href="/sparql?patient={{ sparql_patient }}&amp;query={{ q.query|urlencode }}">Open on the SPARQL page</a>{% endif %}
+    {%- if graphdb and graphdb.enabled %} ·
+    <a href="{{ graphdb.workbench(q.query) }}" target="_blank" rel="noopener">Open in GraphDB</a>{% endif %}</p>
   <div class="table-wrap">
   <table class="table table--compact">
     <thead><tr>{% for c in q.columns %}<th scope="col">{{ c }}</th>{% endfor %}</tr></thead>

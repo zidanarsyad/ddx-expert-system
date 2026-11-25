@@ -215,6 +215,66 @@ def pipeline():
     save(fig, "pipeline.png")
 
 
+def graphdb_sync():
+    """Writing a run into GraphDB and reading it back in the Workbench (sequence diagram, Section 5.6)."""
+    fig, ax = canvas(12.5, 6.9)
+    MONO = "DejaVu Sans Mono"
+    P = {"page": 0.085, "server": 0.36, "graphdb": 0.655, "bench": 0.915}
+    heads = [("page", "Web page", "SPARQL tab of a result", TINT["ui"], PURPLE),
+             ("server", "Web server", "ddxes: Starlette, rdflib", TINT["engine"], GREEN),
+             ("graphdb", "GraphDB", "repository ddx-es, OWL 2 RL", TINT["kg"], UGM_BLUE),
+             ("bench", "GraphDB Workbench", "SPARQL editor", TINT["rules"], GOLD)]
+    top, hw, hh = 0.885, 0.17, 0.105
+    for key, title, sub, fill, col in heads:
+        x = P[key]
+        rbox(ax, x - hw / 2, top, hw, hh, fill, col, lw=1.1, r=0.012)
+        ax.text(x, top + hh * 0.64, title, ha="center", va="center", fontsize=10, fontweight="bold", color=col)
+        ax.text(x, top + hh * 0.27, sub, ha="center", va="center", fontsize=8, color=INK2)
+        ax.plot([x, x], [0.0, top], color=AXIS, lw=1.0, ls=(0, (4, 3)), zorder=0)
+
+    def number(x, y, n):
+        ax.text(x, y, str(n), ha="center", va="center", fontsize=7.4, color="white", fontweight="bold", zorder=5,
+                bbox=dict(boxstyle="circle,pad=0.22", fc=UGM_BLUE, ec="none"))
+
+    def msg(n, a, b, y, lines, reply=False):
+        xa, xb = P[a], P[b]
+        ax.add_patch(FancyArrowPatch((xa, y), (xb, y), arrowstyle="-|>", mutation_scale=11, lw=1.2,
+                                     color=MUTED if reply else INK2, ls="--" if reply else "-", shrinkA=3, shrinkB=3))
+        number(xa + (0.017 if xb > xa else -0.017), y, n)
+        mx = (xa + xb) / 2
+        for i, (txt, mono) in enumerate(reversed(lines)):
+            ax.text(mx, y + 0.011 + i * 0.03, txt, ha="center", va="bottom", fontsize=7.7 if mono else 8.3, color=INK,
+                    family=MONO if mono else None)
+
+    def act(n, key, y0, y1, lines, fill, col):
+        x, w = P[key], 0.30
+        rbox(ax, x - w / 2, y0, w, y1 - y0, fill, col, lw=0.9, r=0.01)
+        ax.text(x, (y0 + y1) / 2, "\n".join(lines), ha="center", va="center", fontsize=8.2, color=INK, linespacing=1.4)
+        number(x - w / 2, y1 - 0.004, n)
+
+    msg(1, "page", "server", 0.795, [("Add this case to GraphDB", False), ("POST /graphdb/push", True)])
+    act(2, "server", 0.655, 0.765, ["rebuild the run: replay the answers kept", "in the cookie with the case id C91152f0c",
+                                     "PROV-O graph of the run, 444 triples, as Turtle"], TINT["engine"], "#a5c9a7")
+    msg(3, "server", "graphdb", 0.585, [("PUT /repositories/ddx-es/statements", True),
+                                         ("?context=<…/graph/provenance-C91152f0c>", True)])
+    act(4, "graphdb", 0.435, 0.545, ["replace the statements of that named graph,", "keep every other graph",
+                                      "OWL 2 RL: add and withdraw inferences"], TINT["kg"], "#9fb6cc")
+    msg(5, "graphdb", "server", 0.39, [("204 No Content", True)], reply=True)
+    msg(6, "server", "page", 0.315, [("303 See Other: “Added to GraphDB:", False),
+                                      ("444 triples of :Patient_C91152f0c”", False)], reply=True)
+    ax.plot([0.0, 1.0], [0.262, 0.262], color=GRID, lw=1.0)
+    ax.text(0.0, 0.862, "Writing\nthe run", fontsize=8.6, fontweight="bold", color=INK2, va="top", linespacing=1.2)
+    ax.text(0.0, 0.25, "Reading\nit back", fontsize=8.6, fontweight="bold", color=INK2, va="top", linespacing=1.2)
+    msg(7, "page", "bench", 0.19, [("Open in GraphDB:  /sparql?repositoryId=ddx-es&query=<the query on the tab>", True)])
+    msg(8, "bench", "graphdb", 0.115, [("the same query text over the default graph:", False),
+                                        ("all named graphs + inferred statements", False)])
+    msg(9, "graphdb", "bench", 0.035, [("the same rows as on the tab", False)], reply=True)
+    rbox(ax, 0.004, 0.012, 0.25, 0.115, TINT["ui"], "#b9a0c4", lw=0.8, r=0.01)
+    ax.text(0.129, 0.0695, "On the page, rdflib runs the query over\nthe knowledge graph + this run's PROV-O\n"
+            "(no reasoning over the run)", ha="center", va="center", fontsize=8.0, color=INK2, linespacing=1.4)
+    save(fig, "graphdb_sync.png")
+
+
 # ---------------------------------------------------------------------------------------------- charts
 def barh(ax, labels, values, color, fmt="{:.1%}", xmax=None):
     y = list(range(len(labels)))
@@ -359,6 +419,7 @@ if __name__ == "__main__":
     architecture()
     ontology()
     pipeline()
+    graphdb_sync()
     systems()
     ablation()
     triage_matrix()

@@ -15,6 +15,7 @@ import json
 import pathlib
 import random
 import re
+import secrets
 import urllib.parse
 import zlib
 
@@ -26,6 +27,7 @@ from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
+from .. import graphdb
 from ..consult import Consultation
 from . import views as V
 
@@ -128,8 +130,9 @@ def _back(request: Request, form, **params) -> RedirectResponse:
     if not nxt.startswith("/") or nxt.startswith("//") or "\\" in nxt:
         nxt = "/consult"
     u = urllib.parse.urlsplit(nxt)
-    q = [(k, v) for k, v in urllib.parse.parse_qsl(u.query) if k != "llm_error"] + list(params.items())
-    return see_other(urllib.parse.urlunsplit(("", "", u.path, urllib.parse.urlencode(q), "")))
+    q = [(k, v) for k, v in urllib.parse.parse_qsl(u.query) if k not in ("llm_error", "graphdb_added", "graphdb_error")]
+    q += list(params.items())
+    return see_other(urllib.parse.urlunsplit(("", "", u.path, urllib.parse.urlencode(q), u.fragment)))
 
 
 def _same_origin(request: Request) -> bool:
@@ -192,7 +195,7 @@ class ConsultState:
         """Replay every answer but the last on a fresh consultation (selection is deterministic)."""
         old = self.cons
         cons = Consultation(svc.engine, age=old.age, sex=old.sex, chief_complaint=old.chief_complaint,
-                            prefilled=old.prefilled)
+                            prefilled=old.prefilled, case_id=old.case_id)
         for e, v in old.asked[:-1]:
             cons.next_question()
             cons.answer(e, v)
@@ -205,6 +208,7 @@ class ConsultState:
 # serverless host that runs several short-lived instances. The rebuilt states are cached per cookie value.
 MAX_ANSWERS = 150
 MAX_COOKIE = 3800
+CASE_ID = re.compile(r"consultation|C[0-9a-f]{8}")     # :Patient_C1a2b3c4d in the graph, one per consultation
 
 
 def _encode_value(v):
@@ -230,7 +234,7 @@ def _decode_value(kb, evidence: str, v):
 
 def _encode_state(state: ConsultState) -> str:
     c = state.cons
-    data = {"v": 1, "age": c.age, "sex": c.sex, "cc": c.chief_complaint, "desc": state.description,
+    data = {"v": 1, "id": c.case_id, "age": c.age, "sex": c.sex, "cc": c.chief_complaint, "desc": state.description,
             "pre": [[e, _encode_value(v)] for e, v in c.prefilled], "asked": [[e, _encode_value(v)] for e, v in c.asked]}
     while True:
         raw = json.dumps(data, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
@@ -251,6 +255,9 @@ def _decode_state(svc, token: str) -> ConsultState | None:
         data = json.loads(raw)
         kb = svc.kb
         age, sex, cc, desc = data["age"], data["sex"], data["cc"], data.get("desc") or ""
+        cid = data.get("id") or "consultation"
+        if not isinstance(cid, str) or not CASE_ID.fullmatch(cid):
+            return None
         if (data.get("v") != 1 or isinstance(age, bool) or not isinstance(age, int) or not 0 <= age <= 110
                 or sex not in ("F", "M") or cc not in kb.evidences or not isinstance(desc, str)):
             return None
@@ -258,7 +265,8 @@ def _decode_state(svc, token: str) -> ConsultState | None:
         asked = [(e, _decode_value(kb, e, v)) for e, v in data["asked"][:MAX_ANSWERS]]
     except (ValueError, TypeError, KeyError, zlib.error, json.JSONDecodeError):
         return None
-    state = ConsultState(Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=pre), desc[:1500])
+    state = ConsultState(Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=pre, case_id=cid),
+                         desc[:1500])
     for e, v in asked:
         if state.question is None or state.question.evidence != e:
             break                                   # the stored answers no longer match the questions: stop here
@@ -367,7 +375,7 @@ async def consult(request: Request) -> Response:
         "result": V.result_view(svc, res, state.prev_triage, state.prev_probs),
         "explain": V.explanation(svc, res, qp.get("tab", "how"), qp.get("d")) if show else None,
         "show": show, "base": "/consult?explain=1&", "ttl": "/consult/provenance.ttl",
-        "path": "/consult", "keep": {"explain": "1"},
+        "path": "/consult", "keep": {"explain": "1"}, "graphdb": _graphdb_ctx(request, "consultation"),
     }
     return render(request, "consult.html", "consult", **ctx)
 
@@ -383,7 +391,8 @@ async def consult_start(request: Request) -> Response:
     cc = form.get("complaint") if form.get("complaint") in svc.kb.evidences else DEFAULT_COMPLAINT
     prefilled = _parse_findings(svc.kb, form.getlist("finding"), cc)
     description = " ".join(str(form.get("description") or "").split())[:1500]
-    cons = Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=prefilled)
+    cons = Consultation(svc.engine, age=age, sex=sex, chief_complaint=cc, prefilled=prefilled,
+                        case_id="C" + secrets.token_hex(4))
     state = ConsultState(cons, description if prefilled else "")
     return _save(svc, see_other("/consult"), request.cookies.get(COOKIE), state)
 
@@ -448,6 +457,40 @@ async def consult_reset(request: Request) -> Response:
     return resp
 
 
+def _graphdb_ctx(request: Request, target: str) -> dict:
+    """What the SPARQL tab shows about GraphDB: whether a case can be written there, and the outcome of the last write."""
+    url, repo = graphdb.settings()
+    qp = request.query_params
+    return {"enabled": graphdb.enabled(), "url": url, "repo": repo, "target": target,
+            "added": qp.get("graphdb_added", ""), "error": qp.get("graphdb_error", ""),
+            "workbench": graphdb.workbench_sparql_url}
+
+
+async def graphdb_push(request: Request) -> Response:
+    """Write the run shown on a result page into GraphDB (a local server; switched off on Vercel)."""
+    form = await request.form()
+    if not _same_origin(request):
+        return Response("Forbidden", status_code=403)
+    if not graphdb.enabled():
+        return _back(request, form, graphdb_error="Writing to GraphDB is switched off on this server.")
+    svc = await run_in_threadpool(V.Services.get)
+    target = str(form.get("target") or "")
+    if target == "consultation":
+        _token, state = await run_in_threadpool(_session, request)
+        if state is None:
+            return see_other("/consult")
+        result, include_case = state.cons.result, True
+    elif target in svc.patient:
+        result, include_case = await run_in_threadpool(svc.case_result, target), False
+    else:
+        return see_other("/cases")
+    try:
+        out = await run_in_threadpool(lambda: graphdb.push_result(result, svc.kb, include_case=include_case))
+    except graphdb.GraphDBError as e:
+        return _back(request, form, graphdb_error=str(e))
+    return _back(request, form, graphdb_added=f"{out['triples']} triples of {out['case']} in <{out['graph']}>")
+
+
 def _turtle(result, svc, name: str) -> Response:
     from ..provenance import result_to_graph
     ttl = result_to_graph(result, svc.kb).serialize(format="turtle")
@@ -495,7 +538,7 @@ async def cases(request: Request) -> Response:
         "result": V.result_view(svc, result),
         "explain": V.explanation(svc, result, qp.get("tab", "how"), qp.get("d")),
         "base": f"/cases?patient={pid}&", "ttl": f"/cases/{pid}/provenance.ttl",
-        "path": "/cases", "keep": {"patient": pid}, "sparql_patient": pid,
+        "path": "/cases", "keep": {"patient": pid}, "sparql_patient": pid, "graphdb": _graphdb_ctx(request, pid),
     }
     return render(request, "cases.html", "cases", **ctx)
 
@@ -599,6 +642,7 @@ def create_app() -> Starlette:
         Route("/consult/start", consult_start, methods=["POST"]),
         Route("/consult/intake", consult_intake, methods=["POST"]),
         Route("/settings/llm", llm_save, methods=["POST"]),
+        Route("/graphdb/push", graphdb_push, methods=["POST"]),
         Route("/settings/llm/clear", llm_clear, methods=["POST"]),
         Route("/consult/answer", consult_answer, methods=["POST"]),
         Route("/consult/undo", consult_undo, methods=["POST"]),

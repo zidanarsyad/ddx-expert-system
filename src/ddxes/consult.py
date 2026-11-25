@@ -59,6 +59,7 @@ class Consultation:
     rule_out_min: float = 1e-4        # a severe hypothesis below this probability counts as excluded
     rule_out_per_pathology: int = 2
     prefilled: list = field(default_factory=list)   # [(evidence, value)] already known, e.g. from ddxes.intake
+    case_id: str = "consultation"    # the case's name in the graph (:Patient_<case_id>), e.g. one per web consultation
     case: Case = field(init=False)
     asked: list = field(default_factory=list)
     result: object = field(init=False)
@@ -66,7 +67,7 @@ class Consultation:
 
     def __post_init__(self):
         kb = self.engine.kb
-        self.case = Case(id="consultation", age=self.age, sex=self.sex, closed_world=False, initial=self.chief_complaint)
+        self.case = Case(id=self.case_id, age=self.age, sex=self.sex, closed_world=False, initial=self.chief_complaint)
         if self.chief_complaint:
             self.case.answer(kb, self.chief_complaint, True)
         for e, v in self.prefilled:                  # answers given before the first question: never asked again

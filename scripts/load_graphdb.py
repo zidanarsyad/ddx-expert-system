@@ -15,10 +15,18 @@ So GraphDB entails a little more, and three answers differ: it also types the th
 as :Rule (q01, q02), and applies `:firedRule rdfs:subPropertyOf prov:used` to the provenance (q08). Without
 inferred statements, every answer equals queries/results-no-inference/.
 
+Other runs are written in one at a time, each into its own named graph <.../graph/provenance-<case id>>, without
+reloading anything else: the button "Add this case to GraphDB" on the SPARQL tab of the web interface (served locally),
+or this script with --add-patient (a demo patient) or --add-file (the Turtle download of a run, for instance a
+consultation on the deployed web interface, which cannot reach a GraphDB on your computer). The queries on that SPARQL
+tab then return the same rows in the Workbench. A full reload removes the runs added this way.
+
 Usage (from the repository root, with GraphDB running):
     python -I scripts/load_graphdb.py              # create the repository if needed and (re)load it
     python -I scripts/load_graphdb.py --recreate   # delete the repository and build it again
     python -I scripts/load_graphdb.py --url http://localhost:7200 --repo ddx-es
+    python -I scripts/load_graphdb.py --add-patient T002456             # write (or refresh) one demo patient's run
+    python -I scripts/load_graphdb.py --add-file consultation-provenance.ttl   # write a downloaded run
 """
 import argparse
 import csv
@@ -91,18 +99,50 @@ def upload(base: str, repo: str, data: bytes, graph: str) -> None:
     print(f"  loaded {graph:20s} into <{GRAPHS}{graph}>  ({time.perf_counter() - t:.1f} s)")
 
 
-def provenance_ttl() -> bytes:
-    """The engine's conclusions for the demo patient, as PROV-O (the same graph as scripts/run_queries.py)."""
+def patient_result(pid: str, kb):
+    """The engine's run for one demo patient, as the web interface computes it."""
     from ddxes.case import Case
     from ddxes.engine import InferenceEngine
-    from ddxes.kb import KnowledgeBase
     from ddxes.paths import PROCESSED
+    patients = json.loads((PROCESSED / "sample_patients.json").read_text(encoding="utf-8"))
+    rec = next((r for r in patients if r["id"] == pid), None)
+    if rec is None:
+        sys.exit(f"There is no demo patient {pid} in data/processed/sample_patients.json.")
+    return InferenceEngine(kb).run(Case.from_ddxplus(rec, kb))
+
+
+def provenance_ttl(pid: str = DEMO) -> bytes:
+    """The engine's conclusions for a demo patient, as PROV-O (for DEMO, the same graph as scripts/run_queries.py).
+    The patient's answers are already in the graph `cases`, so they are left out."""
+    from ddxes.kb import KnowledgeBase
     from ddxes.provenance import result_to_graph
     kb = KnowledgeBase.load()
-    patients = json.loads((PROCESSED / "sample_patients.json").read_text(encoding="utf-8"))
-    rec = next(r for r in patients if r["id"] == DEMO)
-    g = result_to_graph(InferenceEngine(kb).run(Case.from_ddxplus(rec, kb)), kb, include_case=False)
-    return g.serialize(format="turtle").encode("utf-8")
+    return result_to_graph(patient_result(pid, kb), kb, include_case=False).serialize(format="turtle").encode("utf-8")
+
+
+def add_runs(base: str, repo: str, patients: list[str], files: list[str]) -> int:
+    """Write single runs into their own named graphs, replacing earlier copies; nothing else is reloaded."""
+    from ddxes import graphdb
+    repos = {r["id"] for r in json.loads(call("GET", f"{base}/rest/repositories", headers={"Accept": "application/json"}))}
+    if repo not in repos:
+        sys.exit(f"GraphDB at {base} has no repository '{repo}'. Load the knowledge graph first: "
+                 f"python -I scripts/load_graphdb.py")
+    kb = None
+    try:
+        for pid in patients:
+            if kb is None:
+                from ddxes.kb import KnowledgeBase
+                kb = KnowledgeBase.load()
+            out = graphdb.push_result(patient_result(pid, kb), kb, include_case=False, url=base, repo=repo)
+            print(f"  added {out['triples']:,} triples of {out['case']} into <{out['graph']}>")
+        for f in files:
+            out = graphdb.push_file(pathlib.Path(f), url=base, repo=repo)
+            print(f"  added {out['triples']:,} triples of {out['case']} from {f} into <{out['graph']}>")
+    except graphdb.GraphDBError as e:
+        sys.exit(str(e))
+    print()
+    print(f"Workbench: {base}/sparql?repositoryId={repo}  (the SPARQL tab of each case has queries to run there)")
+    return 0
 
 
 def answer(res: dict):
@@ -141,8 +181,16 @@ def main() -> int:
     ap.add_argument("--url", default="http://localhost:7200", help="GraphDB address (default %(default)s)")
     ap.add_argument("--repo", default="ddx-es", help="repository id (default %(default)s)")
     ap.add_argument("--recreate", action="store_true", help="delete the repository and create it again")
+    ap.add_argument("--add-patient", nargs="+", default=[], metavar="ID",
+                    help="only write the run of these demo patients into GraphDB (each into its own named graph)")
+    ap.add_argument("--add-file", nargs="+", default=[], metavar="FILE",
+                    help="only write these runs, saved as Turtle from the Provenance tab, into GraphDB")
     a = ap.parse_args()
     base, repo = a.url.rstrip("/"), a.repo
+    if a.add_patient or a.add_file:
+        if a.recreate:
+            ap.error("--recreate reloads everything; use it on its own")
+        return add_runs(base, repo, a.add_patient, a.add_file)
     accept = {"Accept": "application/json"}
 
     version = json.loads(call("GET", f"{base}/rest/info/version", headers=accept))

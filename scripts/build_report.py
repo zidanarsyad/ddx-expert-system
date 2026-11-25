@@ -300,7 +300,7 @@ def main():
            "--csl", "harvard-fmipa-ugm.csl", "-H", "report-header.tex", "--number-sections", "--top-level-division=chapter",
            "-M", "link-citations=true", "-V", "documentclass=report", "-V", "papersize=a4", "-V", "fontsize=12pt",
            "-V", "geometry:top=4cm", "-V", "geometry:left=4cm", "-V", "geometry:bottom=3cm", "-V", "geometry:right=3cm",
-           "-V", "mainfont=Times New Roman", "-V", "monofont=Consolas", "-V", "mathfont=Cambria Math",
+           "-V", "mainfont=Times New Roman", "-V", "monofont=Consolas", "-V", "monofontoptions=HyphenChar=None", "-V", "mathfont=Cambria Math",
            "-V", "colorlinks=true", "-V", "linkcolor=black", "-V", "citecolor=black", "-V", "urlcolor=blue",
            "--syntax-highlighting=tango"]
     subprocess.run(cmd, check=True, cwd=DOCS)

@@ -204,3 +204,79 @@ def test_language_model_key_sidebar(app, monkeypatch):
     assert status == 303 and any(k == "set-cookie" and "ddxes_llm=" in v and "max-age=0" in v.lower() for k, v in headers)
     status, headers, _ = call(app, "POST", "/settings/llm", form={"provider": "groq", "key": key, "next": "//evil.example"})
     assert dict(headers)["location"] == "/consult"
+
+
+SPARQL_TAB = "/consult?explain=1&tab=sparql"
+
+
+def _case_of(page: str) -> str:
+    """The case's IRI named on the SPARQL tab."""
+    return re.search(r"describe this case as <code>(:Patient_[^<]+)</code>", page).group(1)
+
+
+def test_each_consultation_is_a_case_of_its_own(app):
+    """A consultation gets its own case IRI, kept in the cookie: through a fresh process and an undo, never reused."""
+    from ddxes.web import views as V
+    _page, cookies = _run_consultation(app)
+    case = _case_of(call(app, "GET", SPARQL_TAB, cookies=cookies)[2])
+    assert re.fullmatch(r":Patient_C[0-9a-f]{8}", case)
+    V.Services.get().sessions.clear()
+    assert _case_of(call(app, "GET", SPARQL_TAB, cookies=cookies)[2]) == case
+    _keep_cookies(cookies, call(app, "POST", "/consult/undo", form={}, cookies=cookies)[1])
+    assert _case_of(call(app, "GET", SPARQL_TAB, cookies=cookies)[2]) == case
+    _page, other = _run_consultation(app)
+    assert _case_of(call(app, "GET", SPARQL_TAB, cookies=other)[2]) != case
+
+
+def test_add_a_case_to_graphdb(app, monkeypatch):
+    """The SPARQL tab writes the run shown into GraphDB, into the case's own named graph (GraphDB stubbed)."""
+    from rdflib import RDF, Graph
+
+    from ddxes import graphdb
+    from ddxes.paths import DDX
+    monkeypatch.delenv("VERCEL", raising=False)
+    monkeypatch.delenv("DDXES_GRAPHDB", raising=False)
+    puts = []
+    monkeypatch.setattr(graphdb, "put_turtle",
+                        lambda data, graph, **k: puts.append((Graph().parse(data=data, format="turtle"), graph)))
+
+    _page, cookies = _run_consultation(app)
+    page = call(app, "GET", SPARQL_TAB, cookies=cookies)[2]
+    cid = _case_of(page).removeprefix(":Patient_")
+    assert "Add this case to GraphDB" in page and page.count(">Open in GraphDB</a>") == 4
+    assert "http://localhost:7200/sparql?repositoryId=ddx-es&amp;query=PREFIX" in page
+    status, headers, _ = call(app, "POST", "/graphdb/push", form={"target": "consultation",
+                                                                  "next": SPARQL_TAB + "#explanation"}, cookies=cookies)
+    location = dict(headers)["location"]
+    assert status == 303 and location.startswith(SPARQL_TAB + "&graphdb_added=") and location.endswith("#explanation")
+    g, graph = puts[-1]
+    assert graph == f"http://example.org/ddx/graph/provenance-{cid}"
+    assert (DDX[f"Patient_{cid}"], RDF.type, DDX.Patient) in g          # a consultation brings its own answers
+    shown = call(app, "GET", location.partition("#")[0], cookies=cookies)[2]
+    assert f"Added to GraphDB: {len(g)} triples of :Patient_{cid}" in shown
+
+    # a demo patient's answers are already in the graph `cases`: only the run is written
+    back = "/cases?patient=T002456&tab=sparql"
+    assert call(app, "POST", "/graphdb/push", form={"target": "T002456", "next": back})[0] == 303
+    g, graph = puts[-1]
+    assert graph.endswith("/provenance-T002456") and (DDX.Patient_T002456, RDF.type, DDX.Patient) not in g
+    assert (None, DDX.aboutCase, DDX.Patient_T002456) in g
+
+    def down(*a, **k):
+        raise graphdb.GraphDBError("GraphDB is not reachable at http://localhost:7200: connection refused.")
+    monkeypatch.setattr(graphdb, "put_turtle", down)
+    status, headers, _ = call(app, "POST", "/graphdb/push", form={"target": "T002456", "next": back})
+    assert "graphdb_error=" in dict(headers)["location"]
+    assert "GraphDB is not reachable" in call(app, "GET", dict(headers)["location"])[2]
+    assert dict(call(app, "POST", "/graphdb/push", form={"target": "nobody", "next": back})[1])["location"] == "/cases"
+
+
+def test_graphdb_is_off_when_deployed(app, monkeypatch):
+    """A hosted deployment cannot reach GraphDB on the visitor's computer: no button, and the route refuses."""
+    from ddxes import graphdb
+    monkeypatch.setenv("VERCEL", "1")
+    monkeypatch.setattr(graphdb, "put_turtle", lambda *a, **k: pytest.fail("GraphDB written to on Vercel"))
+    page = call(app, "GET", "/cases?patient=T002456&tab=sparql")[2]
+    assert "Add this case to GraphDB" not in page and "Open in GraphDB" not in page and "--add-file" in page
+    status, headers, _ = call(app, "POST", "/graphdb/push", form={"target": "T002456", "next": "/cases?patient=T002456"})
+    assert status == 303 and "graphdb_error=" in dict(headers)["location"]

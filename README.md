@@ -202,6 +202,46 @@ runs the 12 queries of `queries/` with and without the inferred statements. Thei
 except for q01, q02 and q08: GraphDB reasons over every triple it holds, while `kg/inferred.ttl` is the closure of
 the ontology, the knowledge base and the rules only.
 
+**A case from the web interface in GraphDB.** Other runs reach GraphDB one at a time, each into its own named graph
+`http://example.org/ddx/graph/provenance-<case id>`. On the SPARQL tab of a result, *Add this case to GraphDB*
+writes the run shown, and *Open in GraphDB* opens each of the tab's queries in the Workbench, where it returns the
+same rows as on the page, with or without inferred data. (The Workbench writes values as RDF terms, with quotes and
+a datatype or language tag, `"0.999804"^^xsd:decimal` or `"Pneumonia"@en`, where the page shows the value as
+stored, `0.999804` or `Pneumonia`.) Each consultation is a case of its own, `:Patient_C` followed by eight
+hexadecimal digits, so consultations do not overwrite each other; pressing the button again replaces the copy of that
+case, for instance after more answers. The button needs the web interface and GraphDB on the same computer
+(`ddxes serve`). The deployed interface cannot reach GraphDB on your computer: download the Turtle file on the
+Provenance tab and load it with the script instead.
+
+How a run is written (`src/ddxes/graphdb.py`, route `POST /graphdb/push`):
+
+1. The button sends the target: the consultation in this browser's cookie, or a demo patient. The server accepts it
+   only from its own pages, and no other graph can be named.
+2. The server rebuilds the run, a consultation by replaying the answers kept in its cookie, and builds the run's
+   PROV-O graph: the run, every rule firing (its step, premise certainty, rule and the facts it used) and every
+   inference (concepts, diagnoses, exclusions, triage, recommendations). A consultation also brings the patient and
+   the answers; a demo patient's answers are already in the graph `cases`. Every node carries the case id
+   (`:Run_<id>`, `:Firing_<id>_<step>`, `:Inf_<id>_D_<pathology>` …), so runs never share a node.
+3. It sends the Turtle with `PUT /repositories/ddx-es/statements?context=<…/provenance-<id>>` (RDF4J REST API). A PUT
+   with a context replaces that named graph and no other, so the request can be repeated safely.
+4. GraphDB updates its OWL 2 RL inferences, and the tab reports how many triples were written.
+
+```bash
+python -I scripts/load_graphdb.py --add-file consultation-provenance.ttl   # a run downloaded from the web interface
+python -I scripts/load_graphdb.py --add-patient T056557                    # the run of a demo patient
+```
+
+A full reload (`load_graphdb.py` without these options) removes the runs added this way. `DDXES_GRAPHDB_URL` and
+`DDXES_GRAPHDB_REPO` point the web interface at another GraphDB or repository, and `DDXES_GRAPHDB=off` hides the
+button. On the page, rdflib runs a query over the knowledge graph and this run's PROV-O, without reasoning over the
+run; GraphDB runs it over all its named graphs plus what its OWL 2 RL rules derive from them. The tab's queries are
+written so that this makes no difference: they start from the case, so other runs add nothing; the triage query
+leaves the rule out of the facts it used (GraphDB derives `?firing prov:used ?rule` from
+`:firedRule rdfs:subPropertyOf prov:used`); and the symptoms that an excluded pathology cannot explain are
+concatenated from a sorted subquery, because SPARQL leaves the order of `GROUP_CONCAT` open and rdflib's order even
+changes with Python's hash seed, that is with every restart of the server. Checked on T002456 and on a consultation,
+cell by cell: the same rows in both stores, with and without inferred data.
+
 GraphDB runs on your own computer and is never needed by the web interface, also not when it is deployed: the
 deployed interface reads the Turtle files with rdflib, and a hosted site cannot reach `localhost` anyway.
 
@@ -249,11 +289,12 @@ pip install pytest
 pytest
 ```
 
-124 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
+134 tests: certainty-factor algebra (including the equivalence with likelihood ratios), rule-base validation and
 the YAML ⇄ RDF round trip, the OWL 2 RL entailments the engine relies on, the engine on hand-made and DDXPlus
 cases, explanations, provenance, the consultation (including its independence of the hash seed), the web interface
-(including a consultation continued by a fresh process from its cookie, and the language-model key sidebar),
-and the free-text intake (with a stand-in model, so the tests need no network and no key).
+(including a consultation continued by a fresh process from its cookie, the language-model key sidebar, and writing
+a case into GraphDB, with the rows of its SPARQL tab under two hash seeds), and the free-text intake. A stand-in language model and a stubbed GraphDB keep the tests free
+of network access, keys and a running GraphDB.
 
 ## Live demo (about 5 minutes)
 
@@ -276,7 +317,8 @@ step should show.
 5. **GraphDB** (optional, after `load_graphdb.py`). Choose the repository `ddx-es`. Explore → Visual graph →
    `http://example.org/ddx#Rule_D-PE-1` shows the rule with its source, the Wells score and the evidence it reads.
    In SPARQL, paste `queries/q05-red-flag-rules.rq`: 9 rows; switch *Include inferred data in results* off and run
-   it again: 0 rows.
+   it again: 0 rows. Then, on the SPARQL tab of the consultation from step 1, press *Add this case to GraphDB* and
+   *Open in GraphDB* under a query: the Workbench returns the rows shown on the page.
 
 With a language-model key in `.env`, step 1 can also start from free text. Type *Bapak 39 tahun, sejak pagi sesak
 napas berat. Betis kanan bengkak sejak tiga hari, dan dua minggu lalu operasi lutut. Tidak demam, tidak batuk.* into

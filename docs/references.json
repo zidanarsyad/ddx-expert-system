@@ -24684,5 +24684,96 @@
    ]
   },
   "id": "domingos1997"
+ },
+ {
+  "id": "harris2013",
+  "type": "report",
+  "author": [
+   {
+    "family": "Harris",
+    "given": "Steve"
+   },
+   {
+    "family": "Seaborne",
+    "given": "Andy"
+   }
+  ],
+  "title": "SPARQL 1.1 Query Language",
+  "genre": "W3C Recommendation",
+  "publisher": "World Wide Web Consortium",
+  "issued": {
+   "date-parts": [
+    [
+     2013,
+     3,
+     21
+    ]
+   ]
+  },
+  "URL": "https://www.w3.org/TR/2013/REC-sparql11-query-20130321/"
+ },
+ {
+  "id": "motik2012",
+  "type": "report",
+  "author": [
+   {
+    "family": "Motik",
+    "given": "Boris"
+   },
+   {
+    "family": "Cuenca Grau",
+    "given": "Bernardo"
+   },
+   {
+    "family": "Horrocks",
+    "given": "Ian"
+   },
+   {
+    "family": "Wu",
+    "given": "Zhe"
+   },
+   {
+    "family": "Fokoue",
+    "given": "Achille"
+   },
+   {
+    "family": "Lutz",
+    "given": "Carsten"
+   }
+  ],
+  "title": "OWL 2 Web Ontology Language Profiles (Second Edition)",
+  "genre": "W3C Recommendation",
+  "publisher": "World Wide Web Consortium",
+  "issued": {
+   "date-parts": [
+    [
+     2012,
+     12,
+     11
+    ]
+   ]
+  },
+  "URL": "https://www.w3.org/TR/2012/REC-owl2-profiles-20121211/"
+ },
+ {
+  "id": "rdf4jrest",
+  "type": "webpage",
+  "author": [
+   {
+    "literal": "Eclipse RDF4J"
+   }
+  ],
+  "title": "RDF4J REST API",
+  "container-title": "Eclipse RDF4J documentation",
+  "URL": "https://rdf4j.org/documentation/reference/rest-api/",
+  "accessed": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     25
+    ]
+   ]
+  }
  }
 ]

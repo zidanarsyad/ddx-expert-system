@@ -280,6 +280,10 @@ legend { padding: 0; font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
 .facts--wide { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 .callout { background: var(--sheet); border-left: 3px solid var(--ink); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 0 0 16px; max-width: 86ch; }
 .callout--warn { border-left-color: var(--t-urgent); background: var(--t-urgent-soft); }
+.callout--ok { border-left-color: var(--yes); background: var(--yes-soft); }
+.gdb { margin: 18px 0 4px; }
+.gdb form { margin: 0; }
+.gdb .callout { margin: 12px 0 0; }
 .proof-wrap { background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 18px 18px 12px; margin: 18px 0; }
 .proof-scroll { overflow-x: auto; }
 svg.proof { display: block; height: auto; max-width: none; }

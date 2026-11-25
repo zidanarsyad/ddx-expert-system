@@ -15,6 +15,7 @@ from collections import OrderedDict
 
 from markupsafe import Markup
 
+from .. import graphdb
 from .. import rulebase as rb
 from ..case import Case
 from ..engine import InferenceEngine
@@ -318,7 +319,7 @@ ORDER BY ?rank"""),
   ?t a :TriageInference ; :aboutCase {case} ; :inferredTriage ?lvl .
   ?lvl rdfs:label ?level .
   OPTIONAL {
-    { ?t prov:wasGeneratedBy ?firing . ?firing :firedRule ?r ; prov:used ?u . }
+    { ?t prov:wasGeneratedBy ?firing . ?firing :firedRule ?r ; prov:used ?u . FILTER(?u != ?r) }
     UNION
     { ?t prov:wasDerivedFrom ?r , ?u . ?r a :RuleSchema . ?u a :DiagnosisInference . }
     ?r :code ?code ; dct:source/dct:bibliographicCitation ?source .
@@ -328,7 +329,8 @@ ORDER BY ?rank"""),
     OPTIONAL { ?u rdfs:label ?ul . FILTER(lang(?ul) = "en") }
   }
   BIND(COALESCE(?up, ?uc, ?ue, ?ul, "") AS ?usedFact)
-}"""),
+}
+ORDER BY ?rule ?usedFact"""),
     ("firings", "The rule firings",
      "Which rules fired, in which order, with what certainty of their premise, and from which source?",
      """SELECT ?step ?rule ?name ?premiseCF ?source WHERE {
@@ -341,10 +343,15 @@ ORDER BY ?step"""),
     ("exclusions", "The exclusions by set covering",
      "Which pathologies were excluded, and which reported symptoms can their profile not explain?",
      """SELECT ?pathology (GROUP_CONCAT(?symptom; separator="; ") AS ?unexplained) WHERE {
-  ?x a :ExclusionInference ; :aboutCase {case} ;
-     :inferredPathology ?d ; :unexplainedEvidence ?e .
-  ?d rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
-  ?e rdfs:label ?symptom .
+  {
+    SELECT ?pathology ?symptom WHERE {
+      ?x a :ExclusionInference ; :aboutCase {case} ;
+         :inferredPathology ?d ; :unexplainedEvidence ?e .
+      ?d rdfs:label ?pathology . FILTER(lang(?pathology) = "en")
+      ?e rdfs:label ?symptom .
+    }
+    ORDER BY ?pathology ?symptom
+  }
 }
 GROUP BY ?pathology
 ORDER BY ?pathology"""),
@@ -371,18 +378,14 @@ def result_queries(svc: Services, result) -> dict:
         out.append({"key": key, "title": title, "question": question, "query": text,
                     "ms": (time.perf_counter() - t) * 1000, **entry})
     return {"queries": out, "case": case, "provenance_triples": len(prov), "triples": len(g),
-            "ms": (time.perf_counter() - t0) * 1000}
+            "graph": graphdb.graph_iri(result.case.id), "ms": (time.perf_counter() - t0) * 1000}
 
 
 def _fmt_cell(x, prefix: str) -> str:
-    """A result cell: IRIs shortened to the : prefix, decimals to at most four places."""
-    s = str(x).replace(prefix, ":")
-    if getattr(x, "datatype", None) is not None and str(x.datatype).endswith("#decimal"):
-        try:
-            return f"{float(s):.4f}".rstrip("0").rstrip(".") or "0"
-        except ValueError:
-            return s
-    return s
+    """A result cell with the value GraphDB's Workbench shows: IRIs shortened to the : prefix, literals in their lexical
+    form (a decimal keeps the six places it is stored with). The Workbench adds the quotes and the datatype or language
+    tag ("0.999804"^^xsd:decimal, "Pneumonia"@en); the value is the same."""
+    return str(x).replace(prefix, ":")
 
 
 def result_view(svc: Services, result, previous_triage=None, previous_probs=None) -> dict:
