@@ -266,12 +266,16 @@ serves its query tools to MCP clients at <http://localhost:7200/mcp>.
 
 ### Deploying to Vercel (optional)
 
-The web interface also runs as a Vercel Function; the deployed version is at <https://ddx-expert-system.vercel.app>. `index.py` exposes the
-Starlette application, `vercel.json` places
-the function in Singapore (`sin1`), and `.vercelignore` keeps the API keys (`.env`), the documents (the report holds
-the authors' student numbers) and the raw data out of the upload. A consultation lives in the browser's cookie and
-is rebuilt by replaying its answers, so it continues whichever instance serves the next request. With the Vercel
-CLI, from the repository folder:
+The web interface also runs as a Vercel Function; the deployed version is at <https://ddx-expert-system.vercel.app>.
+`index.py` exposes the Starlette application, `vercel.json` places the function in Singapore (`sin1`), and
+`.vercelignore` keeps the API keys (`.env`), the documents (the report holds the authors' student numbers) and the
+raw data out of the upload. A consultation lives in the browser's cookie and is rebuilt by replaying its answers, so
+it continues whichever instance serves the next request.
+
+The Vercel project is connected to this GitHub repository: every push to `main` deploys to production, and every
+other branch gets a preview deployment at its own address. Vercel builds from the repository, so everything the site
+reads at run time is committed; only the compiled cache `kg/.cache/` is not, and it is rebuilt at start-up. A
+deployment can also be made from a local folder with the Vercel CLI:
 
 ```bash
 vercel deploy --prod
