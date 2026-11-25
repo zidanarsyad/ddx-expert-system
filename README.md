@@ -21,7 +21,7 @@ entered in the *Language model* sidebar; everything else works without one.
 | Reasoning that derives new facts, with explanations | `src/ddxes/engine.py` (forward chaining with certainty factors, abductive set covering, triage) and `src/ddxes/explain.py` (HOW, WHY, WHY NOT, proof trees); conclusions are written back to the graph with W3C PROV-O provenance |
 | Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py`; an optional language-model front end, `src/ddxes/intake.py`, that reads a free-text description in English or Bahasa Indonesia and hands the findings to the rules |
 | README with how to run | this file |
-| Report and presentation | `docs/slides.pptx` (25 slides); `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; `docs/demo_script.pdf`, the live demo on one page; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
+| Report and presentation | `docs/slides.pptx` (16 slides); `docs/paper.pdf`, a six-page paper in the IEEE conference layout (description, how it works, results, conclusion), with the report's numbers; `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; `docs/demo_script.pdf`, the live demo on one page; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
 
 ## Results
 
@@ -345,6 +345,7 @@ python -I scripts/make_figures.py    # docs/figures/*.png
 python -I scripts/capture_screenshots.py  # docs/figures/ui-*.png (Playwright with the installed Microsoft Edge)
 python -I scripts/build_report.py    # docs/report.pdf from docs/report.md, which is not in the repository (needs pandoc >= 3 and XeLaTeX)
 python -I scripts/build_deck.py      # docs/slides.pptx
+python -I scripts/build_paper.py     # docs/paper.pdf from docs/paper.md, with the report's numbers (needs IEEEtran)
 python -I scripts/build_explainer.py # docs/explainer.pdf from docs/explainer.html.j2 (Playwright with Microsoft Edge)
 python -I scripts/build_demo_script.py # docs/demo_script.pdf, the live demo on one page, read off the web interface
 ```
@@ -434,7 +435,7 @@ report and the deck); `web/`: the web interface (`app.py` routes, `views.py` vie
 | `kg/` | the knowledge graph: `ontology.ttl` (hand-written), `kb.ttl`, `rules.ttl`, `stats.ttl`, `cases.ttl`, `inferred.ttl` (generated), `stats.json` |
 | `data/raw/`, `data/processed/` | DDXPlus files and the prepared data (`validation_report.md`: 9 checks) |
 | `queries/` | 12 SPARQL queries; results with and without the OWL closure in `results/` and `results-no-inference/` |
-| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_deck.py`, `build_explainer.py`, `build_demo_script.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
+| `scripts/` | pipeline: `prepare_data.py`, `build_kg.py`, `evaluate.py`, `run_queries.py`; documents: `make_figures.py`, `capture_screenshots.py`, `build_report.py`, `build_paper.py`, `build_deck.py`, `build_explainer.py`, `build_demo_script.py`; optional: `load_graphdb.py` (the graph in GraphDB), `evaluate_intake.py` (the free-text intake) |
 | `.env.example` | template for the language-model keys of the optional intake; the filled-in `.env` stays local |
 | `index.py`, `vercel.json`, `.vercelignore`, `.python-version` | optional Vercel deployment: entry point, region, the files left out of the upload, Python version |
 | `results/` | evaluation outputs (JSON) |

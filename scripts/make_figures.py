@@ -193,8 +193,11 @@ def ontology():
     save(fig, "ontology.png")
 
 
-def pipeline():
-    fig, ax = canvas(12.5, 3.3)
+def pipeline(name="pipeline.png", size=(12.5, 3.3), fs=1.0, tfs=None, wrap=False):
+    """The four phases of one inference run; fs and tfs scale the type of the text and of the box titles, and wrap
+    breaks the example line (the paper's version is smaller)."""
+    tfs = fs if tfs is None else tfs
+    fig, ax = canvas(*size)
     steps = [("Case facts", "answers,\nage, sex", TINT["src"], INK2),
              ("1  Forward chaining", "abstraction, scoring,\nthen diagnostic\nrules (CF)", TINT["rules"], GOLD),
              ("2  Abduction", "keep pathologies\nwhose profile explains\nevery symptom", TINT["kg"], UGM_BLUE),
@@ -205,14 +208,91 @@ def pipeline():
     for i, (t, d, fill, col) in enumerate(steps):
         x = i * (w + gap)
         rbox(ax, x, 0.24, w, 0.62, fill, col, lw=1.1, r=0.02)
-        ax.text(x + w / 2, 0.74, t, ha="center", va="center", fontsize=10, fontweight="bold", color=col)
-        ax.text(x + w / 2, 0.46, d, ha="center", va="center", fontsize=8.6, color=INK2, linespacing=1.35)
+        ax.text(x + w / 2, 0.74, t, ha="center", va="center", fontsize=10 * tfs, fontweight="bold", color=col)
+        ax.text(x + w / 2, 0.46, d, ha="center", va="center", fontsize=8.6 * fs, color=INK2, linespacing=1.35)
         if i < len(steps) - 1:
             link(ax, (x + w + 0.002, 0.55), (x + w + gap - 0.002, 0.55))
-    ax.text(0.5, 0.08, "Example T002456 (pulmonary embolism): scoring rules give Wells score 6.5 → D-PE-1 (Wells et al. 2000) · "
-            "covering keeps 1 of 49 pathologies · P = 1.00 → T-PE: Emergency · R-PE-HIGH: CT pulmonary angiography",
-            ha="center", fontsize=8.6, color=INK2)
-    save(fig, "pipeline.png")
+    example = ("Example T002456 (pulmonary embolism): scoring rules give Wells score 6.5 → D-PE-1 (Wells et al. 2000) · "
+               + ("\n" if wrap else "")
+               + "covering keeps 1 of 49 pathologies · P = 1.00 → T-PE: Emergency · R-PE-HIGH: CT pulmonary angiography")
+    if wrap:
+        ax.text(0.5, 0.09, example, ha="center", va="center", fontsize=8.6 * fs, color=INK2, linespacing=1.4)
+    else:
+        ax.text(0.5, 0.08, example, ha="center", fontsize=8.6 * fs, color=INK2)
+    save(fig, name)
+
+
+def saturation(name="saturation.png", size=(6.4, 2.3), fs=1.0):
+    """Why the classic combination of certainty factors fails with many strong contributions and the log domain does
+    not: two hypotheses, one with two more contributions of CF 0.7 than the other (Sections 3.3 and 5.3)."""
+    import math
+    cf = 0.7
+    lam = 1 / (1 - cf)                       # Heckerman: CF = (λ − 1) / λ, so λ = 1 / (1 − CF)
+    n = list(range(1, 41))
+    fig, (a, b) = plt.subplots(1, 2, figsize=size)
+    for k, (label, col) in enumerate([("n + 2 contributions", S1), ("n contributions", S2)]):
+        extra = 2 if k == 0 else 0
+        a.plot(n, [1 - (1 - cf) ** (m + extra) for m in n], color=col, lw=2, label=label, zorder=3 - k)
+        b.plot(n, [(m + extra) * math.log10(lam) for m in n], color=col, lw=2, zorder=3 - k)
+    tie = next(m for m in n if 1 - (1 - cf) ** m == 1.0)
+    a.axvline(tie, color=AXIS, lw=0.9, ls="--")
+    a.text(tie + 0.8, 0.965, f"both exactly 1.0\nfrom n = {tie}:\nthe prior decides", fontsize=8 * fs, color=INK2, va="top")
+    a.set_ylim(0.6, 1.02)
+    a.set_title("Classic combination: CF", loc="left", fontsize=9.5 * fs, color=INK)
+    b.set_title("Log domain: log₁₀ odds gained", loc="left", fontsize=9.5 * fs, color=INK)
+    b.text(22, 4.2, f"stays apart by\n2 · log₁₀ λ = {2 * math.log10(lam):.2f}", fontsize=8 * fs, color=INK2)
+    for ax in (a, b):
+        ax.set_xlabel("contributions of CF 0.7", fontsize=8.5 * fs)
+        ax.tick_params(labelsize=8 * fs)
+        ax.grid(color=GRID, lw=0.6)
+        ax.set_axisbelow(True)
+    a.legend(frameon=False, fontsize=8 * fs, loc="lower center", bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(w_pad=2.0)
+    save(fig, name)
+
+
+def paper_results():
+    """Results at a glance for the paper (one row, three panels): top-1 error, ablation, urgent cases missed."""
+    main, abl, cons = load("main.json"), load("ablation.json"), load("consultation.json")
+    if not (main and abl and cons):
+        return
+    fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.15), gridspec_kw={"width_ratios": [1.0, 1.35, 1.0]})
+    a, b, c = axes
+    sys_rows = [("DDX-ES", 1 - main["es"]["top1"], S1), ("Naive Bayes", 1 - main["nb"]["top1"], MUTED),
+                ("Hybrid", 1 - main["hybrid"]["top1"], AXIS)]
+    a.barh([r[0] for r in sys_rows][::-1], [100 * r[1] for r in sys_rows][::-1], color=[r[2] for r in sys_rows][::-1],
+           height=0.55)
+    for i, r in enumerate(sys_rows[::-1]):
+        a.text(100 * r[1] + 0.03, i, f"{100 * r[1]:.2f}%", va="center", fontsize=7.5, color=INK)
+    a.set_xlim(0, 100 * max(r[1] for r in sys_rows) * 1.45)
+    a.set_title(f"Top-1 error, {main['patients']:,} patients", loc="left", fontsize=8.5, color=INK)
+    ab = {r["name"]: r["top1"] for r in abl["rows"]}
+    order = [("Guideline rules only", "Guideline rules only"), ("Set covering only", "Set covering only"),
+             ("Guideline rules + covering", "Rules + covering"), ("KB evidence + covering", "KB links + covering"),
+             ("Full expert system", "Full system")]
+    vals = [100 * ab[k] for k, _ in order]
+    b.barh([lab for _, lab in order][::-1], vals[::-1],
+           color=[S1 if lab == "Full system" else SEQ[2] for _, lab in order][::-1], height=0.6)
+    for i, v in enumerate(vals[::-1]):
+        b.text(v + 1.5, i, f"{v:.1f}%", va="center", fontsize=7.5, color=INK)
+    b.set_xlim(0, 118)
+    b.set_title(f"Ablation: top-1, {abl['patients']:,} patients", loc="left", fontsize=8.5, color=INK)
+    s, s0 = cons["summary"], cons["without_rule_out"]
+    rows = [("without\nrule-out", 100 * s0["urgent_missed"], S2), ("with\nrule-out", 100 * s["urgent_missed"], S1)]
+    c.bar([r[0] for r in rows], [r[1] for r in rows], color=[r[2] for r in rows], width=0.55)
+    for i, r in enumerate(rows):
+        c.text(i, r[1] + 0.15, f"{r[1]:.1f}%", ha="center", fontsize=7.5, color=INK)
+    c.set_ylim(0, max(r[1] for r in rows) * 1.3)
+    c.set_title("Consultations: urgent missed", loc="left", fontsize=8.5, color=INK)
+    for ax in axes:
+        ax.tick_params(labelsize=7.5)
+        ax.grid(axis="x" if ax is not c else "y", color=GRID, lw=0.6)
+        ax.set_axisbelow(True)
+    a.xaxis.set_major_formatter(PercentFormatter(decimals=1))
+    b.xaxis.set_major_formatter(PercentFormatter(decimals=0))
+    c.yaxis.set_major_formatter(PercentFormatter(decimals=0))
+    fig.tight_layout(w_pad=1.2)
+    save(fig, "paper_results.png")
 
 
 def graphdb_sync():
@@ -419,7 +499,11 @@ if __name__ == "__main__":
     architecture()
     ontology()
     pipeline()
+    pipeline("pipeline_paper.png", size=(7.2, 2.2), fs=0.7, tfs=0.6, wrap=True)
     graphdb_sync()
+    saturation()
+    saturation("saturation_deck.png", size=(5.6, 2.1), fs=1.1)
+    paper_results()
     systems()
     ablation()
     triage_matrix()

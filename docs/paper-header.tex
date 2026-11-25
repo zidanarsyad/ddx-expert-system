@@ -1,0 +1,25 @@
+% Preamble of the compact paper (docs/paper.md) in the IEEE conference layout; scripts/build_paper.py passes it to pandoc.
+\usepackage{float}
+\usepackage{graphicx}   % the figures are raw LaTeX (figure*), so pandoc does not load it itself
+% algorithms: a ruled float with numbered pseudocode lines, the macros of the report set for a column;
+% \algio{Input:}{...} for the inputs and outputs, \algline{depth}{...} for a numbered line indented by depth
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\floatname{algorithm}{Algorithm}
+\floatstyle{plain}
+\newlength{\algindent}
+\setlength{\algindent}{1em}
+\newcounter{algline}
+\newenvironment{algo}{\par\setcounter{algline}{0}\footnotesize\setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.8pt}\vspace{2pt}}{\par\vspace{2pt}}
+\newcommand{\algio}[2]{\par\noindent\hangindent=4em\hangafter=1\makebox[4em][l]{\textbf{#1}}#2}
+\newcommand{\algnote}[1]{\par\noindent\hspace*{2.2em}{\itshape #1}}
+\newcommand{\algline}[2]{\par\stepcounter{algline}\noindent
+  \hangindent=\dimexpr 2.2em+#1\algindent+1em\relax\hangafter=1%
+  \makebox[1.4em][r]{\scriptsize\thealgline}\hspace{0.8em}\hspace*{#1\algindent}#2}
+% tables: the floats that build_report.polish_tex makes from pandoc's longtables
+\providecommand{\singlespacing}{}
+\newcommand{\tablefont}{\footnotesize}
+\renewcommand{\arraystretch}{1.12}
+% a little more freedom for justified lines in narrow columns with code and URLs
+\setlength{\emergencystretch}{2em}

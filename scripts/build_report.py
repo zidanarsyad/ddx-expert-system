@@ -98,8 +98,9 @@ def polish_tex(tex):
     return tex
 
 
-def main():
-    out_pdf = pathlib.Path(sys.argv[sys.argv.index("--out") + 1]) if "--out" in sys.argv else DOCS / "report.pdf"
+def values():
+    """Every placeholder of the report (and of the paper, scripts/build_paper.py): name -> text, computed from the
+    evaluation results, the knowledge-graph statistics and the rule base."""
     doc = yaml.safe_load(open(ROOT / "knowledge" / "rules.yaml", encoding="utf-8"))
     rules, knowledge = rb.load_yaml(ROOT / "knowledge" / "rules.yaml")
     sources = doc["sources"]
@@ -286,7 +287,12 @@ def main():
     for k, v in list(V.items()):
         if "\n" not in v and re.fullmatch(r"[\d.,%]+", v):
             V[k + "_id"] = v.replace(",", "\0").replace(".", ",").replace("\0", ".")
+    return V
 
+
+def main():
+    out_pdf = pathlib.Path(sys.argv[sys.argv.index("--out") + 1]) if "--out" in sys.argv else DOCS / "report.pdf"
+    V = values()
     text = (DOCS / "report.md").read_text(encoding="utf-8")
     missing = sorted(set(re.findall(r"<<(\w+)>>", text)) - set(V))
     if missing:
