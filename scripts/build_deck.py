@@ -376,9 +376,9 @@ def build(kb):
                   "a free-text description into the questionnaire, so the expert system remains the core. The report, "
                   "this deck and the repository with its README are the deliverables.")
     parts = [("1", "Description", "Slide 3 · problem, objectives, input and output, domain"),
-             ("2", "How it works", "Slides 4–11 · concepts, workflow, algorithms, explanations"),
-             ("3", "Results", "Slides 12–13 · accuracy, triage, ablation, consultation, rules"),
-             ("4", "Conclusion", "Slides 14–15 · conclusions, limitations, reproducibility")]
+             ("2", "How it works", "Slides 4–12 · concepts, workflow, algorithms, explanations"),
+             ("3", "Results", "Slides 13–14 · accuracy, triage, ablation, consultation, rules"),
+             ("4", "Conclusion", "Slides 15–16 · conclusions, limitations, reproducibility")]
     pw = (X1 - X0 - 3 * 12) / 4
     for i, (num, head, sub_) in enumerate(parts):
         x = X0 + i * (pw + 12)
@@ -388,17 +388,17 @@ def build(kb):
                                            [(sub_, {"size": 9.5, "color": MUTED})]], after=0, spacing=1.0)
     cards = [("Ontology + knowledge graph",
               f"Hand-written OWL 2 ontology; {fmt(ASSERTED)} asserted triples in six Turtle files; the OWL 2 RL "
-              f"closure adds {fmt(KG['inferred'])}.", "Slides 4, 6"),
+              f"closure adds {fmt(KG['inferred'])}.", "Slides 4, 6–7"),
              ("IF–THEN rules with references",
               f"{len(RULES)} rules from {len(CITED)} published sources — guidelines, case definitions, criteria — "
               "each with its DOI and mapping fidelity.", "Slides 4–5"),
              ("Reasoning and explanations",
               "Forward chaining, abduction, certainty factors, safety-first triage and a consultation; HOW, WHY, "
-              "WHY NOT and PROV-O provenance.", "Slides 7–11"),
+              "WHY NOT and PROV-O provenance.", "Slides 8–12"),
              ("Machine learning and LLM (optional)",
               f"A naive-Bayes baseline and a hybrid mode on the same counts ({fmt(MAIN['patients'])} test "
               "patients); a language-model intake that reads free text in English or Bahasa Indonesia.",
-              "Slides 9, 12–13")]
+              "Slides 10, 13–14")]
     cw = (X1 - X0 - 3 * 16) / 4
     for i, (head, body, ref) in enumerate(cards):
         x = X0 + i * (cw + 16)
@@ -675,7 +675,98 @@ def build(kb):
     table(s, rx, 376, [244, 72, 72], rows, size=10.5, row_h=24, fonts={1: BOLD},
           aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER])
 
-    # 7 ------------------------------------------------------------------ how each inference is processed
+    # 7 ------------------------------------------------------------------ how the Turtle files fit together
+    s = d.content("How the Turtle files fit together",
+                  "The six files are one graph: they share IRIs, so a triple in one file can point to a resource that "
+                  "another file defines. The ontology defines the vocabulary: every resource in the other files is "
+                  "typed with its classes, and its OWL restrictions refer to the severity levels and ICD-10 chapters "
+                  "that kb.ttl defines. kb.ttl is the hub. The rules refer to its questions and pathologies, through "
+                  ":onEvidence in their conditions and :concludesPathology in their conclusions. stats.ttl attaches one "
+                  "evidence-strength node, with its likelihood ratio and certainty factor, to each pathology-question "
+                  "pair (:ofPathology, :ofEvidence2), and three of its rule schemas cite sources that rules.ttl defines. "
+                  "The demo patients in cases.ttl answer the questions of kb.ttl (:hasEvidence, :answerValue). "
+                  "inferred.ttl is derived, not written: owlrl applies the OWL 2 RL rules to ontology, kb and rules and "
+                  "stores what follows, the :characterizedBy profile links, the red-flag rules, the urgency classes and "
+                  "the disease families, so the engine needs no reasoner when it starts. Each run of the engine adds a "
+                  "provenance graph that points into the others: every rule firing to the rule it followed in "
+                  "rules.ttl, every inference to a pathology of kb.ttl and to the case. At start-up the engine parses "
+                  f"five files into one in-memory graph of {fmt(sum(KG[k] for k in ('ontology', 'kb', 'rules', 'stats', 'inferred')))} "
+                  "triples; cases.ttl is parsed only when a SPARQL query asks for the demo patients.")
+    from pptx.enum.dml import MSO_LINE_DASH_STYLE
+    cx = {"L": 75, "C": 385, "R": 695}               # left edges of the three columns
+    ry = {"T": 108, "M": 262, "B": 412}              # top edges of the three rows
+    nw, nh = 190, 68
+
+    def node(col, row, name, desc, count, fill, colour, dashed=False):
+        x, y = cx[col], ry[row]
+        b = box(s, x, y, nw, nh, fill=fill, line=colour, radius=0.1)
+        if dashed:
+            b.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+        text(s, x + 10, y + 6, nw - 20, nh - 10,
+             [[(name, {"font": CODE, "color": colour, "size": 12.5})], [(desc, {"size": 9.5})],
+              [(count, {"size": 8.5, "color": MUTED})]], after=1, spacing=1.0)
+
+    def link(x1, y1, x2, y2, colour=MUTED, dashed=False, width=1.5):
+        c = arrow(s, x1, y1, x2, y2, color=colour, width=width)
+        if dashed:
+            c.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+
+    def label(x, y, w, lines, colour=INK, font=CODE, size=8.5, align=PP_ALIGN.LEFT):
+        text(s, x, y, w, 12 * len(lines) + 4, lines, size=size, font=font, color=colour, after=0, spacing=1.0,
+             align=align)
+
+    node("C", "T", "ontology.ttl", "classes, properties, OWL axioms; written by hand", f"{fmt(KG['ontology'])} triples",
+         CREAM, AMBER)
+    node("L", "T", "inferred.ttl", "OWL 2 RL closure: profiles, red-flag rules, urgency classes",
+         f"{fmt(KG['inferred'])} triples, derived", WHITE, DARKGOLD)
+    node("L", "M", "rules.ttl", f"{len(RULES)} rules with their concepts, value sets, sources",
+         f"{fmt(KG['rules'])} triples, from rules.yaml", TINT, BLUE)
+    node("C", "M", "kb.ttl", "49 pathologies, 223 questions, answer values, profiles",
+         f"{fmt(KG['kb'])} triples, from DDXPlus", TINT, BLUE)
+    node("R", "M", "stats.ttl", "likelihood ratio and CF per pathology–question pair",
+         f"{fmt(KG['stats'])} triples, validation split", GREENTINT, GREEN)
+    node("C", "B", "cases.ttl", "980 demo patients and their answers", f"{fmt(KG['cases'])} triples, test split",
+         CODEBG, INK)
+    node("L", "B", "provenance", "rule firings and inferences of one run (PROV-O)", "built after each run, not a file",
+         WHITE, MUTED, dashed=True)
+    # the vocabulary: every file types its resources with the ontology's classes
+    link(480, ry["T"] + nh, 480, ry["M"], dashed=True)
+    label(488, 196, 196, ["rdf:type: every file uses", "the ontology's classes"], colour=MUTED, font=REG, size=9)
+    # references to resources defined in kb.ttl
+    link(cx["L"] + nw, 296, cx["C"], 296)
+    label(cx["L"] + nw + 4, 266, 116, [":onEvidence", ":concludesPathology"])
+    link(cx["R"], 296, cx["C"] + nw, 296)
+    label(cx["C"] + nw + 4, 266, 116, [":ofPathology", ":ofEvidence2"], align=PP_ALIGN.RIGHT)
+    link(480, ry["B"], 480, ry["M"] + nh)
+    label(488, 352, 196, [":hasEvidence", ":answerValue"])
+    # provenance points into rules, kb and the case
+    link(170, ry["B"], 170, ry["M"] + nh)
+    label(176, 352, 90, [":firedRule"])
+    link(cx["L"] + nw, ry["B"], cx["C"], ry["M"] + nh)
+    label(cx["C"] + 2, ry["M"] + nh + 3, 90, [":inferredPathology"], size=8)
+    link(cx["L"] + nw, 446, cx["C"], 446)
+    label(cx["L"] + nw + 4, 428, 116, [":aboutCase"])
+    # derived by the reasoner: ontology + kb + rules -> inferred.ttl
+    link(cx["C"], 142, cx["L"] + nw, 142, colour=DARKGOLD, width=2)
+    label(cx["L"] + nw + 4, 112, 116, ["owlrl", "(OWL 2 RL)"], colour=DARKGOLD, font=BOLD, size=9)
+    link(170, ry["M"], 170, ry["T"] + nh, colour=DARKGOLD, width=2)
+    link(cx["C"], ry["M"], cx["L"] + nw, ry["T"] + nh, colour=DARKGOLD, width=2)
+    # legend and what the engine loads
+    box(s, cx["R"], ry["T"], nw, nh, fill=CODEBG, line=LINE, radius=0.1)
+    for i, (lab, colour, dashed) in enumerate([("refers to a resource defined in", MUTED, False),
+                                               ("derived by the reasoner", DARKGOLD, False),
+                                               ("typed with the ontology's classes", MUTED, True)]):
+        y = ry["T"] + 16 + i * 19
+        link(cx["R"] + 12, y, cx["R"] + 40, y, colour=colour, dashed=dashed, width=2 if colour == DARKGOLD else 1.5)
+        text(s, cx["R"] + 48, y - 8, nw - 56, 16, [lab], size=9, after=0, anchor=MSO_ANCHOR.MIDDLE)
+    box(s, cx["R"], ry["B"], nw, nh, fill=CODEBG, line=LINE, radius=0.1)
+    text(s, cx["R"] + 10, ry["B"] + 6, nw - 20, nh - 10,
+         [[("Engine at start-up", {"font": BOLD, "color": BLUE})],
+          f"ontology + kb + rules + stats + inferred: "
+          f"{fmt(sum(KG[k] for k in ('ontology', 'kb', 'rules', 'stats', 'inferred')))} triples in memory; "
+          "cases only for SPARQL"], size=9, after=1, spacing=1.0)
+
+    # 8 ------------------------------------------------------------------ how each inference is processed
     s = d.content("How each inference is processed",
                   "On the left is one inference run as pseudocode, the algorithm behind every result; the report gives "
                   "it in full as Algorithm 4.1. On the right is what each kind of inference is, phase by phase, for "
@@ -735,7 +826,7 @@ write the run to the graph as PROV-O""", size=11, label="Algorithm: one inferenc
     table(s, tx, 136, [96, 104, X1 - tx - 200], rows, size=9.5, row_h=34, fonts={0: BOLD, 1: BOLD},
           colors={0: BLUE, 1: INK})
 
-    # 8 ------------------------------------------------------------- CF as LR
+    # 9 ------------------------------------------------------------- CF as LR
     s = d.content("Certainty factors as likelihood ratios",
                   "MYCIN combines certainty factors with a simple function. Heckerman showed in 1986 that a CF can be "
                   "read as a transformed likelihood ratio, and that combining CFs then equals multiplying likelihood "
@@ -770,7 +861,7 @@ write the run to the graph as PROV-O""", size=11, label="Algorithm: one inferenc
     text(s, rx, 420, X1 - rx, 54, ["In log space the calculus does not saturate: evidence still counts at high belief."],
          size=12, font=BOLD, color=BLUE)
 
-    # 9 ------------------------------------------------------------- triage and the consultation
+    # 10 ------------------------------------------------------------- triage and the consultation
     s = d.content("Triage and the consultation",
                   "Triage combines two kinds of knowledge. Red-flag rules come from the guidelines and do not depend on "
                   "the diagnosis: anaphylaxis, suspected coronary syndrome, pulmonary embolism, Ebola after travel. "
@@ -857,7 +948,7 @@ write the run to the graph as PROV-O""", size=11, label="Algorithm: one inferenc
         text(s, x + 82, 410, tw - 90, 66, [lab], size=10, color=INK, anchor=MSO_ANCHOR.MIDDLE, after=0,
              spacing=1.0)
 
-    # 10 ----------------------------------------------------------------- HOW, WHY, WHY NOT
+    # 11 ----------------------------------------------------------------- HOW, WHY, WHY NOT
     s = d.content("Explanations: HOW, WHY and WHY NOT",
                   "This is the HOW explanation of patient T002456, drawn by the web interface from the proof tree. "
                   "It is read from left to right: the patient's answers, highlighted in yellow, feed abstraction and "
@@ -912,7 +1003,7 @@ write the run to the graph as PROV-O""", size=11, label="Algorithm: one inferenc
           [("Every condition of every rule for the pathology is marked as holding, failing or not asked yet.", {})]],
          size=10.5, after=3, spacing=1.0)
 
-    # 11 ------------------------------------------------------------------ provenance
+    # 12 ------------------------------------------------------------------ provenance
     s = d.content("Provenance of inferences (W3C PROV-O)",
                   "After a consultation, the inferences are written back to the graph with the W3C PROV-O vocabulary: "
                   "each inference was generated by a rule firing, which used certain facts and beliefs and followed a "
@@ -986,7 +1077,7 @@ WHERE {
     arrow(s, gx + bw, uy + bh / 2, ux, uy + bh / 2, color=BLUE, width=1.5)
     text(s, ux, uy - 20, X1 - ux, 18, ["prov:used"], size=10.5, font=CODE, color=BLUE)
 
-    # 12 ----------------------------------------------------------------- results: accuracy, triage, ablation
+    # 13 ----------------------------------------------------------------- results: accuracy, triage, ablation
     d.part = "PART 3 · RESULTS"
     es, nb, hy = MAIN["es"], MAIN["nb"], MAIN["hybrid"]
     miss3 = round((1 - es["top3"]) * MAIN["patients"])
@@ -1026,7 +1117,7 @@ WHERE {
           f"{pct(T['under'], 2)}, over-triage {pct(T['over'])} · {MAIN['ms_per_patient']:.1f} ms per patient"],
          size=10.5, color=MUTED, align=PP_ALIGN.CENTER)
 
-    # 13 ----------------------------------------------------------------- consultation and rule validation
+    # 14 ----------------------------------------------------------------- consultation and rule validation
     s = d.content("Consultation and rule validation",
                   "We simulated the consultation on the 980 demo patients by answering every question from the "
                   "patient's record. With a stopping threshold of 0.95, DDX-ES asks 3.8 questions on average after "
@@ -1093,7 +1184,7 @@ WHERE {
          ["The weakest rules (labelled) are screening criteria written for sensitivity; the assigned CFs agree only "
           "moderately with the measured precision."], size=10, color=MUTED, spacing=1.0)
 
-    # 14 ----------------------------------------------------------------- conclusions, limitations, future work
+    # 15 ----------------------------------------------------------------- conclusions, limitations, future work
     d.part = "PART 4 · CONCLUSION"
     s = d.content("Conclusions, limitations and future work",
                   "To conclude. One RDF/OWL graph holds the DDXPlus knowledge and 192 cited rules as data, and the "
@@ -1149,7 +1240,7 @@ WHERE {
             "patients, not for medical decisions (the interface says so on every page). The rules paraphrase cited "
             "criteria, which remain the authority.", {})]], size=10.5, anchor=MSO_ANCHOR.MIDDLE, spacing=1.0)
 
-    # 15 ------------------------------------------------------------------ how to run
+    # 16 ------------------------------------------------------------------ how to run
     s = d.content("Repository and reproducibility",
                   "Everything is in the public repository on GitHub, github.com/zidanarsyad/ddx-expert-system. The "
                   "README explains how to install and run "
@@ -1193,7 +1284,7 @@ pytest                        # 134 tests""", size=11.5)
                                     "make_figures.py → build_report.py → build_deck.py"], size=11.5,
          anchor=MSO_ANCHOR.MIDDLE)
 
-    # 16 --------------------------------------------------------------------- closing
+    # 17 --------------------------------------------------------------------- closing
     shapes = {sh.name: sh for sh in d.closing.shapes}
     set_lines(shapes["TextBox 380"], ["Each conclusion is traced to its", "rule, facts and source."])
     text(d.closing, 87, 400, 333, 36, ["Thank you · Terima kasih"], size=20, font=BOLD, color=BLUE)

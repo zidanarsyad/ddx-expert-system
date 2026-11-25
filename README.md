@@ -21,7 +21,7 @@ entered in the *Language model* sidebar; everything else works without one.
 | Reasoning that derives new facts, with explanations | `src/ddxes/engine.py` (forward chaining with certainty factors, abductive set covering, triage) and `src/ddxes/explain.py` (HOW, WHY, WHY NOT, proof trees); conclusions are written back to the graph with W3C PROV-O provenance |
 | Combination with other methods (optional) | a naive-Bayes classifier (ML baseline) and a hybrid mode, `src/ddxes/bayes.py`; an optional language-model front end, `src/ddxes/intake.py`, that reads a free-text description in English or Bahasa Indonesia and hands the findings to the rules |
 | README with how to run | this file |
-| Report and presentation | `docs/slides.pptx` (16 slides); `docs/paper.pdf`, a six-page paper in the IEEE conference layout (description, how it works, results, conclusion), with the report's numbers; `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; `docs/demo_script.pdf`, the live demo on one page; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
+| Report and presentation | `docs/slides.pptx` (17 slides); `docs/paper.pdf`, a six-page paper in the IEEE conference layout (description, how it works, results, conclusion), with the report's numbers; `docs/explainer.pdf`, a plain-language guide with analogies, diagrams and a glossary; `docs/demo_script.pdf`, the live demo on one page; the report (`docs/report.md` → `docs/report.pdf`) is submitted separately and kept out of the repository because it holds personal data |
 
 ## Results
 
